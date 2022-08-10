@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" [routerLink]="['new']">New Account</button>
+  </div>
+</div>
+<hr>
+
+<a
+  style="cursor: pointer; width: 40%;"
+  class="list-group-item clearfix"
+  *ngFor="let account of accounts">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{account.name}}</h4>
+    <p class="list-group-item-text">{{ account.email }}</p>
+    <p class="list-group-item-text">{{account.id}} </p>
+  </div>
+  <div style="float: right;">
+    <button 
+      class="btn btn-primary" style="margin: 2px;"  
+      [routerLink]="[account.id]">Edit</button>
+    <button class="btn btn-danger" style="margin: 2px;">Delete</button>
+  </div>
+</a>
+
+

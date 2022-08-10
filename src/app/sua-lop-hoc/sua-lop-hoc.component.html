@@ -1,0 +1,40 @@
+<form (ngSubmit)="onSubmit()">
+
+  <div>
+    <img [src]="editClassroom.avatar" width="200"/>
+  </div>
+
+  <div class="field">
+    <label for="usernameInput" class="block">Avatar</label>
+    <br>
+    <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editClassroom.avatar" />
+  </div>
+
+  <div class="field">
+    <label for="name" class="block">Tên lớp học</label>
+    <br>
+    <input formGroupName="name" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
+  </div>
+
+  <label for="checked" class="block">Hiển thị</label>
+  <br>
+  <p-toggleButton name="status" [(ngModel)]="editClassroom.status"></p-toggleButton>
+  <br>
+
+  <div class="field">
+    <label for="orderInput" class="block">Sắp xếp</label>
+    <br>
+    <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editClassroom.order"/>
+  </div>
+
+  <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
+  <button 
+    style="margin: 10px" 
+    type="submit" 
+    pButton pRipple 
+    label="Save" 
+    icon="pi pi-check"
+    >
+  </button>
+
+</form>
