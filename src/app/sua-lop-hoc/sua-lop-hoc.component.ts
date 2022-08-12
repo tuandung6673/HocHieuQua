@@ -11,19 +11,28 @@ import { Classroom } from 'src/models/classroom.model';
 export class SuaLopHocComponent implements OnInit {
 
   id: string
+  isLoading: boolean = false
   editClassroom: Classroom = new Classroom()
 
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isLoading = true
     this.route.params.subscribe((param: Params) => {
       this.id = param['id']
     })
+    this.getEditClassroom(this.id)
+  }
+
+  getEditClassroom(id: string) {
     if(this.id && this.id != "sua-lop-hoc") {
-      this.apiService.getClassroomById(this.id).subscribe((responseData) => {
+      this.apiService.getClassroomById(id).subscribe((responseData) => {
         console.log(responseData);
         this.editClassroom = responseData.data
+        this.isLoading = false
       })
+    } else {
+      this.isLoading = false
     }
   }
 
@@ -32,7 +41,7 @@ export class SuaLopHocComponent implements OnInit {
     updateClassroom.status = updateClassroom ? 1 : 0
     this.apiService.postClassroom(updateClassroom).subscribe((responseData) => {
       console.log(responseData);
-      this.router.navigate(['/lop-hoc'])
+      this.router.navigate(['quan-tri/lop-hoc'])
     })
   }
 

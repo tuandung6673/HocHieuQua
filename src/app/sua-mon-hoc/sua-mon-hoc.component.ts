@@ -21,14 +21,22 @@ export class SuaMonHocComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
+    this.getClassroomForOption();
+    this.getEditSubject(this.id)
+  }
+
+  getEditSubject (id: string) {
     if(this.id && this.id != "them-mon-hoc") {
       this.isLoading = true;
-      this.apiService.getSubjectById(this.id).subscribe((responseData) => {
+      this.apiService.getSubjectById(id).subscribe((responseData) => {
         console.log('Subject By Id', responseData.data);
         this.editSubject = responseData.data
         this.isLoading = false
       })
     }
+  }
+
+  getClassroomForOption () {
     this.apiService.getClassroom().subscribe((reponseLopHoc) => {
       this.optionsLopHoc = reponseLopHoc.data.data.map((lopHoc) => {
         return {name: lopHoc.name, code: lopHoc.id}
@@ -44,7 +52,7 @@ export class SuaMonHocComponent implements OnInit {
     updateSubject.status = updateSubject.status ? 1 : 0
     this.apiService.postSubject(updateSubject).subscribe((responseData) => {
       console.log(responseData);
-      this.router.navigate(['mon-hoc'])
+      this.router.navigate(['quan-tri/mon-hoc'])
     })
   }
 }

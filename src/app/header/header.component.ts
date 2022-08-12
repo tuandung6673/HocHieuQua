@@ -38,10 +38,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void { 
     this.apiService.getMenusTree(0, 1000, '' , 'admin', 1).subscribe((responseData) => {
-      console.log('ResponseData', responseData.data.data);
       this.menus = this.buildTree(responseData.data.data);
-      console.log(this.menus);
-      
     });
   }
 }

@@ -31,6 +31,9 @@ import {PaginatorModule} from 'primeng/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SuaLopHocComponent } from './sua-lop-hoc/sua-lop-hoc.component';
 import { SuaMonHocComponent } from './sua-mon-hoc/sua-mon-hoc.component';
+import { SlideComponent } from './slide/slide.component';
+import { FaqComponent } from './faq/faq.component';
+import { SuaFaqComponent } from './sua-faq/sua-faq.component';
 const appRoutes: Routes = [
   {path: '', component: AllAccountComponent },
   {path: 'quan-tri/giao-vien', component: GiaoVienComponent},
@@ -41,7 +44,11 @@ const appRoutes: Routes = [
   {path: 'quan-tri/lop-hoc/:id', component: SuaLopHocComponent},
   {path: 'quan-tri/mon-hoc', component: MonHocComponent},
   {path: 'quan-tri/mon-hoc/:id', component: SuaMonHocComponent},
-  {path: 'quan-tri/mon-hoc/them-mon-hoc', component: SuaMonHocComponent}
+  {path: 'quan-tri/mon-hoc/them-mon-hoc', component: SuaMonHocComponent},
+  {path: 'quan-tri/slide', component: SlideComponent},
+  {path: 'quan-tri/faq', component: FaqComponent},
+  {path: 'quan-tri/faq/them-faq', component: SuaFaqComponent},
+  {path: 'quan-tri/faq/:id', component: SuaFaqComponent}
 
   // {path: ':id/edit', component: EditAccountComponent}
 ]
@@ -58,6 +65,9 @@ const appRoutes: Routes = [
     SuaGiaoVienComponent,
     SuaLopHocComponent,
     SuaMonHocComponent,
+    SlideComponent,
+    FaqComponent,
+    SuaFaqComponent,
   ],
   imports: [
     CKEditorModule,

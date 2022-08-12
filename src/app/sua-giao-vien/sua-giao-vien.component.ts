@@ -14,18 +14,27 @@ export class SuaGiaoVienComponent implements OnInit {
   Editor = ClassicEditor;
   id: string = ''
   editTeacher: Teacher = new Teacher()
+  isLoading: boolean = false
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(){
+    this.isLoading = true
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    if(this.id) {
-      this.apiService.getTeacherById(this.id).subscribe((responseData) => {
+    this.getEditTeacher(this.id)
+  }
+
+  getEditTeacher(id: string) {
+    if(this.id && this.id != 'them-giao-vien') {
+      this.apiService.getTeacherById(id).subscribe((responseData) => {
         console.log(responseData);
         this.editTeacher = responseData.data
+        this.isLoading = false
       })
+    } else {
+      this.isLoading = false
     }
   }
 
@@ -35,7 +44,7 @@ export class SuaGiaoVienComponent implements OnInit {
     this.apiService.postTeacher(dataSave)
     .subscribe(reponse => {
       console.log('Submit Teacher', reponse);
-      this.router.navigate(['/giao-vien'])
+      this.router.navigate(['quan-tri/giao-vien'])
     })
   }
 

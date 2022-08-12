@@ -90,7 +90,7 @@ export class GiaoVienComponent implements OnInit {
             }
         }
     });
-}
+  }
 
 }
 

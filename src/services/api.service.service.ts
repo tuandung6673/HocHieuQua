@@ -1,3 +1,4 @@
+import { Slide } from './../models/slide.model';
 import { Subject } from './../models/subject.model';
 import { BaseRetail } from './../models/base-response.model';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +10,7 @@ import { BaseReponse} from 'src/models/base-response.model';
 import { Classroom } from 'src/models/classroom.model';
 import { Teacher } from 'src/models/teacher.model';
 import { Menu } from 'src/models/menu.model';
+import { FAQ } from 'src/models/faq.model';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +84,28 @@ export class ApiService {
   // Menu
   getMenusTree(offSet: number = 0, pageSize: number = 100, filter = "", screen = "", status = -1 ) : Observable<BaseReponse<Menu>> {
     return this.http.get<BaseReponse<Menu>>(`${this.url}/Menu/GetMenusTree?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
+  }
+
+  // Slide
+  getSlide(offSet: number = 0, pageSize: number = 0, screen = '', filter = '') : Observable<BaseReponse<Slide>> {
+    return this.http.get<BaseReponse<Slide>>(`${this.url}/Slide?offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&filter=${filter}`)
+  }
+
+  // FAQ
+  getFAQ(offSet: number = 0, pageSize: number = 0, filter = '') : Observable<BaseReponse<FAQ>> {
+    return this.http.get<BaseReponse<FAQ>>(`${this.url}/FAQ?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
+  }
+
+  getFAQById(id: string = '') : Observable<BaseRetail<FAQ>> {
+    return this.http.get<BaseRetail<FAQ>>(`${this.url}/FAQ/${id}`)
+  }
+
+  postFAQ(data: FAQ) {
+    return this.http.post<FAQ>(`${this.url}/FAQ`, data)
+  }
+
+  deleteFAQ(id: string) {
+    return this.http.delete(`${this.url}/FAQ/${id}`)
   }
 
 }
