@@ -10,20 +10,36 @@ import { ApiService } from 'src/services/api.service.service';
 export class LopHocComponent implements OnInit {
 
   classrooms : any
-  isLoading: boolean = false
+  isLoading: boolean = false;
+
+  params = {
+    filter: '',
+    offSet: 0,
+    pageSize: 2,
+    status: '',
+    totalRecord: 0
+  }
 
   constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.isLoading = true
-    this.apiService.getClassroom().subscribe((responseData) => {
+    this.getClassRooms();
+  }
+
+  getClassRooms() {
+    this.apiService.getClassroom(this.params.offSet, this.params.pageSize, this.params.filter, this.params.status).subscribe((responseData) => {
       console.log("Tat ca lop hoc", responseData.data.data);
-      this.classrooms = responseData.data.data
+      this.classrooms = responseData.data.data;
+      this.params = {
+        ...this.params,
+        totalRecord: responseData.data.recordsTotal
+      }
       this.isLoading = false
     })
   }
 
-  onDeleteClassroom(id: number) {
+  onDeleteClassroom(id: string) {
     this.apiService.deleteClassroom(id).subscribe((responseData) => {
       console.log(responseData);
       this.classrooms = this.classrooms.filter((classroom) => {
@@ -32,7 +48,28 @@ export class LopHocComponent implements OnInit {
     })
   }
 
-  confirmDeleteClassroom(id: number) {
+  paginate(event) {
+    //event.first = Index of the first record
+    console.log('first', event.first);
+    //event.rows = Number of rows to display in new page
+    console.log('rows', event.rows);
+
+    //event.page = Index of the new page
+    console.log('page', event.page);
+
+    //event.pageCount = Total number of pages
+    console.log('pageCount', event.pageCount);
+    this.params = {
+      ...this.params,
+      offSet: event.page * event.rows,
+      pageSize: event.rows
+    }
+    console.log(this.params);
+    
+    this.getClassRooms();
+  }
+
+  confirmDeleteClassroom(id: string) {
     this.confirmationService.confirm({
         message: 'Bạn có muốn xóa love này ?',
         header: 'Confirmation',
@@ -54,6 +91,6 @@ export class LopHocComponent implements OnInit {
             }
         }
     });
-}
+  }
 
 }

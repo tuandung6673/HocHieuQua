@@ -1,5 +1,47 @@
-<div class="grid">
-  <div class="col-4">
-      <img [src]="editSubject.avatar" width="200" height="200"/>
-  </div>
+<div style="text-align: center;" *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
 </div>
+<form (ngSubmit)="onSubmit()">
+  <div class="grid" *ngIf=" editSubject ">
+    <div class="col-4">
+      <img [src]="editSubject.avatar" width="220" height="220" />
+    </div>
+    <div class="col-8">
+        <div class="field">
+          <label for="avatar" class="block">Avatar</label>
+          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editSubject.avatar" name="avatar"/>
+        </div>
+
+        <div class="field">
+          <label for="name" class="block">Tên môn học</label>
+          <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editSubject.name" name="name" />
+        </div>
+
+        <br>
+
+        <div class="field">
+          <label for="order" class="block">Thứ tự</label>
+          <input id="order" type="username" aria-describedby="order-help" pInputText [(ngModel)]="editSubject.order" name="order" />
+        </div>
+
+        <label for="checked" class="block">Hiển thị</label>
+        <br>
+        <p-toggleButton name="status" [(ngModel)]="editSubject.status"></p-toggleButton>
+
+        <div class="field" *ngIf="editSubject && editSubject.classRoomIds">
+          <label for="classRoomIds" class="block">Lớp học</label>
+          <p-multiSelect [options]="optionsLopHoc" [(ngModel)]="editSubject.classRoomIds" defaultLabel="Select a City" optionLabel="name" optionValue="code" option display="chip" name="classRoomIds"></p-multiSelect>
+        </div>
+
+      <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
+      <button 
+        style="margin: 10px" 
+        type="submit" 
+        pButton pRipple 
+        label="Save" 
+        icon="pi pi-check"
+        >
+      </button>
+    </div>
+  </div>
+</form>

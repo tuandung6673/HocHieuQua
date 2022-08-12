@@ -8,6 +8,6 @@ export class Subject {
   avatar: "";
   courseId: any = null;
   classRooms: Classroom[] = [];
-  classRoomIds: any = null;
+  classRoomIds: any = [];
   courses: any = null;
 }

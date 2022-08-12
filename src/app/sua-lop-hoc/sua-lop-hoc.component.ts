@@ -19,7 +19,7 @@ export class SuaLopHocComponent implements OnInit {
     this.route.params.subscribe((param: Params) => {
       this.id = param['id']
     })
-    if(this.id) {
+    if(this.id && this.id != "sua-lop-hoc") {
       this.apiService.getClassroomById(this.id).subscribe((responseData) => {
         console.log(responseData);
         this.editClassroom = responseData.data

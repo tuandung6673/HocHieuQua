@@ -13,19 +13,34 @@ export class GiaoVienComponent implements OnInit {
   teachers: any
   isLoading: boolean = false
 
+  params = {
+    offSet: 0,
+    pageSize: 2,
+    filter : '',
+    totalRecord: 0
+  }
+
   constructor(private apiService: ApiService, private router: Router,
     private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.isLoading = true
-    this.apiService.getTeacher().subscribe((responseData) => {
+    this.getTeachers()
+  }
+
+  getTeachers() {
+    this.apiService.getTeacher(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
       console.log('Tat ca GV', responseData.data.data);
       this.teachers = responseData.data.data
+      this.params = {
+        ...this.params,
+        totalRecord: responseData.data.recordsTotal
+      }
       this.isLoading = false
     })
   }
 
-  onDeleteTeacher(id: number) {
+  onDeleteTeacher(id: string) {
     console.log(id);
     this.apiService.deleteTeacher(id).subscribe((responseData) => {
       console.log('Delete Teacher', responseData);
@@ -34,7 +49,28 @@ export class GiaoVienComponent implements OnInit {
     })
   }
 
-  confirmDeleteTeacher(id: number) {
+  paginate(event) {
+    //event.first = Index of the first record
+    console.log('first', event.first);
+    //event.rows = Number of rows to display in new page
+    console.log('rows', event.rows);
+
+    //event.page = Index of the new page
+    console.log('page', event.page);
+
+    //event.pageCount = Total number of pages
+    console.log('pageCount', event.pageCount);
+    this.params = {
+      ...this.params,
+      offSet: event.page * event.rows,
+      pageSize: event.rows
+    }
+    console.log(this.params);
+    
+    this.getTeachers();
+  }
+
+  confirmDeleteTeacher(id: string) {
     this.confirmationService.confirm({
         message: 'Bạn có muốn xóa giáo viên này ?',
         header: 'Confirmation',

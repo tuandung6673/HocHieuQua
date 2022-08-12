@@ -1,6 +1,7 @@
 import { ApiService } from 'src/services/api.service.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'src/models/subject.model';
 
 @Component({
   selector: 'app-sua-mon-hoc',
@@ -10,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class SuaMonHocComponent implements OnInit {
 
   id: string
-  editSubject: any
+  editSubject: Subject = new Subject()
+  optionsLopHoc: any = []
+  isLoading: boolean = false
 
   constructor(private router: Router, private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -18,11 +21,30 @@ export class SuaMonHocComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    if(this.id) {
+    if(this.id && this.id != "them-mon-hoc") {
+      this.isLoading = true;
       this.apiService.getSubjectById(this.id).subscribe((responseData) => {
         console.log('Subject By Id', responseData.data);
         this.editSubject = responseData.data
+        this.isLoading = false
       })
     }
+    this.apiService.getClassroom().subscribe((reponseLopHoc) => {
+      this.optionsLopHoc = reponseLopHoc.data.data.map((lopHoc) => {
+        return {name: lopHoc.name, code: lopHoc.id}
+      })
+    })
+  }
+
+  onSubmit() {
+    console.log('Save Btn');
+    console.log(this.editSubject);
+    
+    const updateSubject = {...this.editSubject}
+    updateSubject.status = updateSubject.status ? 1 : 0
+    this.apiService.postSubject(updateSubject).subscribe((responseData) => {
+      console.log(responseData);
+      this.router.navigate(['mon-hoc'])
+    })
   }
 }

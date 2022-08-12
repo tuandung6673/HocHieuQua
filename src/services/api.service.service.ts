@@ -8,6 +8,7 @@ import { Account } from 'src/models/account.model';
 import { BaseReponse} from 'src/models/base-response.model';
 import { Classroom } from 'src/models/classroom.model';
 import { Teacher } from 'src/models/teacher.model';
+import { Menu } from 'src/models/menu.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,8 @@ export class ApiService {
   }
 
   // Teacher
-  getTeacher(offSet: number = 0, pageSize: number = 20) : Observable<BaseReponse<Teacher>> {
-    return this.http.get<BaseReponse<Teacher>>(`${this.url}/Teacher?offSet=${offSet}&pageSize=${pageSize}`)
+  getTeacher(offSet: number = 0, pageSize: number = 0, filter = '') : Observable<BaseReponse<Teacher>> {
+    return this.http.get<BaseReponse<Teacher>>(`${this.url}/Teacher?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 
   getTeacherById(id: string = '') : Observable<BaseRetail<Teacher>> {
@@ -40,13 +41,13 @@ export class ApiService {
     return this.http.post<Teacher>(`${this.url}/Teacher`, data)
   }
 
-  deleteTeacher(id: number) {
+  deleteTeacher(id: string) {
     return this.http.delete<any>(`${this.url}/Teacher/${id}`)
   }
 
   // Classroom
-  getClassroom(offSet: number = 0, pageSize: number = 0) : Observable<BaseReponse<Classroom>> {
-    return this.http.get<BaseReponse<Classroom>>(`${this.url}/Classroom?offSet=${offSet}&pageSize=${pageSize}`)
+  getClassroom(offSet: number = 0, pageSize: number = 0, filter = '', status = '') : Observable<BaseReponse<Classroom>> {
+    return this.http.get<BaseReponse<Classroom>>(`${this.url}/Classroom?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}`)
   }
 
   getClassroomById(id: string = '') : Observable<BaseRetail<Classroom>> {
@@ -57,17 +58,30 @@ export class ApiService {
     return this.http.post<Classroom>(`${this.url}/Classroom`, data)
   }
 
-  deleteClassroom(id: number) {
+  deleteClassroom(id: string) {
     return this.http.delete<any>(`${this.url}/Classroom/${id}`)
   }
 
   // Subject
-  getSubject(offSet: number = 0, pageSize: number = 0) : Observable<BaseReponse<Subject>> {
-    return this.http.get<BaseReponse<Subject>>(`${this.url}/Subject?offSet=${offSet}&pageSize=${pageSize}`)
+  getSubject(offSet: number = 0, pageSize: number = 0, classId = '', filter = '') : Observable<BaseReponse<Subject>> {
+    return this.http.get<BaseReponse<Subject>>(`${this.url}/Subject?offSet=${offSet}&pageSize=${pageSize}&classId=${classId}&filter=${filter}`)
   }
 
   getSubjectById(id: string = '') {
     return this.http.get<BaseRetail<Subject>>(`${this.url}/Subject/${id}`)
+  }
+
+  postSubject(data: Subject) {
+    return this.http.post<Subject>(`${this.url}/Subject`, data)
+  }
+
+  deleteSubject(id: string) {
+    return this.http.delete(`${this.url}/Subject/${id}`)
+  }
+
+  // Menu
+  getMenusTree(offSet: number = 0, pageSize: number = 100, filter = "", screen = "", status = -1 ) : Observable<BaseReponse<Menu>> {
+    return this.http.get<BaseReponse<Menu>>(`${this.url}/Menu/GetMenusTree?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
   }
 
 }
