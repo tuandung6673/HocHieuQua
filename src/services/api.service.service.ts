@@ -1,3 +1,4 @@
+import { CourseSchedule } from './../models/courseSchedule.model';
 import { Slide } from './../models/slide.model';
 import { Subject } from './../models/subject.model';
 import { BaseRetail } from './../models/base-response.model';
@@ -11,6 +12,7 @@ import { Classroom } from 'src/models/classroom.model';
 import { Teacher } from 'src/models/teacher.model';
 import { Menu } from 'src/models/menu.model';
 import { FAQ } from 'src/models/faq.model';
+import { Course } from 'src/models/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +50,8 @@ export class ApiService {
   }
 
   // Classroom
-  getClassroom(offSet: number = 0, pageSize: number = 0, filter = '', status = '') : Observable<BaseReponse<Classroom>> {
-    return this.http.get<BaseReponse<Classroom>>(`${this.url}/Classroom?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}`)
+  getClassroom(offSet: number = 0, pageSize: number = 0, filter = '') : Observable<BaseReponse<Classroom>> {
+    return this.http.get<BaseReponse<Classroom>>(`${this.url}/Classroom?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 
   getClassroomById(id: string = '') : Observable<BaseRetail<Classroom>> {
@@ -106,6 +108,28 @@ export class ApiService {
 
   deleteFAQ(id: string) {
     return this.http.delete(`${this.url}/FAQ/${id}`)
+  }
+
+  // Course
+  getCourse(offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, teacherId = '', accountId = '', subjectId = '', classId = '') : Observable<BaseReponse<Course>> {
+    return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}`)
+  }
+
+  getCourseById(id: string = '') : Observable<BaseRetail<Course>> {
+    return this.http.get<BaseRetail<Course>>(`${this.url}/Course/${id}`)
+  }
+
+  postCourse(data: Course) {
+    return this.http.post(`${this.url}/Course`, data)
+  }
+
+  deleteCourse(id: string) {
+    return this.http.delete(`${this.url}/Course/${id}`)
+  }
+
+  // CourseSchedule
+  getCourseSchedule(offSet: number = 0, pageSize: number = 1000, courseId: string, filter = '') : Observable<BaseReponse<CourseSchedule>> {
+    return this.http.get<BaseReponse<CourseSchedule>>(`${this.url}/CourseSchedule?offSet=${offSet}&pageSize=${pageSize}&courseId=${courseId}&filter=${filter}`)
   }
 
 }

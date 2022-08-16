@@ -14,15 +14,6 @@ export class AllAccountComponent implements OnInit {
   
   accounts: any;
 
-  // ngOnInit(): void {
-  //   this.apiService.getAccounts('', 0 ,10).subscribe(
-  //     responseData => {
-  //       // console.log(responseData.data.data);
-  //       this.accounts = responseData.data.data
-  //     }
-  //   )
-  // }
-
   ngOnInit() {
     
   }

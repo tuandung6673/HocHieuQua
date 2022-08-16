@@ -15,7 +15,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {TabViewModule} from 'primeng/tabview';
+
 
 
 import { AppComponent } from './app.component';
@@ -34,6 +37,11 @@ import { SuaMonHocComponent } from './sua-mon-hoc/sua-mon-hoc.component';
 import { SlideComponent } from './slide/slide.component';
 import { FaqComponent } from './faq/faq.component';
 import { SuaFaqComponent } from './sua-faq/sua-faq.component';
+import { CourseComponent } from './course/course.component';
+import { SuaCourseComponent } from './CourseInfo/sua-course/sua-course.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
+import { CthCourseComponent } from './CourseInfo/cth-course/cth-course.component';
+import { DiemCourseComponent } from './CourseInfo/diem-course/diem-course.component';
 const appRoutes: Routes = [
   {path: '', component: AllAccountComponent },
   {path: 'quan-tri/giao-vien', component: GiaoVienComponent},
@@ -48,7 +56,10 @@ const appRoutes: Routes = [
   {path: 'quan-tri/slide', component: SlideComponent},
   {path: 'quan-tri/faq', component: FaqComponent},
   {path: 'quan-tri/faq/them-faq', component: SuaFaqComponent},
-  {path: 'quan-tri/faq/:id', component: SuaFaqComponent}
+  {path: 'quan-tri/faq/:id', component: SuaFaqComponent},
+  {path: 'quan-tri/khoa-hoc', component: CourseComponent},
+  {path: 'quan-tri/khoa-hoc/:id', component: EditCourseComponent},
+  {path: 'quan-tri/khoa-hoc/them-khoa-hoc', component: EditCourseComponent}
 
   // {path: ':id/edit', component: EditAccountComponent}
 ]
@@ -68,6 +79,11 @@ const appRoutes: Routes = [
     SlideComponent,
     FaqComponent,
     SuaFaqComponent,
+    CourseComponent,
+    SuaCourseComponent,
+    EditCourseComponent,
+    CthCourseComponent,
+    DiemCourseComponent,
   ],
   imports: [
     CKEditorModule,
@@ -80,10 +96,12 @@ const appRoutes: Routes = [
     InputTextModule,
     ToggleButtonModule,
     MenubarModule,
-    
+    InputSwitchModule,
     ProgressSpinnerModule,
+    TabViewModule,
     MultiSelectModule,
     ConfirmDialogModule,
+    DropdownModule,
     TableModule,
     MessagesModule,
     MessageModule,

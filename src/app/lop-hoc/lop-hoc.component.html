@@ -8,29 +8,6 @@
   <p-progressSpinner></p-progressSpinner>
 </div>
 
-<!-- <a
-  style="cursor: pointer;"
-  routerLinkActive="active"
-  class="list-group-item clearfix"
-  *ngFor="let classroom of classrooms">
-  <div class="pull-right">
-    <h4 class="list-group-item-heading">{{classroom.name}}</h4>
-  </div>
-  <span class="">
-    <img
-      [src]="classroom.avatar"
-      alt="{{ classroom.name }}"
-      class="img-responsive"
-      style="max-height: 50px;">
-  </span>
-  <div style="float: right;">
-    <button class="btn btn-primary" style="margin: 2px;" [routerLink]="[classroom.id]">Edit</button>
-
-    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-    <p-button (click)="confirmDeleteClassroom(classroom.id)" label="Delete" styleClass="mr-2"></p-button>
-  </div>
-</a> -->
-
 <p-table [value]="classrooms" responsiveLayout="scroll" *ngIf="!isLoading">
   <ng-template pTemplate="header">
       <tr>

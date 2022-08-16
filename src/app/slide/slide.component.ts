@@ -25,7 +25,7 @@ export class SlideComponent implements OnInit {
     this.isLoading = true
     this.getSlides()
   }
-
+  
   getSlides() {
     this.apiService.getSlide(this.params.offSet, this.params.pageSize, this.params.screen, this.params.filter).subscribe((responseData) => {
       console.log(responseData.data.data);
@@ -43,6 +43,8 @@ export class SlideComponent implements OnInit {
     //event.rows = Number of rows to display in new page
     //event.page = Index of the new page
     //event.pageCount = Total number of pages
+    console.log('slide event', event.first ,event.rows ,event.page ,event.pageCount);
+    
     this.params = {
       ...this.params,
       offSet: event.page * event.rows,
