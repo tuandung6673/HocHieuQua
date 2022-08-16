@@ -42,6 +42,7 @@ import { SuaCourseComponent } from './CourseInfo/sua-course/sua-course.component
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CthCourseComponent } from './CourseInfo/cth-course/cth-course.component';
 import { DiemCourseComponent } from './CourseInfo/diem-course/diem-course.component';
+import { SuaAccountComponent } from './Account/sua-account/sua-account.component';
 const appRoutes: Routes = [
   {path: '', component: AllAccountComponent },
   {path: 'quan-tri/giao-vien', component: GiaoVienComponent},
@@ -84,6 +85,7 @@ const appRoutes: Routes = [
     EditCourseComponent,
     CthCourseComponent,
     DiemCourseComponent,
+    SuaAccountComponent,
   ],
   imports: [
     CKEditorModule,
