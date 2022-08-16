@@ -47,8 +47,8 @@ export class SuaCourseComponent implements OnInit {
 
         this.isLoading = false
 
-        this.cloneCourse = {...this.editCourse}
-        this.cloneCourse.status = this.cloneCourse.status == 1 ? true : false
+        // this.cloneCourse = {...this.editCourse}
+        this.editCourse.status = this.editCourse.status == 1 ? true : false
         
         this.getSubjectsOption(responseData.data.classRoomId)
       })

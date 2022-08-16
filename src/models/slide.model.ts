@@ -4,5 +4,5 @@ export class Slide {
   imageUrl = "";
   status : any = null;
   order : any = null;
-  screen: ""
+  screen: string | string[] = []; 
 }

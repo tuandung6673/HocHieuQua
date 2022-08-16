@@ -8,27 +8,27 @@ export class Course {
   accountName: '';
   accounts: Account[] = [];
   classRoom: Classroom[] = [];
-  classRoomId: ""
-  classRoomName: ""
-  code: ""
-  courseAvatar: ""
-  courseBanner: ""
-  courseInfo1: ""
-  courseInfo2: ""
+  classRoomId = "";
+  classRoomName = "";
+  code = "";
+  courseAvatar = "";
+  courseBanner = "";
+  courseInfo1 = "";
+  courseInfo2 = "";
   courseSchedules: any;
-  courseThumbnail: ""
-  id: ""
-  name: ""
-  order = 0;
+  courseThumbnail = "";
+  id = "";
+  name = "";
+  order: any = null;
   price: any = null;
   priceDiscount: any = null;
-  rating = 0;
-  shortSummary: ""
+  rating: any = null;
+  shortSummary = "";
   status: any = null
   studentNum: any = null
   subject: Subject[] = []
-  subjectId: ""
-  subjectName: ""
+  subjectId = "";
+  subjectName = "";
   teacherId: any = null
   teacherName: any = null
   teachers: Teacher[] = []

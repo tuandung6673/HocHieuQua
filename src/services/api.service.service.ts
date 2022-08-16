@@ -93,6 +93,14 @@ export class ApiService {
     return this.http.get<BaseReponse<Slide>>(`${this.url}/Slide?offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&filter=${filter}`)
   }
 
+  getSlideById(id: string) : Observable<BaseRetail<Slide>> {
+    return this.http.get<BaseRetail<Slide>>(`${this.url}/Slide/${id}`)
+  }
+
+  postSlide(data: Slide) {
+    return this.http.post<Slide>(`${this.url}/Slide`, data)
+  }
+
   // FAQ
   getFAQ(offSet: number = 0, pageSize: number = 0, filter = '') : Observable<BaseReponse<FAQ>> {
     return this.http.get<BaseReponse<FAQ>>(`${this.url}/FAQ?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)

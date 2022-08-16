@@ -18,7 +18,8 @@ import {MenubarModule} from 'primeng/menubar';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TabViewModule} from 'primeng/tabview';
-
+import {DialogModule} from 'primeng/dialog';
+import {ChipsModule} from 'primeng/chips';
 
 
 import { AppComponent } from './app.component';
@@ -100,6 +101,8 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    ChipsModule,
+    DialogModule,
     TabViewModule,
     MultiSelectModule,
     ConfirmDialogModule,
