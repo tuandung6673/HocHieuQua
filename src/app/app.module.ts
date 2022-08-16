@@ -23,7 +23,6 @@ import {TabViewModule} from 'primeng/tabview';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { AllAccountComponent } from './all-account/all-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { GiaoVienComponent } from './giao-vien/giao-vien.component';
 import { LopHocComponent } from './lop-hoc/lop-hoc.component';
@@ -43,6 +42,7 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CthCourseComponent } from './CourseInfo/cth-course/cth-course.component';
 import { DiemCourseComponent } from './CourseInfo/diem-course/diem-course.component';
 import { SuaAccountComponent } from './Account/sua-account/sua-account.component';
+import { AllAccountComponent } from './Account/all-account/all-account.component';
 const appRoutes: Routes = [
   {path: '', component: AllAccountComponent },
   {path: 'quan-tri/giao-vien', component: GiaoVienComponent},
