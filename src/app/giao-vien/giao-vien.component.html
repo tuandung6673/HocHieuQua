@@ -5,7 +5,7 @@
 
 <div class="row" *ngIf="!isLoading">
   <div class="col-xs-12">
-    <button class="btn btn-success" [routerLink]="['them-giao-vien']">Thêm giáo viên</button>
+    <button class="btn btn-success" [routerLink]="['them-giao-vien']" (click)="onNewTeacher()">Thêm giáo viên</button>
   </div>
 </div>
 

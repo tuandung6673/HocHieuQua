@@ -92,5 +92,5 @@ export class MonHocComponent implements OnInit {
             }
         }
     });
-}
+  }
 }

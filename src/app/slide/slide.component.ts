@@ -1,6 +1,8 @@
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { Slide } from './../../models/slide.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-slide',
@@ -22,7 +24,7 @@ export class SlideComponent implements OnInit {
     totalRecord: 0
   }
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoading = true
@@ -69,6 +71,13 @@ export class SlideComponent implements OnInit {
     this.slideDetail = new Slide()
   }
 
+  onDeleteSlide(id: string) {
+    this.apiService.deleteSlide(id).subscribe((responseData) => {
+      console.log(responseData);
+      this.slides = this.slides.filter(slide => slide.id != id )
+    })
+  }
+
   onSubmit() {
     this.isDisplayDialog = false
     const updateSlide = {...this.slideDetail}
@@ -78,6 +87,32 @@ export class SlideComponent implements OnInit {
     this.apiService.postSlide(updateSlide).subscribe((responseData) => {
       console.log(responseData);
     })
+
+    this.router.navigate(['quan-tri/slide'])
+  }
+
+  confirmDeleteSlide(id: string) {
+    this.confirmationService.confirm({
+        message: 'Bạn có muốn xóa môn học này ?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
+            this.onDeleteSlide(id)
+        },
+        reject: (type) => {
+            switch(type) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
+                break;
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
+                break;
+                default: 
+                  return
+            }
+        }
+    });
   }
 
 }

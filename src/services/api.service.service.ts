@@ -13,6 +13,8 @@ import { Teacher } from 'src/models/teacher.model';
 import { Menu } from 'src/models/menu.model';
 import { FAQ } from 'src/models/faq.model';
 import { Course } from 'src/models/course.model';
+import { Role } from 'src/models/role.model';
+import { Message } from 'src/models/message.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +27,26 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  getAccounts(filter: string = '', offset: number = 0, pageSize: number = 10): Observable<BaseReponse<Account>> {
-    return this.http.get<BaseReponse<Account>>(`${this.url}/Account?filter=${filter}&offSet=${offset}&pageSize=${pageSize}`);
+  // Account
+  getAccounts(filter: string = '', offset: number = 0, pageSize: number = 10, RoleId: string =''): Observable<BaseReponse<Account>> {
+    return this.http.get<BaseReponse<Account>>(`${this.url}/Account?filter=${filter}&offSet=${offset}&pageSize=${pageSize}&RoleId=${RoleId}`);
   }
 
   getAccountsById(id: string = '') : Observable<BaseRetail<Account>> {
     return this.http.get<BaseRetail<Account>>(`${this.url}/Account/${id}`)
+  }
+
+  postAccount(data: Account) {
+    return this.http.post<Message>(`${this.url}/Account`, data)
+  }
+
+  deleteAccount(id: string) {
+    return this.http.delete(`${this.url}/Account/${id}`)
+  }
+
+  // Role
+  getRoles(offSet: number = 0, pageSize: number = 1000, filter : string = '') : Observable<BaseReponse<Role>> {
+    return this.http.get<BaseReponse<Role>>(`${this.url}/Role?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 
   // Teacher
@@ -99,6 +115,10 @@ export class ApiService {
 
   postSlide(data: Slide) {
     return this.http.post<Slide>(`${this.url}/Slide`, data)
+  }
+
+  deleteSlide(id: string) {
+    return this.http.delete(`${this.url}/Slide/${id}`)
   }
 
   // FAQ

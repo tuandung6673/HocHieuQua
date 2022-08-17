@@ -1,1 +1,95 @@
-<p>sua-account works!</p>
+<form (ngSubmit)="onSubmit()">
+  <div class="grid" style="display: flex">
+    <div class="col-4">
+      <div class="field">
+        <label for="avatar" class="block">Avatar</label>
+        <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editAccount.avatar" name="avatar"/>
+      </div>
+      <img [src]="editAccount.avatar" width="100%" height="200" />
+    </div>
+    <div class="col-8">
+      <div class="grid">
+        <div class="col-6">
+          <div class="field">
+            <label for="userName" class="block">Tài khoản đăng nhập</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="userName" type="text" aria-describedby="username-help" pInputText name="userName" [(ngModel)]="editAccount.userName" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="password" class="block">Mật khẩu</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" [(ngModel)]="editAccount.password" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="name" class="block">Tên</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editAccount.name" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="email" class="block">Email</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editAccount.email" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="phone" class="block">Số điện thoại</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editAccount.phone" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="identityNo" class="block">CCCD/CMND</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editAccount.identityNo" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="className" class="block">Lớp</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="className" type="text" aria-describedby="username-help" pInputText name="className" [(ngModel)]="editAccount.className" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="birthday" class="block">Ngày sinh</label>
+            <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="birthday" type="date" aria-describedby="username-help" pInputText name="birthday" [(ngModel)]="editAccount.birthday" />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="roleId" class="block">Quyền</label>
+            <p-dropdown [options]="roleOptions" [(ngModel)]="editAccount.roleId" defaultLabel="Chọn quyền" optionLabel="name" optionValue="code" option display="chip" name="roleId"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="field">
+            <label for="status" class="block">Hoạt động</label>
+            <p-inputSwitch [(ngModel)]="editAccount.status" name="status"></p-inputSwitch>
+          </div>
+        </div>
+        
+        <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
+        <button 
+          style="margin: 10px" 
+          type="submit" 
+          pButton pRipple 
+          label="Save" 
+          icon="pi pi-check"
+          >
+        </button>
+      
+      </div>
+    </div>
+  </div>
+</form>

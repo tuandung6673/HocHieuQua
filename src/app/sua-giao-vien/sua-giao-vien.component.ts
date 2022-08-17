@@ -23,19 +23,17 @@ export class SuaGiaoVienComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    this.getEditTeacher(this.id)
+    if(this.id && this.id != 'them-giao-vien') {
+      this.getEditTeacher(this.id)
+    }
   }
 
   getEditTeacher(id: string) {
-    if(this.id && this.id != 'them-giao-vien') {
-      this.apiService.getTeacherById(id).subscribe((responseData) => {
-        console.log(responseData);
-        this.editTeacher = responseData.data
-        this.isLoading = false
-      })
-    } else {
+    this.apiService.getTeacherById(id).subscribe((responseData) => {
+      console.log(responseData);
+      this.editTeacher = responseData.data
       this.isLoading = false
-    }
+    })
   }
 
   onSubmit() {

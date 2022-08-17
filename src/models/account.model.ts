@@ -19,6 +19,6 @@ export class Account {
   modifiedBy = ''; 
   oldPassword = ''; 
   roleId : any = null
-  status = 0
+  status : any = null
   courseId : any = null
 }

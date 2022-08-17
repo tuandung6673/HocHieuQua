@@ -45,7 +45,9 @@ import { DiemCourseComponent } from './CourseInfo/diem-course/diem-course.compon
 import { SuaAccountComponent } from './Account/sua-account/sua-account.component';
 import { AllAccountComponent } from './Account/all-account/all-account.component';
 const appRoutes: Routes = [
-  {path: '', component: AllAccountComponent },
+  {path: 'quan-tri/tai-khoan', component: AllAccountComponent },
+  {path: 'quan-tri/tai-khoan/:id', component: SuaAccountComponent },
+  {path: 'quan-tri/tai-khoan/them-tai-khoan', component: SuaAccountComponent},
   {path: 'quan-tri/giao-vien', component: GiaoVienComponent},
   {path: 'quan-tri/giao-vien/them-giao-vien', component: SuaGiaoVienComponent},
   {path: 'quan-tri/giao-vien/:id', component: SuaGiaoVienComponent},
