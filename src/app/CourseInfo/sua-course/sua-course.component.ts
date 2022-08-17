@@ -84,8 +84,6 @@ export class SuaCourseComponent implements OnInit {
     })
   }
 
-
-
   reloadSubject() {
     this.getSubjectsOption(this.editCourse.classRoomId)
   }

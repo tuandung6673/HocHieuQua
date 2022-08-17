@@ -14,11 +14,12 @@
           <th>Hình ảnh</th>
           <th>Mã</th>
           <th>Tên</th>
-          <!-- <th>Giáo viên</th> -->
+          <th>Giáo viên</th>
           <th>Giá</th>
           <th>Giá giảm</th>
           <th>Lớp học</th>
           <th>Môn học</th>
+          <th>Hiển thị</th>
           <th>Tùy chọn</th>
       </tr>
   </ng-template>
@@ -29,10 +30,13 @@
           <td>
             {{course.name}}
           </td>
+          <td>{{course.teacherName}}</td>
           <td>{{course.price}}</td>
           <td>{{course.priceDiscount}}</td>
           <td>{{course.classRoomName}}</td>
           <td>{{course.subjectName}}</td>
+          <td *ngIf="course.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></td>
+          <td *ngIf="course.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></td>
           <td>
             <div style="float: right;">
               <p-button label="Edit" styleClass="mr-2" class="p-button-danger" [routerLink]="[course.id]"></p-button>
@@ -43,6 +47,6 @@
   </ng-template>
 </p-table>
 
-<p-paginator [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 20]"></p-paginator>
+<p-paginator [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 25]"></p-paginator>
 
 
