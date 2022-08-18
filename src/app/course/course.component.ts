@@ -13,6 +13,7 @@ export class CourseComponent implements OnInit {
   teacherName: string
   courses: Course[] = [];
   isLoading: boolean = false
+  search: string
   params = {
     offSet: 0,
     pageSize: 5,
@@ -29,7 +30,6 @@ export class CourseComponent implements OnInit {
   constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getCourses()
   }
 
@@ -51,6 +51,14 @@ export class CourseComponent implements OnInit {
       }
       this.isLoading = false
     })
+  }
+
+  onSearch() {
+    this.params = {
+      ...this.params,
+      filter: this.search
+    }
+    this.getCourses()
   }
 
   paginate(event) {

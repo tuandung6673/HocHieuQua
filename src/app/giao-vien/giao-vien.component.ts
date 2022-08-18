@@ -13,6 +13,7 @@ export class GiaoVienComponent implements OnInit {
 
   teachers: any
   isLoading: boolean = false
+  search: string
 
   params = {
     offSet: 0,
@@ -25,11 +26,11 @@ export class GiaoVienComponent implements OnInit {
     private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getTeachers()
   }
-
+  
   getTeachers() {
+    this.isLoading = true
     this.apiService.getTeacher(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
       console.log('Tat ca GV', responseData.data.data);
       this.teachers = responseData.data.data
@@ -39,6 +40,14 @@ export class GiaoVienComponent implements OnInit {
       }
       this.isLoading = false
     })
+  }
+
+  onSearch() {
+    this.params = {
+      ...this.params,
+      filter: this.search
+    }
+    this.getTeachers()
   }
 
   onDeleteTeacher(id: string) {

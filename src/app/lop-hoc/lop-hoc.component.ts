@@ -11,6 +11,7 @@ export class LopHocComponent implements OnInit {
 
   classrooms : any
   isLoading: boolean = false;
+  search: string
 
   params = {
     filter: '',
@@ -22,11 +23,11 @@ export class LopHocComponent implements OnInit {
   constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getClassRooms();
   }
 
   getClassRooms() {
+    this.isLoading = true
     this.apiService.getClassroom(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
       console.log("Tat ca lop hoc", responseData.data.data);
       this.classrooms = responseData.data.data;
@@ -45,6 +46,14 @@ export class LopHocComponent implements OnInit {
         return classroom.id != id
       })
     })
+  }
+
+  onSearch() {
+    this.params = {
+      ...this.params,
+      filter: this.search
+    }
+    this.getClassRooms()
   }
 
   paginate(event) {

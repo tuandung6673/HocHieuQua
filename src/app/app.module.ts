@@ -44,6 +44,10 @@ import { CthCourseComponent } from './CourseInfo/cth-course/cth-course.component
 import { DiemCourseComponent } from './CourseInfo/diem-course/diem-course.component';
 import { SuaAccountComponent } from './Account/sua-account/sua-account.component';
 import { AllAccountComponent } from './Account/all-account/all-account.component';
+import { BaiKiemTraComponent } from './test/bai-kiem-tra/bai-kiem-tra.component';
+import { SuaBaiKiemTraComponent } from './test/sua-bai-kiem-tra/sua-bai-kiem-tra.component';
+import { DanhMucComponent } from './tin-tuc/danh-muc/danh-muc.component';
+import { SuaDanhMucComponent } from './tin-tuc/sua-danh-muc/sua-danh-muc.component';
 const appRoutes: Routes = [
   {path: 'quan-tri/tai-khoan', component: AllAccountComponent },
   {path: 'quan-tri/tai-khoan/:id', component: SuaAccountComponent },
@@ -63,7 +67,11 @@ const appRoutes: Routes = [
   {path: 'quan-tri/faq/:id', component: SuaFaqComponent},
   {path: 'quan-tri/khoa-hoc', component: CourseComponent},
   {path: 'quan-tri/khoa-hoc/:id', component: EditCourseComponent},
-  {path: 'quan-tri/khoa-hoc/them-khoa-hoc', component: EditCourseComponent}
+  {path: 'quan-tri/khoa-hoc/them-khoa-hoc', component: EditCourseComponent},
+  {path: 'quan-tri/bai-kiem-tra', component: BaiKiemTraComponent},
+  {path: 'quan-tri/bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
+  {path: 'quan-tri/bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent}
+
 
   // {path: ':id/edit', component: EditAccountComponent}
 ]
@@ -89,6 +97,10 @@ const appRoutes: Routes = [
     CthCourseComponent,
     DiemCourseComponent,
     SuaAccountComponent,
+    BaiKiemTraComponent,
+    SuaBaiKiemTraComponent,
+    DanhMucComponent,
+    SuaDanhMucComponent
   ],
   imports: [
     CKEditorModule,

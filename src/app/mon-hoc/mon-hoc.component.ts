@@ -14,6 +14,7 @@ export class MonHocComponent implements OnInit {
   courses: any
   subjects: any
   isLoading: boolean = false
+  search: string
   params = {
     offSet: 0,
     pageSize: 2,
@@ -25,11 +26,11 @@ export class MonHocComponent implements OnInit {
   constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService ) { }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getSubjects()
   }
-
+  
   getSubjects() {
+    this.isLoading = true
     this.apiService.getSubject(this.params.offSet, this.params.pageSize, this.params.classId, this.params.filter).subscribe((responseData) => {
       this.subjects = responseData.data.data.map((eachSubject) => {
         const classRooms = eachSubject.classRooms.map(t => t.name).toString();
@@ -43,10 +44,17 @@ export class MonHocComponent implements OnInit {
         totalRecord: responseData.data.recordsTotal
       }
       this.isLoading = false
-      console.log("Tat ca mon hoc", this.subjects);
     })
   }
 
+  onSearch() {
+    this.params = {
+      ...this.params,
+      filter: this.search
+    }
+    this.getSubjects()
+  }
+ 
   paginate(event) {
     //event.first = Index of the first record
     //event.rows = Number of rows to display in new page

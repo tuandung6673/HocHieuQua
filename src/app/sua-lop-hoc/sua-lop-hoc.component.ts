@@ -17,7 +17,6 @@ export class SuaLopHocComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.isLoading = true
     this.route.params.subscribe((param: Params) => {
       this.id = param['id']
     })
@@ -27,6 +26,7 @@ export class SuaLopHocComponent implements OnInit {
   }
 
   getEditClassroom(id: string) {
+    this.isLoading = true
     this.apiService.getClassroomById(id).subscribe((responseData) => {
       console.log(responseData);
       this.editClassroom = responseData.data

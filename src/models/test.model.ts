@@ -10,7 +10,7 @@ export class Test {
   testCategoryCode = "";
   testCategoryName = "";
   order: any = null;
-  isFree: true;
+  isFree: any = 0;
   quizzs: Quizz[] = [];
   courseScheduleId = ""
 }

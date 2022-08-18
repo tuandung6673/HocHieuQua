@@ -1,11 +1,21 @@
-<div class="row" *ngIf="!isLoading">
-  <div class="col-xs-12">
-    <button class="btn btn-success" [routerLink]="['them-mon-hoc']">Thêm môn học</button>
-  </div>
-</div>
 
 <div style="text-align: center;" *ngIf="isLoading">
   <p-progressSpinner></p-progressSpinner>
+</div>
+
+<div class="grid" *ngIf="!isLoading">
+  <div class="col-4">
+    <button class="btn btn-success" [routerLink]="['them-mon-hoc']">Thêm môn học</button>
+  </div>
+
+  <div class="col-8">
+    <div style="float: right;">
+      <span class="p-input-icon-right">
+        <i (click)="onSearch()" class="pi pi-search"></i>
+        <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
+      </span>
+    </div>
+  </div>
 </div>
 
 <p-table [value]="subjects" responsiveLayout="scroll" *ngIf="!isLoading">

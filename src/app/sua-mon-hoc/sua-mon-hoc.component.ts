@@ -18,7 +18,7 @@ export class SuaMonHocComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.isLoading = true
+    // this.isLoading = true
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
@@ -29,6 +29,7 @@ export class SuaMonHocComponent implements OnInit {
   }
 
   getEditSubject (id: string) {
+    this.isLoading = true
     this.apiService.getSubjectById(id).subscribe((responseData) => {
       console.log('Subject By Id', responseData.data);
       this.editSubject = responseData.data

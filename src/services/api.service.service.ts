@@ -15,6 +15,8 @@ import { FAQ } from 'src/models/faq.model';
 import { Course } from 'src/models/course.model';
 import { Role } from 'src/models/role.model';
 import { Message } from 'src/models/message.model';
+import { Test } from 'src/models/test.model';
+import { New } from 'src/models/new.model';
 
 @Injectable({
   providedIn: 'root'
@@ -158,6 +160,21 @@ export class ApiService {
   // CourseSchedule
   getCourseSchedule(offSet: number = 0, pageSize: number = 1000, courseId: string, filter = '') : Observable<BaseReponse<CourseSchedule>> {
     return this.http.get<BaseReponse<CourseSchedule>>(`${this.url}/CourseSchedule?offSet=${offSet}&pageSize=${pageSize}&courseId=${courseId}&filter=${filter}`)
+  }
+
+  // Tesst
+
+  getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '') : Observable<BaseReponse<Test>> {
+    return this.http.get<BaseReponse<Test>>(`${this.url}/test?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&classId=${classId}&courseId=${courseId}&subjectId=${subjectId}&testCategoryId=${testCategoryId}`)
+  }
+
+  getTestById(id: string) : Observable<BaseRetail<Test>> {
+    return this.http.get<BaseRetail<Test>>(`${this.url}/test/${id}`)
+  }
+
+  // News
+  getNew(offSet: number = 0, pageSize: number = 100, categoryId = '', filter = '') : Observable<BaseReponse<New>> {
+    return this.http.get<BaseReponse<New>>(`${this.url}/New?offSet=${offSet}&pageSize=${pageSize}&categoryId=${categoryId}&filter=${filter}`)
   }
 
 }

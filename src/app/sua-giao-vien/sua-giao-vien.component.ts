@@ -19,7 +19,6 @@ export class SuaGiaoVienComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(){
-    this.isLoading = true
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
@@ -29,6 +28,7 @@ export class SuaGiaoVienComponent implements OnInit {
   }
 
   getEditTeacher(id: string) {
+    this.isLoading = true
     this.apiService.getTeacherById(id).subscribe((responseData) => {
       console.log(responseData);
       this.editTeacher = responseData.data
