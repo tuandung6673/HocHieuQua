@@ -1,5 +1,10 @@
 <!-- <img style="margin: 10px;" [src]="" width="250" alt="" /> -->
-<form (ngSubmit)="onSubmit()">
+
+<div style="text-align: center;" *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
 
   <div class="field">
     <label for="usernameInput" class="block">Avatar</label>

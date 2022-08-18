@@ -1,4 +1,8 @@
-<form (ngSubmit)="onSubmit()">
+<div style="text-align: center;" *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
 
   <div>
     <img [src]="editClassroom.avatar" width="200"/>

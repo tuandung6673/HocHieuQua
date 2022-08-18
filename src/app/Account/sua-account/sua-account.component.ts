@@ -11,6 +11,7 @@ import { Account } from 'src/models/account.model';
 export class SuaAccountComponent implements OnInit {
 
   id: string
+  isLoading: boolean = false
   editAccount: Account = new Account()
   roleOptions : any = []
 
@@ -27,9 +28,11 @@ export class SuaAccountComponent implements OnInit {
   }
 
   getEditAccount(id: string) {
+    this.isLoading = true
     this.apiService.getAccountsById(id).subscribe((responseData) => {
       this.editAccount = responseData.data
       this.editAccount.status = this.editAccount.status == 1
+      this.isLoading = false
     })
   }
 
@@ -42,32 +45,6 @@ export class SuaAccountComponent implements OnInit {
   }
 
   onSubmit() {
-    // const updateAccount = {
-    //   address: "",
-    //   avatar: this.editAccount.avatar,
-    //   birthday: this.editAccount.birthday,
-    //   className: this.editAccount.className,
-    //   courseId: null,
-    //   createdBy: "",
-    //   createdDate: "2022-08-17T03:39:06.94",
-    //   email: this.editAccount.email,
-    //   id: this.editAccount.id,
-    //   identityNo: this.editAccount.identityNo,
-    //   modifiedBy: "",
-    //   modifiedDate: null,
-    //   name: this.editAccount.name,
-    //   oldPassword: "",
-    //   password: this.editAccount.password,
-    //   phone: this.editAccount.phone,
-    //   roleDescription: null,
-    //   roleId: this.editAccount.roleId,
-    //   roleName: null,
-    //   roles: null,
-    //   status: this.editAccount.status,
-    //   userId: "",
-    //   userName: this.editAccount.userName
-    // }
-
     const updateAccount = {...this.editAccount}
     updateAccount.status = updateAccount.status ? 1 : 0
 

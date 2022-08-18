@@ -2,7 +2,7 @@
   <p-progressSpinner></p-progressSpinner>
 </div>
 
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
   <div class="grid" style="display: flex">
     <div class="col-3">
       <div class="field">

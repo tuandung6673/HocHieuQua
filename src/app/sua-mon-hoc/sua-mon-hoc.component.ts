@@ -18,22 +18,22 @@ export class SuaMonHocComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
+    if(this.id && this.id != 'them-mon-hoc') {
+      this.getEditSubject(this.id)
+    }
     this.getClassroomForOption();
-    this.getEditSubject(this.id)
   }
 
   getEditSubject (id: string) {
-    if(this.id && this.id != "them-mon-hoc") {
-      this.isLoading = true;
-      this.apiService.getSubjectById(id).subscribe((responseData) => {
-        console.log('Subject By Id', responseData.data);
-        this.editSubject = responseData.data
-        this.isLoading = false
-      })
-    }
+    this.apiService.getSubjectById(id).subscribe((responseData) => {
+      console.log('Subject By Id', responseData.data);
+      this.editSubject = responseData.data
+      this.isLoading = false
+    })
   }
 
   getClassroomForOption () {

@@ -1,7 +1,7 @@
 <div style="text-align: center;" *ngIf="isLoading">
   <p-progressSpinner></p-progressSpinner>
 </div>
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
   <div class="grid" *ngIf="editSubject">
     <div class="col-4">
       <img [src]="editSubject.avatar" width="220" height="220" />

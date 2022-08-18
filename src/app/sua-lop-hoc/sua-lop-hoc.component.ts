@@ -21,19 +21,17 @@ export class SuaLopHocComponent implements OnInit {
     this.route.params.subscribe((param: Params) => {
       this.id = param['id']
     })
-    this.getEditClassroom(this.id)
+    if(this.id && this.id != 'sua-lop-hoc') {
+      this.getEditClassroom(this.id)
+    }
   }
 
   getEditClassroom(id: string) {
-    if(this.id && this.id != "sua-lop-hoc") {
-      this.apiService.getClassroomById(id).subscribe((responseData) => {
-        console.log(responseData);
-        this.editClassroom = responseData.data
-        this.isLoading = false
-      })
-    } else {
+    this.apiService.getClassroomById(id).subscribe((responseData) => {
+      console.log(responseData);
+      this.editClassroom = responseData.data
       this.isLoading = false
-    }
+    })
   }
 
   onSubmit() {

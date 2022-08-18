@@ -65,7 +65,7 @@ export class SlideComponent implements OnInit {
       this.slideDetail.status = this.slideDetail.status == 1
     })
   }
-
+  
   onNewSlide() {
     this.isDisplayDialog = true
     this.slideDetail = new Slide()
