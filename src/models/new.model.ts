@@ -9,8 +9,8 @@ export class New {
   order: any = null;
   rate: any = null;
   shortContent= "";
-  tags= "";
-  view: any = null;
+  tags: string | string[] = [];
+  view: 0;
   author= "";
   createdDate = "";
   createdBy= "";

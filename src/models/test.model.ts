@@ -1,6 +1,6 @@
 import { Quizz } from './quizz.model';
 export class Test {
-  id  ="";
+  id = "";
   name = "";
   description = "";
   time: any = 0;

@@ -17,33 +17,33 @@
   </div>
 </div>
 
-<p-table [value]="newCategorys" responsiveLayout="scroll" *ngIf="!isLoading">
+<p-table [value]="recruits" responsiveLayout="scroll" *ngIf="!isLoading">
   <ng-template pTemplate="header">
       <tr>
-          <th>Tên</th>
+          <th>Tiêu đề</th>
+          <th>Mô tả ngắn</th>
           <th>Hiển thị</th>
           <th>Sắp xếp</th>
           <th>Tùy chọn</th>
       </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-newCategory >
+  <ng-template pTemplate="body" let-recruit >
       <tr>
-          <td>{{newCategory.name}}</td>
+          <td>{{recruit.name}}</td>
           <td>
-            <div *ngIf="newCategory.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></div>
-            <div *ngIf="newCategory.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></div>
+            <div [innerHTML]="recruit.requirement"></div>
           </td>
           <td>
-            {{newCategory.order}}
+            <div *ngIf="recruit.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></div>
+            <div *ngIf="recruit.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></div>
           </td>
-
+          <td>
+            {{recruit.order}}
+          </td>
           <td>
             <div style="float: right;">
-              <!-- <button class="btn btn-primary" style="margin: 2px;" [routerLink]="[newCategory.id]">Edit</button> -->
-
-              <p-button label="Edit" styleClass="mr-2" class="p-button-danger" [routerLink]="[newCategory.id]"></p-button>
+              <p-button label="Edit" styleClass="mr-2" class="p-button-danger" [routerLink]="[recruit.id]"></p-button>
               <button pButton pRipple type="button" (click)="confirmDeleteNewCategory(newCategory.id)" label="Delete" class="p-button-danger"></button>
-
             </div>
           </td>
       </tr>

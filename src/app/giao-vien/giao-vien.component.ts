@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-import { Teacher } from 'src/models/teacher.model';
 import { ApiService } from 'src/services/api.service.service';
+
 
 @Component({
   selector: 'app-giao-vien',

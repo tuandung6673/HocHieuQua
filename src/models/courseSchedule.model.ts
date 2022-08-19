@@ -1,10 +1,10 @@
 import { Test } from './test.model';
 export class CourseSchedule {
-  id: "";
-  name: "";
+  id = "";
+  name = "";
   order: 0;
   status: 0;
-  courseId: "";
-  requireCourseId: "";
+  courseId = "";
+  requireCourseId = "";
   tests: Test[] = []
 }

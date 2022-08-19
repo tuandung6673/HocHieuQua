@@ -1,0 +1,49 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <label for="name" class="block">Tiêu đề</label>
+      <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.name" name="name" />
+    </div>
+    <div class="col-6">
+      <label for="price" class="block">Giá</label>
+      <input id="price" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.price" name="price" />
+    </div>
+    <div class="col-6">
+      <label for="address" class="block">Địa chỉ</label>
+      <input id="address" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.address" name="address" />
+    </div>
+    <div class="col-6">
+      <label for="order" class="block">Thứ tự</label>
+      <input id="order" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.order" name="order" />
+    </div>
+    <div class="col-3">
+      <label for="status" class="block">Hiển thị</label>
+      <p-inputSwitch [(ngModel)]="editRecruit.status"  name="status"></p-inputSwitch>
+    </div>
+    <div class="col-3">
+      <label for="isHot" class="block">Nóng hổi</label>
+      <p-inputSwitch [(ngModel)]="editRecruit.isHot"  name="isHot"></p-inputSwitch>
+    </div>
+    <div class="col-12">
+      <label for="order" class="block">Tags</label>
+      <p-chips [(ngModel)]="editRecruit.tags" name="tags" ></p-chips>
+    </div>
+    <div class="col-12">
+      <label for="order" class="block">Yêu cầu</label>
+      <ckeditor [editor]="Editor" name="shortContent" [(ngModel)]="editRecruit.requirement"></ckeditor>
+    </div>
+    <div class="col-12">
+      <label for="order" class="block">Nội dung bài viết</label>
+      <ckeditor [editor]="Editor" name="content" [(ngModel)]="editRecruit.content"></ckeditor>
+    </div>
+  </div>
+  <button style="margin: 10px" pButton pRipple label="Quay lại" icon="pi pi-times"></button>
+  <button 
+    style="margin: 10px" 
+    type="submit" 
+    pButton pRipple 
+    label="Lưu" 
+    icon="pi pi-check"
+    >
+  </button>
+</form>

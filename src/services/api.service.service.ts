@@ -17,6 +17,8 @@ import { Role } from 'src/models/role.model';
 import { Message } from 'src/models/message.model';
 import { Test } from 'src/models/test.model';
 import { New } from 'src/models/new.model';
+import { NewCatagory } from 'src/models/newCategory.model';
+import { Recruit } from 'src/models/recruit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +62,7 @@ export class ApiService {
     return this.http.get<BaseRetail<Teacher>>(`${this.url}/Teacher/${id}`)
   }
   postTeacher(data: Teacher) {
-    return this.http.post<Teacher>(`${this.url}/Teacher`, data)
+    return this.http.post<Message>(`${this.url}/Teacher`, data)
   }
 
   deleteTeacher(id: string) {
@@ -77,7 +79,7 @@ export class ApiService {
   }
 
   postClassroom(data: Classroom) {
-    return this.http.post<Classroom>(`${this.url}/Classroom`, data)
+    return this.http.post<Message>(`${this.url}/Classroom`, data)
   }
 
   deleteClassroom(id: string) {
@@ -94,7 +96,7 @@ export class ApiService {
   }
 
   postSubject(data: Subject) {
-    return this.http.post<Subject>(`${this.url}/Subject`, data)
+    return this.http.post<Message>(`${this.url}/Subject`, data)
   }
 
   deleteSubject(id: string) {
@@ -116,7 +118,7 @@ export class ApiService {
   }
 
   postSlide(data: Slide) {
-    return this.http.post<Slide>(`${this.url}/Slide`, data)
+    return this.http.post<Message>(`${this.url}/Slide`, data)
   }
 
   deleteSlide(id: string) {
@@ -133,7 +135,7 @@ export class ApiService {
   }
 
   postFAQ(data: FAQ) {
-    return this.http.post<FAQ>(`${this.url}/FAQ`, data)
+    return this.http.post<Message>(`${this.url}/FAQ`, data)
   }
 
   deleteFAQ(id: string) {
@@ -173,8 +175,46 @@ export class ApiService {
   }
 
   // News
-  getNew(offSet: number = 0, pageSize: number = 100, categoryId = '', filter = '') : Observable<BaseReponse<New>> {
-    return this.http.get<BaseReponse<New>>(`${this.url}/New?offSet=${offSet}&pageSize=${pageSize}&categoryId=${categoryId}&filter=${filter}`)
+  getNews(offSet: number = 0, pageSize: number = 100, categoryId = '', filter = '') : Observable<BaseReponse<New>> {
+    return this.http.get<BaseReponse<New>>(`${this.url}/News?offSet=${offSet}&pageSize=${pageSize}&categoryId=${categoryId}&filter=${filter}`)
+  }
+
+  getNewsById(id: string) : Observable<BaseRetail<New>> {
+    return this.http.get<BaseRetail<New>>(`${this.url}/News/${id}`)
+  }
+
+  postNews(data: New) {
+    return this.http.post<Message>(`${this.url}/News`, data)
+  }
+
+  // New Category
+  getNewCategory(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<NewCatagory>> {
+    return this.http.get<BaseReponse<NewCatagory>>(`${this.url}/NewsCategory?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
+  }
+
+  getNewCategoryByid(id: string) : Observable<BaseRetail<NewCatagory>>{
+    return this.http.get<BaseRetail<NewCatagory>>(`${this.url}/NewsCategory/${id}`)
+  }
+
+  postNewCategory(data: NewCatagory) {
+    return this.http.post<Message>(`${this.url}/NewsCategory`, data)
+  }
+
+  deleteNewCategory(id: string) {
+    return this.http.delete<Message>(`${this.url}/NewsCategory/${id}`)
+  }
+
+  // Recruit
+  getRecruit(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Recruit>> {
+    return this.http.get<BaseReponse<Recruit>>(`${this.url}/Recruit?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
+  }
+
+  getRecruitById(id: string) : Observable<BaseRetail<Recruit>> {
+    return this.http.get<BaseRetail<Recruit>>(`${this.url}/Recruit/${id}`)
+  }
+
+  postRecruit(data: Recruit) {
+    return this.http.post<Message>(`${this.url}/Recruit`, data)
   }
 
 }

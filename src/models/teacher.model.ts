@@ -1,13 +1,13 @@
 export class Teacher {
-  id: "";
-  fullName: "";
-  avatar: "";
-  description: "";
-  descriptionShort: "";
+  id = "";
+  fullName = "";
+  avatar = "";
+  description = "";
+  descriptionShort = "";
   order: any = null;
-  createdDate: "";
+  createdDate = "";
   modifiedDate: null;
-  createdBy: "";
-  modifiedBy: "";
+  createdBy = "";
+  modifiedBy = "";
   status: any = 0;
 }

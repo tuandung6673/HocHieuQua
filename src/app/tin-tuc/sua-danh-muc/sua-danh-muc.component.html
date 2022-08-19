@@ -1,1 +1,26 @@
-<p>sua-danh-muc works!</p>
+<form (ngSubmit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <label for="name" class="block">Tên môn học</label>
+      <input id="name" type="username" aria-describedby="name-help" [(ngModel)]="editNewCategory.name" pInputText  name="name" />
+    </div>
+    <div class="col-6">
+      <label for="name" class="block">Thứ tự</label>
+      <input id="name" type="username" aria-describedby="name-help" [(ngModel)]="editNewCategory.order" pInputText  name="order" />
+    </div>
+    <div class="col-6">
+      <label for="checked" class="block">Hiển thị</label>
+      <p-inputSwitch [(ngModel)]="editNewCategory.status"  name="status"></p-inputSwitch>
+    </div>
+
+    <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
+    <button 
+      style="margin: 10px" 
+      type="submit" 
+      pButton pRipple 
+      label="Save" 
+      icon="pi pi-check"
+      >
+    </button>
+  </div>
+</form>

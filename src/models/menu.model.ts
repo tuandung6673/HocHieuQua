@@ -1,12 +1,12 @@
 export class Menu {
-  id: "";
-  name: "";
-  path: "";
-  parentId: "";
-  icon: "";
+  id = "";
+  name = "";
+  path = "";
+  parentId = "";
+  icon = "";
   status: any = null;
-  screen: "";
+  screen = "";
   order: any = null;
-  actions: "";
+  actions = "";
   childs: any
 }

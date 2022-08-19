@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Teacher } from 'src/models/teacher.model';
 import { ApiService } from 'src/services/api.service.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-sua-giao-vien',

@@ -1,11 +1,11 @@
 export class FAQ {
-  id: "";
-  title: "";
-  content: "";
+  id = "";
+  title = "";
+  content = "";
   order: any = null;
   status: any = null;
-  createdDate: "";
-  modifiedDate: "";
-  createdBy: "";
-  modifiedBy: ""
+  createdDate = "";
+  modifiedDate = "";
+  createdBy = "";
+  modifiedBy = ""
 }

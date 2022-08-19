@@ -20,6 +20,8 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {TabViewModule} from 'primeng/tabview';
 import {DialogModule} from 'primeng/dialog';
 import {ChipsModule} from 'primeng/chips';
+import {RatingModule} from 'primeng/rating';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 
 import { AppComponent } from './app.component';
@@ -48,7 +50,20 @@ import { BaiKiemTraComponent } from './test/bai-kiem-tra/bai-kiem-tra.component'
 import { SuaBaiKiemTraComponent } from './test/sua-bai-kiem-tra/sua-bai-kiem-tra.component';
 import { DanhMucComponent } from './tin-tuc/danh-muc/danh-muc.component';
 import { SuaDanhMucComponent } from './tin-tuc/sua-danh-muc/sua-danh-muc.component';
+import { BaiVietComponent } from './tin-tuc/bai-viet/bai-viet.component';
+import { SuaBaiVietComponent } from './tin-tuc/sua-bai-viet/sua-bai-viet.component';
+import { TinTuyenDungComponent } from './tuyen-dung/tin-tuyen-dung/tin-tuyen-dung.component';
+import { SuaTinTuyenDungComponent } from './tuyen-dung/sua-tin-tuyen-dung/sua-tin-tuyen-dung.component';
 const appRoutes: Routes = [
+  {path: 'quan-tri/danh-muc-tin-tuc', component: DanhMucComponent},
+  {path: 'quan-tri/danh-muc-tin-tuc/:id', component: SuaDanhMucComponent},
+  {path: 'quan-tri/danh-muc-tin-tuc/them-moi', component: SuaDanhMucComponent},
+  {path: 'quan-tri/tuyen-dung', component: TinTuyenDungComponent},
+  {path: 'quan-tri/tuyen-dung/:id', component: SuaTinTuyenDungComponent},
+  {path: 'quan-tri/tuyen-dung/them-moi', component: SuaTinTuyenDungComponent},
+  {path: 'quan-tri/tin-tuc', component: BaiVietComponent},
+  {path: 'quan-tri/tin-tuc/:id', component: SuaBaiVietComponent},
+  {path: 'quan-tri/tin-tuc/them-moi', component: SuaBaiVietComponent},
   {path: 'quan-tri/tai-khoan', component: AllAccountComponent },
   {path: 'quan-tri/tai-khoan/:id', component: SuaAccountComponent },
   {path: 'quan-tri/tai-khoan/them-tai-khoan', component: SuaAccountComponent},
@@ -100,7 +115,11 @@ const appRoutes: Routes = [
     BaiKiemTraComponent,
     SuaBaiKiemTraComponent,
     DanhMucComponent,
-    SuaDanhMucComponent
+    SuaDanhMucComponent,
+    BaiVietComponent,
+    SuaBaiVietComponent,
+    TinTuyenDungComponent,
+    SuaTinTuyenDungComponent
   ],
   imports: [
     CKEditorModule,
@@ -115,6 +134,8 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    BreadcrumbModule,
+    RatingModule,
     ChipsModule,
     DialogModule,
     TabViewModule,
