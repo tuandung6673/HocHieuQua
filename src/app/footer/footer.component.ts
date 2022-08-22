@@ -12,13 +12,13 @@ export class FooterComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    // this.getFooter()
+    this.getFooter()
   }
 
-  // getFooter() {
-  //   this.apiService.getFooter().subscribe((responseData) => {
-  //     this.footer = responseData.data.data
-  //   })
-  // }
+  getFooter() {
+    this.apiService.getFooter().subscribe((responseData) => {
+      this.footer = responseData.data.data
+    })
+  }
 
 }

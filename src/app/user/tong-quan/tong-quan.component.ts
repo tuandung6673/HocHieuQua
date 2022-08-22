@@ -11,31 +11,21 @@ import SwiperCore, { SwiperOptions } from 'swiper';
 })
 export class TongQuanComponent implements OnInit {
 
+  home : any
   imageSlider = []
+  classSlider : any
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.getImageSlider()
+    this.getHome()
   }
 
-  getImageSlider() {
+  getHome() {
     this.apiService.getHome().subscribe((responseData) => {
-      this.imageSlider = responseData.data.slides;    
+      this.home = responseData.data
+      this.imageSlider = responseData.data.slides;  
+        
     })
-  }
-
-  config: SwiperOptions = {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    navigation: true,
-    pagination: { clickable: true },
-    scrollbar: { draggable: true },
-  };
-  onSwiper(a) {
-    console.log(a);
-  }
-  onSlideChange() {
-    console.log('slide change');
   }
 
 }

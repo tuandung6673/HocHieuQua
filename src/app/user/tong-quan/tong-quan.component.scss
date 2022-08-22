@@ -1,4 +1,5 @@
 @import "~swiper/css";
+@import "~swiper/css/pagination";
 @import "~swiper/css/navigation";
 
 .slide-image {
@@ -6,6 +7,15 @@
 }
 ::ng-deep .p-carousel-indicators {
   display: none !important;
+}
+
+::ng-deep .swiper-button-prev {
+  display: none !important;
+}
+
+::ng-deep .swiper-button-next {
+  display: none !important;
+
 }
 
 .swiper {
@@ -38,4 +48,49 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.class-wrapper {
+  height: 150px;
+}
+
+.class-item {
+  position: relative;
+  height: 100%;
+  background: rgb(155, 185, 214);
+  border-radius: 5px;
+}
+
+.class-item .class-image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  opacity: 0.3;
+  border-radius: 5px;
+}
+
+.class-item .class-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
+.subject-name {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.teacher span {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.quizs {
+  background-color: rgba(30,143,255,.116);
 }

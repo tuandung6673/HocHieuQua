@@ -4,14 +4,107 @@
   </ng-template>
 </p-carousel>
 
-<swiper [navigation]="true" class="mySwiper">
-  <ng-template swiperSlide>Slide 1</ng-template
-  ><ng-template swiperSlide>Slide 2</ng-template
-  ><ng-template swiperSlide>Slide 3</ng-template
-  ><ng-template swiperSlide>Slide 4</ng-template
-  ><ng-template swiperSlide>Slide 5</ng-template
-  ><ng-template swiperSlide>Slide 6</ng-template
-  ><ng-template swiperSlide>Slide 7</ng-template
-  ><ng-template swiperSlide>Slide 8</ng-template
-  ><ng-template swiperSlide>Slide 9</ng-template>
-</swiper>
+<div class="class-wrapper">
+  <swiper
+      [slidesPerView]="5"
+      [spaceBetween]="10"
+      [slidesPerGroup]="1"
+      [loop]="true"
+      [loopFillGroupWithBlank]="true"
+      [pagination]="{
+        clickable: true
+      }"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide *ngFor="let class of home.classRooms">
+        <div class="class-item">
+          <img class="class-image" [src]="class.avatar"/>
+          <p class="class-text">{{class.name}}</p>
+        </div>
+      </ng-template>
+    </swiper>
+</div>
+
+<br>
+
+<div *ngFor="let subject of home.subjects">
+  <ng-container *ngIf="subject.courses.length != 0">
+    <p class="subject-name">Khóa học {{subject.name}} nổi bật</p>
+    <swiper
+      [slidesPerView]="5"
+      [spaceBetween]="10"
+      [slidesPerGroup]="1"
+      [loop]="true"
+      [loopFillGroupWithBlank]="true"
+      [pagination]="{
+        clickable: true
+      }"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide *ngFor="let course of subject.courses">
+        <img [src]="course.courseAvatar" height="150px" width="100%"/>
+        <p>{{course.name}}</p>
+        <p>{{course.teachers[0].fullName}}</p>
+      </ng-template>
+    </swiper>
+  </ng-container>
+</div>
+
+<div>
+  <span>Tham gia HocHieuQua với 4 bước</span>
+  <img src="https://hochieuqua7.web.app/images/user/introduce/stepimg.png" width="100%" />
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <img src="https://hochieuqua7.web.app/images/class-bg/cover.png" width="100%" height="200px"/>
+  </div>
+</div>
+
+<div class="teacher">
+  <span>Đội ngũ giáo viên</span>
+  <swiper
+      [slidesPerView]="5"
+      [spaceBetween]="10"
+      [slidesPerGroup]="1"
+      [loop]="true"
+      [loopFillGroupWithBlank]="true"
+      [pagination]="{
+        clickable: true
+      }"
+      [navigation]="true"
+      class="mySwiper"
+    >
+    <ng-template swiperSlide *ngFor="let teacher of home.teachers">
+      <img [src]="teacher.avatar" height="150px" width="100%"/>
+      <p>{{teacher.name}}</p>
+      <p [innerHTML]="teacher.descriptionShort"></p>
+    </ng-template>
+    </swiper>
+</div>
+
+<div class="quizs">
+  <span>Đố vui</span>
+  <swiper
+      [slidesPerView]="5"
+      [spaceBetween]="10"
+      [slidesPerGroup]="1"
+      [loop]="true"
+      [loopFillGroupWithBlank]="true"
+      [pagination]="{
+        clickable: true
+      }"
+      [navigation]="true"
+      class="mySwiper"
+    >
+    <ng-template swiperSlide *ngFor="let quiz of home.quizs">
+      <img [src]="quiz.avatar" height="150px" width="100%"/>
+      <p>{{quiz.title}}</p>
+    </ng-template>
+    </swiper>
+</div>
+
+
