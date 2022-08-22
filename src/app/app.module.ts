@@ -1,3 +1,5 @@
+import { UserComponent } from './layouts/user/user.component';
+import { AdminComponent } from './layouts/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
@@ -22,6 +24,10 @@ import {DialogModule} from 'primeng/dialog';
 import {ChipsModule} from 'primeng/chips';
 import {RatingModule} from 'primeng/rating';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {CarouselModule} from 'primeng/carousel';
+import { SwiperModule } from 'swiper/angular';
+
+
 
 
 import { AppComponent } from './app.component';
@@ -54,41 +60,62 @@ import { BaiVietComponent } from './tin-tuc/bai-viet/bai-viet.component';
 import { SuaBaiVietComponent } from './tin-tuc/sua-bai-viet/sua-bai-viet.component';
 import { TinTuyenDungComponent } from './tuyen-dung/tin-tuyen-dung/tin-tuyen-dung.component';
 import { SuaTinTuyenDungComponent } from './tuyen-dung/sua-tin-tuyen-dung/sua-tin-tuyen-dung.component';
+import { MainHeaderComponent } from './main-header/main-header.component';
+import { TongQuanComponent } from './user/tong-quan/tong-quan.component';
+import { GioiThieuComponent } from './user/gioi-thieu/gioi-thieu.component';
+import { KiemTraNangLucComponent } from './user/kiem-tra-nang-luc/kiem-tra-nang-luc.component';
+import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
+import { HuongDanComponent } from './user/huong-dan/huong-dan.component';
+import { UserHeaderComponent } from './user-header/user-header.component';
+import { FooterComponent } from './footer/footer.component';
 const appRoutes: Routes = [
-  {path: 'quan-tri/danh-muc-tin-tuc', component: DanhMucComponent},
-  {path: 'quan-tri/danh-muc-tin-tuc/:id', component: SuaDanhMucComponent},
-  {path: 'quan-tri/danh-muc-tin-tuc/them-moi', component: SuaDanhMucComponent},
-  {path: 'quan-tri/tuyen-dung', component: TinTuyenDungComponent},
-  {path: 'quan-tri/tuyen-dung/:id', component: SuaTinTuyenDungComponent},
-  {path: 'quan-tri/tuyen-dung/them-moi', component: SuaTinTuyenDungComponent},
-  {path: 'quan-tri/tin-tuc', component: BaiVietComponent},
-  {path: 'quan-tri/tin-tuc/:id', component: SuaBaiVietComponent},
-  {path: 'quan-tri/tin-tuc/them-moi', component: SuaBaiVietComponent},
-  {path: 'quan-tri/tai-khoan', component: AllAccountComponent },
-  {path: 'quan-tri/tai-khoan/:id', component: SuaAccountComponent },
-  {path: 'quan-tri/tai-khoan/them-tai-khoan', component: SuaAccountComponent},
-  {path: 'quan-tri/giao-vien', component: GiaoVienComponent},
-  {path: 'quan-tri/giao-vien/them-giao-vien', component: SuaGiaoVienComponent},
-  {path: 'quan-tri/giao-vien/:id', component: SuaGiaoVienComponent},
-  {path: 'quan-tri/lop-hoc', component: LopHocComponent},
-  {path: 'quan-tri/lop-hoc/them-lop-hoc', component: SuaLopHocComponent},
-  {path: 'quan-tri/lop-hoc/:id', component: SuaLopHocComponent},
-  {path: 'quan-tri/mon-hoc', component: MonHocComponent},
-  {path: 'quan-tri/mon-hoc/:id', component: SuaMonHocComponent},
-  {path: 'quan-tri/mon-hoc/them-mon-hoc', component: SuaMonHocComponent},
-  {path: 'quan-tri/slide', component: SlideComponent},
-  {path: 'quan-tri/faq', component: FaqComponent},
-  {path: 'quan-tri/faq/them-faq', component: SuaFaqComponent},
-  {path: 'quan-tri/faq/:id', component: SuaFaqComponent},
-  {path: 'quan-tri/khoa-hoc', component: CourseComponent},
-  {path: 'quan-tri/khoa-hoc/:id', component: EditCourseComponent},
-  {path: 'quan-tri/khoa-hoc/them-khoa-hoc', component: EditCourseComponent},
-  {path: 'quan-tri/bai-kiem-tra', component: BaiKiemTraComponent},
-  {path: 'quan-tri/bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
-  {path: 'quan-tri/bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent}
-
-
-  // {path: ':id/edit', component: EditAccountComponent}
+  {
+    path: 'quan-tri', component: AdminComponent,
+    children: [
+      {path: 'danh-muc-tin-tuc', component: DanhMucComponent},
+      {path: 'danh-muc-tin-tuc/:id', component: SuaDanhMucComponent},
+      {path: 'danh-muc-tin-tuc/them-moi', component: SuaDanhMucComponent},
+      {path: 'tuyen-dung', component: TinTuyenDungComponent},
+      {path: 'tuyen-dung/:id', component: SuaTinTuyenDungComponent},
+      {path: 'tuyen-dung/them-moi', component: SuaTinTuyenDungComponent},
+      {path: 'tin-tuc', component: BaiVietComponent},
+      {path: 'tin-tuc/:id', component: SuaBaiVietComponent},
+      {path: 'tin-tuc/them-moi', component: SuaBaiVietComponent},
+      {path: 'tai-khoan', component: AllAccountComponent },
+      {path: 'tai-khoan/:id', component: SuaAccountComponent },
+      {path: 'tai-khoan/them-tai-khoan', component: SuaAccountComponent},
+      {path: 'giao-vien', component: GiaoVienComponent},
+      {path: 'giao-vien/them-giao-vien', component: SuaGiaoVienComponent},
+      {path: 'giao-vien/:id', component: SuaGiaoVienComponent},
+      {path: 'lop-hoc', component: LopHocComponent},
+      {path: 'lop-hoc/them-lop-hoc', component: SuaLopHocComponent},
+      {path: 'lop-hoc/:id', component: SuaLopHocComponent},
+      {path: 'mon-hoc', component: MonHocComponent},
+      {path: 'mon-hoc/:id', component: SuaMonHocComponent},
+      {path: 'mon-hoc/them-mon-hoc', component: SuaMonHocComponent},
+      {path: 'slide', component: SlideComponent},
+      {path: 'faq', component: FaqComponent},
+      {path: 'faq/them-faq', component: SuaFaqComponent},
+      {path: 'faq/:id', component: SuaFaqComponent},
+      {path: 'khoa-hoc', component: CourseComponent},
+      {path: 'khoa-hoc/:id', component: EditCourseComponent},
+      {path: 'khoa-hoc/them-khoa-hoc', component: EditCourseComponent},
+      {path: 'bai-kiem-tra', component: BaiKiemTraComponent},
+      {path: 'bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
+      {path: 'bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent}
+    ]
+  },
+  {
+    path: '', component: UserComponent,
+    children: [
+      {path: 'tong-quan', component: TongQuanComponent},
+      {path: 'gioi-thieu', component: GioiThieuComponent},
+      {path: 'kiem-tra-nang-luc', component: KiemTraNangLucComponent},
+      {path: 'tuyen-dung', component: TuyenDungComponent},
+      {path: 'huong-dan', component: HuongDanComponent}
+    ]
+  }
+ 
 ]
 
 @NgModule({
@@ -119,8 +146,18 @@ const appRoutes: Routes = [
     BaiVietComponent,
     SuaBaiVietComponent,
     TinTuyenDungComponent,
-    SuaTinTuyenDungComponent
-  ],
+    SuaTinTuyenDungComponent,
+    MainHeaderComponent,
+    AdminComponent,
+    UserComponent,
+    TongQuanComponent,
+    GioiThieuComponent,
+    KiemTraNangLucComponent,
+    TuyenDungComponent,
+    HuongDanComponent,
+    UserHeaderComponent,
+    FooterComponent
+      ],
   imports: [
     CKEditorModule,
     BrowserModule,
@@ -134,6 +171,8 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    CarouselModule,
+    SwiperModule,
     BreadcrumbModule,
     RatingModule,
     ChipsModule,

@@ -4,9 +4,8 @@ export class Menu {
   path = "";
   parentId = "";
   icon = "";
-  status: any = null;
+  status: any = 0;
   screen = "";
-  order: any = null;
-  actions = "";
-  childs: any
+  order: any = 0;
+  actions = ""
 }

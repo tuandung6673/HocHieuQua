@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Routes } from '@angular/router';
 import { Account } from 'src/models/account.model';
 import { ApiService } from 'src/services/api.service.service';
+
 class Accounts {
   address = '';
 }

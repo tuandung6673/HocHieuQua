@@ -4,13 +4,13 @@ import { Subject } from './../models/subject.model';
 import { BaseRetail } from './../models/base-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Account } from 'src/models/account.model';
 import { BaseReponse} from 'src/models/base-response.model';
 import { Classroom } from 'src/models/classroom.model';
 import { Teacher } from 'src/models/teacher.model';
-import { Menu } from 'src/models/menu.model';
+import { MenusTree } from 'src/models/menusTree.model';
 import { FAQ } from 'src/models/faq.model';
 import { Course } from 'src/models/course.model';
 import { Role } from 'src/models/role.model';
@@ -19,6 +19,9 @@ import { Test } from 'src/models/test.model';
 import { New } from 'src/models/new.model';
 import { NewCatagory } from 'src/models/newCategory.model';
 import { Recruit } from 'src/models/recruit.model';
+import { Menu } from 'src/models/menu.model';
+import { Footer } from 'primeng/api';
+import { Home } from 'src/models/home.model';
 
 @Injectable({
   providedIn: 'root'
@@ -103,9 +106,24 @@ export class ApiService {
     return this.http.delete(`${this.url}/Subject/${id}`)
   }
 
+  // Home
+  getHome() : Observable<BaseRetail<Home>> {
+    return this.http.get<BaseRetail<Home>>(`${this.url}/Home`)
+  }
+
   // Menu
-  getMenusTree(offSet: number = 0, pageSize: number = 100, filter = "", screen = "", status = -1 ) : Observable<BaseReponse<Menu>> {
-    return this.http.get<BaseReponse<Menu>>(`${this.url}/Menu/GetMenusTree?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
+  getMenu(filter = '', offSet: number = 0, pageSize: number = 100, screen = '', status: number = 1) : Observable<BaseReponse<Menu>> {
+    return this.http.get<BaseReponse<Menu>>(`${this.url}/Menu?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
+  }
+
+  // MenusTree
+  getMenusTree(offSet: number = 0, pageSize: number = 100, filter = "", screen = "", status = -1 ) : Observable<BaseReponse<MenusTree>> {
+    return this.http.get<BaseReponse<MenusTree>>(`${this.url}/Menu/GetMenusTree?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
+  }
+  
+  // Footer
+  getFooter(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Footer>> {
+    return this.http.get<BaseReponse<Footer>>(`${this.url}/footer?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 
   // Slide

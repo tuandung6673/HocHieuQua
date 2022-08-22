@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  menus: any
+  menusTree: any
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void { 
     this.apiService.getMenusTree(0, 1000, '' , 'admin', 1).subscribe((responseData) => {
-      this.menus = this.buildTree(responseData.data.data);
+      this.menusTree = this.buildTree(responseData.data.data);
     });
   }
 }
