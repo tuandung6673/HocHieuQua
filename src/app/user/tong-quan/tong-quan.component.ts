@@ -14,7 +14,6 @@ export class TongQuanComponent implements OnInit {
 
   home : any
   imageSlider = []
-  classSlider : any
   constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {

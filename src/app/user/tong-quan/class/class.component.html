@@ -1,0 +1,16 @@
+<swiper
+  [slidesPerView]="5"
+  [spaceBetween]="10"
+  [slidesPerGroup]="1"
+  [loop]="true"
+  [loopFillGroupWithBlank]="true"
+  [pagination]="{
+    clickable: true
+  }"
+  [navigation]="true"
+  class="mySwiper"
+>
+  <ng-template swiperSlide *ngFor="let class of home?.classRooms">
+    <app-class-item [class]="class"></app-class-item>
+  </ng-template>
+</swiper>

@@ -1,0 +1,26 @@
+.detail {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: .4s ease-in-out;
+  box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
+}
+
+.detail:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 10px -3px #1b4ead
+
+}
+
+.detail .image {
+  border-radius: 10px;
+}
+
+.descriptionShort {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  letter-spacing: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis
+}

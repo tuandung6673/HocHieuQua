@@ -1,65 +1,19 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 
+<p-carousel [value]="imageSlider" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="2000">
+  <ng-template let-slide pTemplate="item">
+    <img [src]="slide.imageUrl" class="slide-image" />
+  </ng-template>
+</p-carousel>
 
 <div class="class-wrapper">
-  <swiper
-      [slidesPerView]="5"
-      [spaceBetween]="10"
-      [slidesPerGroup]="1"
-      [loop]="true"
-      [loopFillGroupWithBlank]="true"
-      [pagination]="{
-        clickable: true
-      }"
-      [navigation]="true"
-      class="mySwiper"
-    >
-      <ng-template swiperSlide *ngFor="let class of home.classRooms">
-        <div class="class-item">
-          <img class="class-image" [src]="class.avatar"/>
-          <p class="class-text">{{class.name}}</p>
-        </div>
-      </ng-template>
-    </swiper>
+  <app-class [home]="home"></app-class>
 </div>
 
 <br>
 
-<div *ngFor="let subject of home.subjects">
-  <ng-container *ngIf="subject.courses.length != 0">
-    <p class="subject-name">Khóa học {{subject.name}} nổi bật</p>
-    <swiper
-      [slidesPerView]="5"
-      [spaceBetween]="10"
-      [slidesPerGroup]="1"
-      [loop]="true"
-      [loopFillGroupWithBlank]="true"
-      [pagination]="{
-        clickable: true
-      }"
-      [navigation]="true"
-      class="mySwiper"
-    >
-      <ng-template swiperSlide *ngFor="let course of subject.courses">
-        <div class="detail" >
-          <img class="image" [src]="course.courseAvatar" height="150px" width="100%"/>
-          <div class="info">
-            <p class="course-name">{{course.name}}</p>
-            <p>{{course.teachers[0].fullName}}</p>
-            <div class="description">
-              <div class="rate">
-                <p-rating [(ngModel)]="course.rating" [cancel]="false"></p-rating>
-              </div>
-              <div class="price">
-                <div class="price-main">{{course.price | number}}</div>
-                <div class="price-discount">{{course.priceDiscount | number}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </swiper>
-  </ng-container>
+<div *ngFor="let subject of home?.subjects">
+  <app-tong-quan-subject [subject]="subject"></app-tong-quan-subject>
 </div>
 
 <div style="width: 100%">
@@ -93,51 +47,14 @@
   <div class="header-title">
     <span>Đội ngũ giáo viên</span>
   </div>
-  <swiper
-      [slidesPerView]="5"
-      [spaceBetween]="10"
-      [slidesPerGroup]="1"
-      [loop]="true"
-      [loopFillGroupWithBlank]="true"
-      [pagination]="{
-        clickable: true
-      }"
-      [navigation]="true"
-      class="mySwiper"
-    >
-    <ng-template swiperSlide *ngFor="let teacher of home.teachers">
-      <div class="detail" >
-        <img class="image" [src]="teacher.avatar" height="150px" width="100%"/>
-        <p>{{teacher.fullName}}</p>
-        <p class="descriptionShort" [innerHTML]="teacher.descriptionShort"></p>
-      </div>
-    </ng-template>
-    </swiper>
+  <app-teacher [home]="home"></app-teacher>
 </div>
 
 <div class="quizs">
   <div class="header-title">
     <span>Đố vui</span> 
   </div>
-  <swiper
-      [slidesPerView]="5"
-      [spaceBetween]="10"
-      [slidesPerGroup]="1"
-      [loop]="true"
-      [loopFillGroupWithBlank]="true"
-      [pagination]="{
-        clickable: true
-      }"
-      [navigation]="true"
-      class="mySwiper"
-    >
-    <ng-template swiperSlide *ngFor="let quiz of home.quizs">
-      <div class="detail" >
-        <img class="image" [src]="quiz.avatar" height="150px" width="100%"/>
-        <p>{{quiz.title}}</p>
-      </div>
-    </ng-template>
-    </swiper>
+  <app-quiz [home]="home"></app-quiz>
 </div>
 
 

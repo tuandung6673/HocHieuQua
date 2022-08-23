@@ -28,9 +28,6 @@ import {CarouselModule} from 'primeng/carousel';
 import { SwiperModule } from 'swiper/angular';
 import { NgxSpinnerModule } from "ngx-spinner";
 
-
-
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
@@ -69,6 +66,15 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { HuongDanComponent } from './user/huong-dan/huong-dan.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { FooterComponent } from './footer/footer.component';
+import { TongQuanItemComponent } from './user/tong-quan/tong-quan-subject/tong-quan-list/tong-quan-item/tong-quan-item.component';
+import { TongQuanListComponent } from './user/tong-quan/tong-quan-subject/tong-quan-list/tong-quan-list.component';
+import { TongQuanSubjectComponent } from './user/tong-quan/tong-quan-subject/tong-quan-subject.component';
+import { ClassItemComponent } from './user/tong-quan/class/class-item/class-item.component';
+import { ClassComponent } from './user/tong-quan/class/class.component';
+import { TeacherItemComponent } from './user/tong-quan/teacher/teacher-item/teacher-item.component';
+import { TeacherComponent } from './user/tong-quan/teacher/teacher.component';
+import { QuizItemComponent } from './user/tong-quan/quiz/quiz-item/quiz-item.component';
+import { QuizComponent } from './user/tong-quan/quiz/quiz.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'tong-quan', pathMatch: 'full'},
   {
@@ -158,7 +164,16 @@ const appRoutes: Routes = [
     TuyenDungComponent,
     HuongDanComponent,
     UserHeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TongQuanItemComponent,
+    TongQuanListComponent,
+    TongQuanSubjectComponent,
+    ClassItemComponent,
+    ClassComponent,
+    TeacherItemComponent,
+    TeacherComponent,
+    QuizItemComponent,
+    QuizComponent
       ],
   imports: [
     CKEditorModule,

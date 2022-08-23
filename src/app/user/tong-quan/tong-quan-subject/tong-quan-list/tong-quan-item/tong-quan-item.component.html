@@ -1,0 +1,16 @@
+<div class="detail" >
+  <img class="image" [src]="course.courseAvatar" height="150px" width="100%"/>
+  <div class="info">
+    <p class="course-name">{{course.name}}</p>
+    <p>{{course.teachers[0].fullName}}</p>
+    <div class="description">
+      <div class="rate">
+        <p-rating [(ngModel)]="course.rating" [cancel]="false"></p-rating>
+      </div>
+      <div class="price">
+        <div class="price-main">{{course.price | number}}</div>
+        <div class="price-discount">{{course.priceDiscount | number}}</div>
+      </div>
+    </div>
+  </div>
+</div>
