@@ -26,6 +26,7 @@ import {RatingModule} from 'primeng/rating';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {CarouselModule} from 'primeng/carousel';
 import { SwiperModule } from 'swiper/angular';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -171,6 +172,7 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    NgxSpinnerModule,
     CarouselModule,
     SwiperModule,
     BreadcrumbModule,

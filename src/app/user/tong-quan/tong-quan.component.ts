@@ -2,6 +2,7 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 
 import SwiperCore, { SwiperOptions } from 'swiper';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -14,9 +15,10 @@ export class TongQuanComponent implements OnInit {
   home : any
   imageSlider = []
   classSlider : any
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getHome()
   }
 
@@ -24,7 +26,7 @@ export class TongQuanComponent implements OnInit {
     this.apiService.getHome().subscribe((responseData) => {
       this.home = responseData.data
       this.imageSlider = responseData.data.slides;  
-        
+      this.spinner.hide() 
     })
   }
 
