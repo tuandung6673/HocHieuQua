@@ -1,0 +1,14 @@
+.main-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-item h3 {
+  text-transform: uppercase;
+  color: #007aff;
+}
+
+.footer-item p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

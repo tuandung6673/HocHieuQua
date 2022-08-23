@@ -44,28 +44,58 @@
       class="mySwiper"
     >
       <ng-template swiperSlide *ngFor="let course of subject.courses">
-        <img [src]="course.courseAvatar" height="150px" width="100%"/>
-        <p>{{course.name}}</p>
-        <p>{{course.teachers[0].fullName}}</p>
+        <div class="detail" >
+          <img class="image" [src]="course.courseAvatar" height="150px" width="100%"/>
+          <div class="info">
+            <p class="course-name">{{course.name}}</p>
+            <p>{{course.teachers[0].fullName}}</p>
+            <div class="description">
+              <div class="rate">
+                <p-rating [(ngModel)]="course.rating" [cancel]="false"></p-rating>
+              </div>
+              <div class="price">
+                <div class="price-main">{{course.price | number}}</div>
+                <div class="price-discount">{{course.priceDiscount | number}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </ng-template>
     </swiper>
   </ng-container>
 </div>
 
-<div>
-  <span>Tham gia HocHieuQua với 4 bước</span>
+<div style="width: 100%">
+  <div class="header-title">
+    <span>Tham gia HocHieuQua với 4 bước</span>
+  </div>
   <img src="https://hochieuqua7.web.app/images/user/introduce/stepimg.png" width="100%" />
-  <div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <img src="https://hochieuqua7.web.app/images/class-bg/cover.png" width="100%" height="200px"/>
+  <div class="report">
+    <div class="report-list">
+      <div class="report-item">
+        <h3>500.000+</h3>
+        <p>Học viên</p>
+      </div>
+      <div class="report-item">
+        <h3>5.000+</h3>
+        <p>Bài giảng</p>
+      </div>
+      <div class="report-item">
+        <h3>200.000+</h3>
+        <p>Bài ôn tập</p>
+      </div>
+      <div class="report-item">
+        <h3>4.000+</h3>
+        <p>Đề luyện thi</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="teacher">
-  <span>Đội ngũ giáo viên</span>
+<div class="teacher" >
+  <div class="header-title">
+    <span>Đội ngũ giáo viên</span>
+  </div>
   <swiper
       [slidesPerView]="5"
       [spaceBetween]="10"
@@ -79,15 +109,19 @@
       class="mySwiper"
     >
     <ng-template swiperSlide *ngFor="let teacher of home.teachers">
-      <img [src]="teacher.avatar" height="150px" width="100%"/>
-      <p>{{teacher.name}}</p>
-      <p [innerHTML]="teacher.descriptionShort"></p>
+      <div class="detail" >
+        <img class="image" [src]="teacher.avatar" height="150px" width="100%"/>
+        <p>{{teacher.fullName}}</p>
+        <p class="descriptionShort" [innerHTML]="teacher.descriptionShort"></p>
+      </div>
     </ng-template>
     </swiper>
 </div>
 
 <div class="quizs">
-  <span>Đố vui</span>
+  <div class="header-title">
+    <span>Đố vui</span> 
+  </div>
   <swiper
       [slidesPerView]="5"
       [spaceBetween]="10"
@@ -101,8 +135,10 @@
       class="mySwiper"
     >
     <ng-template swiperSlide *ngFor="let quiz of home.quizs">
-      <img [src]="quiz.avatar" height="150px" width="100%"/>
-      <p>{{quiz.title}}</p>
+      <div class="detail" >
+        <img class="image" [src]="quiz.avatar" height="150px" width="100%"/>
+        <p>{{quiz.title}}</p>
+      </div>
     </ng-template>
     </swiper>
 </div>
