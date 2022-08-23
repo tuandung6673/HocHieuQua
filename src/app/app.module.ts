@@ -70,6 +70,7 @@ import { HuongDanComponent } from './user/huong-dan/huong-dan.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { FooterComponent } from './footer/footer.component';
 const appRoutes: Routes = [
+  {path: '', redirectTo: 'tong-quan', pathMatch: 'full'},
   {
     path: 'quan-tri', component: AdminComponent,
     children: [
