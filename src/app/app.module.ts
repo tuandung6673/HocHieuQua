@@ -80,8 +80,9 @@ import { BaiKhacComponent } from './user/gioi-thieu/bai-khac/bai-khac.component'
 import { HocTapComponent } from './user/gioi-thieu/hoc-tap/hoc-tap.component';
 import { TuyenDungItemComponent } from './user/tuyen-dung/tuyen-dung-item/tuyen-dung-item.component';
 import { HuongDanContentComponent } from './user/huong-dan/huong-dan-content/huong-dan-content.component';
+import { KhoaHocComponent } from './user/khoa-hoc/khoa-hoc.component';
+import { GioiThieuDanhMucComponent } from './user/gioi-thieu-danh-muc/gioi-thieu-danh-muc.component';
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'tong-quan', pathMatch: 'full'},
   {
     path: 'quan-tri', component: AdminComponent,
     children: [
@@ -121,11 +122,14 @@ const appRoutes: Routes = [
   {
     path: '', component: UserComponent,
     children: [
+      {path: '', component: TongQuanComponent},
       {path: 'tong-quan', component: TongQuanComponent},
       {path: 'gioi-thieu', component: GioiThieuComponent},
+      {path: 'gioi-thieu/danh-muc/:id', component: GioiThieuDanhMucComponent},
       {path: 'kiem-tra-nang-luc', component: KiemTraNangLucComponent},
       {path: 'tuyen-dung', component: TuyenDungComponent},
-      {path: 'huong-dan', component: HuongDanComponent}
+      {path: 'huong-dan', component: HuongDanComponent},
+      {path: 'khoa-hoc/:id', component: KhoaHocComponent}
     ]
   }
  
@@ -183,7 +187,9 @@ const appRoutes: Routes = [
     BaiKhacComponent,
     HocTapComponent,
     TuyenDungItemComponent,
-    HuongDanContentComponent
+    HuongDanContentComponent,
+    KhoaHocComponent,
+    GioiThieuDanhMucComponent
       ],
   imports: [
     CKEditorModule,

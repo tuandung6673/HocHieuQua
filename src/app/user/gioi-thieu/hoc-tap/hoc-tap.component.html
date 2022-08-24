@@ -1,6 +1,5 @@
 <div *ngFor="let danhmuc of newsCategory">
-  <div class="danhmuc-item">
-    <i class="pi pi-book"></i>
-    <p>{{danhmuc.name}}</p>
+  <div class="danhmuc-item" [routerLink]="['danh-muc', danhmuc.id]">
+    <p class="text"><i style="margin-right: 5px;" class="pi pi-book"></i>{{danhmuc.name}}</p>
   </div>
 </div>

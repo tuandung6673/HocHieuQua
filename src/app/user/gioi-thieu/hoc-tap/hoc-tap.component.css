@@ -1,8 +1,14 @@
 
 .danhmuc-item {
+  display: flex;
   border-bottom: 1px solid #cacaca;
   color: #2c2b2b;
   cursor: pointer;
   font-weight: 700;
   padding: 10px 0;
+  
+}
+
+.text:hover {
+  color: rgb(108, 108, 207);
 }

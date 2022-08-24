@@ -11,6 +11,6 @@
   class="mySwiper"
 >
   <ng-template swiperSlide *ngFor="let class of home?.classRooms">
-    <app-class-item [class]="class"></app-class-item>
+    <app-class-item [class]="class" [routerLink]="['/khoa-hoc/', class.id]"></app-class-item>
   </ng-template>
 </swiper>

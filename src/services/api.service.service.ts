@@ -161,7 +161,7 @@ export class ApiService {
   }
 
   // Course
-  getCourse(offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, teacherId = '', accountId = '', subjectId = '', classId = '') : Observable<BaseReponse<Course>> {
+  getCourse(classId = '', offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, teacherId = '', accountId = '', subjectId = '') : Observable<BaseReponse<Course>> {
     return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}`)
   }
 
@@ -193,7 +193,7 @@ export class ApiService {
   }
 
   // News
-  getNews(offSet: number = 0, pageSize: number = 100, categoryId = '', filter = '', status : number = 1) : Observable<BaseReponse<New>> {
+  getNews(categoryId = '', offSet: number = 0, pageSize: number = 100, filter = '', status : number = 1) : Observable<BaseReponse<New>> {
     return this.http.get<BaseReponse<New>>(`${this.url}/News?offSet=${offSet}&pageSize=${pageSize}&categoryId=${categoryId}&filter=${filter}&status=${status}`)
   }
 

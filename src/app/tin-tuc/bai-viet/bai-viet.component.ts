@@ -30,7 +30,7 @@ export class BaiVietComponent implements OnInit {
 
   getNews() {
     // this.isLoading = true
-    this.apiService.getNews(this.params.offSet,this.params.pageSize, this.params.categoryId, this.params.filter, this.params.status).subscribe((responseData) => {
+    this.apiService.getNews(this.params.categoryId, this.params.offSet,this.params.pageSize, this.params.filter, this.params.status).subscribe((responseData) => {
       this.news = responseData.data.data
       this.params = {
         ...this.params,

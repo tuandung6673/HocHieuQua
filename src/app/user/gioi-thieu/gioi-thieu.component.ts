@@ -1,5 +1,5 @@
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { New } from 'src/models/new.model';
 import { ApiService } from 'src/services/api.service.service';
 import { NewCatagory } from 'src/models/newCategory.model';
@@ -11,7 +11,7 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./gioi-thieu.component.css']
 })
 export class GioiThieuComponent implements OnInit {
-
+  
   news: New[] = []
   mostViewNew: any;
   lastestNew: any
