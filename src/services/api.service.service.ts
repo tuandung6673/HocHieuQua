@@ -193,8 +193,8 @@ export class ApiService {
   }
 
   // News
-  getNews(offSet: number = 0, pageSize: number = 100, categoryId = '', filter = '') : Observable<BaseReponse<New>> {
-    return this.http.get<BaseReponse<New>>(`${this.url}/News?offSet=${offSet}&pageSize=${pageSize}&categoryId=${categoryId}&filter=${filter}`)
+  getNews(offSet: number = 0, pageSize: number = 100, categoryId = '', filter = '', status : number = 1) : Observable<BaseReponse<New>> {
+    return this.http.get<BaseReponse<New>>(`${this.url}/News?offSet=${offSet}&pageSize=${pageSize}&categoryId=${categoryId}&filter=${filter}&status=${status}`)
   }
 
   getNewsById(id: string) : Observable<BaseRetail<New>> {

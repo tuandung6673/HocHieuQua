@@ -17,7 +17,8 @@ export class BaiVietComponent implements OnInit {
     pageSize: 2,
     filter: '',
     categoryId: '',
-    totalRecord: 0
+    totalRecord: 0,
+    status: 1
   }
 
   constructor(private apiService: ApiService) { }
@@ -29,7 +30,7 @@ export class BaiVietComponent implements OnInit {
 
   getNews() {
     // this.isLoading = true
-    this.apiService.getNews(this.params.offSet,this.params.pageSize, this.params.categoryId, this.params.filter).subscribe((responseData) => {
+    this.apiService.getNews(this.params.offSet,this.params.pageSize, this.params.categoryId, this.params.filter, this.params.status).subscribe((responseData) => {
       this.news = responseData.data.data
       this.params = {
         ...this.params,

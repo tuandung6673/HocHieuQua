@@ -75,6 +75,10 @@ import { TeacherItemComponent } from './user/tong-quan/teacher/teacher-item/teac
 import { TeacherComponent } from './user/tong-quan/teacher/teacher.component';
 import { QuizItemComponent } from './user/tong-quan/quiz/quiz-item/quiz-item.component';
 import { QuizComponent } from './user/tong-quan/quiz/quiz.component';
+import { TinTucItemComponent } from './user/gioi-thieu/tin-tuc-item/tin-tuc-item.component';
+import { BaiKhacComponent } from './user/gioi-thieu/bai-khac/bai-khac.component';
+import { HocTapComponent } from './user/gioi-thieu/hoc-tap/hoc-tap.component';
+import { TuyenDungItemComponent } from './user/tuyen-dung/tuyen-dung-item/tuyen-dung-item.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'tong-quan', pathMatch: 'full'},
   {
@@ -173,7 +177,11 @@ const appRoutes: Routes = [
     TeacherItemComponent,
     TeacherComponent,
     QuizItemComponent,
-    QuizComponent
+    QuizComponent,
+    TinTucItemComponent,
+    BaiKhacComponent,
+    HocTapComponent,
+    TuyenDungItemComponent
       ],
   imports: [
     CKEditorModule,

@@ -1,0 +1,20 @@
+<div class="item">
+  <div class="image">
+    <img src="https://hochieuqua7.web.app/images/logo.png" width="100px" height="90px" />
+  </div>
+  <div class="text">
+    <div class="main-text">
+      <p class="name">{{tuyendung.name}}</p>
+      <p class="price">{{tuyendung.price}}</p>
+    </div>
+    <div class="detail">
+      <p [innerHTML]="tuyendung.requirement"></p>
+    </div>
+  </div>
+  <div class="infor">
+    <div *ngIf="tuyendung.isHot == 1">
+      <span class="hot">Hot</span>
+    </div>
+    <div class="date">{{tuyendung.createdDate}}</div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+
+.tab {
+  background: #fff;
+  border: 0 solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #6c757d;
+  font-weight: 600;
+  margin: 0 0 -2px;
+  padding: 1rem;
+  transition: box-shadow .2s;
+}
+
+.title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

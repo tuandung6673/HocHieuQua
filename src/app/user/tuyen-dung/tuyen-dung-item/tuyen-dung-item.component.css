@@ -1,0 +1,50 @@
+
+.item {
+  display: flex;
+  width: 100%;
+  /* height: 200px; */
+  border: 0.5px solid black;
+  margin-top: 20px;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+}
+
+.item:hover {
+  background: #ece5e5;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.item .image {
+  margin-top: 10px;
+  width: 20%;
+  text-align: center;
+}
+
+.item .text { 
+  width: 60%;
+}
+
+.item .infor {
+  width: 20%;
+}
+
+.name {
+  font-size: 20px;
+}
+
+.infor {
+  text-align: end;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.hot {
+  /* border-radius: 10px; */
+  background: red;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  height: 1.5rem;
+  max-width: 2rem;
+}

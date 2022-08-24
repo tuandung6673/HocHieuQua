@@ -1,1 +1,13 @@
-<p>tuyen-dung works!</p>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+
+<div class="banner">
+  <img src="https://hochieuqua7.web.app/images/user/recruitment/hiring.jpg" />
+</div>
+
+<div class="title">
+  <p>Học Hiệu Quả tuyển dụng</p>
+</div>
+
+<div class="list" *ngFor="let tuyendung of recruit">
+  <app-tuyen-dung-item [tuyendung]="tuyendung"></app-tuyen-dung-item>
+</div>

@@ -1,0 +1,12 @@
+
+img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+
+.infor {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
