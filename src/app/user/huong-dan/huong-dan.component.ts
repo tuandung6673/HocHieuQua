@@ -1,3 +1,6 @@
+import { FAQ } from './../../../models/faq.model';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ApiService } from './../../../services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HuongDanComponent implements OnInit {
 
-  constructor() { }
+  title: any
+  content: any
+  faqSelected : any
+  FAQs : FAQ[] = []
+  isDisplayContent: boolean = false
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.getFAQ()
+  }
+
+
+  getFAQ() {
+    this.spinner.show()
+    this.apiService.getFAQ().subscribe((responseData) => {
+      this.FAQs = responseData.data.data
+      this.spinner.hide()
+    })
+  }
+
+  onSelect(faq) {
+    this.isDisplayContent = true
+    this.faqSelected = faq.id
+    this.title = faq.title
+    this.content = faq.content
   }
 
 }

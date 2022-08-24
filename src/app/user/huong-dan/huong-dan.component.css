@@ -1,0 +1,33 @@
+.huong-dan {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.faq-list {
+  word-wrap: break-word;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+
+.faq-item:hover {
+  border-radius: 5px;
+  background: rgba(30,143,255,.123);
+  transition: .1s ease-in-out;
+}
+
+.huong-dan-content {
+  min-width: 100%;
+}
+
+.active {
+  border-radius: 5px;
+  background: rgba(30,143,255,.123);
+}

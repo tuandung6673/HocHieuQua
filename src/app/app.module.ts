@@ -79,6 +79,7 @@ import { TinTucItemComponent } from './user/gioi-thieu/tin-tuc-item/tin-tuc-item
 import { BaiKhacComponent } from './user/gioi-thieu/bai-khac/bai-khac.component';
 import { HocTapComponent } from './user/gioi-thieu/hoc-tap/hoc-tap.component';
 import { TuyenDungItemComponent } from './user/tuyen-dung/tuyen-dung-item/tuyen-dung-item.component';
+import { HuongDanContentComponent } from './user/huong-dan/huong-dan-content/huong-dan-content.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'tong-quan', pathMatch: 'full'},
   {
@@ -181,7 +182,8 @@ const appRoutes: Routes = [
     TinTucItemComponent,
     BaiKhacComponent,
     HocTapComponent,
-    TuyenDungItemComponent
+    TuyenDungItemComponent,
+    HuongDanContentComponent
       ],
   imports: [
     CKEditorModule,
