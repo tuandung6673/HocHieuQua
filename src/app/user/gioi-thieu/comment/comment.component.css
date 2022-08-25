@@ -1,0 +1,19 @@
+.comment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment .avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.main { 
+  display: flex;
+  gap: 15px;
+}
+
+.username {
+  font-weight: 600;
+}

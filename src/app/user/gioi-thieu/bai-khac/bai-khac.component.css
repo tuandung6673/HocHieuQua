@@ -13,5 +13,18 @@
 
 .title:hover {
   cursor: pointer;
-  text-decoration: underline;
+}
+
+::ng-deep .p-tabview-title {
+  font-size: 15px;
+}
+
+::ng-deep .title {
+  color: #495057;
+  font-size: 14px;
+}
+
+::ng-deep .title:hover {
+  cursor: pointer;
+  color: rgb(108, 108, 207);
 }

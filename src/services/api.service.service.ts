@@ -22,6 +22,7 @@ import { Recruit } from 'src/models/recruit.model';
 import { Menu } from 'src/models/menu.model';
 import { Footer } from 'primeng/api';
 import { Home } from 'src/models/home.model';
+import { Comment } from 'src/models/comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -220,6 +221,11 @@ export class ApiService {
 
   deleteNewCategory(id: string) {
     return this.http.delete<Message>(`${this.url}/NewsCategory/${id}`)
+  }
+
+  // Comment
+  getComment(screen = '', filter = '', parentId = '', offSet : number = 0, pageSize : number = 100) : Observable<BaseReponse<Comment>> {
+    return this.http.get<BaseReponse<Comment>>(`${this.url}/Comment?screen=${screen}&filter=${filter}&parentId=${parentId}&offSet=${offSet}&pageSize=${pageSize}`)
   }
 
   // Recruit

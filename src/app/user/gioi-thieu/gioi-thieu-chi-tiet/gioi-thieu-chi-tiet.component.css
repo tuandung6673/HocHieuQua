@@ -1,0 +1,37 @@
+.header {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.banner img {
+  width: 100%;
+  height: 150px;
+}
+
+.wrapper {
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
+}
+
+.wrapper .description {
+  display: flex;
+}
+
+.wrapper .description p {
+  margin-right: 15px;
+}
+
+::ng-deep .content img{
+  width: 100% !important;
+}
+
+.rating {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rating p{
+  font-weight: bold;
+  text-align: end;
+}

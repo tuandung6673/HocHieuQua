@@ -10,7 +10,7 @@
     <div class="grid">
       <ng-container *ngFor="let tintuc of news">
         <div class="col-6 item">
-            <app-tin-tuc-item [tintuc]="tintuc"></app-tin-tuc-item>
+            <app-tin-tuc-item [tintuc]="tintuc" [routerLink]="['/gioi-thieu', tintuc.id]"></app-tin-tuc-item>
           </div>
       </ng-container>
     </div>
@@ -18,12 +18,7 @@
   <div class="col-4">
     <div class="grid">
       <div class="col-12">
-        <p class="header">Danh mục học tập</p>
-        <app-hoc-tap [newsCategory]="newsCategory"></app-hoc-tap>
-      </div>
-      <div class="col-12 list">
-        <p class="header">Bài khác</p>
-        <app-bai-khac [mostViewNew]="mostViewNew" [lastestNew]="lastestNew"></app-bai-khac>
+        <app-gioi-thieu-phai [newsCategory]="newsCategory" [mostViewNew]="mostViewNew" [lastestNew]="lastestNew"></app-gioi-thieu-phai>
       </div>
     </div>
   </div>
