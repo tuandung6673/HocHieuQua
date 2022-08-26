@@ -1,0 +1,43 @@
+.header {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.item img {
+  
+  margin-top: 5px;
+  width: 150px;
+  height: 150px;
+  
+}
+
+.avatar {
+  text-align: center;
+}
+
+.fullName p {
+  font-weight: bold;
+  text-align: center;
+}
+
+.detail {
+  margin: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
+  transition: .2s ease-in-out
+}
+
+.detail:hover {
+  box-shadow: 0 5px 10px -3px #1b4ead
+}
+
+.des {
+  /* -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  letter-spacing: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  margin: 10px;
+  height: 80px;
+}

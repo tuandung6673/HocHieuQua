@@ -1,0 +1,34 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid hsla(0,0%,50%,.24);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.wrap:hover {
+  cursor: pointer;
+  background: hsla(0,0%,50%,.11)
+}
+
+.wrap .avatar img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.wrap .price {
+  /* margin-right: 5px; */
+  text-align: end;
+  font-weight: bold;
+}
+
+.price-up {
+  text-decoration: line-through;
+}
+
+.price-down {
+  font-size: 20px;
+}

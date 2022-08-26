@@ -35,7 +35,7 @@ export class CourseComponent implements OnInit {
 
   getCourses() {
     this.isLoading = true
-    this.apiService.getCourse(this.params.classId, this.params.offSet, this.params.pageSize, this.params.filter, this.params.status, this.params.isPayment, this.params.teacherId, this.params.accountId, this.params.subjectId).subscribe((responseData) => {
+    this.apiService.getCourse(this.params.teacherId, this.params.classId, this.params.offSet, this.params.pageSize, this.params.filter, this.params.status, this.params.isPayment, this.params.accountId, this.params.subjectId).subscribe((responseData) => {
       console.log(responseData.data.data);
       this.courses = responseData.data.data
 

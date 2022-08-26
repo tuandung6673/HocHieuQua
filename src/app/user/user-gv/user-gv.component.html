@@ -1,0 +1,26 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+
+<div>
+  <div>
+    <p class="header">Danh sách giáo viên</p>
+  </div>
+  <div class="grid">
+    <div class="col-12">
+      <div class="grid">
+        <ng-container *ngFor="let teacher of teachers">
+          <div class="col-3 item" [routerLink]="['/giao-vien', teacher.id]">
+            <div class="detail">
+              <div class="avatar">
+                <img  [src]="teacher.avatar" />
+              </div>
+              <div class="fullName">
+                <p>{{teacher.fullName}}</p>
+              </div>
+              <div class="des" [innerHTML]="teacher.descriptionShort"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

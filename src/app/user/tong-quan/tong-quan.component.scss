@@ -91,6 +91,10 @@
   background-color: rgba(30,143,255,.116);
 }
 
+.quizs {
+  background: rgba(30,143,255,.116);
+}
+
 .header-title {
   margin-top: 20px;
   text-align: center;
@@ -120,5 +124,15 @@
 .report-item p {
   font-size: 30px;
   text-transform: uppercase;
+}
+
+.view-all {
+  font-weight: bold;
+  text-align: center;
+}
+
+.view-all:hover {
+  color: rgb(108, 108, 207);
+  cursor: pointer;
 }
 

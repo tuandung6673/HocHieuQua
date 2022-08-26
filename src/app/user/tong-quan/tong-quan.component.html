@@ -21,7 +21,7 @@
     <span>Tham gia HocHieuQua với 4 bước</span>
   </div>
   <img src="https://hochieuqua7.web.app/images/user/introduce/stepimg.png" width="100%" />
-  <div class="report">
+  <div class="report"  style="background: #4088d4;">
     <div class="report-list">
       <div class="report-item">
         <h3>500.000+</h3>
@@ -48,6 +48,9 @@
     <span>Đội ngũ giáo viên</span>
   </div>
   <app-teacher [home]="home"></app-teacher>
+  <div class="view-all">
+    <p [routerLink]="['/giao-vien']">Xem tất cả <i class="pi pi-fast-forward"></i></p>
+  </div>
 </div>
 
 <div class="quizs">
@@ -55,6 +58,9 @@
     <span>Đố vui</span> 
   </div>
   <app-quiz [home]="home"></app-quiz>
+  <div class="view-all">
+    <p [routerLink]="['/gioi-thieu']">Xem tất cả <i class="pi pi-fast-forward"></i></p>
+  </div>
 </div>
 
 

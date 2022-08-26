@@ -84,6 +84,9 @@ import { KhoaHocComponent } from './user/khoa-hoc/khoa-hoc.component';
 import { GioiThieuChiTietComponent } from './user/gioi-thieu/gioi-thieu-chi-tiet/gioi-thieu-chi-tiet.component';
 import { GioiThieuPhaiComponent } from './user/gioi-thieu/gioi-thieu-phai/gioi-thieu-phai.component';
 import { CommentComponent } from './user/gioi-thieu/comment/comment.component';
+import { UserGvComponent } from './user/user-gv/user-gv.component';
+import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
+import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -132,7 +135,9 @@ const appRoutes: Routes = [
       {path: 'kiem-tra-nang-luc', component: KiemTraNangLucComponent},
       {path: 'tuyen-dung', component: TuyenDungComponent},
       {path: 'huong-dan', component: HuongDanComponent},
-      {path: 'khoa-hoc/:id', component: KhoaHocComponent}
+      {path: 'khoa-hoc/:id', component: KhoaHocComponent},
+      {path: 'giao-vien', component: UserGvComponent},
+      {path: 'giao-vien/:id', component: UserChiTietGvComponent}
     ]
   }
  
@@ -194,7 +199,10 @@ const appRoutes: Routes = [
     KhoaHocComponent,
     GioiThieuChiTietComponent,
     GioiThieuPhaiComponent,
-    CommentComponent
+    CommentComponent,
+    UserGvComponent,
+    UserChiTietGvComponent,
+    KhoaHocGvComponent
       ],
   imports: [
     CKEditorModule,

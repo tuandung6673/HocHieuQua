@@ -1,14 +1,16 @@
-<img [src]="tintuc.avatar" width="200px" height="160px"/>
-<div>
-  <p>{{tintuc.title}}</p>
-</div>
-<div class="infor">
-  <p class="date">
-    <span class="pi pi-clock"></span>
-    {{tintuc.createdDate}}
-  </p>
-  <p class="view">
-    <span class="pi pi-eye"></span>
-    {{tintuc.view}}
-  </p>
+<div class="wrapper">
+  <img [src]="tintuc.avatar" width="200px" height="160px"/>
+  <div class="title">
+    <p>{{tintuc.title}}</p>
+  </div>
+  <div class="infor">
+    <p class="date">
+      <span class="pi pi-clock"></span>
+      {{tintuc.createdDate}}
+    </p>
+    <p class="view">
+      <span class="pi pi-eye"></span>
+      {{tintuc.view}}
+    </p>
+  </div>
 </div>

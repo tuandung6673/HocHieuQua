@@ -1,0 +1,15 @@
+<div class="course">
+  <div class="wrap">
+    <div class="avatar">
+      <img [src]="course.courseAvatar" />
+    </div>
+    <div class="desc">
+      <p>{{course.name}}</p>
+      <div [innerHTML]="course.courseInfo2"></div>
+    </div>
+    <div class="price">
+      <p class="price-up">{{course.price | number}}</p>
+      <p class="price-down">{{course.priceDiscount | number}}</p>
+    </div>
+  </div>
+</div>

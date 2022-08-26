@@ -1,12 +1,34 @@
+.wrapper {
+  margin: 6px;
+  box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
+  border-radius: 10px;
+  transition: .4s ease-in-out;
+}
 
-img {
-  width: 100%;
-  border-radius: 8px;
+.wrapper:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 10px -3px #1b4ead
 }
 
 
+img {
+  padding: 5px;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.title {
+  height: 60px;
+  padding: 5px;
+}
+
 .infor {
+  height: 50px;
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+}
+
+.date {
+  padding: 5px;
 }

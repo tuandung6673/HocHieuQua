@@ -1,0 +1,41 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+
+<div class="wrapper">
+  <div class="banner">
+    <img class="backgr" src="https://hochieuqua7.web.app/images/user/chi-tiet-giao-vien/cover.jpg"/>
+    <div class="info">
+      <div class="left">
+        <img [src]="detailTeacher.avatar" />
+        <p>{{detailTeacher.fullName}}</p>
+      </div>
+      <div class="right">
+        <div>
+          <p>{{courses.length}}</p>
+          <p>Khóa học</p>
+        </div>
+        <div>
+          <p>2600</p>
+          <p>Học viên</p>
+        </div>
+        <div>
+          <p>5*</p>
+          <p>Đánh giá trung bình</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="detail">
+    <div style="padding: 15px;" [innerHTML]="detailTeacher.description"></div>
+  </div>
+  <div>
+    <div class="header">
+      <p>Khóa học của giảng viên {{detailTeacher.fullName}}</p>
+    </div>
+    <div>
+      <div *ngFor="let course of courses">
+        <app-khoa-hoc-gv [course]="course"></app-khoa-hoc-gv>
+      </div>
+    </div>
+  </div>
+</div>
+  

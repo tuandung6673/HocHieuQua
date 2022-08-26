@@ -1,4 +1,4 @@
-<div class="detail" >
+<div class="detail" [routerLink]="['/giao-vien', teacher.id]">
   <img class="image" [src]="teacher.avatar" height="150px" width="100%"/>
   <p>{{teacher.fullName}}</p>
   <p class="descriptionShort" [innerHTML]="teacher.descriptionShort"></p>

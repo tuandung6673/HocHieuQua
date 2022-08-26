@@ -21,17 +21,6 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.item {
-  border-radius: 10px;
-  margin-bottom: 10px;
-  transition: .4s ease-in-out;
-  box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
-}
-
-.item:hover {
-  cursor: pointer;
-  box-shadow: 0 5px 10px -3px #1b4ead
-}
 
 
 
