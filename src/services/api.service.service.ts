@@ -23,6 +23,7 @@ import { Menu } from 'src/models/menu.model';
 import { Footer } from 'primeng/api';
 import { Home } from 'src/models/home.model';
 import { Comment } from 'src/models/comment.model';
+import { RecruitCandidate } from 'src/models/recruitCandidate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -239,6 +240,15 @@ export class ApiService {
 
   postRecruit(data: Recruit) {
     return this.http.post<Message>(`${this.url}/Recruit`, data)
+  }
+
+  //RecruitCandidata 
+  getRecruitCandidate(interviewPass : number = -1, status : number = -1, filter = '', offSet : number = 0, pageSize : number = 100) : Observable<BaseReponse<RecruitCandidate>> {
+    return this.http.get<BaseReponse<RecruitCandidate>>(`${this.url}/RecruitCandidate?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&interviewPass=${interviewPass}`)
+  }
+
+  postRecruitCandidate(data: RecruitCandidate) {
+    return this.http.post<Message>(`${this.url}/RecruitCandidate`, data)
   }
 
 }

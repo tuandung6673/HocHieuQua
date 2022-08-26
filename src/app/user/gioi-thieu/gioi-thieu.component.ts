@@ -40,8 +40,6 @@ export class GioiThieuComponent implements OnInit {
       this.apiService.getNewCategory(),
 
     ]).subscribe(response => {
-      console.log('ressolve:', response);
-
       this.news = response[0].data.data
       this.mostViewNew = response[0].data.data.slice(0, 3)
       this.lastestNew = response[0].data.data.slice(-3)
