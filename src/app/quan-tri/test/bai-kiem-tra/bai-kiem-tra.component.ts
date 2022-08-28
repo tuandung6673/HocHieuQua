@@ -1,4 +1,5 @@
-import { Test } from './../../../models/test.model';
+// import { Test } from './../../../models/test.model';
+import { Test } from 'src/models/test.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 

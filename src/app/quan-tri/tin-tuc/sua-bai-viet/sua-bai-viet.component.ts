@@ -1,4 +1,5 @@
-import { New } from './../../../models/new.model';
+// import { New } from './../../../models/new.model';
+import { New } from 'src/models/new.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service.service';

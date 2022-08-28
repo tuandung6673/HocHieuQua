@@ -1,6 +1,6 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
-import { Recruit } from './../../../models/recruit.model';
+import { Recruit } from './../../../../models/recruit.model';
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 

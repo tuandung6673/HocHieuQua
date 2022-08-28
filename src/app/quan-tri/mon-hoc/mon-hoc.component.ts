@@ -1,7 +1,8 @@
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-import { Subject } from './../../models/subject.model';
+// import { Subject } from '../../../../../../../../../../models/subject.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'src/models/subject.model';
 
 
 @Component({

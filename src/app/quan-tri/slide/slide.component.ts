@@ -1,5 +1,5 @@
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-import { Slide } from './../../models/slide.model';
+import { Slide } from '../../../models/slide.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
