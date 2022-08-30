@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CommentComponent implements OnInit {
 
   @Input() comments : any
+  defaultAvatar : string = "https://hochieuqua7.web.app/images/menu/account.png"
   constructor() { }
 
   ngOnInit(): void {

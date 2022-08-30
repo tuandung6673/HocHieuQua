@@ -1,0 +1,90 @@
+.wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 50%;
+  height: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 31px 2px #a9a6a6;
+}
+
+.main-right {
+  margin-top: 10px;
+}
+
+.main .main-left {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px ;
+
+  background: #1e90ff;
+}
+
+.image img {
+  /* margin-top: 35px; */
+  width: 100%;
+  height: 70%;
+}
+
+.desc {
+  margin-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.right-desc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+}
+
+.right-desc .text {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.register {
+  color: #1e90ff;
+  cursor: pointer;
+}
+
+.register:hover {
+  text-decoration: underline;
+}
+
+.right-input {
+  width: 100%;
+}
+
+.input-username {
+  width: 100%;
+}
+
+::ng-deep .p-input-icon-left {
+  width: 100%;
+}
+
+::ng-deep .input-username .p-inputtext {
+  width: 90%;
+}
+
+::ng-deep .input-password .p-inputtext {
+  width: 90%;
+}
+
+::ng-deep .input-password .p-password-input {
+  width: 90%;
+}
+

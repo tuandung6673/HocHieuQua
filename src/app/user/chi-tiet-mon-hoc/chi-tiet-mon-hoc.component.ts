@@ -15,6 +15,7 @@ export class ChiTietMonHocComponent implements OnInit {
   id : string
   detailCourse : Course = new Course()
   teacherName = []
+  comments : any
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -27,14 +28,18 @@ export class ChiTietMonHocComponent implements OnInit {
   getData() {
     this.spinner.show()
     forkJoin([
-      this.apiService.getCourseById(this.id)
+      this.apiService.getCourseById(this.id),
+      this.apiService.getCourseRating(this.id)
       // CheckPayment
-      // CourseRating
     ]).subscribe((responseData) => {
       this.detailCourse = responseData[0].data
       this.teacherName = responseData[0].data.teachers.map((teacher) => {
         return teacher.fullName
       })
+
+      this.comments = responseData[1].data.data
+
+
 
       this.spinner.hide()
     })

@@ -1,0 +1,38 @@
+<div class="wrapper"> 
+  <div class="main">
+    <div class="main-left">
+      <div class="desc">
+        <h4>Học Hiệu Quả, xin chào bạn!</h4>
+        <p>Đăng ký tài khoản ngay để học miễn phí</p>
+      </div>
+      <div class="image">
+        <img src="https://hochieuqua7.web.app/images/login/device.png" />
+      </div>
+    </div>
+    <div class="main-right">
+      <div class="right-desc">
+        <p class="text">Đăng nhập</p>
+        <div>
+          <p>Bạn chưa có tài khoản ?</p>
+          <p class="register" [routerLink]="['/dang-ky']">Đăng ký ngay</p>
+        </div>
+      </div>
+      <div class="right-input">
+        <div class="input-username">
+          <label for="username1" class="block">Tài khoản</label>
+          <span class="p-input-icon-left">
+            <i class="pi pi-phone"></i>
+            <input type="text" pInputText />
+          </span>
+        </div>
+        <label for="username1" class="block">Mật khẩu</label>
+        <div class="input-password">
+          <span class="p-input-icon-left">
+            <i class="pi pi-unlock"></i>
+            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

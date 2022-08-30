@@ -263,6 +263,4 @@ export class ApiService {
     return this.http.get<BaseReponse<CourseRating>>(`${this.url}/CourseRating?courseId=${courseId}&accountId=${accountId}&filter=${filter}&offSet=${offSet}&pageSize=${pageSize}`)
   }
 
-  
-
 }

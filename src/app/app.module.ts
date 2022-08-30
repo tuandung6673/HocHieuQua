@@ -28,6 +28,9 @@ import {CarouselModule} from 'primeng/carousel';
 import { SwiperModule } from 'swiper/angular';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {AccordionModule} from 'primeng/accordion';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {PasswordModule} from 'primeng/password';
+
 
 
 import { AppComponent } from './app.component';
@@ -95,6 +98,9 @@ import { BannerMonHocComponent } from './user/chi-tiet-mon-hoc/banner-mon-hoc/ba
 import { DetailMonHocComponent } from './user/chi-tiet-mon-hoc/detail-mon-hoc/detail-mon-hoc.component';
 import { DetailMonHocLeftComponent } from './user/chi-tiet-mon-hoc/detail-mon-hoc-left/detail-mon-hoc-left.component';
 import { DetailChuongTrinhHocComponent } from './user/chi-tiet-mon-hoc/detail-chuong-trinh-hoc/detail-chuong-trinh-hoc.component';
+import { DetailDanhGiaComponent } from './user/chi-tiet-mon-hoc/detail-danh-gia/detail-danh-gia.component';
+import { LogInOutComponent } from './layouts/log-in-out/log-in-out.component';
+import { SignUpComponent } from './layouts/sign-up/sign-up.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -149,6 +155,12 @@ const appRoutes: Routes = [
       {path: 'giao-vien/:id', component: UserChiTietGvComponent},
       {path: 'mon-hoc/:id', component: ChiTietMonHocComponent}
     ]
+  },
+  {
+    path: 'dang-nhap', component: LogInOutComponent
+  },
+  {
+    path: 'dang-ky', component: SignUpComponent
   }
  
 ]
@@ -219,6 +231,9 @@ const appRoutes: Routes = [
     DetailMonHocComponent,
     DetailMonHocLeftComponent,
     DetailChuongTrinhHocComponent,
+    DetailDanhGiaComponent,
+    LogInOutComponent,
+    SignUpComponent,
       ],
   imports: [
     CKEditorModule,
@@ -233,6 +248,7 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    ProgressBarModule,
     AccordionModule,
     NgxSpinnerModule,
     CarouselModule,
@@ -244,6 +260,7 @@ const appRoutes: Routes = [
     TabViewModule,
     MultiSelectModule,
     ConfirmDialogModule,
+    PasswordModule,
     DropdownModule,
     TableModule,
     MessagesModule,

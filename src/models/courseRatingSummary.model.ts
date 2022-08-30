@@ -1,8 +1,8 @@
 export class CourseRatingSummary {
-  total: any = null;
-  oneStar: any = null;
-  twoStar: any = null;
-  threeStar: any = null;
-  fourStar: any = null;
-  fiveStar: any = null
+  total: number = 0;
+  oneStar: number = 0;
+  twoStar: number = 0;
+  threeStar: number = 0;
+  fourStar: number = 0;
+  fiveStar: number = 0
 }

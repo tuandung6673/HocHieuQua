@@ -1,0 +1,49 @@
+<div class="header">
+  <p>Đánh giá khóa học</p>
+</div>
+<div class="content">
+  <div class="wrapper">
+    <div class="total">
+      <p style="font-weight: bold; font-size: 40px;">{{detailCourse?.courseRatingSummary?.total}}</p>
+      <p-rating [ngModel]="2" readonly="true" stars="5" [cancel]="false" [disabled]="true"></p-rating>
+      <p>{{detailCourse?.courseRatingSummary?.total}} đánh giá</p>
+    </div>
+    <div class="rating">
+      <p-progressBar [value]="fivePer" [showValue]="false"></p-progressBar>
+      <p-progressBar [value]="fourPer" [showValue]="false"></p-progressBar>
+      <p-progressBar [value]="threePer" [showValue]="false"></p-progressBar>
+      <p-progressBar [value]="twoPer" [showValue]="false"></p-progressBar>
+      <p-progressBar [value]="onePer" [showValue]="false"></p-progressBar>
+    </div>
+    <div class="star">
+      <div class="star-rate">
+        <p-rating ngModel="5" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{fivePer}}%</p>
+      </div>
+      <div class="star-rate">
+        <p-rating ngModel="4" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{fourPer}}%</p>
+      </div>
+      <div class="star-rate">
+        <p-rating ngModel="3" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{threePer}}%</p>
+      </div>
+      <div class="star-rate">
+        <p-rating ngModel="2" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{twoPer}}%</p>
+      </div>
+      <div class="star-rate">
+        <p-rating ngModel="1" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{onePer}}%</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <p style="font-weight: bold; font-size: 15px; margin: 15px">Nhận xét của học viên</p>
+    </div>
+    <div class="comment">
+      <app-comment [comments]="comments"></app-comment>
+    </div>
+  </div>
+</div>
