@@ -1,0 +1,24 @@
+<div class="detail-right">
+  <div style="padding: 10px;">
+    <div class="image">
+      <img [src]="detailCourse.courseAvatar"/>
+    </div>
+    <div class="detail-name">
+      <p style="font-weight: bold;">{{detailCourse.name}}</p>
+      <p>{{teacherName}}</p>
+    </div>
+    <div class="detail-price">
+      <p class="pre-price">{{detailCourse.price | number}}đ</p>
+      <div class="disc-price">
+        <span>chỉ còn</span>
+        <span class="price">{{detailCourse.priceDiscount | number}}đ</span>
+      </div>
+    </div>
+    <div class="detail-btn">
+      <p-button label="Tư vấn thêm" icon="pi pi-phone" styleClass="p-button" ></p-button>
+    </div>
+    <div class="detail-text">
+      <div [innerHTML]="detailCourse.courseInfo2"></div>
+    </div>
+  </div>
+</div>

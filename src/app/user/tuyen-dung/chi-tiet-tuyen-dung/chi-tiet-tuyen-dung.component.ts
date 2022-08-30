@@ -46,6 +46,10 @@ export class ChiTietTuyenDungComponent implements OnInit {
     this.isDisplayDialog = true
   }
 
+  convertPhoneToString(phoneNumber: string) {
+    return "0" + phoneNumber
+  }
+
   onSubmit() {
     const data = {...this.recruitCandidate}
     
@@ -53,7 +57,7 @@ export class ChiTietTuyenDungComponent implements OnInit {
     data.content = this.note,
     data.email = this.email,
     data.name = this.name,
-    data.phone = this.phone
+    data.phone = this.convertPhoneToString(this.phone)
     
     console.log('Save', data);
     

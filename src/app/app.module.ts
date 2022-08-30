@@ -27,6 +27,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {CarouselModule} from 'primeng/carousel';
 import { SwiperModule } from 'swiper/angular';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {AccordionModule} from 'primeng/accordion';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -88,6 +90,11 @@ import { UserGvComponent } from './user/user-gv/user-gv.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 import { ChiTietTuyenDungComponent } from './user/tuyen-dung/chi-tiet-tuyen-dung/chi-tiet-tuyen-dung.component';
+import { ChiTietMonHocComponent } from './user/chi-tiet-mon-hoc/chi-tiet-mon-hoc.component';
+import { BannerMonHocComponent } from './user/chi-tiet-mon-hoc/banner-mon-hoc/banner-mon-hoc.component';
+import { DetailMonHocComponent } from './user/chi-tiet-mon-hoc/detail-mon-hoc/detail-mon-hoc.component';
+import { DetailMonHocLeftComponent } from './user/chi-tiet-mon-hoc/detail-mon-hoc-left/detail-mon-hoc-left.component';
+import { DetailChuongTrinhHocComponent } from './user/chi-tiet-mon-hoc/detail-chuong-trinh-hoc/detail-chuong-trinh-hoc.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -139,7 +146,8 @@ const appRoutes: Routes = [
       {path: 'huong-dan', component: HuongDanComponent},
       {path: 'khoa-hoc/:id', component: KhoaHocComponent},
       {path: 'giao-vien', component: UserGvComponent},
-      {path: 'giao-vien/:id', component: UserChiTietGvComponent}
+      {path: 'giao-vien/:id', component: UserChiTietGvComponent},
+      {path: 'mon-hoc/:id', component: ChiTietMonHocComponent}
     ]
   }
  
@@ -205,7 +213,12 @@ const appRoutes: Routes = [
     UserGvComponent,
     UserChiTietGvComponent,
     KhoaHocGvComponent,
-    ChiTietTuyenDungComponent
+    ChiTietTuyenDungComponent,
+    ChiTietMonHocComponent,
+    BannerMonHocComponent,
+    DetailMonHocComponent,
+    DetailMonHocLeftComponent,
+    DetailChuongTrinhHocComponent,
       ],
   imports: [
     CKEditorModule,
@@ -220,6 +233,7 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    AccordionModule,
     NgxSpinnerModule,
     CarouselModule,
     SwiperModule,

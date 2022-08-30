@@ -1,0 +1,41 @@
+.image img {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 100%;
+}
+
+.action {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+::ng-deep .action .p-button {
+  width: 100%;
+  background: #3b98fc;
+  border: 1px solid #007bff75;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: .3s ease-in-out;
+}
+
+.info .header {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.info .text {
+  border: 1px solid hsla(0,0%,50%,.486);
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px 15px;
+}

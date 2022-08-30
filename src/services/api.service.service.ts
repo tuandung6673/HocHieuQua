@@ -24,6 +24,8 @@ import { Footer } from 'primeng/api';
 import { Home } from 'src/models/home.model';
 import { Comment } from 'src/models/comment.model';
 import { RecruitCandidate } from 'src/models/recruitCandidate.model';
+import { CheckPayment } from 'src/models/checkPayment.model';
+import { CourseRating } from 'src/models/courseRating.model';
 
 @Injectable({
   providedIn: 'root'
@@ -250,5 +252,17 @@ export class ApiService {
   postRecruitCandidate(data: RecruitCandidate) {
     return this.http.post<Message>(`${this.url}/RecruitCandidate`, data)
   }
+
+  // Payment / CheckPayment
+  getCheckPayment(accountId: string = '', courseId: string = '') : Observable<BaseRetail<CheckPayment>> {
+    return this.http.get<BaseRetail<CheckPayment>>(`${this.url}/Payment/CheckPayment?accountId=${accountId}&courseId=${courseId}`)
+  }
+
+  // CourseRating
+  getCourseRating(courseId: string = '', accountId: string = '', filter : string = '', offSet : number = 0, pageSize: number = 100 ) : Observable<BaseReponse<CourseRating>> {
+    return this.http.get<BaseReponse<CourseRating>>(`${this.url}/CourseRating?courseId=${courseId}&accountId=${accountId}&filter=${filter}&offSet=${offSet}&pageSize=${pageSize}`)
+  }
+
+  
 
 }

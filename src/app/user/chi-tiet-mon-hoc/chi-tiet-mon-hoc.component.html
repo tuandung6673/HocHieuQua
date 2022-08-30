@@ -1,0 +1,15 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+
+<app-banner-mon-hoc [detailCourse]="detailCourse" [teacherName]="teacherName"></app-banner-mon-hoc>
+
+
+<div class="wrapper">
+  <div class="detail-left">
+    <app-detail-mon-hoc-left [detailCourse]="detailCourse" ></app-detail-mon-hoc-left>
+    
+    <app-detail-chuong-trinh-hoc [courseSchedules]="detailCourse.courseSchedules"></app-detail-chuong-trinh-hoc>
+  </div>
+  <div class="detail-right">
+    <app-detail-mon-hoc [detailCourse]="detailCourse" [teacherName]="teacherName"></app-detail-mon-hoc>
+  </div>
+</div>

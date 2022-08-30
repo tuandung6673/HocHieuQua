@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div class="header">
+    <p>Chương trình học</p>
+  </div>
+  <div class="main">
+    <p-accordion multiple="true" *ngFor="let course of courseSchedules">
+      <p-accordionTab [header]="course.name">
+        <div *ngFor="let test of course.tests" class="test">
+          <div style="width: 35px; height: 35px; margin-right: 10px;">
+            <img *ngIf="test.isFree" src="https://hochieuqua7.web.app/images/user/chi-tiet-khoa-hoc/free_icon.png" width="35px" height="35px"/>
+          </div>
+          <p>{{test.name}}</p>
+          <div style="float: right;">
+            <span *ngIf="test.testCategoryCode == 'kiem-tra' ">
+              <i class="pi pi-copy"></i>
+            </span>
+            <span *ngIf="test.testCategoryCode == 'bai-giang' ">
+              <i class="pi pi-play"></i>
+            </span>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>
