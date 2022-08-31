@@ -10,29 +10,34 @@
       </div>
     </div>
     <div class="main-right">
-      <div class="right-desc">
-        <p class="text">Đăng nhập</p>
-        <div>
-          <p>Bạn chưa có tài khoản ?</p>
-          <p class="register" [routerLink]="['/dang-ky']">Đăng ký ngay</p>
+      <form (ngSubmit)="onSubmit()">
+        <div class="right-desc">
+          <p class="text">Đăng nhập</p>
+          <div>
+            <p>Bạn chưa có tài khoản ?</p>
+            <p class="register" [routerLink]="['/dang-ky']">Đăng ký ngay</p>
+          </div>
         </div>
-      </div>
-      <div class="right-input">
-        <div class="input-username">
-          <label for="username1" class="block">Tài khoản</label>
-          <span class="p-input-icon-left">
-            <i class="pi pi-phone"></i>
-            <input type="text" pInputText />
-          </span>
+        <div class="right-input">
+          <div class="input-username">
+            <label for="username1" class="block">Tài khoản</label>
+            <span class="p-input-icon-left">
+              <i class="pi pi-phone"></i>
+              <input type="text" pInputText [(ngModel)]="username" name="username" />
+            </span>
+          </div>
+          <label for="username1" class="block">Mật khẩu</label>
+          <div class="input-password">
+            <span class="p-input-icon-left">
+              <i class="pi pi-unlock"></i>
+              <input type="password" pInputText [(ngModel)]="password" name="password" />
+            </span>
+          </div>
+          <div class="action">
+            <p-button type="submit" label="Đăng nhập"></p-button>
+          </div>
         </div>
-        <label for="username1" class="block">Mật khẩu</label>
-        <div class="input-password">
-          <span class="p-input-icon-left">
-            <i class="pi pi-unlock"></i>
-            <p-password [toggleMask]="true" [feedback]="false"></p-password>
-          </span>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

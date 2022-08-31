@@ -10,12 +10,24 @@
       </span>
     </div>
 
-    <div class="action">
+    <div [ngClass]="isToken ? 'none' : 'action' " >
       <div class="login">
         <p-button [routerLink]="['/dang-nhap']" label="Đăng nhập"></p-button>
       </div>
       <div class="signup">
         <p-button [routerLink]="['/dang-ky']" label="Đăng ký"></p-button>
+      </div>
+    </div>
+
+    <div [ngClass]="isToken ? 'logined' : 'none' ">
+      <div class="avatar">
+        <img [src]="userData?.avatar"/>
+      </div>
+      <div class="info">
+        <p>{{userData?.username}}</p>
+      </div>
+      <div class="option">
+        <p-splitButton [model]="items"></p-splitButton>
       </div>
     </div>
   </div>

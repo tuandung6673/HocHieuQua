@@ -41,3 +41,47 @@
 .image {
   float: right;
 }
+
+.none {
+  display: none;
+}
+
+.logined {
+  align-items: center;
+  display: flex;
+}
+
+::ng-deep .logined .p-splitbutton-defaultbutton {
+  display: none;
+}
+
+.logined .avatar img {
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
+}
+
+/* 
+::ng-deep .option ul {
+  width: 200px;
+}
+
+::ng-deep .option li {
+  width: 200px;
+} */
+
+::ng-deep .option ul {
+  font-size: 13px;
+}
+
+::ng-deep .option .p-button {
+  background: #fff;
+  border-radius: 0px;
+  border: none;
+  color: blue
+}
+
+::ng-deep .option .p-button:hover {
+  background: rgb(206, 178, 178);
+  cursor: pointer;
+}
