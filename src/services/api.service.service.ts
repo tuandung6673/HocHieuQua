@@ -55,6 +55,11 @@ export class ApiService {
     return this.http.delete(`${this.url}/Account/${id}`)
   }
 
+  // AccountRegister
+  postAccountRegister(data: Account) {
+    return this.http.post<Message>(`${this.url}/Account/SetAccountRegister`, data)
+  }
+
   // Role
   getRoles(offSet: number = 0, pageSize: number = 1000, filter : string = '') : Observable<BaseReponse<Role>> {
     return this.http.get<BaseReponse<Role>>(`${this.url}/Role?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)

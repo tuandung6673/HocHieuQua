@@ -1,1 +1,130 @@
-SignUp
+<div class="wrapper"> 
+  <div class="main">
+    <div class="main-left">
+      <div class="desc">
+        <h4>Học Hiệu Quả, xin chào bạn!</h4>
+        <p>Đăng ký tài khoản ngay để học miễn phí</p>
+      </div>
+      <div class="image">
+        <img src="https://hochieuqua7.web.app/images/login/device.png" />
+      </div>
+    </div>
+    <div class="main-right">
+      <form (ngSubmit)="onSubmit()">
+        <div class="right-desc">
+          <p class="text">Đăng ký</p>
+          <div>
+            <p>Bạn đã có tài khoản ?</p>
+            <p class="register" [routerLink]="['/dang-nhap']">Đăng nhập ngay</p>
+          </div>
+        </div>
+        <div class="input-right">
+          <div class="form-group">
+            <div class="label">
+              Họ Tên
+              <span>*</span>
+            </div>
+            <div class="input">
+              <span class="p-input-icon-left">
+                <i class="pi pi-users"></i>
+                <input type="text" required pInputText [(ngModel)]="name" name="name" #nameInput="ngModel"/>
+              </span>
+            </div>
+            <div [ngClass]="(nameInput.touched && nameInput.invalid) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="nameInput.touched && nameInput.invalid">Vui lòng nhập tên</p>
+            </div>
+           </div>
+          <div class="form-group">
+            <div class="label">
+              Số điện thoại
+              <span>*</span>
+            </div>
+            <div class="input">
+              <span class="p-input-icon-left">
+                <i class="pi pi-phone"></i>
+                <input type="number" required pInputText [(ngModel)]="phone" name="phone" #phoneInput="ngModel"/>
+              </span>
+            </div>
+            <div [ngClass]="(phoneInput.touched && phoneInput.invalid) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="phoneInput.touched && phoneInput.invalid">Vui lòng nhập số điện thoại</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              Email
+              <span>*</span>
+            </div>
+            <div class="input">
+              <span class="p-input-icon-left">
+                <i class="pi pi-envelope"></i>
+                <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required pInputText [(ngModel)]="email" name="email" #emailInput="ngModel" />
+              </span>
+            </div>
+            <div [ngClass]="(emailInput.touched && emailInput.invalid) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="emailInput.touched && emailInput.invalid">Vui lòng nhập đúng định dạng email</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              Tài khoản
+              <span>*</span>
+            </div>
+            <div class="input">
+              <span class="p-input-icon-left">
+                <i class="pi pi-id-card"></i>
+                <input type="text" required pInputText [(ngModel)]="taikhoan" name="taikhoan" #taikhoanInput="ngModel"/>
+              </span>
+            </div>
+            <div [ngClass]="(taikhoanInput.touched && taikhoanInput.invalid) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="taikhoanInput.touched && taikhoanInput.invalid">Vui lòng nhập tài khoản đăng ký</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              Mật khẩu
+              <span>*</span>
+            </div>
+            <div class="input">
+              <span class="p-input-icon-left">
+                <i class="pi pi-unlock"></i>
+                <input type="password" required minlength="3" pInputText [(ngModel)]="password" name="password" #passwordInput="ngModel" />
+              </span>
+            </div>
+            <div [ngClass]="(passwordInput.touched && passwordInput.invalid) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="passwordInput.touched && passwordInput.invalid">Mật khẩu có 3 kí tự trở lên</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              Nhập lại mật khẩu
+              <span>*</span>
+            </div>
+            <div class="input">
+              <span class="p-input-icon-left">
+                <i class="pi pi-unlock"></i>
+                <input type="password" pInputText [(ngModel)]="password2" name="password2" #password2Input="ngModel" />
+              </span>
+            </div>
+            <div [ngClass]="(password2Input.touched && password2Input != passwordInput) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="password2Input.touched && password2Input != passwordInput">Mật khẩu không khớp</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <span>
+                <p-checkbox [binary]="true" inputId="binary" [(ngModel)]="rules" name="rules"></p-checkbox>
+                Tôi đã đọc và đồng ý với Điều khoản sử dụng
+              </span>
+            </div>
+            <div>
+              (*) Bằng việc đăng ký bạn đồng ý để Học hiệu quả liên hệ tư vấn
+            </div>
+          </div>
+        </div>
+        <div class="action">
+          <p-button [disabled]=" !rules || nameInput.invalid || phoneInput.invalid || emailInput.invalid || taikhoanInput.invalid || passwordInput.invalid" type="submit" label="Đăng ký"></p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

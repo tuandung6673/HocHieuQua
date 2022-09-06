@@ -19,6 +19,9 @@ export class MainHeaderComponent implements OnInit {
     this.userData = JSON.parse(localStorage.getItem('userData'))
     // console.log(this.userData);
     this.items = [
+      {label: 'Quản trị', icon: 'pi pi-setting', command: () => {
+        this.router.navigate(['/quan-tri'])
+      }},
       {label: 'Thông tin cá nhân ', icon: 'pi pi-users'},
       {label: 'Khóa học của tôi', icon: 'pi pi-book'},
       {label: 'Quá trình học tập', icon: 'pi pi-chart-pie'},
@@ -36,6 +39,7 @@ export class MainHeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('userToken')
     localStorage.removeItem('userData')
+    this.router.navigate(['/dang-nhap'])
   }
 
 }

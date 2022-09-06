@@ -31,6 +31,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {PasswordModule} from 'primeng/password';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 import { AppComponent } from './app.component';
@@ -248,6 +249,7 @@ const appRoutes: Routes = [
     MenubarModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    CheckboxModule,
     SplitButtonModule,
     ProgressBarModule,
     AccordionModule,
