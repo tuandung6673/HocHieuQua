@@ -1,0 +1,55 @@
+.abc {
+  margin: 5px 0 5px 0;
+}
+
+.abc i {
+  font-size: 13px;
+}
+
+.options {
+  font-size: 18px;
+}
+
+.options div {
+  padding: 8px 0 8px 5px;
+  cursor: pointer;
+} 
+
+.options div:hover {
+  /* background-color: blue; */
+  text-decoration: underline;
+}
+
+.active {
+  border: 1px solid rgb(175, 175, 226);
+  border-radius: 10px;
+  color: rgb(65, 65, 182);
+}
+
+.passInput {
+  margin: 10px
+}
+
+.passInput span {
+  color: red;
+}
+
+.passBtn {
+  margin: 10px;
+  margin-top: 30px
+}
+
+::ng-deep .passInput .p-inputtext {
+  width: 100%;
+  border-radius: 30px;
+}
+
+::ng-deep .passBtn .p-button {
+  width: 100%;
+  border-radius: 30px;
+}
+
+.warning {
+  margin-left: 10px;
+  color: red;
+}

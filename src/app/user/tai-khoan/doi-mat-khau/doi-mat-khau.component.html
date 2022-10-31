@@ -1,0 +1,60 @@
+<div class="abc">
+  <i class="pi pi-home"></i>
+  / Đổi mật khẩu
+</div>
+
+<div class="main">
+  <div class="grid">
+    <div class="grid col-3">
+      <div class="col-12 avatar flex justify-content-center">
+        <img src="https://hochieuqua7.web.app/images/menu/account.png" width="100px" height="100px">
+      </div>
+      <div class="col-12 options">
+        <div [routerLink]="['/tai-khoan/thong-tin-ca-nhan']">
+          <i class="pi pi-user"></i> Thông tin
+        </div>
+        <div class="active">
+          <i class="pi pi-qrcode"></i> Đổi mật khẩu
+        </div>
+        <div [routerLink]="['/tai-khoan/khoa-hoc-cua-toi']">
+          <i class="pi pi-slack" ></i> Khóa học của tôi
+        </div>
+        <div [routerLink]="['/tai-khoan/kich-hoat-khoa-hoc']">
+          <i class="pi pi pi-key" ></i> Kích hoạt khóa học
+        </div>
+        <div [routerLink]="['/tai-khoan/qua-trinh-hoc-tap']">
+          <i class="pi pi-sitemap" ></i> Quá trình học tập
+        </div>
+      </div>
+    </div>
+    <div class="grid col-9">
+      <div class="col-12">
+        <h4>Đổi mật khẩu</h4>
+        <div class="passInput">
+          <p>Mật khẩu cũ <span>*</span></p>
+          <input type="password" required pInputText [(ngModel)]="query.oldPassword" name="oldPassword" #oldPassword="ngModel"/>
+          <div class="warning">
+            <p *ngIf="oldPassword.touched && oldPassword.invalid">Vui lòng nhập mật khẩu cũ</p>
+          </div>
+        </div>
+        <div class="passInput">
+          <p>Mật khẩu mới <span>*</span></p>
+          <input type="password" required pInputText [(ngModel)]="query.newPassword" name="newPassword" #newPassword="ngModel"/>
+          <div class="warning">
+            <p *ngIf="newPassword.touched && newPassword.invalid">Vui lòng điền mật khẩu</p>
+          </div>
+        </div>
+        <div class="passInput">
+          <p>Nhập lại mật khẩu <span>*</span></p>
+          <input type="password" required pInputText [(ngModel)]="password2" name="password2" #password2Input="ngModel" />
+          <div class="warning" *ngIf="password2Input.touched && password2Input.invalid">
+            <p>Mật khẩu không khớp</p>
+          </div>
+        </div>
+        <div class="passBtn">
+          <button [disabled]="oldPassword.invalid || newPassword.invalid" pButton type="submit" label="Cập nhật" (click)="changePassword()" ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

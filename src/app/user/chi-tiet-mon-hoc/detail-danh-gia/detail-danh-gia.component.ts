@@ -18,10 +18,11 @@ export class DetailDanhGiaComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
+    this.getPercent()
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getPercent()
     
   }
   

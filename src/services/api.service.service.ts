@@ -47,8 +47,20 @@ export class ApiService {
     return this.http.get<BaseRetail<Account>>(`${this.url}/Account/${id}`)
   }
 
+  getAccountByUserName(queryParams) : Observable<BaseRetail<Account>> {
+    return this.http.get<BaseRetail<Account>>(`${this.url}/Account/GetAccountByUserName?` + queryParams)
+  }
+
+  setAccountChangePassword(queryParams) : Observable<any> {
+    return this.http.post<any>(`${this.url}/Account/SetAccountChangePassword`, queryParams)
+  }
+
   postAccount(data: Account) {
     return this.http.post<Message>(`${this.url}/Account`, data)
+  }
+
+  setAccountUser(data) : Observable<any> {
+    return this.http.post<any>(`${this.url}/Account/SetAccountUser`, data)
   }
 
   deleteAccount(id: string) {

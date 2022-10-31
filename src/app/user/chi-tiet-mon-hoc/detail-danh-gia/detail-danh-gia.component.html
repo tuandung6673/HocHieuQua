@@ -17,24 +17,24 @@
     </div>
     <div class="star">
       <div class="star-rate">
-        <p-rating ngModel="5" [cancel]="false"></p-rating>
-        <p style="margin-left: 10px; padding-top: 5px;">{{fivePer}}%</p>
+        <p-rating readonly="true" ngModel="5" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{fivePer || 0}}%</p>
       </div>
       <div class="star-rate">
-        <p-rating ngModel="4" [cancel]="false"></p-rating>
-        <p style="margin-left: 10px; padding-top: 5px;">{{fourPer}}%</p>
+        <p-rating readonly="true" ngModel="4" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{fourPer || 0}}%</p>
       </div>
       <div class="star-rate">
-        <p-rating ngModel="3" [cancel]="false"></p-rating>
-        <p style="margin-left: 10px; padding-top: 5px;">{{threePer}}%</p>
+        <p-rating readonly="true" ngModel="3" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{threePer || 0}}%</p>
       </div>
       <div class="star-rate">
-        <p-rating ngModel="2" [cancel]="false"></p-rating>
-        <p style="margin-left: 10px; padding-top: 5px;">{{twoPer}}%</p>
+        <p-rating readonly="true" ngModel="2" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{twoPer || 0}}%</p>
       </div>
       <div class="star-rate">
-        <p-rating ngModel="1" [cancel]="false"></p-rating>
-        <p style="margin-left: 10px; padding-top: 5px;">{{onePer}}%</p>
+        <p-rating readonly="true" ngModel="1" [cancel]="false"></p-rating>
+        <p style="margin-left: 10px; padding-top: 5px;">{{onePer || 0}}%</p>
       </div>
     </div>
   </div>

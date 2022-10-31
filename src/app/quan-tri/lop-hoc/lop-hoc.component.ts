@@ -1,4 +1,4 @@
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service.service';
 
@@ -8,6 +8,8 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./lop-hoc.component.css']
 })
 export class LopHocComponent implements OnInit {
+  
+  constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   classrooms : any
   isLoading: boolean = false;
@@ -20,7 +22,6 @@ export class LopHocComponent implements OnInit {
     totalRecord: 0
   }
 
-  constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getClassRooms();
@@ -79,26 +80,11 @@ export class LopHocComponent implements OnInit {
 
   confirmDeleteClassroom(id: string) {
     this.confirmationService.confirm({
-        message: 'Bạn có muốn xóa love này ?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
-            this.onDeleteClassroom(id)
-        },
-        reject: (type) => {
-            switch(type) {
-                case ConfirmEventType.REJECT:
-                    this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-                break;
-                case ConfirmEventType.CANCEL:
-                    this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-                break;
-                default: 
-                  return
-            }
-        }
-    });
+      message: 'Bạn chắc chắn muốn xóa lớp học này',
+      accept: () => {
+        this.onDeleteClassroom(id)
+      }
+    })
   }
 
 }

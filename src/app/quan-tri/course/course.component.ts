@@ -67,7 +67,6 @@ export class CourseComponent implements OnInit {
       offSet: event.page * event.rows,
       pageSize: event.rows
     }
-    console.log(this.params);
     this.getCourses();
   }
 

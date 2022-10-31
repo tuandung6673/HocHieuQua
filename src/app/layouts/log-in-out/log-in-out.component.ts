@@ -27,7 +27,7 @@ export class LogInOutComponent implements OnInit {
     }
     
     this.authService.login(data).subscribe((responseData) => {
-      this.userToken = responseData.data.token
+      this.userToken = responseData.data?.token
       this.userData = responseData.data
       
       if(this.userToken) {

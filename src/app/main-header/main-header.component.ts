@@ -22,7 +22,12 @@ export class MainHeaderComponent implements OnInit {
       {label: 'Quản trị', icon: 'pi pi-setting', command: () => {
         this.router.navigate(['/quan-tri'])
       }},
-      {label: 'Thông tin cá nhân ', icon: 'pi pi-users'},
+      {label: 'Thông tin cá nhân ', icon: 'pi pi-users', command: () => {
+        this.router.navigate(['/tai-khoan/thong-tin-ca-nhan'])
+      }},
+      {label: 'Đổi mật khẩu', icon: 'pi pi-qrcode', command: () => {
+        this.router.navigate(['tai-khoan/doi-mat-khau'])
+      }},
       {label: 'Khóa học của tôi', icon: 'pi pi-book'},
       {label: 'Quá trình học tập', icon: 'pi pi-chart-pie'},
       {label: 'Kích hoạt khóa học', icon: 'pi pi-key'},

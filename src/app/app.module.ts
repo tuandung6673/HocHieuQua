@@ -1,8 +1,9 @@
+import { AuthInterceptor } from './../auth/auth.interceptor';
 import { UserComponent } from './layouts/user/user.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import { RouterModule, Routes } from '@angular/router';
@@ -32,7 +33,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {PasswordModule} from 'primeng/password';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {CheckboxModule} from 'primeng/checkbox';
-
+import {ToastModule} from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -102,6 +103,12 @@ import { DetailChuongTrinhHocComponent } from './user/chi-tiet-mon-hoc/detail-ch
 import { DetailDanhGiaComponent } from './user/chi-tiet-mon-hoc/detail-danh-gia/detail-danh-gia.component';
 import { LogInOutComponent } from './layouts/log-in-out/log-in-out.component';
 import { SignUpComponent } from './layouts/sign-up/sign-up.component';
+import { ThongTinCaNhanComponent } from './user/tai-khoan/thong-tin-ca-nhan/thong-tin-ca-nhan.component';
+import { DoiMatKhauComponent } from './user/tai-khoan/doi-mat-khau/doi-mat-khau.component';
+import { KhoaHocCuaToiComponent } from './user/tai-khoan/khoa-hoc-cua-toi/khoa-hoc-cua-toi.component';
+import { KichHoatKhoaHocComponent } from './user/tai-khoan/kich-hoat-khoa-hoc/kich-hoat-khoa-hoc.component';
+import { QuaTrinhHocTapComponent } from './user/tai-khoan/qua-trinh-hoc-tap/qua-trinh-hoc-tap.component';
+
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -154,7 +161,12 @@ const appRoutes: Routes = [
       {path: 'khoa-hoc/:id', component: KhoaHocComponent},
       {path: 'giao-vien', component: UserGvComponent},
       {path: 'giao-vien/:id', component: UserChiTietGvComponent},
-      {path: 'mon-hoc/:id', component: ChiTietMonHocComponent}
+      {path: 'mon-hoc/:id', component: ChiTietMonHocComponent},
+      {path: 'tai-khoan/thong-tin-ca-nhan', component: ThongTinCaNhanComponent},
+      {path: 'tai-khoan/doi-mat-khau', component: DoiMatKhauComponent},
+      {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent},
+      {path: 'tai-khoan/kich-hoat-khoa-hoc', component: KichHoatKhoaHocComponent},
+      {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent}
     ]
   },
   {
@@ -235,6 +247,11 @@ const appRoutes: Routes = [
     DetailDanhGiaComponent,
     LogInOutComponent,
     SignUpComponent,
+    ThongTinCaNhanComponent,
+    DoiMatKhauComponent,
+    KhoaHocCuaToiComponent,
+    KichHoatKhoaHocComponent,
+    QuaTrinhHocTapComponent,
       ],
   imports: [
     CKEditorModule,
@@ -247,16 +264,17 @@ const appRoutes: Routes = [
     InputTextModule,
     ToggleButtonModule,
     MenubarModule,
+    ToastModule,
     InputSwitchModule,
     ProgressSpinnerModule,
     CheckboxModule,
     SplitButtonModule,
     ProgressBarModule,
     AccordionModule,
-    NgxSpinnerModule,
     CarouselModule,
     SwiperModule,
     BreadcrumbModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     RatingModule,
     ChipsModule,
     DialogModule,
@@ -270,8 +288,13 @@ const appRoutes: Routes = [
     MessageModule,
     ImageModule,
     FormsModule,
+    
   ],
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

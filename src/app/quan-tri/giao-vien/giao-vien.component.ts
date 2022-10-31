@@ -78,16 +78,6 @@ export class GiaoVienComponent implements OnInit {
         accept: () => {
             this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteTeacher(id)
-        },
-        reject: (type) => {
-            switch(type) {
-                case ConfirmEventType.REJECT:
-                    this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-                break;
-                case ConfirmEventType.CANCEL:
-                    this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-                break;
-            }
         }
     });
   }
