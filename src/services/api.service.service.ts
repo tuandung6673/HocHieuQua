@@ -94,7 +94,7 @@ export class ApiService {
   }
 
   // Classroom
-  getClassroom(offSet: number = 0, pageSize: number = 0, filter = '') : Observable<BaseReponse<Classroom>> {
+  getClassroom(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Classroom>> {
     return this.http.get<BaseReponse<Classroom>>(`${this.url}/Classroom?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 

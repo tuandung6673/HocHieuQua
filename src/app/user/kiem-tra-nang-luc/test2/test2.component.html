@@ -1,0 +1,22 @@
+<div class="grid test" [ngClass]="index % 2 == 0 ? 'even': 'odd'" >
+  <div class="col-4 infor">
+    <div style="margin-bottom: 5px">
+      <i class="pi pi-book"></i>
+      {{test.name}}
+    </div>
+    <div class="flex">
+      <div class="flex align-content-center">
+        <i class="pi pi-clock"></i>
+        <p>{{test.time}} phút</p>
+      </div>
+      <i style="margin-left: 10px" class="pi pi-question-circle"></i>
+    </div>
+  </div>
+  <div class="col-4 blank"></div>
+  <div class="col-4 action flex justify-content-end">
+    <p class="button">
+      <i class="pi pi-play"></i>
+      Thi ngay
+    </p>
+  </div>
+</div>

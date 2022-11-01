@@ -30,16 +30,9 @@ export class ThongTinCaNhanComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.username = JSON.parse(localStorage.getItem('userData')).username
     this.getAccount()
   }
 
-  // getAccountByUsername() {
-  //   const queryParams = queryString.stringify({uername: this.username})
-  //   this.apiService.getAccountByUserName(queryParams).subscribe(response => {
-  //     this.info = response.data
-  //   })
-  // }
 
   getAccount() {
     const userId = JSON.parse(localStorage.getItem('userData')).id
@@ -51,12 +44,11 @@ export class ThongTinCaNhanComponent implements OnInit {
   }
 
   changeInfo() {
-    // const query = this.query
-    // const queryParams= queryString.stringify(query)
     this.spinner.show()
     this.apiService.setAccountUser(this.info).subscribe((response) => {
       if(response.status == 'success') {
         this.messageService.add({severity: 'success', detail: response.data.messages, summary: 'Thông báo'})
+        this.getAccount()
       } else {
         this.messageService.add({severity: 'error', detail: response.data.messages, summary: 'Thông báo'})
       }

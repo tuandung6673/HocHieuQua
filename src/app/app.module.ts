@@ -108,6 +108,7 @@ import { DoiMatKhauComponent } from './user/tai-khoan/doi-mat-khau/doi-mat-khau.
 import { KhoaHocCuaToiComponent } from './user/tai-khoan/khoa-hoc-cua-toi/khoa-hoc-cua-toi.component';
 import { KichHoatKhoaHocComponent } from './user/tai-khoan/kich-hoat-khoa-hoc/kich-hoat-khoa-hoc.component';
 import { QuaTrinhHocTapComponent } from './user/tai-khoan/qua-trinh-hoc-tap/qua-trinh-hoc-tap.component';
+import { Test2Component } from './user/kiem-tra-nang-luc/test2/test2.component';
 
 const appRoutes: Routes = [
   {
@@ -252,6 +253,7 @@ const appRoutes: Routes = [
     KhoaHocCuaToiComponent,
     KichHoatKhoaHocComponent,
     QuaTrinhHocTapComponent,
+    Test2Component,
       ],
   imports: [
     CKEditorModule,
