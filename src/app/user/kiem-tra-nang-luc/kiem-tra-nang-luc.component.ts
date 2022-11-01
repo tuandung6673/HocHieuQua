@@ -37,9 +37,11 @@ export class KiemTraNangLucComponent implements OnInit {
   }
 
   getSubject(classId) {
+    this.spinner.show()
     this.apiService.getSubject(0, 100, classId).subscribe((response) => {
       if(response.status == 'success') {
         this.subjectList = response.data.data
+        this.spinner.hide()
       }
     })
   }
@@ -58,8 +60,10 @@ export class KiemTraNangLucComponent implements OnInit {
   }
   
   getTest() {
+    this.spinner.show()
     this.apiService.getTest(0, 100, '', this.classId, '', this.subjectId, 'kiem-tra').subscribe((response) => {
       this.tests = response.data.data
+      this.spinner.hide()
     })
   }
   
