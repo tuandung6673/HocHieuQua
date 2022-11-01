@@ -25,7 +25,10 @@
       </div>
     </div>
     <div class="col-9">
-      <p *ngIf="tests.length == 0">Không có dữ liệu hiển thị</p>
+      <div *ngIf="tests.length == 0">
+        <p style="text-align: center; margin-top: 20px">Không có dữ liệu hiển thị</p>
+        <img src="https://hochieuqua7.web.app/images/course/not-found2.gif" />
+      </div>
       <div *ngFor="let test of tests; let i = index">
         <app-test2 [test]="test" [index]="i"></app-test2>
       </div>
