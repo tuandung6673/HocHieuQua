@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../auth/authGuard.service';
 import { AuthInterceptor } from './../auth/auth.interceptor';
 import { UserComponent } from './layouts/user/user.component';
 import { AdminComponent } from './layouts/admin/admin.component';
@@ -163,11 +164,11 @@ const appRoutes: Routes = [
       {path: 'giao-vien', component: UserGvComponent},
       {path: 'giao-vien/:id', component: UserChiTietGvComponent},
       {path: 'mon-hoc/:id', component: ChiTietMonHocComponent},
-      {path: 'tai-khoan/thong-tin-ca-nhan', component: ThongTinCaNhanComponent},
-      {path: 'tai-khoan/doi-mat-khau', component: DoiMatKhauComponent},
-      {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent},
-      {path: 'tai-khoan/kich-hoat-khoa-hoc', component: KichHoatKhoaHocComponent},
-      {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent}
+      {path: 'tai-khoan/thong-tin-ca-nhan', component: ThongTinCaNhanComponent, canActivate: [AuthGuardService]},
+      {path: 'tai-khoan/doi-mat-khau', component: DoiMatKhauComponent, canActivate: [AuthGuardService]},
+      {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent, canActivate: [AuthGuardService]},
+      {path: 'tai-khoan/kich-hoat-khoa-hoc', component: KichHoatKhoaHocComponent, canActivate: [AuthGuardService]},
+      {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent, canActivate: [AuthGuardService]}
     ]
   },
   {
@@ -292,7 +293,7 @@ const appRoutes: Routes = [
     FormsModule,
     
   ],
-  providers: [ConfirmationService, MessageService, {
+  providers: [ConfirmationService, MessageService, AuthGuardService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { delay } from 'rxjs';
 import { Authentication } from 'src/models/authentication.model';
 import { AuthService } from 'src/services/authService.service';
 
@@ -8,14 +10,15 @@ import { AuthService } from 'src/services/authService.service';
   templateUrl: './log-in-out.component.html',
   styleUrls: ['./log-in-out.component.css']
 })
-export class LogInOutComponent implements OnInit {
+export class LogInOutComponent implements OnInit, OnDestroy{
 
   response: string
   userToken : string
   userData: Authentication
   username : string;
   password : string;
-  constructor(private authService: AuthService, private router: Router) { }
+  delay: any;
+  constructor(private authService: AuthService, private router: Router, private message: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -27,18 +30,30 @@ export class LogInOutComponent implements OnInit {
     }
     
     this.authService.login(data).subscribe((responseData) => {
-      this.userToken = responseData.data?.token
-      this.userData = responseData.data
-      
-      if(this.userToken) {
+      if(responseData.status == 'success') {
+        this.userToken = responseData.data?.token
+        this.userData = responseData.data
+
         localStorage.setItem('userToken', this.userToken)
         localStorage.setItem('userData', JSON.stringify(this.userData))
+
+        this.message.add({summary: 'Thông báo', severity: 'success', detail: 'Đăng nhập thành công'})
+
+        this.delay = setTimeout(() => {
+          console.log('setTimeout');
+          this.message.clear()
+          this.router.navigate(['/'])
+        }, 500);
+      } else {
+        this.message.add({summary: 'Thông báo', severity: 'error', detail: 'Đăng nhập thất bại'})
       }
       
-      if(responseData.status == 'success') {
-        this.router.navigate(['/'])
-      }
     })
+  }
+
+  ngOnDestroy(): void {
+    console.log('clearTimeout');
+    clearTimeout(this.delay)
   }
 
 }
