@@ -2,12 +2,11 @@
   margin: 5px;
   display: flex;
   justify-content: space-between;
-}
-
-.comment .avatar {
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
+  .avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+  }
 }
 
 .main { 

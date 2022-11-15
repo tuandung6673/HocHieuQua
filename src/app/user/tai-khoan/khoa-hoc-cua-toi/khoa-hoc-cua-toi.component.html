@@ -30,7 +30,14 @@
     <div class="grid col-9">
       <div class="col-12">
         <h4>Khóa học của tôi</h4>
-        
+        <div *ngIf="myCourses.length == 0">
+          <img src="https://hochieuqua7.web.app/images/common/table-not-found.gif" height="300px" width="100%"/>
+        </div>
+        <div *ngIf="myCourses.length > 0" class="flex">
+          <div class="m-2" *ngFor="let myCourse of myCourses">
+            <app-tong-quan-item [course]="myCourse"></app-tong-quan-item>
+          </div>
+        </div>
       </div>
     </div>
   </div>

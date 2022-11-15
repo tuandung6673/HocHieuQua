@@ -26,6 +26,8 @@ import { Comment } from 'src/models/comment.model';
 import { RecruitCandidate } from 'src/models/recruitCandidate.model';
 import { CheckPayment } from 'src/models/checkPayment.model';
 import { CourseRating } from 'src/models/courseRating.model';
+import { Advice } from 'src/models/advice.model';
+import { PaymentType} from 'src/models/paymentType.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,9 +69,22 @@ export class ApiService {
     return this.http.delete(`${this.url}/Account/${id}`)
   }
 
+  updateAccountInfo(data) : Observable<any> {
+    return this.http.put(`${this.url}/Account/UpdateAccountInfo`, data)
+  }
+
   // AccountRegister
   postAccountRegister(data: Account) {
     return this.http.post<Message>(`${this.url}/Account/SetAccountRegister`, data)
+  }
+
+  // Advice
+  getAdvice(queryParams) : Observable<BaseReponse<Advice>> {
+    return this.http.get<BaseReponse<Advice>>(`${this.url}/AdviceRequest?` + queryParams)
+  }
+
+  postAdvice(data) : Observable<Message> {
+    return this.http.post<Message>(`${this.url}/AdviceRequest`, data)
   }
 
   // Role
@@ -271,8 +286,16 @@ export class ApiService {
   }
 
   // Payment / CheckPayment
-  getCheckPayment(accountId: string = '', courseId: string = '') : Observable<BaseRetail<CheckPayment>> {
-    return this.http.get<BaseRetail<CheckPayment>>(`${this.url}/Payment/CheckPayment?accountId=${accountId}&courseId=${courseId}`)
+  getCheckPayment(queryParams) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.get<BaseRetail<CheckPayment>>(`${this.url}/Payment/CheckPayment?` + queryParams)
+  }
+
+  getPaymentType(queryParams) : Observable<BaseReponse<PaymentType>> {
+    return this.http.get<BaseReponse<PaymentType>>(`${this.url}/Payment/GetPaymentTypes?` + queryParams)
+  }
+
+  payment(data) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Payment`, data)
   }
 
   // CourseRating

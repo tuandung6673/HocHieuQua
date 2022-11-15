@@ -55,44 +55,36 @@
   height: 100%;
 }
 
-
-.class-wrapper {
-  height: 150px;
-}
-
 .class-item {
   position: relative;
   height: 100%;
   background: rgb(155, 185, 214);
   border-radius: 5px;
-}
-
-.class-item .class-image {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  opacity: 0.3;
-  border-radius: 5px;
-}
-
-.class-item .class-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  font-size: 20px;
-  font-weight: bolder;
-  color: white;
-}
-
-.quizs .mySwiper {
-  background-color: rgba(30,143,255,.116);
+  .class-image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    opacity: 0.3;
+    border-radius: 5px;
+  }
+  .class-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    }
 }
 
 .quizs {
   background: rgba(30,143,255,.116);
+  .mySwiper {
+    background-color: rgba(30,143,255,.116);
+  }
 }
 
 .header-title {
@@ -121,18 +113,19 @@
   text-align: center;
 }
 
-.report-item p {
-  font-size: 30px;
-  text-transform: uppercase;
+.report-item  {
+  p {
+    font-size: 30px;
+    text-transform: uppercase;
+  }
 }
 
 .view-all {
   font-weight: bold;
   text-align: center;
-}
-
-.view-all:hover {
-  color: rgb(108, 108, 207);
-  cursor: pointer;
+  &:hover {
+    color: rgb(108, 108, 207);
+    cursor: pointer;
+  }
 }
 

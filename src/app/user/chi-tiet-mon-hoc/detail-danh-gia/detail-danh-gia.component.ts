@@ -27,11 +27,11 @@ export class DetailDanhGiaComponent implements OnInit, OnChanges {
   }
   
   getPercent() {
-    this.onePer = this.detailCourse.courseRatingSummary.oneStar / this.detailCourse.courseRatingSummary.total * 100
-    this.twoPer = this.detailCourse.courseRatingSummary.twoStar / this.detailCourse.courseRatingSummary.total * 100
-    this.threePer = this.detailCourse.courseRatingSummary.threeStar / this.detailCourse.courseRatingSummary.total * 100
-    this.fourPer = this.detailCourse.courseRatingSummary.fourStar / this.detailCourse.courseRatingSummary.total * 100
-    this.fivePer = this.detailCourse.courseRatingSummary.fiveStar / this.detailCourse.courseRatingSummary.total * 100
+    this.onePer = this.detailCourse.courseRatingSummary?.oneStar / this.detailCourse.courseRatingSummary?.total * 100
+    this.twoPer = this.detailCourse.courseRatingSummary?.twoStar / this.detailCourse.courseRatingSummary?.total * 100
+    this.threePer = this.detailCourse.courseRatingSummary?.threeStar / this.detailCourse.courseRatingSummary?.total * 100
+    this.fourPer = this.detailCourse.courseRatingSummary?.fourStar / this.detailCourse.courseRatingSummary?.total * 100
+    this.fivePer = this.detailCourse.courseRatingSummary?.fiveStar / this.detailCourse.courseRatingSummary?.total * 100
   }
 
 }

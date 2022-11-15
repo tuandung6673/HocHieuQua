@@ -9,7 +9,7 @@ import { Comment } from 'src/models/comment.model';
 @Component({
   selector: 'app-gioi-thieu-chi-tiet',
   templateUrl: './gioi-thieu-chi-tiet.component.html',
-  styleUrls: ['./gioi-thieu-chi-tiet.component.css']
+  styleUrls: ['./gioi-thieu-chi-tiet.component.scss']
 })
 export class GioiThieuChiTietComponent implements OnInit {
 

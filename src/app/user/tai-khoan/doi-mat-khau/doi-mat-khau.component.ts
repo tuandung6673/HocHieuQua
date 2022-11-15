@@ -7,7 +7,7 @@ import * as queryString from 'querystring-es3';
 @Component({
   selector: 'app-doi-mat-khau',
   templateUrl: './doi-mat-khau.component.html',
-  styleUrls: ['./doi-mat-khau.component.css']
+  styleUrls: ['./doi-mat-khau.component.scss']
 })
 export class DoiMatKhauComponent implements OnInit {
 

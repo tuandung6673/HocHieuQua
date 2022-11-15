@@ -1,0 +1,27 @@
+.test {
+  width: 100%;
+  margin: 15px 0 15px 0;
+  padding: 10px 5px 10px 5px;
+  border-radius: 10px;
+}
+
+.even {
+  background: rgba(0,101,253,.068);
+}
+
+.action {
+  .button {
+    padding: 5px;
+    border-radius: 5px;
+    background: #2196f3;
+    border: 1px solod #2196f3;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 30px;
+    &:hover {
+      padding: 5px;
+      border-radius: 5px;
+      background: #45a0eb;
+    }
+  }
+}

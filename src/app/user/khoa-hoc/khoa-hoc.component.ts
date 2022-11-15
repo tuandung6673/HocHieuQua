@@ -7,7 +7,7 @@ import { Course } from 'src/models/course.model';
 @Component({
   selector: 'app-khoa-hoc',
   templateUrl: './khoa-hoc.component.html',
-  styleUrls: ['./khoa-hoc.component.css']
+  styleUrls: ['./khoa-hoc.component.scss']
 })
 export class KhoaHocComponent implements OnInit {
 

@@ -1,0 +1,85 @@
+.wrapper { 
+
+  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.detail-right {
+  border-radius: 8px;
+  border: 1px solid hsla(0,0%,50%,.486);
+  img {
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.detail-name { 
+  width: 100%;
+  text-align: end;
+}
+
+.detail-price {
+  margin-top: 25px;
+  width: 100%;
+  text-align: end;
+  .pre-price {
+    text-decoration: line-through;
+  }
+}
+
+.price {
+  margin-left: 8px; 
+  font-weight: bold;
+  font-size: 20px;
+}
+
+::ng-deep .detail-btn .p-button {
+  background: #007bffd3;
+  border: none;
+  border-radius: 12px;
+  box-shadow: inset 0 -6px 0 0 rgb(0 0 0 / 25%);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.inputArea span {
+  width: 100%;
+}
+
+::ng-deep .inputArea .p-inputtext {
+  margin: 5px 0 5px 0;
+  width: 100%;
+}
+
+.alertText {
+  color: red;
+  font-size: 13px;
+}
+
+.register {
+  p {
+    padding-left: 5px;
+    margin: 0px;
+  }
+  span {
+    width: 100%;
+    ::ng-deep .p-inputtext {
+      height: 35px;
+      width: 100%;
+    }
+    ::ng-deep .p-dropdown {
+      height: 35px;
+      width: 100%;
+    }
+  }
+}
+
+.pay {
+  span {
+    color: blue;
+  }
+}

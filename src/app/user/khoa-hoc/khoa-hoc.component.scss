@@ -2,18 +2,15 @@
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.header .record {
-  text-align: end;
-}
-
-.header .record span {
-  color: blue;
-}
-
-.header .title {
-  font-weight: bold;
+  .record {
+    text-align: end;
+    span {
+      color: blue;
+    }
+  }
+  .title {
+    font-weight: bold;
+  }
 }
 
 .list {

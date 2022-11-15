@@ -15,10 +15,120 @@
       </div>
     </div>
     <div class="detail-btn">
-      <p-button label="Tư vấn thêm" icon="pi pi-phone" styleClass="p-button" ></p-button>
+      <p-button label="Tư vấn thêm" icon="pi pi-phone" styleClass="p-button" (click)="onAdvise()" ></p-button>
+    </div>
+    <div class="detail-btn" *ngIf="!isPayment">
+      <p-button label="Đăng ký học" icon="pi pi-user-plus" styleClass="p-button" (click)="onRegister()" ></p-button>
     </div>
     <div class="detail-text">
       <div [innerHTML]="detailCourse.courseInfo2"></div>
     </div>
   </div>
 </div>
+
+<p-dialog header="Yêu cầu tư vấn" [(visible)]="display" [style]="{width: '45vh', height: '50vh'}" [draggable]="false">
+  <div class="grid inputArea">
+    <div class="col-12">
+      <span class="p-input-icon-left">
+        <i class="pi pi-user"></i>
+        <input type="text" pInputText placeholder="Họ tên con (*)" [(ngModel)]="advice.name" name="name" required #name="ngModel"/>
+      </span>
+      <div class="alertText" *ngIf="name.touched && name.invalid">
+        <p style="margin: 0;">Vui lòng nhập Họ tên con</p>
+      </div>
+    </div>
+    <div class="col-12">
+      <span class="p-input-icon-left">
+        <i class="pi pi-phone"></i>
+        <input type="text" pInputText placeholder="Số điện thoại phụ huynh (*)" [(ngModel)]="advice.phone" name="phone" required #phone="ngModel"/>
+      </span>
+      <div class="alertText" *ngIf="phone.touched && phone.invalid">
+        <p style="margin: 0;">Vui lòng nhập Số điện thoại</p>
+      </div>
+    </div>
+    <div class="col-12">
+      <span class="p-input-icon-left">
+        <i class="pi pi-calendar"></i>
+        <input type="date" pInputText placeholder="Ngày sinh con" [(ngModel)]="advice.birthday"/>
+      </span>
+    </div>
+    <div class="col-12">
+      <span class="p-input-icon-left">
+        <i class="pi pi-window-maximize"></i>
+        <input type="text" pInputText placeholder="Học lực của con" [(ngModel)]="advice.academicAbility"/>
+      </span>
+    </div>
+    <div class="col-12">
+      <span class="p-input-icon-left">
+        <i class="pi pi-comments"></i>
+        <input type="text" pInputText placeholder="Ghi chú" [(ngModel)]="advice.comment"/>
+      </span>
+    </div>
+    <div class="col-12 alertText flex justify-content-center">
+      <p>(*) Bằng việc đăng ký bạn đồng ý để HocHieuQua liên hệ tư vấn</p>
+    </div>
+    <div class="col-12 flex justify-content-center">
+      <p-button label="Đồng ý" icon="pi pi-check" (click)="sendAdvice()"></p-button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Đăng kí khóa học" [(visible)]="display1" [style]="{width: '600px', height: '500px'}" [draggable]="false">
+  <p-tabView [(activeIndex)]="activeIndex2">
+    <p-tabPanel header="Thông tin">
+      <div class="grid register">
+        <div class="col-12">
+          <p>Tên phụ huynh</p>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input [(ngModel)]="userData.name" type="text" pInputText />
+          </span>
+        </div>
+        <div class="col-12">
+          <p>Số điện thoại</p>
+          <span class="p-input-icon-right">
+            <i class="pi pi-phone"></i>
+            <input [(ngModel)]="userData.phone" type="text" pInputText />
+          </span>
+        </div>
+        <div class="col-12">
+          <p>Email</p>
+          <span class="p-input-icon-right">
+            <i class="pi pi-envelope"></i>
+            <input [(ngModel)]="userData.email" type="text" pInputText />
+          </span>
+        </div>
+        <div class="col-12">
+          <p>Địa chỉ</p>
+          <span class="p-input-icon-right">
+            <i class="pi pi-map"></i>
+            <input [(ngModel)]="userData.address" type="text" pInputText />
+          </span>
+        </div>
+        <div class="col-12">
+          <p>Hình thức thanh toán</p>
+          <span>
+            <p-dropdown [options]="paymentTypeList" [(ngModel)]="paymentMethod" placeholder="Phương thức thanh toán"></p-dropdown>
+          </span>
+        </div>
+        <div class="col-12">
+          <span class="flex justify-content-end">
+            <p-button (click)="nextBtn()" label="Tiếp tục"></p-button>
+          </span>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Thanh toán">
+        <div class="pay">
+          <p>
+            Bạn đã chọn hình thức thanh toán <span>Chuyển khoản</span>, vui lòng chuyển khoản <span>{{detailCourse.priceDiscount | number}} VND</span>
+            tới 1 trong các tài khoản ngân hàng dưới đây. Nội dung chuyển khoản: <span>{{userData.phone}}_{{detailCourse.code}}</span>
+          </p>
+        </div>
+        <div class="flex justify-content-end">
+          <p-button class="m-1" icon="pi pi-arrow-left" (click)="backBtn()" label="Sửa thông tin"></p-button>
+          <p-button class="m-1" icon="pi pi-check" (click)="confirmBtn()" label="Hoàn tất"></p-button>
+        </div>
+    </p-tabPanel>
+  </p-tabView>  
+</p-dialog>

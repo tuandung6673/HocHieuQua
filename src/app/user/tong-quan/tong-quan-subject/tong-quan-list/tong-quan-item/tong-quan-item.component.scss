@@ -5,23 +5,18 @@
   margin-bottom: 10px;
   transition: .4s ease-in-out;
   box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 5px 10px -3px #1b4ead;
+  }
+  .image {
+    border-radius: 10px;
+  }
 }
-
-.detail:hover {
-  cursor: pointer;
-  box-shadow: 0 5px 10px -3px #1b4ead
-
-}
-
-.detail .image {
-  border-radius: 10px;
-}
-
 
 .info {
   height: 110px;
 }
-
 
 .course-name { 
   -webkit-box-orient: vertical;
