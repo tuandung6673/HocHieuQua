@@ -40,7 +40,9 @@ export class DoiMatKhauComponent implements OnInit {
         this.message.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
       }
       this.spinner.hide()
-    })    
+    })
+    this.query.oldPassword = null;
+    this.query.newPassword = null;
+    this.password2 = null;    
   }
-
 }
