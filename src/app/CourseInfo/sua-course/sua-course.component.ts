@@ -79,7 +79,7 @@ export class SuaCourseComponent implements OnInit {
   getAllTeacher() {
     this.apiService.getTeacher(0, 1000).subscribe((responseData) => {
       this.teacherOption = responseData.data.data.map((teacher) => {
-        return {name: teacher.fullName, code: teacher.id}
+        return {name: teacher.name, code: teacher.id}
       })
     })
   }

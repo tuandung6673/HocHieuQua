@@ -10,4 +10,5 @@ export class Teacher {
   createdBy = "";
   modifiedBy = "";
   status: any = 0;
+  name = "";
 }

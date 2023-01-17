@@ -12,6 +12,7 @@ export class MainHeaderComponent implements OnInit {
   items : any
   userData: Authentication
   isToken: boolean = false
+  defaultAvatar = 'https://phongreviews.com/wp-content/uploads/2022/11/avatar-facebook-mac-dinh-12.jpg';
   constructor(private router: Router) { }
 
   ngOnInit(): void {

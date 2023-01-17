@@ -1,0 +1,40 @@
+.header-wrapper {
+  display: flex;
+  background-color: #007aff;
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+}
+
+.header-items {
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  color: white;
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  margin: 3px 0 3px 0;
+  padding: 3px 10px 3px 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.item p{
+  margin-bottom: 2px;
+}
+
+.item:hover {
+  border-radius: 5px;
+  cursor: pointer;
+  background: #2c91f5bf;
+}
+
+.item i {
+  padding: 0px 5px;
+  /* margin-bottom: 5px; */
+  font-weight: 500;
+  font-size: 18px;
+}
