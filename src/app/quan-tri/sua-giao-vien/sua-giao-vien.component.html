@@ -5,52 +5,49 @@
 </div>
 
 <form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-
-  <div class="field">
-    <label for="usernameInput" class="block">Avatar</label>
-    <br>
-    <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editTeacher.avatar" />
+  <div class="wrapper">
+	<div class="grid">
+		<div class="col-3">
+			<img [src]="editTeacher.avatar ? editTeacher.avatar : defaultAvatar" />
+		</div>
+		<div class="col-9">
+			<div class="field">
+			  <label for="usernameInput" class="block">Avatar</label>
+			  <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editTeacher.avatar" />
+			</div>
+			<div class="field">
+			  <label for="usernameInput" class="block">Tên giáo viên</label>
+			  <input formGroupName="usernameInput" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="fullName" [(ngModel)]="editTeacher.fullName" />
+			</div>
+			<div class="field">
+			  <label for="orderInput" class="block">Sắp xếp</label>
+			  <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editTeacher.order" />
+			</div>
+			<label for="checked" class="block">Hiển thị</label>
+			<!-- <p-toggleButton name="status" [(ngModel)]="editTeacher.status"></p-toggleButton> -->
+			<p-inputSwitch [(ngModel)]="editTeacher.status" name="status"></p-inputSwitch>
+		</div>
+	</div>
+  
+    <label for="shortDesc" class="block">Mô tả ngắn</label>
+    <ckeditor [editor]="Editor" name="descriptionShort" [(ngModel)]="editTeacher.descriptionShort"></ckeditor>
+  
+	<br>
+	
+    <label for="detailDesc" class="block">Mô tả chi tiết</label>
+    <ckeditor [editor]="Editor" name="description" [(ngModel)]="editTeacher.description"></ckeditor>
+  
+    <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
+    <button 
+      style="margin: 10px" 
+      type="submit" 
+      pButton pRipple 
+      label="Save" 
+      icon="pi pi-check"
+      >
+    </button>
   </div>
 
-  <div class="field">
-    <label for="usernameInput" class="block">Username</label>
-    <br>
-    <input formGroupName="usernameInput" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="fullName" [(ngModel)]="editTeacher.fullName" />
-  </div>
-
-  <div class="field">
-    <label for="orderInput" class="block">Sắp xếp</label>
-    <br>
-    <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editTeacher.order" />
-  </div>
-
-  <label for="checked" class="block">Hiển thị</label>
-  <br>
-  <p-toggleButton name="status" [(ngModel)]="editTeacher.status"></p-toggleButton>
-  <br>
-
-  <label for="shortDesc" class="block">Mô tả ngắn</label>
-  <br>
-  <ckeditor [editor]="Editor" name="descriptionShort" [(ngModel)]="editTeacher.descriptionShort"></ckeditor>
-
-  <br>
-
-  <label for="detailDesc" class="block">Mô tả chi tiết</label>
-  <br>
-  <ckeditor [editor]="Editor" name="description" [(ngModel)]="editTeacher.description"></ckeditor>
-
-
-  <br>
-
-  <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
-  <button 
-    style="margin: 10px" 
-    type="submit" 
-    pButton pRipple 
-    label="Save" 
-    icon="pi pi-check"
-    >
-  </button>
 </form>
 
 

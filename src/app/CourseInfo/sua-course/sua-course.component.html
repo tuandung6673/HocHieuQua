@@ -5,24 +5,26 @@
 <form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
   <div class="grid" style="display: flex">
     <div class="col-3">
-      <div class="field">
-        <label for="avatar" class="block">Avatar</label>
-        <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseAvatar" name="courseAvatar"/>
+      <div>
+        <div class="field">
+          <label for="avatar" class="block">Avatar</label>
+          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseAvatar" name="courseAvatar"/>
+        </div>
+        <img [src]="editCourse.courseAvatar" width="220" height="150" />
+        <div class="field">
+          <label for="avatar" class="block">Banner</label>
+          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseBanner" name="courseBanner"/>
+        </div>
+        <img [src]="editCourse.courseBanner" width="220" height="150" />
+        <div class="field">
+          <label for="avatar" class="block">Thumbnail</label>
+          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseThumbnail" name="courseThumbnail"/>
+        </div>
+        <img [src]="editCourse.courseThumbnail" width="220" height="150" />
       </div>
-      <img [src]="editCourse.courseAvatar" width="220" height="150" />
-      <div class="field">
-        <label for="avatar" class="block">Banner</label>
-        <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseBanner" name="courseBanner"/>
-      </div>
-      <img [src]="editCourse.courseBanner" width="220" height="150" />
-      <div class="field">
-        <label for="avatar" class="block">Thumbnail</label>
-        <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseThumbnail" name="courseThumbnail"/>
-      </div>
-      <img [src]="editCourse.courseThumbnail" width="220" height="150" />
     </div>
 
-    <div class="col-9">
+    <div class="col-9 edit-course">
       <div class="grid" >
         <!-- <div class="col-4">
           <div class="field">
@@ -78,17 +80,18 @@
 
         <div class="col-4">
           <div class="field">
+            <label for="usernameInput" class="block">Giáo viên</label>
+            <p-multiSelect [filter]="false" class="input" [options]="teacherOption" [(ngModel)]="editCourse.teacherId" defaultLabel="Chọn giáo viên" optionLabel="name" optionValue="code" option display="chip" name="teacherSelected"></p-multiSelect>
+          </div>
+        </div>
+        
+        <div class="col-4">
+          <div class="field">
             <label for="usernameInput" class="block">Hiển thị</label>
             <p-inputSwitch class="input" [(ngModel)]="editCourse.status" name="status"></p-inputSwitch>
           </div>
         </div>
 
-        <div class="col-12">
-          <div class="field">
-            <label for="usernameInput" class="block">Giáo viên</label>
-            <p-multiSelect class="input" [options]="teacherOption" [(ngModel)]="editCourse.teacherId" defaultLabel="Chọn giáo viên" optionLabel="name" optionValue="code" option display="chip" name="teacherSelected"></p-multiSelect>
-          </div>
-        </div>
 
         <div class="card">
           <p-tabView>

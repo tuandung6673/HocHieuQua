@@ -2,6 +2,14 @@
   width: 100%;
 }
 
-::ng-deep .p-inputtext-lg {
+::ng-deep .edit-course .p-inputtext-lg {
+  width: 100%;
+}
+
+::ng-deep .edit-course .p-dropdown {
+  width: 100%;
+}
+
+::ng-deep .edit-course .p-multiselect {
   width: 100%;
 }
