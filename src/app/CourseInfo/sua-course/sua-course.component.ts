@@ -21,7 +21,7 @@ export class SuaCourseComponent implements OnInit {
   subjectOption: any = []
   teacherOption: any = []
   teacherSelected: any = []
-
+  defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }

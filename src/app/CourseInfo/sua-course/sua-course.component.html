@@ -4,36 +4,26 @@
 
 <form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
   <div class="grid" style="display: flex">
-    <div class="col-3">
-      <div>
+    <div class="col-3 left">
         <div class="field">
           <label for="avatar" class="block">Avatar</label>
           <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseAvatar" name="courseAvatar"/>
         </div>
-        <img [src]="editCourse.courseAvatar" width="220" height="150" />
+        <img [src]="editCourse.courseAvatar ? editCourse.courseAvatar : defaultAvatar" />
         <div class="field">
           <label for="avatar" class="block">Banner</label>
           <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseBanner" name="courseBanner"/>
         </div>
-        <img [src]="editCourse.courseBanner" width="220" height="150" />
+        <img [src]="editCourse.courseBanner ? editCourse.courseBanner : defaultAvatar" />
         <div class="field">
           <label for="avatar" class="block">Thumbnail</label>
           <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseThumbnail" name="courseThumbnail"/>
         </div>
-        <img [src]="editCourse.courseThumbnail" width="220" height="150" />
-      </div>
+        <img [src]="editCourse.courseThumbnail ? editCourse.courseThumbnail : defaultAvatar" />
     </div>
 
     <div class="col-9 edit-course">
       <div class="grid" >
-        <!-- <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Mã khóa học</label>
-            <br>
-            <input formGroupName="suaCourseForm" class="p-inputtext-lg" id="code" type="text" aria-describedby="username-help" pInputText name="code" [(ngModel)]="editCourse.code" />
-          </div>
-        </div> -->
-
         <div class="col-4">
           <div class="field" >
             <label for="usernameInput" class="block">Tên khóa học</label>
@@ -44,9 +34,7 @@
         <div class="col-4">
           <div class="field">
             <label for="usernameInput" class="block">Lớp học</label>
-            <!-- <input formGroupName="suaCourseForm" class="p-inputtext-lg" id="classRoomName" type="text" aria-describedby="username-help" pInputText name="classRoomName" [(ngModel)]="classRoomName" /> -->
             <p-dropdown class="input" (onChange)="reloadSubject()" [options]="classRoomOption" [(ngModel)]="editCourse.classRoomId" optionLabel="name" optionValue="code" name="classRoomId"></p-dropdown>
-
           </div>
         </div>
 
@@ -92,8 +80,7 @@
           </div>
         </div>
 
-
-        <div class="card">
+        <div class="card col-12">
           <p-tabView>
               <p-tabPanel header="Mô tả ngắn">  
                 <ckeditor [editor]="Editor" name="shortSummary" [(ngModel)]="editCourse.shortSummary"></ckeditor>

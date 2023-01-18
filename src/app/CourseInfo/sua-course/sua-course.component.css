@@ -1,5 +1,25 @@
+form {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .field {
   width: 100%;
+}
+
+
+.field input {
+  width: 100%;
+}
+
+.left input {
+  width: 80%;
+}
+
+img {
+  width: 80%;
+  height: 200px;
+  object-fit: cover;
 }
 
 ::ng-deep .edit-course .p-inputtext-lg {
