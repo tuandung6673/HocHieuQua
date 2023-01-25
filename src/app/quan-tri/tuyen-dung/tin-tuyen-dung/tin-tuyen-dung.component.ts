@@ -27,7 +27,7 @@ export class TinTuyenDungComponent implements OnInit {
     this.isLoading = true
     this.apiService.getRecruit(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
       this.recruits = responseData.data.data
-      console.log(this.recruits);
+      // console.log(this.recruits);
       this.params = {
         ...this.params,
         totalRecord: responseData.data.recordsTotal

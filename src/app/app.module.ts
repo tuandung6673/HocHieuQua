@@ -111,6 +111,8 @@ import { KichHoatKhoaHocComponent } from './user/tai-khoan/kich-hoat-khoa-hoc/ki
 import { QuaTrinhHocTapComponent } from './user/tai-khoan/qua-trinh-hoc-tap/qua-trinh-hoc-tap.component';
 import { Test2Component } from './user/kiem-tra-nang-luc/test2/test2.component';
 import { ManHinhDangNhapComponent } from './layouts/man-hinh-dang-nhap/man-hinh-dang-nhap.component';
+import { YeuCauTuVanComponent } from './quan-tri/yeu-cau-tu-van/yeu-cau-tu-van.component';
+import { ChiTietTuVanComponent } from './quan-tri/yeu-cau-tu-van/chi-tiet-tu-van/chi-tiet-tu-van.component';
 
 const appRoutes: Routes = [
   {
@@ -146,7 +148,9 @@ const appRoutes: Routes = [
       {path: 'khoa-hoc/them-khoa-hoc', component: EditCourseComponent},
       {path: 'bai-kiem-tra', component: BaiKiemTraComponent},
       {path: 'bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
-      {path: 'bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent}
+      {path: 'bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent},
+      {path: 'yeu-cau-tu-van', component: YeuCauTuVanComponent},
+      {path: 'yeu-cau-tu-van/:id', component: ChiTietTuVanComponent}
     ]
   },
   {
@@ -257,6 +261,8 @@ const appRoutes: Routes = [
     QuaTrinhHocTapComponent,
     Test2Component,
     ManHinhDangNhapComponent,
+    YeuCauTuVanComponent,
+    ChiTietTuVanComponent,
       ],
   imports: [
     CKEditorModule,
