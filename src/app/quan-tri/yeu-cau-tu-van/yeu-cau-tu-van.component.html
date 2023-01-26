@@ -27,8 +27,8 @@
                 <td>{{adviceRequest.comment}}</td>
                 <td>
                   <div style="float: right;">
-                    <p-button label="Edit" styleClass="mr-2" class="p-button-danger" [routerLink]="[adviceRequest.id]"></p-button>
-                    <button pButton pRipple type="button" (click)="confirmDeleteNewCategory(newCategory.id)" label="Delete" class="p-button-danger"></button>
+                    <p-button label="View" styleClass="mr-2" class="p-button-danger" [routerLink]="[adviceRequest.id]"></p-button>
+                    <button pButton pRipple type="button" (click)="confirmDeleteAdviceRequest(adviceRequest.id)" label="Delete" class="p-button-danger"></button>
                   </div>
                 </td>
             </tr>

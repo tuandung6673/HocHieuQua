@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-chi-tiet-tu-van',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChiTietTuVanComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  constructor(private route: ActivatedRoute, private apiSerivice: ApiService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+    })
+    if(this.id) {
+      this.getAdvice();
+    }
+  }
+
+  getAdvice() {
+    this.apiSerivice.getAdviceById(this.id).subscribe((response) => {
+      console.log(response);
+      
+    })
   }
 
 }

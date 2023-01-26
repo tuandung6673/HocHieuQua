@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
 import { Advice } from 'src/models/advice.model';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-yeu-cau-tu-van',
@@ -21,7 +22,9 @@ export class YeuCauTuVanComponent implements OnInit {
 
   constructor(
     private spinner: NgxSpinnerService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private confirmationService: ConfirmationService,
+    private messageService : MessageService
   ) { }
 
   ngOnInit(): void {
@@ -41,4 +44,14 @@ export class YeuCauTuVanComponent implements OnInit {
     })
   }
 
+  confirmDeleteAdviceRequest(id) {
+    this.confirmationService.confirm({
+      message: 'Bạn có chắc chắn muốn xóa Tư vấn này?',
+      accept: () => {
+        this.apiService.deleteAdvice(id).subscribe((response) => {
+          this.messageService.add({severity:'success', summary:'Success', detail:response.message})
+        })
+      }
+    })
+  } 
 }

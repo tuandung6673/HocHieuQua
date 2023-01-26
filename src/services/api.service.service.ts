@@ -87,6 +87,14 @@ export class ApiService {
     return this.http.post<Message>(`${this.url}/AdviceRequest`, data)
   }
 
+  getAdviceById(id) : Observable<BaseRetail<Advice>> {
+    return this.http.get<BaseRetail<Advice>>(`${this.url}/AdviceRequest/${id}`)
+  }
+
+  deleteAdvice(id) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/AdviceRequest/${id}`)
+  }
+
   // Role
   getRoles(offSet: number = 0, pageSize: number = 1000, filter : string = '') : Observable<BaseReponse<Role>> {
     return this.http.get<BaseReponse<Role>>(`${this.url}/Role?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
