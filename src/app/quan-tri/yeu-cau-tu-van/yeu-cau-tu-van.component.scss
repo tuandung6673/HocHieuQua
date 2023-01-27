@@ -2,3 +2,17 @@
     width: 80%;
     margin: 0 auto;
 }
+
+.isAdvice {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.nonAdvice {
+    background-color: #ffc107;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+}

@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
 import { Advice } from 'src/models/advice.model';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CheckPayment } from 'src/models/checkPayment.model';
 
 @Component({
   selector: 'app-yeu-cau-tu-van',
@@ -12,6 +13,12 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class YeuCauTuVanComponent implements OnInit {
 
+  adviceUpdateItem : any = {
+    id: "",
+    isAdvice: "",
+    modifiedBy: "",
+    modifiedDate: ""
+  };
   isLoading : boolean = false;
   adviceRequests : Advice[] = [];
   query = {
@@ -54,4 +61,18 @@ export class YeuCauTuVanComponent implements OnInit {
       }
     })
   } 
+
+  adviced(item) {
+    const cloneItem = {...this.adviceUpdateItem};
+    cloneItem.id = item.id;
+    cloneItem.isAdvice = !item.isAdvice;
+    this.apiService.postAdviceUpdateStatus(cloneItem).subscribe((response) => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật thành công'})
+        this.getAdvice();
+      } else {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật thất bại'})
+      }
+    })
+  }
 }

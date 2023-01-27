@@ -95,6 +95,10 @@ export class ApiService {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/AdviceRequest/${id}`)
   }
 
+  postAdviceUpdateStatus(queryParams) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/AdviceRequest/SetAdviceRequestUpdateStatus`, queryParams)
+  }
+
   // Role
   getRoles(offSet: number = 0, pageSize: number = 1000, filter : string = '') : Observable<BaseReponse<Role>> {
     return this.http.get<BaseReponse<Role>>(`${this.url}/Role?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)

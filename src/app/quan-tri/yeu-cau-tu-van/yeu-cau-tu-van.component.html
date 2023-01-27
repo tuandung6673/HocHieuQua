@@ -13,6 +13,7 @@
                 <th>Ngày sinh</th>
                 <th>Học lực</th>
                 <th>Ghi chú</th>
+                <th>Trạng thái</th>
                 <th>Tùy chọn</th>
             </tr>
         </ng-template>
@@ -25,9 +26,16 @@
                   {{adviceRequest.academicAbility}}
                 </td>
                 <td>{{adviceRequest.comment}}</td>
+                <td *ngIf="adviceRequest.isAdvice" >
+                  <span [ngClass]="adviceRequest.isAdvice ? 'isAdvice' : 'nonAdvice' ">Đã tư vấn</span>
+                </td>
+                <td *ngIf="!adviceRequest.isAdvice" >
+                  <span [ngClass]="adviceRequest.isAdvice ? 'isAdvice' : 'nonAdvice' ">Chưa tư vấn</span>
+                </td>
                 <td>
                   <div style="float: right;">
-                    <p-button label="View" styleClass="mr-2" class="p-button-danger" [routerLink]="[adviceRequest.id]"></p-button>
+                    <p-button label="" styleClass="mr-2" class="p-button-danger" (click)="adviced(adviceRequest)"><i class="pi pi-phone"></i></p-button>
+                    <p-button label="View" type="button" styleClass="mr-2" class="p-button-danger" [routerLink]="[adviceRequest.id]"></p-button>
                     <button pButton pRipple type="button" (click)="confirmDeleteAdviceRequest(adviceRequest.id)" label="Delete" class="p-button-danger"></button>
                   </div>
                 </td>
