@@ -1,0 +1,45 @@
+<div class="wrapper">
+    <div class="guide">
+        <span><i class="pi pi-home"></i></span>
+        <i>/</i>
+        <span>Quản trị</span>
+        <i>/</i>
+        <span>Ứng viên</span>
+    </div>
+
+    <div class="actions">
+        <div></div>
+        <div></div>
+    </div>
+
+    <div>
+        <p-table [value]="candidates" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Tên ứng viên</th>
+                    <th>Điện thoại</th>
+                    <th>Email</th>
+                    <th>Đã phỏng vấn</th>
+                    <th>Kết quả PV</th>
+                    <th>Bài đăng</th>
+                    <th>Ngày nộp đơn</th>
+                    <th>Ngày phỏng vấn</th>
+                    <th>Người phỏng vấn</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-candidate>
+                <tr>
+                    <td>{{candidate.name}}</td>
+                    <td>{{candidate.phone}}</td>
+                    <td>{{candidate.email}}</td>
+                    <td>{{candidate.status}}</td>
+                    <td>{{candidate.interviewPass}}</td>
+                    <td>{{candidate.recruitName}}</td>
+                    <td>{{candidate.applyDate}}</td>
+                    <td>{{candidate.interviewDate}}</td>
+                    <td>{{candidate.interviewUser}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

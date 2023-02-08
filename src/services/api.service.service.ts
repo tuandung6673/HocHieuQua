@@ -289,15 +289,6 @@ export class ApiService {
     return this.http.post<Message>(`${this.url}/Recruit`, data)
   }
 
-  //RecruitCandidata 
-  getRecruitCandidate(interviewPass : number = -1, status : number = -1, filter = '', offSet : number = 0, pageSize : number = 100) : Observable<BaseReponse<RecruitCandidate>> {
-    return this.http.get<BaseReponse<RecruitCandidate>>(`${this.url}/RecruitCandidate?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&interviewPass=${interviewPass}`)
-  }
-
-  postRecruitCandidate(data: RecruitCandidate) {
-    return this.http.post<Message>(`${this.url}/RecruitCandidate`, data)
-  }
-
   // Payment / CheckPayment
   getCheckPayment(queryParams) : Observable<BaseRetail<CheckPayment>> {
     return this.http.get<BaseRetail<CheckPayment>>(`${this.url}/Payment/CheckPayment?` + queryParams)
@@ -333,4 +324,20 @@ export class ApiService {
     return this.http.post<Message>(`${this.url}/Guide`, data)
   }
 
+  // RecruitCandidate
+  getRecruitCandidate(queryParams) : Observable<BaseReponse<RecruitCandidate>> {
+    return this.http.get<BaseReponse<RecruitCandidate>>(`${this.url}/RecruitCandidate?` + queryParams)
+  }
+
+  getRecruitCandidateById(id:string) : Observable<BaseRetail<RecruitCandidate>> {
+    return this.http.get<BaseRetail<RecruitCandidate>>(`${this.url}/RecruitCandidate/` + id)
+  }
+
+  postRecruitCandidate(data : RecruitCandidate) {
+    return this.http.post<Message>(`${this.url}/RecruitCandidate`, data)
+  }
+
+  deleteRecruitCandidate(id: string) {
+    return this.http.delete<Message>(`${this.url}/RecruitCandidate/` + id)
+  }
 }

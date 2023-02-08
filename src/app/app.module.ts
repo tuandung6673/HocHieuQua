@@ -115,7 +115,8 @@ import { YeuCauTuVanComponent } from './quan-tri/yeu-cau-tu-van/yeu-cau-tu-van.c
 import { ChiTietTuVanComponent } from './quan-tri/yeu-cau-tu-van/chi-tiet-tu-van/chi-tiet-tu-van.component';
 import { TroGiupComponent } from './quan-tri/tro-giup/tro-giup.component';
 import { ChiTietTroGiupComponent } from './quan-tri/tro-giup/chi-tiet-tro-giup/chi-tiet-tro-giup.component';
-
+import { UngVienComponent } from './quan-tri/ung-vien/ung-vien.component';
+import { ChiTietUngVienComponent } from './quan-tri/ung-vien/chi-tiet-ung-vien/chi-tiet-ung-vien.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -154,7 +155,9 @@ const appRoutes: Routes = [
       {path: 'yeu-cau-tu-van', component: YeuCauTuVanComponent},
       {path: 'yeu-cau-tu-van/:id', component: ChiTietTuVanComponent},
       {path: 'tro-giup', component: TroGiupComponent},
-      {path: 'tro-giup/:id', component: ChiTietTroGiupComponent}
+      {path: 'tro-giup/:id', component: ChiTietTroGiupComponent},
+      {path: 'ung-vien', component: UngVienComponent},
+      {path: 'ung-vien/:id', component: ChiTietUngVienComponent}
     ]
   },
   {
@@ -269,6 +272,8 @@ const appRoutes: Routes = [
     ChiTietTuVanComponent,
     TroGiupComponent,
     ChiTietTroGiupComponent,
+    UngVienComponent,
+    ChiTietUngVienComponent
       ],
   imports: [
     CKEditorModule,
