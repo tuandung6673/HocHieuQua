@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="grid">
+    <div class="col-4">
+      <button style="margin: 5px 0" *ngIf="!isLoading" class="btn btn-success" [routerLink]="['them-moi']">Thêm mới</button>
+    </div>
+  </div>
+  <p-table [value]="guides" responsiveLayout="scroll" *ngIf="!isLoading">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Tiêu đề</th>
+        <th>Màn hình</th>
+        <th>Sắp xếp</th>
+        <th>Tùy chọn</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-guide>
+      <tr>
+        <td>{{guide.title}}</td>
+        <td>{{guide.screen}}</td>
+        <td>{{guide.order}}</td>
+        <td>
+          <div style="float: right">
+            <p-button label="View" type="button" styleClass="mr-2" class="p-button-danger" [routerLink]="[guide.id]"></p-button>
+            <button pButton pRipple type="button" (click)="confirmDeleteGuide(guide.id)" label="Delete" class="p-button-danger"></button>        
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

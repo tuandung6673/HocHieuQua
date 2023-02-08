@@ -1,0 +1,61 @@
+<div class="wrapper">
+  <div class="crumb">
+    <span><i class="pi pi-home"></i></span>
+    <i>/</i>
+    <span>Quản trị</span>
+    <i>/</i>
+    <span>Trợ giúp</span>
+    <i>/</i>
+    <span class="active">Chi tiết trợ giúp</span>
+  </div>
+  <!-- <div class="title">
+    <div class="empty"></div>
+    <p>Chi tiết trợ giúp</p>
+  </div> -->
+  <div class="main grid">
+    <div class="col-12">
+      <p>Tiêu đề</p>
+      <div>
+        <span class="input p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input type="text" pInputText [(ngModel)]="editGuide.title"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <p>Thứ tự</p>
+      <div>
+        <span class="input p-input-icon-right">
+          <i class="pi pi-sort-numeric-down"></i>
+          <input type="text" pInputText [(ngModel)]="editGuide.order"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <p>Màn hình</p>
+      <div class="input">
+        <p-dropdown [options]="screenOptions" [(ngModel)]="editGuide.screen"></p-dropdown>
+      </div>
+    </div>
+    <div class="col-6 inputSwitch">
+      <span>
+        <p-inputSwitch [(ngModel)]="editGuide.status"></p-inputSwitch>
+      </span>
+      <span class="text">Hiển thị</span>
+    </div>
+    <div class="col-12">
+      <ckeditor [editor]="Editor" name="content" [(ngModel)]="editGuide.content"></ckeditor>
+    </div>
+  </div>
+  <div class="actions">
+    <button style="margin: 10px" pButton pRipple label="Hủy" icon="pi pi-times" (click)="cancelBtn()"></button>
+    <button 
+      (click)="postGuide()"
+      style="margin: 10px"
+      pButton pRipple 
+      label="Lưu" 
+      icon="pi pi-check"
+      >
+    </button>
+  </div>
+</div>

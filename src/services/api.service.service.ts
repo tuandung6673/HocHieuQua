@@ -1,3 +1,4 @@
+import { Guide } from './../models/guide.model';
 import { CourseSchedule } from './../models/courseSchedule.model';
 import { Slide } from './../models/slide.model';
 import { Subject } from './../models/subject.model';
@@ -313,6 +314,23 @@ export class ApiService {
   // CourseRating
   getCourseRating(courseId: string = '', accountId: string = '', filter : string = '', offSet : number = 0, pageSize: number = 100 ) : Observable<BaseReponse<CourseRating>> {
     return this.http.get<BaseReponse<CourseRating>>(`${this.url}/CourseRating?courseId=${courseId}&accountId=${accountId}&filter=${filter}&offSet=${offSet}&pageSize=${pageSize}`)
+  }
+
+  //Guide
+  getGuide(queryParams) : Observable<BaseReponse<Guide>> {
+    return this.http.get<BaseReponse<Guide>>(`${this.url}/Guide?` + queryParams)
+  }
+
+  getGuideById(id:string) : Observable<BaseRetail<Guide>> {
+    return this.http.get<BaseRetail<Guide>>(`${this.url}/Guide/` + id)
+  }
+
+  deleteGuide(id:string) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Guide/` + id)
+  }
+
+  postGuide(data: Guide) {
+    return this.http.post<Message>(`${this.url}/Guide`, data)
   }
 
 }

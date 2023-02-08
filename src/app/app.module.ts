@@ -113,6 +113,8 @@ import { Test2Component } from './user/kiem-tra-nang-luc/test2/test2.component';
 import { ManHinhDangNhapComponent } from './layouts/man-hinh-dang-nhap/man-hinh-dang-nhap.component';
 import { YeuCauTuVanComponent } from './quan-tri/yeu-cau-tu-van/yeu-cau-tu-van.component';
 import { ChiTietTuVanComponent } from './quan-tri/yeu-cau-tu-van/chi-tiet-tu-van/chi-tiet-tu-van.component';
+import { TroGiupComponent } from './quan-tri/tro-giup/tro-giup.component';
+import { ChiTietTroGiupComponent } from './quan-tri/tro-giup/chi-tiet-tro-giup/chi-tiet-tro-giup.component';
 
 const appRoutes: Routes = [
   {
@@ -150,7 +152,9 @@ const appRoutes: Routes = [
       {path: 'bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
       {path: 'bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent},
       {path: 'yeu-cau-tu-van', component: YeuCauTuVanComponent},
-      {path: 'yeu-cau-tu-van/:id', component: ChiTietTuVanComponent}
+      {path: 'yeu-cau-tu-van/:id', component: ChiTietTuVanComponent},
+      {path: 'tro-giup', component: TroGiupComponent},
+      {path: 'tro-giup/:id', component: ChiTietTroGiupComponent}
     ]
   },
   {
@@ -263,6 +267,8 @@ const appRoutes: Routes = [
     ManHinhDangNhapComponent,
     YeuCauTuVanComponent,
     ChiTietTuVanComponent,
+    TroGiupComponent,
+    ChiTietTroGiupComponent,
       ],
   imports: [
     CKEditorModule,
