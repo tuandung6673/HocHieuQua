@@ -45,4 +45,24 @@ export class UngVienComponent implements OnInit {
     })
   }
 
+  editCandidate(id:string) {
+    console.log(id);
+  }
+
+  deleteCandidate(id:string) {
+    this.confirmationService.confirm({
+      message: 'Bạn có chắc chắn muốn xóa Ứng viên này không ?',
+      accept: () => {
+        this.apiService.deleteRecruitCandidate(id).subscribe(reponse => {
+          if(reponse.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'success', detail: 'Xóa ứng viên thành công'});
+            this.getCandidates();
+          } else {
+            this.messageService.add({severity: 'success', summary: 'success', detail: reponse.message})
+          }
+        })
+      }
+    })
+  }
+
 }

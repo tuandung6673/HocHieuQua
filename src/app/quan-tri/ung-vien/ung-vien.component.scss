@@ -1,0 +1,84 @@
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.guide {
+  color: rgba(43,47,51,.4);
+  font-weight: 500;
+  span {
+    i {
+      font-size: 16px;
+    }
+  }
+  i {
+    margin: 0 5px;
+  }
+  i:hover {
+    cursor: pointer;
+  }
+  span:hover { 
+    cursor: pointer;
+  }
+}
+
+.active {
+  color: #0059ce;
+  font-weight: 600;
+}
+
+.colorful {
+  padding: 2px 5px;
+  border-radius: 8px;
+}
+
+.waiting {
+  background-color: #ffc107;
+  color: #212529
+}
+
+.done {
+  background: #007bff;
+  color: #fff;
+}
+
+.fail {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.passed {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.choose {
+  border-radius: 40%;
+  padding: 5px;
+  i {
+    font-size: 15px;
+    color: #0b5ed7;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #dee3e9;
+  }
+}
+
+.option {
+  font-size: 15px;
+  padding: 10px 5px;
+  &:hover {
+    background-color: #dee3e9;
+    cursor: pointer;
+  }
+  i{
+    margin: 0 5px;
+    font-size: 15px;
+  }
+}
+::ng-deep .p-overlaypanel .p-overlaypanel-content{
+  padding: 10px 0;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+}

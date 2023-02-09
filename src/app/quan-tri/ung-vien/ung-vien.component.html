@@ -4,7 +4,7 @@
         <i>/</i>
         <span>Quản trị</span>
         <i>/</i>
-        <span>Ứng viên</span>
+        <span class="active">Ứng viên</span>
     </div>
 
     <div class="actions">
@@ -13,32 +13,52 @@
     </div>
 
     <div>
-        <p-table [value]="candidates" responsiveLayout="scroll">
+        <p-table [value]="candidates" responsiveLayout="scroll" [scrollable]="true" >
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Tên ứng viên</th>
-                    <th>Điện thoại</th>
-                    <th>Email</th>
-                    <th>Đã phỏng vấn</th>
-                    <th>Kết quả PV</th>
-                    <th>Bài đăng</th>
-                    <th>Ngày nộp đơn</th>
-                    <th>Ngày phỏng vấn</th>
-                    <th>Người phỏng vấn</th>
+                    <th pFrozenColumn style="min-width: 50px;"></th>
+                    <th pFrozenColumn style="min-width:200px">Tên ứng viên</th>
+                    <th style="min-width:150px">Điện thoại</th>
+                    <th style="min-width:200px">Email</th>
+                    <th style="min-width:150px">Đã phỏng vấn</th>
+                    <th style="min-width:150px">Kết quả PV</th>
+                    <th style="min-width:250px">Bài đăng</th>
+                    <th style="min-width:200px">Ngày nộp đơn</th>
+                    <th style="min-width:200px">Ngày phỏng vấn</th>
+                    <th style="min-width:200px">Người phỏng vấn</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-candidate>
                 <tr>
-                    <td>{{candidate.name}}</td>
-                    <td>{{candidate.phone}}</td>
-                    <td>{{candidate.email}}</td>
-                    <td>{{candidate.status}}</td>
-                    <td>{{candidate.interviewPass}}</td>
-                    <td>{{candidate.recruitName}}</td>
-                    <td>{{candidate.applyDate}}</td>
-                    <td>{{candidate.interviewDate}}</td>
-                    <td>{{candidate.interviewUser}}</td>
+                    <td pFrozenColumn style="min-width: 50px" >
+                        <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+                    </td>
+                    <td pFrozenColumn style="min-width:200px ;color: #0b5ed7; font-weight: 650;">{{candidate.name}}</td>
+                    <td style="min-width:150px">{{candidate.phone}}</td>
+                    <td style="min-width:200px">{{candidate.email}}</td>
+                    <td style="min-width:150px">
+                        <span class="colorful"  [ngClass]="candidate.status == 0 ? 'waiting' : 'done' " *ngIf="candidate.status == 0">Đang chờ</span>
+                        <span  class="colorful" [ngClass]="candidate.status == 0 ? 'waiting' : 'done' " *ngIf="candidate.status == 1">Đã phỏng vấn</span>
+                    </td>
+                    <td style="min-width:150px">
+                        <span  class="colorful" [ngClass]="candidate.interviewPass == 0 ? 'fail' : 'passed' " *ngIf="candidate.interviewPass == 0">Loại</span>
+                        <span  class="colorful" [ngClass]="candidate.interviewPass == 0 ? 'fail' : 'passed' " *ngIf="candidate.interviewPass == 1">Đạt</span>
+                    </td>
+                    <td style="min-width:250px; color: #0b5ed7; font-weight: 650;">{{candidate.recruitName}}</td>
+                    <td style="min-width:200px">{{candidate.applyDate}}</td>
+                    <td style="min-width:200px">{{candidate.interviewDate}}</td>
+                    <td style="min-width:200px">{{candidate.interviewUser}}</td>
                 </tr>
+                <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+                    <ng-template pTemplate>
+                        <div class="option" [routerLink]="[candidate.id]">
+                            <i class="pi pi-pencil"></i> Sửa
+                        </div>
+                        <div class="option" (click)="deleteCandidate(candidate.id)">
+                            <i class="pi pi-trash"></i> Xóa
+                        </div>
+                    </ng-template>
+                </p-overlayPanel>
             </ng-template>
         </p-table>
     </div>

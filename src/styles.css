@@ -17,3 +17,7 @@ body {
 .ck-content {
   min-height: 200px;
 }
+
+.p-element .p-datatable-table {
+  font-size: 15px;
+}

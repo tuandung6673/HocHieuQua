@@ -28,6 +28,7 @@ import {RatingModule} from 'primeng/rating';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {CarouselModule} from 'primeng/carousel';
 import { SwiperModule } from 'swiper/angular';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {AccordionModule} from 'primeng/accordion';
 import {ProgressBarModule} from 'primeng/progressbar';
@@ -310,6 +311,7 @@ const appRoutes: Routes = [
     MessageModule,
     ImageModule,
     FormsModule,
+    OverlayPanelModule
     
   ],
   providers: [ConfirmationService, MessageService, AuthGuardService, {
