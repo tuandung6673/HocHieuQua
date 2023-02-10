@@ -1,50 +1,58 @@
+<div class="wrapper">
 
-<div *ngIf="isLoading" style="text-align: center;">
-  <p-progressSpinner></p-progressSpinner>
-</div>
-
-<div class="grid" *ngIf="!isLoading">
-  <div class="col-4">
-    <button class="btn btn-success" [routerLink]="['them-giao-vien']">Thêm giáo viên</button>
+  <div *ngIf="isLoading" style="text-align: center;">
+    <p-progressSpinner></p-progressSpinner>
   </div>
-
-  <div class="col-8">
-    <div style="float: right;">
-      <span class="p-input-icon-right">
-        <i (click)="onSearch()" class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
-      </span>
+  
+  <div class="grid" *ngIf="!isLoading">
+    <div class="col-4">
+      <button class="btn btn-success" [routerLink]="['them-giao-vien']">Thêm giáo viên</button>
+    </div>
+  
+    <div class="col-8">
+      <div style="float: right;">
+        <span class="p-input-icon-right">
+          <i (click)="onSearch()" class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
+        </span>
+      </div>
     </div>
   </div>
+  
+  <p-table [value]="teachers" responsiveLayout="scroll" *ngIf="!isLoading">
+    <ng-template pTemplate="header">
+        <tr>
+          <th pFrozenColumn style="min-width: 50px;"></th>
+
+            <th>Hình ảnh</th>
+            <th>Họ tên</th>
+            <th>Mô tả ngắn</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-teacher>
+        <tr>
+          <td pFrozenColumn style="min-width: 50px" >
+            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+        </td>
+            <td><img [src]="teacher.avatar" [alt]="teacher.name" width="100" class="shadow-4" /></td>
+            <td>{{teacher.name}}</td>
+            <td>
+              <div [innerHTML]="teacher.descriptionShort">
+              </div>
+            </td>
+        </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[teacher.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="onDeleteTeacher(teacher.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+      </p-overlayPanel>
+    </ng-template>
+  </p-table>
+  
+  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>
 </div>
-
-<p-table [value]="teachers" responsiveLayout="scroll" *ngIf="!isLoading">
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Hình ảnh</th>
-          <th>Họ tên</th>
-          <th>Mô tả ngắn</th>
-          <!-- <th>Category</th> -->
-          <th>Tùy chọn</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-teacher>
-      <tr>
-          <td><img [src]="teacher.avatar" [alt]="teacher.name" width="100" class="shadow-4" /></td>
-          <td>{{teacher.name}}</td>
-          <td>
-            <div [innerHTML]="teacher.descriptionShort">
-            </div>
-          </td>
-          <!-- <td>{{teacher.name}}</td> -->
-          <td>
-            <div style="float: right;">
-              <p-button label="Edit" styleClass="mr-2" class="p-button-danger" [routerLink]="[teacher.id]"></p-button>
-              <button pButton pRipple type="button" (click)="confirmDeleteTeacher(teacher.id)" label="Delete" class="p-button-danger"></button>
-            </div>
-          </td>
-      </tr>
-  </ng-template>
-</p-table>
-
-<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>

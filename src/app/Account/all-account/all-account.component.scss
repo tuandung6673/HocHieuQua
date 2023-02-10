@@ -1,23 +1,14 @@
 .wrapper {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
-.isAdvice {
-    background: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
+.row {
+    margin-top: 5px;
+    margin-left: 15%;
 }
 
-.nonAdvice {
-    background-color: #ffc107;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 10px;
-}
-  
-  .choose {
+.choose {
     border-radius: 40%;
     padding: 5px;
     i {
@@ -42,6 +33,7 @@
       font-size: 15px;
     }
   }
+
   ::ng-deep .p-overlaypanel .p-overlaypanel-content{
     padding: 10px 0;
     border: 1px solid rgba(0,0,0,.15);

@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class ChiTietTroGiupComponent implements OnInit {
 
-  Editor = ClassicEditor
+  Editor = ClassicEditor;
   screenOptions: any = [];
   editGuide : Guide;
   id: string;

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { Recruit } from 'src/models/recruit.model';
 import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-tin-tuyen-dung',
   templateUrl: './tin-tuyen-dung.component.html',
-  styleUrls: ['./tin-tuyen-dung.component.css']
+  styleUrls: ['./tin-tuyen-dung.component.scss']
 })
 export class TinTuyenDungComponent implements OnInit {
 
@@ -17,7 +18,11 @@ export class TinTuyenDungComponent implements OnInit {
     filter: '',
     totalRecord: 0
   }
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private messageService: MessageService,  
+    private confirmationService: ConfirmationService
+  ) { }
 
   ngOnInit(): void {    
     this.getRecruit()
@@ -34,6 +39,10 @@ export class TinTuyenDungComponent implements OnInit {
       }
       this.isLoading = false
     })
+  }
+
+  deleteRecruit(id) {
+    
   }
 
   paginate(event) {

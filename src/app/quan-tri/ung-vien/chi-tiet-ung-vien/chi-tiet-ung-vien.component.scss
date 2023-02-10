@@ -1,0 +1,71 @@
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  ::ng-deep .input {
+    width: 100%;
+  }
+
+  ::ng-deep .p-inputtext  {
+    width: 100%;
+    height: 40px;
+  }
+
+}
+
+.guide {
+  color: rgba(43,47,51,.4);
+  font-weight: 500;
+  span {
+    i {
+      font-size: 16px;
+    }
+  }
+  i {
+    margin: 0 5px;
+  }
+  i:first-child {
+    margin: 0px;
+  }
+  i:hover {
+    cursor: pointer;
+  }
+  span:hover { 
+    cursor: pointer;
+  }
+  .active {
+    color: #0059ce;
+    font-weight: 600;
+  }
+}
+
+.title {
+  display: flex;
+  margin: 15px 0;
+  .empty {
+    background-color: #0073ffe8;
+    border-radius: 12px;
+    box-shadow: 2px 2px 3px #007bffb3;
+    width: 5px;
+  }
+  .main-title {
+    color: #0059ce;
+    font-size: 22px;
+    font-weight: bolder;
+    padding: 3px 10px;
+  }
+}
+
+.infor {
+  font-weight: bold;
+}
+
+.header {
+  margin: 3px 0;
+}
+
+.saveBtn {
+  ::ng-deep .p-button {
+    width: 100%;
+    margin: 0; 
+  }
+}

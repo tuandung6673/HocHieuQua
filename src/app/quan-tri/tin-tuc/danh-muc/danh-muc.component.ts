@@ -6,7 +6,7 @@ import { ApiService } from 'src/services/api.service.service';
 @Component({
   selector: 'app-danh-muc',
   templateUrl: './danh-muc.component.html',
-  styleUrls: ['./danh-muc.component.css']
+  styleUrls: ['./danh-muc.component.scss']
 })
 export class DanhMucComponent implements OnInit {
 

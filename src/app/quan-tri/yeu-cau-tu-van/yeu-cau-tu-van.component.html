@@ -8,6 +8,7 @@
     <p-table [value]="adviceRequests" responsiveLayout="scroll" *ngIf="!isLoading" >
         <ng-template pTemplate="header" >
             <tr>
+                <th pFrozenColumn style="min-width: 50px;"></th>
                 <th>Tên phụ huynh</th>
                 <th>Số điện thoại</th>
                 <th>Ngày sinh</th>
@@ -19,6 +20,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-adviceRequest >
             <tr>
+              <td pFrozenColumn>
+                <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+              </td>
                 <td>{{adviceRequest.name}}</td>
                 <td>{{adviceRequest.phone}}</td>
                 <td>{{adviceRequest.birthday}}</td>
@@ -35,11 +39,19 @@
                 <td>
                   <div style="float: right;">
                     <p-button label="" styleClass="mr-2" class="p-button-danger" (click)="adviced(adviceRequest)"><i class="pi pi-phone"></i></p-button>
-                    <p-button label="View" type="button" styleClass="mr-2" class="p-button-danger" [routerLink]="[adviceRequest.id]"></p-button>
-                    <button pButton pRipple type="button" (click)="confirmDeleteAdviceRequest(adviceRequest.id)" label="Delete" class="p-button-danger"></button>
-                  </div>
+                    </div>
                 </td>
             </tr>
+            <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+              <ng-template pTemplate>
+                  <div class="option" [routerLink]="[recruit.id]">
+                      <i class="pi pi-pencil"></i> Xem chi tiết
+                  </div>
+                  <div class="option" (click)="confirmDeleteAdviceRequest(recruit.id)">
+                      <i class="pi pi-trash"></i> Xóa
+                  </div>
+              </ng-template>
+            </p-overlayPanel>
         </ng-template>
       </p-table>
 </div>

@@ -1,108 +1,118 @@
-<div class="row" *ngIf="!isLoading">
-  <div class="col-xs-12">
-    <button class="btn btn-success" (click)="onNewSlide()">Thêm slide</button>
-  </div>
-</div>
+<div class="wrapper">
 
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
-
-<p-table [value]="slides" responsiveLayout="scroll" *ngIf="!isLoading">
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Hình ảnh</th>
-          <th>Tên</th>
-          <th>Sắp xếp</th>
-          <th>Màn hình</th>
-          <th>Hiển thị</th>
-          <th>Tùy chọn</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-slide>
-      <tr>
-          <td><img [src]="slide.imageUrl" [alt]="slide.name" width="100" class="shadow-4" /></td>
-          <td>{{slide.name}}</td>
-          <td>
-            {{slide.order}}
-          </td>
-          <td>{{slide.screen}}</td>
-          <td *ngIf="slide.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></td>
-          <td *ngIf="slide.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></td>
-
-          <td>
-            <div style="float: right;">
-              <p-button label="Edit" styleClass="mr-2" class="p-button-danger"  (click)="editSlide(slide.id)"></p-button>
-              <button pButton pRipple type="button" (click)="confirmDeleteSlide(slide.id)"  label="Delete" class="p-button-danger"></button>
-            </div>
-          </td>
-      </tr>
-    </ng-template>
-</p-table>
-
-<p-dialog header="Header" [(visible)]="isDisplayDialog" [style]="{width: '50vw', height: '30vw'}">
-  <form (ngSubmit)="onSubmit()">
-    <div class="grid" style="display: flex;">
-      <div class="col-4">
-        <div class="field">
-          <img [src]="slideDetail.imageUrl" width="100%" height="200px"/>
-        </div>
-      </div>
-      <div class="col-8">
-        <div class="grid">
-          <div class="col-10">
-            <div class="field">
-              <label for="imageUrl" class="block">Avatar</label>
-              <input id="imageUrl" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="slideDetail.imageUrl" name="imageUrl"/>
-            </div>
-          </div>
-
-          <div class="col-10">
-            <div class="field">
-              <label for="name" class="block">Tên Slide</label>
-              <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.name"/>
-            </div>
-          </div>
-
-          <div class="col-10">
-            <div class="field">
-              <label for="screen" class="block">Màn hình</label>
-              <p-chips [(ngModel)]="slideDetail.screen" name="screen" ></p-chips>
-
-            </div>
-          </div>
-
-          <div class="col-10">
-            <div class="field">
-              <label for="order" class="block">Sắp xếp</label>
-              <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="order" type="text" aria-describedby="username-help" pInputText name="order" [(ngModel)]="slideDetail.order"/>
-            </div>
-          </div>
-
-          <div class="col-10">
-            <div class="field">
-              <label for="order" class="block">Hiển thị</label>
-              <p-inputSwitch [(ngModel)]="slideDetail.status" name="status"></p-inputSwitch>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-xs-12">
+      <button class="btn btn-success" (click)="onNewSlide()">Thêm slide</button>
     </div>
-  </form>
-
-  <ng-template pTemplate="footer">
-      <!-- <p-button icon="pi pi-check" (click)="isDisplayDialog=false" label="Ok" styleClass="p-button-text"></p-button> -->
-      <button style="margin: 10px" pButton pRipple (click)="isDisplayDialog=false" label="Cancel" icon="pi pi-times"></button>
-      <button 
-        style="margin: 10px" 
-        type="submit" 
-        pButton pRipple 
-        label="Save" 
-        icon="pi pi-check"
-        (click)="onSubmit()"
-        >
-      </button>
-  </ng-template>
-</p-dialog>
+  </div>
   
-<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>
+  <div style="text-align: center;" *ngIf="isLoading">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+  
+  <p-table [value]="slides" responsiveLayout="scroll" *ngIf="!isLoading">
+    <ng-template pTemplate="header">
+        <tr>
+          <th pFrozenColumn style="min-width: 50px;"></th>
+  
+            <th>Hình ảnh</th>
+            <th>Tên</th>
+            <th>Sắp xếp</th>
+            <th>Màn hình</th>
+            <th>Hiển thị</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-slide>
+        <tr>
+          <td pFrozenColumn style="min-width: 50px" >
+            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+        </td>
+            <td><img [src]="slide.imageUrl" [alt]="slide.name" width="100" class="shadow-4" /></td>
+            <td>{{slide.name}}</td>
+            <td>
+              {{slide.order}}
+            </td>
+            <td>{{slide.screen}}</td>
+            <td *ngIf="slide.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></td>
+            <td *ngIf="slide.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></td>
+        </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[subject.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="confirmDeleteSubject(subject.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+      </p-overlayPanel>
+      </ng-template>
+  </p-table>
+  
+  <p-dialog header="Header" [(visible)]="isDisplayDialog" [style]="{width: '50vw', height: '30vw'}">
+    <form (ngSubmit)="onSubmit()">
+      <div class="grid" style="display: flex;">
+        <div class="col-4">
+          <div class="field">
+            <img [src]="slideDetail.imageUrl" width="100%" height="200px"/>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="grid">
+            <div class="col-10">
+              <div class="field">
+                <label for="imageUrl" class="block">Avatar</label>
+                <input id="imageUrl" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="slideDetail.imageUrl" name="imageUrl"/>
+              </div>
+            </div>
+  
+            <div class="col-10">
+              <div class="field">
+                <label for="name" class="block">Tên Slide</label>
+                <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.name"/>
+              </div>
+            </div>
+  
+            <div class="col-10">
+              <div class="field">
+                <label for="screen" class="block">Màn hình</label>
+                <p-chips [(ngModel)]="slideDetail.screen" name="screen" ></p-chips>
+  
+              </div>
+            </div>
+  
+            <div class="col-10">
+              <div class="field">
+                <label for="order" class="block">Sắp xếp</label>
+                <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="order" type="text" aria-describedby="username-help" pInputText name="order" [(ngModel)]="slideDetail.order"/>
+              </div>
+            </div>
+  
+            <div class="col-10">
+              <div class="field">
+                <label for="order" class="block">Hiển thị</label>
+                <p-inputSwitch [(ngModel)]="slideDetail.status" name="status"></p-inputSwitch>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <ng-template pTemplate="footer">
+        <!-- <p-button icon="pi pi-check" (click)="isDisplayDialog=false" label="Ok" styleClass="p-button-text"></p-button> -->
+        <button style="margin: 10px" pButton pRipple (click)="isDisplayDialog=false" label="Cancel" icon="pi pi-times"></button>
+        <button 
+          style="margin: 10px" 
+          type="submit" 
+          pButton pRipple 
+          label="Save" 
+          icon="pi pi-check"
+          (click)="onSubmit()"
+          >
+        </button>
+    </ng-template>
+  </p-dialog>
+    
+  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>
+</div>

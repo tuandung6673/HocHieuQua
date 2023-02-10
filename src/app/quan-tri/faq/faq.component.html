@@ -1,40 +1,48 @@
-<div class="row" *ngIf="!isLoading">
-  <div class="col-xs-12">
-    <button class="btn btn-success" [routerLink]="['them-faq']">Thêm FAQ</button>
+<div class="wrapper">
+
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-xs-12">
+      <button class="btn btn-success" [routerLink]="['them-faq']">Thêm FAQ</button>
+    </div>
   </div>
+  
+  <div style="text-align: center;" *ngIf="isLoading">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+  
+  
+  <p-table [value]="faqs" responsiveLayout="scroll" *ngIf="!isLoading">
+    <ng-template pTemplate="header">
+        <tr>
+          <th pFrozenColumn style="min-width: 50px;"></th>
+
+            <th>Tiêu đề</th>
+            <th>Sắp xếp</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-faq >
+        <tr>
+          <td pFrozenColumn style="min-width: 50px" >
+            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+        </td>
+            <td>{{faq.title}}</td>
+            <td>
+              {{faq.order}}
+            </td>
+  
+        </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[faq.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="confirmDeleteFAQ(faq.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+      </p-overlayPanel>
+    </ng-template>
+  </p-table>
+  
+  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>
 </div>
-
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
-
-
-<p-table [value]="faqs" responsiveLayout="scroll" *ngIf="!isLoading">
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Tiêu đề</th>
-          <th>Sắp xếp</th>
-          <th>Tùy chọn</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-faq >
-      <tr>
-          <td>{{faq.title}}</td>
-          <td>
-            {{faq.order}}
-          </td>
-
-          <td>
-            <div style="float: right;">
-              <!-- <button class="btn btn-primary" style="margin: 2px;" [routerLink]="[faq.id]">Edit</button> -->
-
-              <p-button label="Edit" styleClass="mr-2" class="p-button-danger" [routerLink]="[faq.id]"></p-button>
-              <button pButton pRipple type="button" (click)="confirmDeleteFAQ(faq.id)"  label="Delete" class="p-button-danger"></button>
-
-            </div>
-          </td>
-      </tr>
-  </ng-template>
-</p-table>
-
-<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>

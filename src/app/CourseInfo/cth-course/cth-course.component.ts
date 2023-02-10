@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-cth-course',
   templateUrl: './cth-course.component.html',
-  styleUrls: ['./cth-course.component.css']
+  styleUrls: ['./cth-course.component.scss']
 })
 export class CthCourseComponent implements OnInit {
 

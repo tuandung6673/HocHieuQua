@@ -20,12 +20,12 @@
   span:hover { 
     cursor: pointer;
   }
+  .active {
+    color: #0059ce;
+    font-weight: 600;
+  }
 }
 
-.active {
-  color: #0059ce;
-  font-weight: 600;
-}
 
 .colorful {
   padding: 2px 5px;

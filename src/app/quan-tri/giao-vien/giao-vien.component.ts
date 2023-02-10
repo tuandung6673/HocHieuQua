@@ -7,7 +7,7 @@ import { ApiService } from 'src/services/api.service.service';
 @Component({
   selector: 'app-giao-vien',
   templateUrl: './giao-vien.component.html',
-  styleUrls: ['./giao-vien.component.css']
+  styleUrls: ['./giao-vien.component.scss']
 })
 export class GiaoVienComponent implements OnInit {
 

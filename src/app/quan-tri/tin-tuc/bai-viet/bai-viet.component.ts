@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-bai-viet',
   templateUrl: './bai-viet.component.html',
-  styleUrls: ['./bai-viet.component.css']
+  styleUrls: ['./bai-viet.component.scss']
 })
 export class BaiVietComponent implements OnInit {
 

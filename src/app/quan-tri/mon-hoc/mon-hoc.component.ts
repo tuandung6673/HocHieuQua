@@ -8,7 +8,7 @@ import { Subject } from 'src/models/subject.model';
 @Component({
   selector: 'app-mon-hoc',
   templateUrl: './mon-hoc.component.html',
-  styleUrls: ['./mon-hoc.component.css']
+  styleUrls: ['./mon-hoc.component.scss']
 })
 export class MonHocComponent implements OnInit {
 

@@ -12,17 +12,20 @@
   <p-table [value]="accounts" responsiveLayout="scroll" *ngIf="!isLoading">
     <ng-template pTemplate="header">
         <tr>
+            <th pFrozenColumn></th>
             <th>Hình ảnh</th>
             <th>Tài khoản</th>
             <th>Email</th>
             <th>Điện thoại</th>
             <th>Họ Tên</th>
             <th>Trạng thái</th>
-            <th>Tùy chọn</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-account>
         <tr>
+            <td pFrozenColumn style="min-width: 50px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+            </td>
             <td>
               <img [src]="account.avatar || defaultAvatar" [alt]="account.name" width="100" class="shadow-4" />
             </td>
@@ -34,14 +37,17 @@
             <td>{{account.name}}</td>
             <td *ngIf="account.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></td>
             <td *ngIf="account.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></td>
-  
-            <td>
-              <div style="float: right;">
-                <p-button label="Edit" styleClass="mr-2" class="p-button-danger"  [routerLink]="account.id"></p-button>
-                <button pButton pRipple type="button" (click)="confirmDeleteAccount(account.id)"  label="Delete" class="p-button-danger"></button>
-              </div>
-            </td>
         </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[candidate.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="deleteCandidate(candidate.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+      </p-overlayPanel>
       </ng-template>
   </p-table>
 </div>

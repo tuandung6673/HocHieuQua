@@ -5,7 +5,7 @@ import { ApiService } from 'src/services/api.service.service';
 @Component({
   selector: 'app-lop-hoc',
   templateUrl: './lop-hoc.component.html',
-  styleUrls: ['./lop-hoc.component.css']
+  styleUrls: ['./lop-hoc.component.scss']
 })
 export class LopHocComponent implements OnInit {
   
