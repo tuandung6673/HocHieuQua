@@ -20,27 +20,64 @@
   </div>
   
   <p-table [value]="teachers" responsiveLayout="scroll" *ngIf="!isLoading">
-    <ng-template pTemplate="header">
+    <!-- <ng-template pTemplate="header">
         <tr>
-          <th pFrozenColumn style="min-width: 50px;"></th>
-
+            <th style="width: 30px">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th> 
+            <th pFrozenColumn style="min-width: 50px;"></th>
             <th>Hình ảnh</th>
             <th>Họ tên</th>
             <th>Mô tả ngắn</th>
         </tr>
-    </ng-template>
+        
+    </ng-template> -->
+    <ng-template pTemplate="header">
+      <tr>
+          <th pFrozenColumn style="min-width: 50px;"></th>
+          <th style="min-width:200px">Ảnh</th>
+          <th style="min-width:150px">Họ tên</th>
+          <th style="min-width:200px">Tài khoản</th>
+          <th style="min-width:150px">Email</th>
+          <th style="min-width:150px">Điện thoại</th>
+          <th style="min-width:250px">Mô tả ngắn</th>
+          <th style="min-width:200px">Trạng thái</th>
+      </tr>
+  </ng-template>
     <ng-template pTemplate="body" let-teacher>
-        <tr>
-          <td pFrozenColumn style="min-width: 50px" >
-            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-        </td>
+        <!-- <tr>
+            <td>
+              <p-tableCheckbox [value]="teacher"></p-tableCheckbox>
+            </td>
+            <td pFrozenColumn style="min-width: 50px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+            </td>
             <td><img [src]="teacher.avatar" [alt]="teacher.name" width="100" class="shadow-4" /></td>
             <td>{{teacher.name}}</td>
             <td>
               <div [innerHTML]="teacher.descriptionShort">
               </div>
             </td>
-        </tr>
+        </tr> -->
+        <tr>
+          <td pFrozenColumn style="min-width: 50px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+          </td>
+          <td style="min-width:200px">
+            <img [src]="teacher.avatar" width="100px" class="shadow-4" />
+          </td>
+          <td style="min-width:150px; color: #0b5ed7; font-weight: 650;">{{teacher.name}}</td>
+          <td style="min-width:200px">{{teacher.userName}}</td>
+          <td style="min-width:250px">{{teacher.email}}</td>
+          <td style="min-width:200px">{{teacher.phone}}</td>
+          <td style="min-width:200px">
+            <span [innerHTML]="teacher.descriptionShort"></span>
+           </td>
+          <td style="min-width:150px">
+            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 0">Khóa</span>
+            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 1">Hoạt động</span>
+          </td>
+      </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
               <div class="option" [routerLink]="[teacher.id]">

@@ -2,11 +2,10 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 

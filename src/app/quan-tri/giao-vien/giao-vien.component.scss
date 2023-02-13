@@ -33,3 +33,18 @@
   border: 1px solid rgba(0,0,0,.15);
   border-radius: 4px;
 }
+
+.colorful {
+  padding: 2px 5px;
+  border-radius: 8px;
+
+}
+.fail {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.passed {
+  background-color: #007bff;
+  color: #fff;
+}
