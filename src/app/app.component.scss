@@ -1,0 +1,20 @@
+.image {
+  max-width: 300px;
+}
+
+.header-left {
+  display: flex;
+  margin: 15px 0;
+  .empty {
+    background-color: #0073ffe8;
+    border-radius: 12px;
+    box-shadow: 2px 2px 3px #007bffb3;
+    width: 5px;
+  }
+  .main-title {
+    color: #0059ce;
+    font-size: 22px;
+    font-weight: bolder;
+    padding: 3px 10px;
+  }
+}

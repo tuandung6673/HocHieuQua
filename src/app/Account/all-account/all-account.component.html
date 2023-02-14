@@ -1,15 +1,38 @@
-<div class="row" *ngIf="!isLoading">
+<!-- <div class="row" *ngIf="!isLoading">
   <div class="col-xs-12">
     <button class="btn btn-success" [routerLink]="['them-tai-khoan']" >Thêm tài khoản</button>
   </div>
-</div>
-
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
+</div> -->
 
 <div class="wrapper">
-  <p-table [value]="accounts" responsiveLayout="scroll" *ngIf="!isLoading">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Ứng viên</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Chi tiết Ứng viên</div>
+      </div>
+      <div class="header-right">
+        <!-- <span class="p-input-icon-right">
+          <i class="pi pi-search"></i>
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText />
+        </span> -->
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText />
+          <p-button class="p-button-outlined" type="button" icon="pi pi-search" pButton></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
+    </div>
+  </div>
+  <p-table [value]="accounts" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 2.25em">
@@ -41,8 +64,6 @@
             </td>
             <td>{{account.phone}}</td>
             <td>{{account.name}}</td>
-            <!-- <td *ngIf="account.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></td>
-            <td *ngIf="account.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></td> -->
             <td>
               <span class="colorful" [ngClass]="account.status == 0 ? 'fail' : 'passed' " *ngIf="account.status == 1">Hoạt động</span>
               <span class="colorful" [ngClass]="account.status == 0 ? 'fail' : 'passed' " *ngIf="account.status == 0">Tạm khóa</span>

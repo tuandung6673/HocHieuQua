@@ -1,6 +1,7 @@
 .wrapper {
     width: 70%;
     margin: 0 auto;
+    z-index: -10;
 }
 
 .row {
@@ -41,7 +42,7 @@
   }
 
   .colorful {
-    padding: 2px 5px;
+    padding: 4px 5px;
     border-radius: 8px;
   
   }
@@ -53,4 +54,9 @@
   .passed {
     background-color: #007bff;
     color: #fff;
+    
   }
+
+// ::ng-deep .p-selectable-row {
+//   background-color: red;
+// }

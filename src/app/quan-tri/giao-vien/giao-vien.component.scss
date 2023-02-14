@@ -48,3 +48,11 @@
   background-color: #007bff;
   color: #fff;
 }
+
+::ng-deep .p-submenu-list {
+  z-index: 10000;
+}
+
+::ng-deep .p-datatable-thead {
+  z-index: -100;
+}

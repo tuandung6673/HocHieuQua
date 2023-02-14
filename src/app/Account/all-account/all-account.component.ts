@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/models/account.model';
@@ -20,19 +21,19 @@ export class AllAccountComponent implements OnInit {
     RoleId: '',
     totalRecord: 0
   }
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.isLoading = true;
     this.getAllAccount()
   }
 
   getAllAccount() {
+    this.spinner.show();
     this.apiService.getAccounts(this.params.filter, this.params.offSet, this.params.pageSize, this.params.RoleId).subscribe((responseData) => {
       console.log('All account', this.accounts);
       this.accounts = responseData.data.data
-      this.params.totalRecord = responseData.data.recordsTotal
-      this.isLoading = false
+      this.params.totalRecord = responseData.data.recordsTotal;
+      this.spinner.hide();
     })
   }
 
@@ -51,16 +52,6 @@ export class AllAccountComponent implements OnInit {
         accept: () => {
             this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteAccount(id)
-        },
-        reject: (type) => {
-            switch(type) {
-                case ConfirmEventType.REJECT:
-                    this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-                break;
-                case ConfirmEventType.CANCEL:
-                    this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-                break;
-            }
         }
     });
   }

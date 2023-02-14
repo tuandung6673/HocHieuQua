@@ -1,0 +1,113 @@
+/* You can add global styles to this file, and also import other style files */
+p, button, div, a {
+  font-family: 'Quicksand', sans-serif !important;
+  /* font-size: 16px; */
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.ck-content {
+  min-height: 200px;
+}
+
+.p-element .p-datatable-table {
+  font-size: 15px;
+}
+
+::ng-deep .p-submenu-list {
+  z-index: 10000;
+}
+
+::ng-deep .p-datatable-thead {
+  z-index: -100;
+}
+.header-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .header-left {
+    display: flex;
+    margin: 10px 0;
+    .empty {
+      background-color: #0073ffe8;
+      border-radius: 12px;
+      box-shadow: 2px 2px 3px #007bffb3;
+      width: 5px;
+    }
+    .main-title {
+      color: #0059ce;
+      font-size: 22px;
+      font-weight: bolder;
+      padding: 3px 10px;
+    }
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    > * {
+      margin: 0 5px;
+    }
+    .search-btn {
+      display: flex;
+      .p-inputtext {
+        border-radius: 0;
+        border: 1px solid rgba(43,47,51,.15);
+        border-right: 0;
+        box-shadow: none;
+        outline: none;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius:4px ;
+      }
+      .p-button {
+        border-radius: 0;
+        background: #fff !important;
+        border: 1px solid rgba(43,47,51,.15);
+        border-left: 0;
+        background-color: transparent;
+        color: #007bff;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+    .p-inputtext {
+      height: 40px;
+      width: 200px;
+    }
+    .p-button {
+      height: 40px;
+      background: #007bff;
+      border: 1px solid #007bff;
+    }
+  }
+}
+
+.guide {
+  color: rgba(43,47,51,.4);
+  font-weight: 500;
+  span {
+    i {
+      font-size: 16px;
+    }
+  }
+  i {
+    margin: 0 5px;
+  }
+  i:hover {
+    cursor: pointer;
+  }
+  span:hover { 
+    cursor: pointer;
+  }
+  .active {
+    color: #0059ce;
+    font-weight: 600;
+  }
+}
