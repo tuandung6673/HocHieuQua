@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <div *ngIf="isLoading" style="text-align: center;">
+  <!-- <div *ngIf="isLoading" style="text-align: center;">
     <p-progressSpinner></p-progressSpinner>
   </div>
   
@@ -17,10 +17,11 @@
         </span>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  
   
   <div>
-
     <p-table [value]="teachers" responsiveLayout="scroll" [scrollable]="true" *ngIf="!isLoading" rowHover="true" style="z-index: -10;">
       <ng-template pTemplate="header">
         <tr>
