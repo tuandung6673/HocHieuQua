@@ -2,10 +2,10 @@ input {
   width: 100%;
 }
 
-form {
+/* form {
   width: 80%;
   margin: 0 auto;
-}
+} */
 
 ::ng-deep .p-dropdown  {
   width: 100%;

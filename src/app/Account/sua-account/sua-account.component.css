@@ -2,10 +2,10 @@ input {
   width: 100%;
 }
 
-.wrapper {
+/* .wrapper {
   width: 70%;
   margin: 0 auto;
-}
+} */
 
 ::ng-deep .wrapper .p-dropdown {
   width: 100%;

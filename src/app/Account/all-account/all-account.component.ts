@@ -16,7 +16,7 @@ export class AllAccountComponent implements OnInit {
   isLoading: boolean = false
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 10,
     filter: '',
     RoleId: '',
     totalRecord: 0
@@ -54,6 +54,10 @@ export class AllAccountComponent implements OnInit {
             this.onDeleteAccount(id)
         }
     });
+  }
+
+  onSearch() {
+    this.getAllAccount();
   }
 
   paginate(event) {

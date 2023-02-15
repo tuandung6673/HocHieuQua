@@ -57,6 +57,11 @@ body {
     }
     .search-btn {
       display: flex;
+      .btn {
+        &:hover {
+          background-color: red;
+        }
+      }
       .p-inputtext {
         border-radius: 0;
         border: 1px solid rgba(43,47,51,.15);
@@ -89,7 +94,12 @@ body {
   }
 }
 
+.p-datatable-wrapper {
+  max-height: 60vh;
+}
+
 .guide {
+  margin-top: 5px;
   color: rgba(43,47,51,.4);
   font-weight: 500;
   span {
