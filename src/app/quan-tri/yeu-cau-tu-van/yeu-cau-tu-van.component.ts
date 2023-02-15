@@ -51,6 +51,10 @@ export class YeuCauTuVanComponent implements OnInit {
     })
   }
 
+  onSearch() {
+    this.getAdvice();
+  }
+
   confirmDeleteAdviceRequest(id) {
     this.confirmationService.confirm({
       message: 'Bạn có chắc chắn muốn xóa Tư vấn này?',

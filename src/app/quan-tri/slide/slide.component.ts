@@ -18,7 +18,7 @@ export class SlideComponent implements OnInit {
   slideDetail: Slide = new Slide()
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     screen: '',
     filter: '',
     totalRecord: 0
@@ -41,6 +41,9 @@ export class SlideComponent implements OnInit {
       }
       this.isLoading = false
     })
+  }
+  onSearch() {
+    this.getSlides();
   }
 
   paginate(event) {

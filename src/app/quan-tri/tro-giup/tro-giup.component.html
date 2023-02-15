@@ -1,14 +1,35 @@
 <div class="wrapper">
-  <div class="grid">
-    <div class="col-4">
-      <button style="margin: 5px 0" *ngIf="!isLoading" class="btn btn-success" [routerLink]="['them-moi']">Thêm mới</button>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Trợ giúp</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Trợ giúp</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="query.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
     </div>
   </div>
-  <p-table [value]="guides" responsiveLayout="scroll" *ngIf="!isLoading">
+
+  <p-table [value]="guides" rowHover="true" responsiveLayout="scroll" *ngIf="!isLoading">
     <ng-template pTemplate="header">
       <tr>
+        <th style="width: 2.25em">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th> 
         <th pFrozenColumn style="min-width: 50px;"></th>
-
         <th>Tiêu đề</th>
         <th>Màn hình</th>
         <th>Sắp xếp</th>
@@ -16,9 +37,12 @@
     </ng-template>
     <ng-template pTemplate="body" let-guide>
       <tr>
+        <td>
+          <p-tableCheckbox [value]="guide"></p-tableCheckbox>
+        </td>
         <td pFrozenColumn style="min-width: 50px" >
           <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-      </td>
+        </td>
         <td>{{guide.title}}</td>
         <td>{{guide.screen}}</td>
         <td>{{guide.order}}</td>

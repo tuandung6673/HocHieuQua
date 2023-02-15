@@ -13,7 +13,7 @@ export class FaqComponent implements OnInit {
   isLoading: boolean = false
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     filter: '',
     totalRecord: 0
   }
@@ -35,6 +35,10 @@ export class FaqComponent implements OnInit {
       }
       this.isLoading = false
     })
+  }
+
+  onSearch() {
+    this.getFAQs();
   }
 
   paginate(event) {

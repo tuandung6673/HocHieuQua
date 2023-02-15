@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <p-table [value]="recruits" responsiveLayout="scroll" *ngIf="!isLoading">
+  <p-table [value]="recruits" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
           <th style="width: 2.25em">
@@ -40,9 +40,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-recruit >
         <tr>
-          <td>
-            <p-tableCheckbox [value]="recruit"></p-tableCheckbox>
-          </td>
+            <td>
+              <p-tableCheckbox [value]="recruit"></p-tableCheckbox>
+            </td>
             <td pFrozenColumn>
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
             </td>

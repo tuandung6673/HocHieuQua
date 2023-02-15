@@ -1,13 +1,34 @@
 <div class="wrapper">
-    <div class="grid" *ngIf="!isLoading">
-        <div class="col-4">
-          <button class="btn btn-success" [routerLink]="['them-moi']">Thêm mới</button>
+    <div class="header">
+      <div class="guide">
+        <span><i class="pi pi-home"></i></span>
+        <i>/</i>
+        <span>Quản trị</span>
+        <i>/</i>
+        <span class="active">Yêu cầu tư vấn</span>
+      </div>
+      <div class="header-2">
+        <div class="header-left">
+          <div class="empty"></div>
+          <div class="main-title">Yêu cầu tư vấn</div>
         </div>
+        <div class="header-right">
+          <div class="search-btn">
+            <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="query.filter"/>
+            <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+          </div>
+          <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+          <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        </div>
+      </div>
     </div>
-    
-    <p-table [value]="adviceRequests" responsiveLayout="scroll" *ngIf="!isLoading" >
+
+    <p-table [value]="adviceRequests" rowHover="true" responsiveLayout="scroll" *ngIf="!isLoading" >
         <ng-template pTemplate="header" >
             <tr>
+                <th style="width: 2.25em">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th> 
                 <th pFrozenColumn style="min-width: 50px;"></th>
                 <th>Tên phụ huynh</th>
                 <th>Số điện thoại</th>
@@ -20,9 +41,12 @@
         </ng-template>
         <ng-template pTemplate="body" let-adviceRequest >
             <tr>
-              <td pFrozenColumn>
-                <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-              </td>
+                <td>
+                  <p-tableCheckbox [value]="adviceRequest"></p-tableCheckbox>
+                </td>
+                <td pFrozenColumn>
+                  <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+                </td>
                 <td>{{adviceRequest.name}}</td>
                 <td>{{adviceRequest.phone}}</td>
                 <td>{{adviceRequest.birthday}}</td>

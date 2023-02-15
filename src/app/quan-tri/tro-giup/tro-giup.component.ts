@@ -44,6 +44,10 @@ export class TroGiupComponent implements OnInit {
     })
   }
 
+  onSearch() {
+    this.getGuides();
+  }
+
   confirmDeleteGuide(id) {
     this.confirmationService.confirm({
       message: 'Bạn có chắc chắn muốn xóa Hướng dẫn này?',
