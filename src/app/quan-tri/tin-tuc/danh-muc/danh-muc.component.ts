@@ -15,7 +15,7 @@ export class DanhMucComponent implements OnInit {
   newCategorys : NewCatagory[] = []
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     filter: '',
     totalRecord: 0
   }
@@ -40,10 +40,6 @@ export class DanhMucComponent implements OnInit {
   }
 
   onSearch() {
-    this.params = {
-      ...this.params,
-      filter: this.search
-    }
     this.getNewCategorys()
   }
 

@@ -54,10 +54,6 @@ export class CourseComponent implements OnInit {
   }
 
   onSearch() {
-    this.params = {
-      ...this.params,
-      filter: this.search
-    }
     this.getCourses()
   }
 

@@ -45,6 +45,10 @@ export class TinTuyenDungComponent implements OnInit {
     
   }
 
+  onSearch() {
+    this.getRecruit();
+  }
+
   paginate(event) {
     //event.first = Index of the first record
     //event.rows = Number of rows to display in new page

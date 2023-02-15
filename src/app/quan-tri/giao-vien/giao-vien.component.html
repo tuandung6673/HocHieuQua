@@ -1,79 +1,82 @@
 <div class="wrapper">
-
-  <!-- <div *ngIf="isLoading" style="text-align: center;">
-    <p-progressSpinner></p-progressSpinner>
-  </div>
-  
-  <div class="grid" *ngIf="!isLoading">
-    <div class="col-4">
-      <button class="btn btn-success" [routerLink]="['them-giao-vien']">Thêm giáo viên</button>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Giáo viên</span>
     </div>
-  
-    <div class="col-8">
-      <div style="float: right;">
-        <span class="p-input-icon-right">
-          <i (click)="onSearch()" class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
-        </span>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Giáo viên</div>
+      </div>
+      <div class="header-right">
+        <!-- <span class="p-input-icon-right">
+          <i class="pi pi-search"></i>
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText />
+        </span> -->
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
-  </div> -->
-
-  
-  
-  <div>
-    <p-table [value]="teachers" responsiveLayout="scroll" [scrollable]="true" *ngIf="!isLoading" rowHover="true" style="z-index: -10;">
-      <ng-template pTemplate="header">
-        <tr>
-            <th style="width: 2.25em" pFrozenColumn>
-              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th> 
-            <th pFrozenColumn style="min-width: 50px;"></th>
-            <th style="min-width:200px">Ảnh</th>
-            <th style="min-width:150px">Họ tên</th>
-            <th style="min-width:200px">Tài khoản</th>
-            <th style="min-width:200px">Email</th>
-            <th style="min-width:150px">Điện thoại</th>
-            <th style="min-width:250px">Mô tả ngắn</th>
-            <th style="min-width:150px">Trạng thái</th>
-        </tr>
-    </ng-template>
-      <ng-template pTemplate="body" let-teacher>
-          <tr>
-            <td pFrozenColumn>
-              <p-tableCheckbox [value]="teacher"></p-tableCheckbox>
-            </td>
-            <td pFrozenColumn style="min-width: 50px" >
-                <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-            </td>
-            <td style="min-width:200px">
-              <img [src]="teacher.avatar" width="100px" class="shadow-4" />
-            </td>
-            <td style="min-width:150px; color: #0b5ed7; font-weight: 650;">{{teacher.name}}</td>
-            <td style="min-width:200px">{{teacher.userName}}</td>
-            <td style="min-width:200px">{{teacher.email}}</td>
-            <td style="min-width:150px">{{teacher.phone}}</td>
-            <td style="min-width:250px">
-              <span [innerHTML]="teacher.descriptionShort"></span>
-             </td>
-            <td style="min-width:150px">
-              <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 0">Khóa</span>
-              <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 1">Hoạt động</span>
-            </td>
-        </tr>
-          <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
-            <ng-template pTemplate>
-                <div class="option" [routerLink]="[teacher.id]">
-                    <i class="pi pi-pencil"></i> Sửa
-                </div>
-                <div class="option" (click)="onDeleteTeacher(teacher.id)">
-                    <i class="pi pi-trash"></i> Xóa
-                </div>
-            </ng-template>
-        </p-overlayPanel>
-      </ng-template>
-    </p-table>
-    
-    <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>
   </div>
+  
+  <p-table [value]="teachers" responsiveLayout="scroll" [scrollable]="true" *ngIf="!isLoading" rowHover="true" >
+    <ng-template pTemplate="header">
+      <tr>
+          <th style="width: 2.25em" pFrozenColumn>
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> 
+          <th pFrozenColumn style="min-width: 50px;"></th>
+          <th style="min-width:200px">Ảnh</th>
+          <th style="min-width:150px">Họ tên</th>
+          <th style="min-width:200px">Tài khoản</th>
+          <th style="min-width:200px">Email</th>
+          <th style="min-width:150px">Điện thoại</th>
+          <th style="min-width:250px">Mô tả ngắn</th>
+          <th style="min-width:150px">Trạng thái</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-teacher>
+        <tr>
+          <td pFrozenColumn>
+            <p-tableCheckbox [value]="teacher"></p-tableCheckbox>
+          </td>
+          <td pFrozenColumn style="min-width: 50px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+          </td>
+          <td style="min-width:200px">
+            <img [src]="teacher.avatar" width="100px" class="shadow-4" />
+          </td>
+          <td style="min-width:150px; color: #0b5ed7; font-weight: 650;">{{teacher.name}}</td>
+          <td style="min-width:200px">{{teacher.userName}}</td>
+          <td style="min-width:200px">{{teacher.email}}</td>
+          <td style="min-width:150px">{{teacher.phone}}</td>
+          <td style="min-width:250px">
+            <span [innerHTML]="teacher.descriptionShort"></span>
+            </td>
+          <td style="min-width:150px">
+            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 0">Khóa</span>
+            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 1">Hoạt động</span>
+          </td>
+      </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[teacher.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="onDeleteTeacher(teacher.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+      </p-overlayPanel>
+    </ng-template>
+  </p-table>
 </div>
+<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>

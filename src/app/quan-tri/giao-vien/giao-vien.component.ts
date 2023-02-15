@@ -17,7 +17,7 @@ export class GiaoVienComponent implements OnInit {
 
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     filter : '',
     totalRecord: 0
   }

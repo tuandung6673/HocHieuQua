@@ -1,7 +1,7 @@
 
 <div class="wrapper">
 
-  <div style="text-align: center;" *ngIf="isLoading">
+  <!-- <div style="text-align: center;" *ngIf="isLoading">
     <p-progressSpinner></p-progressSpinner>
   </div>
   
@@ -18,13 +18,43 @@
         </span>
       </div>
     </div>
+  </div> -->
+
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Bài viết</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Bài viết</div>
+      </div>
+      <div class="header-right">
+        <!-- <span class="p-input-icon-right">
+          <i class="pi pi-search"></i>
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText />
+        </span> -->
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
+    </div>
   </div>
   
-  <p-table [value]="news" responsiveLayout="scroll" *ngIf="!isLoading">
+  <p-table [value]="news" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
-          <th pFrozenColumn style="min-width: 50px;"></th>
-  
+            <th style="width: 2.25em">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th> 
+            <th pFrozenColumn style="min-width: 50px;"></th>
             <th>Hình ảnh</th>
             <th>Tiêu đề</th>
             <th>Danh mục</th>
@@ -34,15 +64,18 @@
     </ng-template>
     <ng-template pTemplate="body" let-new >
         <tr>
+          <td>
+            <p-tableCheckbox [value]="new"></p-tableCheckbox>
+          </td>
           <td pFrozenColumn style="min-width: 50px" >
             <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-        </td>
+          </td>
           <td><img [src]="new.avatar" [alt]="new.name" width="100" class="shadow-4" /></td>
           <td>{{new.title}}</td>
           <td>{{new.categoryName}}</td>
           <td>
-            <div *ngIf="new.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></div>
-            <div *ngIf="new.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></div>
+            <span class="colorful" [ngClass]="new.status == 0 ? 'fail' : 'passed' " *ngIf="new.status == 1">Hiển thị</span>
+            <span class="colorful" [ngClass]="new.status == 0 ? 'fail' : 'passed' " *ngIf="new.status == 0">Ẩn</span>
           </td>
           <td>
             {{new.order}}
@@ -61,5 +94,5 @@
     </ng-template>
   </p-table>
   
-  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[2,5,10]"></p-paginator>
+  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
 </div>

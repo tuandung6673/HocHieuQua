@@ -1,37 +1,48 @@
 <div class="wrapper">
-
-  <div style="text-align: center;" *ngIf="isLoading">
-    <p-progressSpinner></p-progressSpinner>
-  </div>
-  
-  <div class="grid" *ngIf="!isLoading">
-    <div class="col-4">
-      <button class="btn btn-success" [routerLink]="['them-moi']">Thêm mới</button>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Bài tuyển dụng</span>
     </div>
-  
-    <div class="col-8">
-      <div style="float: right;">
-        <span class="p-input-icon-right">
-          <i (click)="onSearch()" class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
-        </span>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Bài tuyển dụng</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
   </div>
-  
+
   <p-table [value]="recruits" responsiveLayout="scroll" *ngIf="!isLoading">
     <ng-template pTemplate="header">
         <tr>
+          <th style="width: 2.25em">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> 
           <th pFrozenColumn style="min-width: 50px;"></th>
 
             <th>Tiêu đề</th>
             <th>Mô tả ngắn</th>
-            <th>Hiển thị</th>
-            <th>Sắp xếp</th>
+            <th style="min-width: 100px;">Hiển thị</th>
+            <th>Hot</th>
+            <th style="min-width: 100px;">Sắp xếp</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-recruit >
         <tr>
+          <td>
+            <p-tableCheckbox [value]="recruit"></p-tableCheckbox>
+          </td>
             <td pFrozenColumn>
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
             </td>
@@ -39,11 +50,17 @@
             <td>
               <div [innerHTML]="recruit.requirement"></div>
             </td>
-            <td>
-              <div *ngIf="recruit.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></div>
-              <div *ngIf="recruit.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></div>
+            <td style="min-width: 100px;">
+              <span class="colorful" [ngClass]="recruit.status == 0 ? 'fail' : 'passed' " *ngIf="recruit.status == 1">Hiển thị</span>
+              <span class="colorful" [ngClass]="recruit.status == 0 ? 'fail' : 'passed' " *ngIf="recruit.status == 0">Ẩn</span>
+              
             </td>
             <td>
+              <span class="colorful" [ngClass]="recruit.isHot == 0 ? 'fail' : 'passed' " *ngIf="recruit.isHot == 1">Có</span>
+              <span class="colorful" [ngClass]="recruit.isHot == 0 ? 'fail' : 'passed' " *ngIf="recruit.isHot == 0">Không</span>
+            
+            </td>
+            <td style="min-width: 100px;">
               {{recruit.order}}
             </td>
             <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">

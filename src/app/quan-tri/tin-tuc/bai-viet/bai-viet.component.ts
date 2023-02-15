@@ -14,7 +14,7 @@ export class BaiVietComponent implements OnInit {
   news: New[] = []
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     filter: '',
     categoryId: '',
     totalRecord: 0,

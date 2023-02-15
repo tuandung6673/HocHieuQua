@@ -11,6 +11,7 @@ export class LopHocComponent implements OnInit {
   
   constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
+  defaultAvatar = 'https://imgt.taimienphi.vn/cf/Images/tt/2020/7/15/anh-dai-dien-facebook-y-nghia-cho-con-trai-26.jpg'
   classrooms : any
   isLoading: boolean = false;
   search: string
@@ -18,7 +19,7 @@ export class LopHocComponent implements OnInit {
   params = {
     filter: '',
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     totalRecord: 0
   }
 
@@ -50,10 +51,6 @@ export class LopHocComponent implements OnInit {
   }
 
   onSearch() {
-    this.params = {
-      ...this.params,
-      filter: this.search
-    }
     this.getClassRooms()
   }
 

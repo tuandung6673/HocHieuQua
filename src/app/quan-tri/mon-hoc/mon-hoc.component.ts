@@ -18,7 +18,7 @@ export class MonHocComponent implements OnInit {
   search: string
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     classId: '',
     filter: '',
     totalRecord: 0
@@ -49,10 +49,6 @@ export class MonHocComponent implements OnInit {
   }
 
   onSearch() {
-    this.params = {
-      ...this.params,
-      filter: this.search
-    }
     this.getSubjects()
   }
  

@@ -45,6 +45,10 @@ export class UngVienComponent implements OnInit {
     })
   }
 
+  onSearch() {
+    this.getCandidates();
+  }
+
   editCandidate(id:string) {
     console.log(id);
   }

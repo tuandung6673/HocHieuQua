@@ -1,58 +1,73 @@
 <div class="wrapper">
-
-  <div style="text-align: center;" *ngIf="isLoading">
-    <p-progressSpinner></p-progressSpinner>
-  </div>
-  
-  <div class="grid" *ngIf="!isLoading">
-    <div class="col-4">
-      <button class="btn btn-success" [routerLink]="['them-khoa-hoc']">Thêm khóa học</button>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Khóa học</span>
     </div>
-  
-    <div class="col-8">
-      <div style="float: right;">
-        <span class="p-input-icon-right">
-          <i (click)="onSearch()" class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
-        </span>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Khóa học</div>
+      </div>
+      <div class="header-right">
+        <!-- <span class="p-input-icon-right">
+          <i class="pi pi-search"></i>
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText />
+        </span> -->
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-khoa-hoc']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
   </div>
   
-  <p-table [value]="courses" responsiveLayout="scroll" *ngIf="!isLoading">
+  <p-table [value]="courses" responsiveLayout="scroll" *ngIf="!isLoading" [scrollable]="true" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
-          <th pFrozenColumn style="min-width: 50px;"></th>
-  
-            <th>Hình ảnh</th>
-            <th>Mã</th>
-            <th>Tên</th>
-            <th>Giáo viên</th>
-            <th>Giá</th>
-            <th>Giá giảm</th>
-            <th>Lớp học</th>
-            <th>Môn học</th>
-            <th>Hiển thị</th>
+            <th style="width: 50px" pFrozenColumn>
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pFrozenColumn style="width: 60px;"></th>
+            <th pFrozenColumn style="min-width:150px">Hình ảnh</th>
+            <th pFrozenColumn style="min-width:200px">Tên</th>
+            <th style="min-width:200px">Hiển thị</th>
+            <!-- <th>Giáo viên</th> -->
+            <th style="min-width:200px">Giá</th>
+            <th style="min-width:200px">Giá giảm</th>
+            <th style="min-width:200px">Lớp học</th>
+            <th style="min-width:200px">Môn học</th>
+            <th style="min-width:200px">Mã</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-course>
         <tr>
-          <td pFrozenColumn style="min-width: 50px" >
-            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-        </td>
-            <td><img [src]="course.courseAvatar" [alt]="course.name" width="100" class="shadow-4" /></td>
-            <td>{{course.code}}</td>
-            <td>
-              {{course.name}}
+            <td pFrozenColumn>
+              <p-tableCheckbox [value]="course"></p-tableCheckbox>
             </td>
-            <td>{{course.teacherName}}</td>
-            <td>{{course.price}}</td>
-            <td>{{course.priceDiscount}}</td>
-            <td>{{course.classRoomName}}</td>
-            <td>{{course.subjectName}}</td>
-            <td *ngIf="course.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></td>
-            <td *ngIf="course.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></td>
-        </tr>
+            <td pFrozenColumn style="width: 60px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+            </td>
+            <td pFrozenColumn style="min-width:150px">
+              <img [src]="course.courseAvatar" [alt]="course.name" width="80" class="shadow-4" />
+            </td>
+            <td pFrozenColumn style="min-width:200px">{{course.name}}</td>
+            <td style="min-width:200px">
+              <span class="colorful" [ngClass]="course.status == 0 ? 'fail' : 'passed' " *ngIf="course.status == 1">Hiển thị</span>
+              <span class="colorful" [ngClass]="course.status == 0 ? 'fail' : 'passed' " *ngIf="course.status == 0">Ẩn</span>
+            </td>
+            <!-- <td>{{course.teacherName}}</td> -->
+            <td style="min-width:200px">{{course.price}}</td>
+            <td style="min-width:200px">{{course.priceDiscount}}</td>
+            <td style="min-width:200px">{{course.classRoomName}}</td>
+            <td style="min-width:200px">{{course.subjectName}}</td>
+            <td style="min-width:200px">{{course.code}}</td>
+          </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
               <div class="option" [routerLink]="[course.id]">

@@ -15,7 +15,7 @@ export class BaiKiemTraComponent implements OnInit {
   search: string
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     classId: '',
     filter: '',
     courseId: '',
@@ -37,15 +37,10 @@ export class BaiKiemTraComponent implements OnInit {
         ...this.params,
         totalRecord: responseData.data.recordsTotal
       }
-      console.log(this.tests);
     })
   }
 
   onSearch() {
-    this.params = {
-      ...this.params,
-      filter: this.search
-    }
     this.getTests()
   }
 
