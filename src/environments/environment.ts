@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://hhqd.somee.com/api'
+  baseUrl: 'https://tank8.bsite.net/api'
 };
 
 /*

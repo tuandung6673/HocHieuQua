@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://hhqd.somee.com/api'
+  baseUrl: 'https://tank8.bsite.net/api'
 };

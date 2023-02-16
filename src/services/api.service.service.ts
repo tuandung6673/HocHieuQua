@@ -340,4 +340,7 @@ export class ApiService {
   deleteRecruitCandidate(id: string) {
     return this.http.delete<Message>(`${this.url}/RecruitCandidate/` + id)
   }
+
+  //Payment
+  
 }
