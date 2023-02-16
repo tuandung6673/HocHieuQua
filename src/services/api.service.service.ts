@@ -346,5 +346,13 @@ export class ApiService {
   getPayment(queryParams) : Observable<BaseReponse<Payment>> {
     return this.http.get<BaseReponse<Payment>>(`${this.url}/Payment?` + queryParams)
   }
-  
+
+  changePaymentStatus(queryParams) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.put<BaseRetail<CheckPayment>>(`${this.url}/Payment/ChangePaymentStatus`, queryParams)
+  }
+
+  deletePayment(id:string) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Payment/` + id)
+  }
+
 }

@@ -17,9 +17,10 @@ export class TroGiupComponent implements OnInit {
   query = {
     screen: '',
     offSet: 0,
-    pageSize: 100,
+    pageSize: 5,
     filter: ''
   }
+  totalRecord : number;
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
@@ -38,6 +39,7 @@ export class TroGiupComponent implements OnInit {
     this.apiService.getGuide(queryParams).subscribe((response) => {
       if(response.status == 'success') {
         this.guides = response.data.data;
+        this.totalRecord = response.data.recordsTotal;
       }
       this.spinner.hide();
       this.isLoading = false;
@@ -67,6 +69,15 @@ export class TroGiupComponent implements OnInit {
       }
       this.spinner.hide();
     })
+  }
+
+  paginate(event) {
+    this.query = {
+      ...this.query,
+      offSet: event.page * event.rows,
+      pageSize: event.rows
+    }    
+    this.getGuides();
   }
 
 }

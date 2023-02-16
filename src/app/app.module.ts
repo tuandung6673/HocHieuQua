@@ -119,6 +119,7 @@ import { ChiTietTroGiupComponent } from './quan-tri/tro-giup/chi-tiet-tro-giup/c
 import { UngVienComponent } from './quan-tri/ung-vien/ung-vien.component';
 import { ChiTietUngVienComponent } from './quan-tri/ung-vien/chi-tiet-ung-vien/chi-tiet-ung-vien.component';
 import { ThanhToanComponent } from './quan-tri/thanh-toan/thanh-toan.component';
+import { GiupDoComponent } from './quan-tri/giup-do/giup-do.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -160,7 +161,8 @@ const appRoutes: Routes = [
       {path: 'tro-giup/:id', component: ChiTietTroGiupComponent},
       {path: 'ung-vien', component: UngVienComponent},
       {path: 'ung-vien/:id', component: ChiTietUngVienComponent},
-      {path: 'thanh-toan', component: ThanhToanComponent}
+      {path: 'thanh-toan', component: ThanhToanComponent},
+      {path: 'giup-do', component: GiupDoComponent}
     ]
   },
   {
@@ -277,7 +279,8 @@ const appRoutes: Routes = [
     ChiTietTroGiupComponent,
     UngVienComponent,
     ChiTietUngVienComponent,
-    ThanhToanComponent
+    ThanhToanComponent,
+    GiupDoComponent
       ],
   imports: [
     CKEditorModule,

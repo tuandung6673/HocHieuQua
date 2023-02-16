@@ -18,13 +18,14 @@ export class ThanhToanComponent implements OnInit {
     filter: '',
     IsPayment: -1
   }
-  paymentList : Payment[] = []
+  paymentList : Payment[] = [];
+  totalRecord : number;
 
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
     private confimationService: ConfirmationService,
-    private MessageService: MessageService
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +36,7 @@ export class ThanhToanComponent implements OnInit {
     this.spinner.show();
     const queryParams = queryString.stringify(this.params);
     this.apiService.getPayment(queryParams).subscribe((response) => {
+      this.totalRecord = response.data.recordsTotal;
       this.paymentList = response.data.data;
       this.spinner.hide();
     })
@@ -44,4 +46,69 @@ export class ThanhToanComponent implements OnInit {
     this.getPayment();
   }
 
+  acceptPayment(id:string) {
+    const query = {
+      id: id,
+      isPayment: 1,
+      modifiedBy: ''
+    }
+    this.spinner.show();
+    this.apiService.changePaymentStatus(query).subscribe(response => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'success', detail: response.data.messages})
+        this.getPayment();
+      } else {
+        this.messageService.add({severity: 'success', summary: 'success', detail: response.data.messages})
+
+      }
+      this.spinner.hide();
+    })
+  }
+
+  declinePayment(id) {
+    const query = {
+      id: id,
+      isPayment: 0,
+      modifiedBy: ''
+    }
+    this.spinner.show();
+    this.apiService.changePaymentStatus(query).subscribe(response => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'success', detail: response.data.messages})
+        this.getPayment();
+      } else {
+        this.messageService.add({severity: 'success', summary: 'success', detail: response.data.messages})
+      }
+      this.spinner.hide();
+    })
+  }
+
+  deletePayment(id:string) {
+    this.confimationService.confirm({
+      acceptLabel: 'Xóa',
+      rejectLabel: 'Hủy',
+      message: 'Bạn có chắc chắn muốn xóa Thanh toán này?',
+      accept: () => {
+          this.spinner.show();
+          this.apiService.deletePayment(id).subscribe(response => {
+            if(response.status == 'success') {
+              this.messageService.add({severity: 'success', summary: 'success', detail: response.data.messages})
+              this.getPayment();
+            } else {
+              this.messageService.add({severity: 'success', summary: 'success', detail: response.data.messages})
+            }
+            this.spinner.hide();
+        })
+      }
+    })
+  }
+
+  paginate(event) {
+    this.params = {
+      ...this.params,
+      offSet: event.page * event.rows,
+      pageSize: event.rows
+    }
+    this.getPayment();
+  }
 }

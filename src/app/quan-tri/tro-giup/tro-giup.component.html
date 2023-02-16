@@ -33,6 +33,7 @@
         <th>Tiêu đề</th>
         <th>Màn hình</th>
         <th>Sắp xếp</th>
+        <th>Trạng thái </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-guide>
@@ -46,6 +47,10 @@
         <td>{{guide.title}}</td>
         <td>{{guide.screen}}</td>
         <td>{{guide.order}}</td>
+        <td>
+          <span  class="colorful" [ngClass]="guide.status == 0 ? 'fail' : 'passed' " *ngIf="guide.status == 0">Ẩn</span>
+          <span  class="colorful" [ngClass]="guide.status == 0 ? 'fail' : 'passed' " *ngIf="guide.status == 1">Hiển thị</span>
+        </td>
       </tr>
       <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
         <ng-template pTemplate>
@@ -60,3 +65,4 @@
     </ng-template>
   </p-table>
 </div>
+<p-paginator [rows]="query.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>

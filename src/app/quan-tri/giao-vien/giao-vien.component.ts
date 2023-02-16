@@ -64,9 +64,7 @@ export class GiaoVienComponent implements OnInit {
       ...this.params,
       offSet: event.page * event.rows,
       pageSize: event.rows
-    }
-    console.log(this.params);
-    
+    }    
     this.getTeachers();
   }
 

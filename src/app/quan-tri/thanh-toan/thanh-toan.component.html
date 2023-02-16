@@ -32,9 +32,9 @@
           <th pFrozenColumn style="width: 50px;"></th>
           <th pFrozenColumn style="min-width:200px">Tên TK</th>
           <th style="min-width:200px">Khóa học</th>
-          <th style="min-width:200px">Điện thoại</th>
+          <th style="min-width:150px">Điện thoại</th>
           <th style="min-width:200px">Email</th>
-          <th style="min-width:200px; text-align: center;">Đã thanh toán</th>
+          <th style="min-width:200px; display: flex; justify-content: center;">Đã thanh toán</th>
           <th style="min-width:200px">Ngày mua</th>
           <th style="min-width:200px">Ngày hết hạn</th>
           <th style="min-width:200px">Ngày sửa</th>
@@ -54,9 +54,9 @@
           {{payment.otherName}}
         </td>
         <td style="min-width: 200px;">{{payment.courseName}}</td>
-        <td style="min-width: 200px;">{{payment.otherPhone}}</td>
+        <td style="min-width: 150px;">{{payment.otherPhone}}</td>
         <td style="min-width: 200px;">{{payment.otherEmail}}</td>
-        <td style="text-align: center; min-width: 200px;">
+        <td style="display: flex; justify-content: center; min-width: 200px;">
           <span *ngIf="payment.isPayment == 1"><i class="pi pi-check"></i></span>
           <span *ngIf="payment.isPayment == 0"><i class="pi pi-times"></i></span>
         </td>
@@ -69,10 +69,13 @@
       </tr>
       <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
         <ng-template pTemplate>
-            <div class="option" [routerLink]="[payment.id]">
-                <i class="pi pi-pencil"></i> Sửa
+            <div class="option" (click)="acceptPayment(payment.id)">
+                <i class="pi pi-check"></i> Duyệt
             </div>
-            <div class="option" (click)="deleteCandidate(payment.id)">
+            <div class="option" (click)="declinePayment(payment.id)">
+              <i class="pi pi-times"></i> Hủy duyệt
+            </div>
+            <div class="option" (click)="deletePayment(payment.id)">
                 <i class="pi pi-trash"></i> Xóa
             </div>
         </ng-template>
@@ -80,3 +83,5 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
