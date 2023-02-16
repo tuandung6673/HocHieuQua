@@ -120,6 +120,7 @@ import { UngVienComponent } from './quan-tri/ung-vien/ung-vien.component';
 import { ChiTietUngVienComponent } from './quan-tri/ung-vien/chi-tiet-ung-vien/chi-tiet-ung-vien.component';
 import { ThanhToanComponent } from './quan-tri/thanh-toan/thanh-toan.component';
 import { GiupDoComponent } from './quan-tri/giup-do/giup-do.component';
+import { CauHoiComponent } from './quan-tri/cau-hoi/cau-hoi.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -162,7 +163,8 @@ const appRoutes: Routes = [
       {path: 'ung-vien', component: UngVienComponent},
       {path: 'ung-vien/:id', component: ChiTietUngVienComponent},
       {path: 'thanh-toan', component: ThanhToanComponent},
-      {path: 'giup-do', component: GiupDoComponent}
+      {path: 'giup-do', component: GiupDoComponent},
+      {path: 'cau-hoi', component: CauHoiComponent}
     ]
   },
   {
@@ -280,7 +282,8 @@ const appRoutes: Routes = [
     UngVienComponent,
     ChiTietUngVienComponent,
     ThanhToanComponent,
-    GiupDoComponent
+    GiupDoComponent,
+    CauHoiComponent
       ],
   imports: [
     CKEditorModule,

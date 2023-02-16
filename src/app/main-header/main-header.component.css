@@ -72,18 +72,18 @@
   width: 200px;
 } */
 
-::ng-deep .option ul {
+::ng-deep .optionn ul {
   font-size: 13px;
 }
 
-::ng-deep .option .p-button {
+::ng-deep .optionn .p-button {
   background: #fff;
   border-radius: 0px;
   border: none;
   color: blue
 }
 
-::ng-deep .option .p-button:hover {
+::ng-deep .optionn .p-button:hover {
   background: rgb(206, 178, 178);
   cursor: pointer;
 }

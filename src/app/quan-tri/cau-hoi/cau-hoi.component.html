@@ -1,0 +1,76 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Câu hỏi</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Câu hỏi</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
+    </div>
+  </div>
+  <p-table [value]="testQuestions" responsiveLayout="scroll" rowHover="true">
+    <ng-template pTemplate="header">
+      <tr>
+          <th style="width: 2.25em" pFrozenColumn>
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> 
+          <th pFrozenColumn style="min-width: 50px;"></th>
+          <th style="min-width:200px">Tên</th>
+          <th style="min-width:200px">Loại câu hỏi</th>
+          <th style="min-width:200px">Nhóm</th>
+          <th style="min-width:200px">Sắp xếp</th>
+          <th style="min-width:200px">Số điểm</th>
+          <th style="min-width:200px">Độ khó</th>
+          <th style="min-width:200px">Nội dung</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-testQuestion>
+      <tr>
+        <td pFrozenColumn>
+          <p-tableCheckbox [value]="teacher"></p-tableCheckbox>
+        </td>
+        <td pFrozenColumn style="min-width: 50px" >
+          <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+        </td>
+        <td>{{testQuestion.name}}</td>
+        <td>{{testQuestion.testQuestionTypeName}}</td>
+        <td>{{testQuestion.testQuestionGroupName}}</td>
+        <td>{{testQuestion.order}}</td>
+        <td>{{testQuestion.point}}</td>
+        <td>
+          <span *ngIf="testQuestion.level == 1">Dễ</span>
+          <span *ngIf="testQuestion.level == 2">Trung bình</span>
+          <span *ngIf="testQuestion.level == 3">Khó</span>
+          <span *ngIf="testQuestion.level == 4">Rất khó</span>
+        </td>
+        <td>
+          <!-- <div [innerHTML]="testQuestion.content"></div> -->
+        </td>
+      </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[teacher.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="onDeleteTeacher(teacher.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+        </p-overlayPanel>
+    </ng-template>  
+  </p-table>
+</div>

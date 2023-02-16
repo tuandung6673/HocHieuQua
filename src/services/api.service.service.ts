@@ -30,6 +30,7 @@ import { CourseRating } from 'src/models/courseRating.model';
 import { Advice } from 'src/models/advice.model';
 import { PaymentType} from 'src/models/paymentType.model';
 import { Payment } from 'src/models/payment.model';
+import { TestQuestion } from 'src/models/testQuestion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -354,5 +355,22 @@ export class ApiService {
   deletePayment(id:string) : Observable<BaseRetail<CheckPayment>> {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Payment/` + id)
   }
+
+  // TestQuestion
+  getTestQuestion(queryParams) : Observable<BaseReponse<TestQuestion>> {
+    return this.http.get<BaseReponse<TestQuestion>>(`${this.url}/TestQuestion?` + queryParams)
+  }
+
+  postTestQuestion(data : TestQuestion) {
+    return this.http.post<Message>(`${this.url}/TestQuestion`, data)
+  }
+
+  getTestQuestionById(id: string) : Observable<BaseRetail<TestQuestion>> {
+    return this.http.get<BaseRetail<TestQuestion>>(`${this.url}/TestQuestion/` + id)
+  }
+
+  // deleteTestQuestion(queryParams) : Observable<BaseRetail<CheckPayment>> {
+  //   return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/TestQuestion`, queryParams)
+  // }
 
 }
