@@ -29,6 +29,7 @@ import { CheckPayment } from 'src/models/checkPayment.model';
 import { CourseRating } from 'src/models/courseRating.model';
 import { Advice } from 'src/models/advice.model';
 import { PaymentType} from 'src/models/paymentType.model';
+import { Payment } from 'src/models/payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -342,5 +343,8 @@ export class ApiService {
   }
 
   //Payment
+  getPayment(queryParams) : Observable<BaseReponse<Payment>> {
+    return this.http.get<BaseReponse<Payment>>(`${this.url}/Payment?` + queryParams)
+  }
   
 }

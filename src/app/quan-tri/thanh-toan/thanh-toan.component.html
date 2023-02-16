@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Thanh toán</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Thanh toán</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <!-- <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button> -->
+      </div>
+    </div>
+  </div>
+
+  <p-table [value]="paymentList" responsiveLayout="scroll" rowHover="true" [scrollable]="true">
+    <ng-template pTemplate="header">
+      <tr>
+          <th pFrozenColumn style="width: 2.25em">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pFrozenColumn style="width: 50px;"></th>
+          <th pFrozenColumn style="min-width:200px">Tên TK</th>
+          <th style="min-width:200px">Khóa học</th>
+          <th style="min-width:200px">Điện thoại</th>
+          <th style="min-width:200px">Email</th>
+          <th style="min-width:200px; text-align: center;">Đã thanh toán</th>
+          <th style="min-width:200px">Ngày mua</th>
+          <th style="min-width:200px">Ngày hết hạn</th>
+          <th style="min-width:200px">Ngày sửa</th>
+          <th style="min-width:200px">Người sửa</th>
+          <th style="min-width:200px">Ghi chú</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-payment>
+      <tr>
+        <td pFrozenColumn style="width: 2.25em">
+          <p-tableCheckbox [value]="payment"></p-tableCheckbox>
+        </td>
+        <td pFrozenColumn style="width: 50px" >
+            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+        </td>
+        <td pFrozenColumn style="min-width:200px ;color: #0b5ed7; font-weight: 650;">
+          {{payment.otherName}}
+        </td>
+        <td style="min-width: 200px;">{{payment.courseName}}</td>
+        <td style="min-width: 200px;">{{payment.otherPhone}}</td>
+        <td style="min-width: 200px;">{{payment.otherEmail}}</td>
+        <td style="text-align: center; min-width: 200px;">
+          <span *ngIf="payment.isPayment == 1"><i class="pi pi-check"></i></span>
+          <span *ngIf="payment.isPayment == 0"><i class="pi pi-times"></i></span>
+        </td>
+        <td style="min-width: 200px;">{{payment.paymentDate}}</td>
+        <td style="min-width: 200px;">{{payment.expireDate}}</td>
+        <td style="min-width: 200px;">{{payment.modifiedDate}}</td>
+        <td style="min-width: 200px;">{{payment.modifiedBy}}</td>
+        <td style="min-width: 200px;">{{payment.comment}}</td>
+
+      </tr>
+      <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+        <ng-template pTemplate>
+            <div class="option" [routerLink]="[payment.id]">
+                <i class="pi pi-pencil"></i> Sửa
+            </div>
+            <div class="option" (click)="deleteCandidate(payment.id)">
+                <i class="pi pi-trash"></i> Xóa
+            </div>
+        </ng-template>
+      </p-overlayPanel>
+    </ng-template>
+  </p-table>
+</div>

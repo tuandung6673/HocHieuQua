@@ -3,33 +3,3 @@
 //   margin: 0 auto;
 // }
 
-.choose {
-  border-radius: 40%;
-  padding: 5px;
-  i {
-    font-size: 15px;
-    color: #0b5ed7;
-  }
-  &:hover {
-    cursor: pointer;
-    background-color: #dee3e9;
-  }
-}
-
-.option {
-  font-size: 15px;
-  padding: 10px 5px;
-  &:hover {
-    background-color: #dee3e9;
-    cursor: pointer;
-  }
-  i{
-    margin: 0 5px;
-    font-size: 15px;
-  }
-}
-::ng-deep .p-overlaypanel .p-overlaypanel-content{
-  padding: 10px 0;
-  border: 1px solid rgba(0,0,0,.15);
-  border-radius: 4px;
-}
