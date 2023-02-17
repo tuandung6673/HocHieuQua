@@ -22,14 +22,14 @@
       </div>
     </div>
   </div>
-  <p-table [value]="testQuestions" responsiveLayout="scroll" rowHover="true">
+  <p-table [value]="testQuestions" [scrollable]="true" responsiveLayout="scroll" rowHover="true">
     <ng-template pTemplate="header">
       <tr>
           <th style="width: 2.25em" pFrozenColumn>
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th> 
-          <th pFrozenColumn style="min-width: 50px;"></th>
-          <th style="min-width:200px">Tên</th>
+          <th pFrozenColumn style="width: 50px;"></th>
+          <th pFrozenColumn style="min-width:200px">Tên</th>
           <th style="min-width:200px">Loại câu hỏi</th>
           <th style="min-width:200px">Nhóm</th>
           <th style="min-width:200px">Sắp xếp</th>
@@ -40,24 +40,24 @@
     </ng-template>
     <ng-template pTemplate="body" let-testQuestion>
       <tr>
-        <td pFrozenColumn>
-          <p-tableCheckbox [value]="teacher"></p-tableCheckbox>
+        <td style="width: 2.25em" pFrozenColumn>
+          <p-tableCheckbox [value]="testQuestion"></p-tableCheckbox>
         </td>
-        <td pFrozenColumn style="min-width: 50px" >
+        <td pFrozenColumn style="width: 50px" >
           <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
         </td>
-        <td>{{testQuestion.name}}</td>
-        <td>{{testQuestion.testQuestionTypeName}}</td>
-        <td>{{testQuestion.testQuestionGroupName}}</td>
-        <td>{{testQuestion.order}}</td>
-        <td>{{testQuestion.point}}</td>
-        <td>
+        <td pFrozenColumn style="min-width:200px; color: #0b5ed7; font-weight: 650;">{{testQuestion.name}}</td>
+        <td style="min-width:200px">{{testQuestion.testQuestionTypeName}}</td>
+        <td style="min-width:200px">{{testQuestion.testQuestionGroupName}}</td>
+        <td style="min-width:200px">{{testQuestion.order}}</td>
+        <td style="min-width:200px">{{testQuestion.point}}</td>
+        <td style="min-width:200px">
           <span *ngIf="testQuestion.level == 1">Dễ</span>
           <span *ngIf="testQuestion.level == 2">Trung bình</span>
           <span *ngIf="testQuestion.level == 3">Khó</span>
           <span *ngIf="testQuestion.level == 4">Rất khó</span>
         </td>
-        <td>
+        <td style="min-width:200px">
           <!-- <div [innerHTML]="testQuestion.content"></div> -->
         </td>
       </tr>
@@ -74,3 +74,4 @@
     </ng-template>  
   </p-table>
 </div>
+<p-paginator  [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>

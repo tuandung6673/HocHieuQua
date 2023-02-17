@@ -31,6 +31,7 @@ import { Advice } from 'src/models/advice.model';
 import { PaymentType} from 'src/models/paymentType.model';
 import { Payment } from 'src/models/payment.model';
 import { TestQuestion } from 'src/models/testQuestion.model';
+import { TestQuestionGroup } from 'src/models/testQuestionGroup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -373,4 +374,8 @@ export class ApiService {
   //   return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/TestQuestion`, queryParams)
   // }
 
+  // TestQuestionGroup 
+  getTestQuestionGroup(queryParams) : Observable<BaseReponse<TestQuestionGroup>> {
+    return this.http.get<BaseReponse<TestQuestionGroup>>(`${this.url}/TestQuestionGroup?` + queryParams)
+  }
 }

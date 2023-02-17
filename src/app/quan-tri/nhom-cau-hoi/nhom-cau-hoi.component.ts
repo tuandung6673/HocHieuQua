@@ -1,28 +1,25 @@
-import * as queryString from 'querystring-es3';
-import { TestQuestion } from './../../../models/testQuestion.model';
+import { TestQuestionGroup } from './../../../models/testQuestionGroup.model';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
+import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cau-hoi',
-  templateUrl: './cau-hoi.component.html',
-  styleUrls: ['./cau-hoi.component.scss']
+  selector: 'app-nhom-cau-hoi',
+  templateUrl: './nhom-cau-hoi.component.html',
+  styleUrls: ['./nhom-cau-hoi.component.scss']
 })
-export class CauHoiComponent implements OnInit {
+export class NhomCauHoiComponent implements OnInit {
 
+  getTestQuestionGroups : TestQuestionGroup[] = [];
+  totalRecords : number;
   params = {
     filter: '',
     offSet: 0,
-    level: -1,
-    accountId: '',
     pageSize: 5,
-    testQuestionGroupId: -1,
-    testQuestionTypeCode: ''
+    status: -1
   }
-  testQuestions : TestQuestion[] = [];
-  totalRecord : number;
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
@@ -31,21 +28,25 @@ export class CauHoiComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getTestQuestion();
+    this.getTestQuestionGroup();
   }
 
-  getTestQuestion() {
+  getTestQuestionGroup() {
     const queryParams = queryString.stringify(this.params);
     this.spinner.show();
-    this.apiService.getTestQuestion(queryParams).subscribe(response => {
-      this.testQuestions = response.data.data;
-      this.totalRecord = response.data.recordsTotal;
+    this.apiService.getTestQuestionGroup(queryParams).subscribe(response => {
+      this.getTestQuestionGroups = response.data.data;
+      this.totalRecords = response.data.recordsTotal;
       this.spinner.hide();
     })
   }
 
   onSearch() {
-    this.getTestQuestion();
+    this.getTestQuestionGroup();
+  }
+
+  onDeleteTeacher(id) {
+
   }
 
   paginate(event) {
@@ -53,7 +54,8 @@ export class CauHoiComponent implements OnInit {
       ...this.params,
       offSet: event.page * event.rows,
       pageSize: event.rows
-    }    
-    this.getTestQuestion();
+    }
+    this.getTestQuestionGroup();
+
   }
 }

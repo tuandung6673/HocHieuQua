@@ -61,10 +61,10 @@
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
-              <div class="option" [routerLink]="[candidate.id]">
+              <div class="option" [routerLink]="[account.id]">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" (click)="deleteCandidate(candidate.id)">
+              <div class="option" (click)="deleteCandidate(account.id)">
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>

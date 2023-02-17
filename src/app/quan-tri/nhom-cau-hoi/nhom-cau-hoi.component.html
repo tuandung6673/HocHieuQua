@@ -1,0 +1,69 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Nhóm câu hỏi</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Nhóm câu hỏi</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <!-- <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button> -->
+        <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
+    </div>
+  </div>
+
+  <p-table [value]="getTestQuestionGroups" responsiveLayout="scroll" rowHover="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pFrozenColumn style="width: 2.25em">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pFrozenColumn style="width: 50px;"></th>
+        <th style="width:100px   ">Mã</th>
+        <th style="min-width:200px">Tên nhóm</th>
+        <th style="min-width:200px">Hiển thị</th>
+        <th style="min-width:200px">Sắp xếp</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-getTestQuestionGroup>
+        <tr>
+          <td pFrozenColumn style="width: 2.25em">
+            <p-tableCheckbox [value]="getTestQuestionGroup"></p-tableCheckbox>
+          </td>
+          <td pFrozenColumn style="width: 50px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+          </td>
+          <td style="width:100px   ">{{getTestQuestionGroup.id}}</td>
+          <td>{{getTestQuestionGroup.name}}</td>
+          <td>
+            <span  class="colorful" [ngClass]="getTestQuestionGroup.status == 0 ? 'fail' : 'passed' " *ngIf="getTestQuestionGroup.status == 1">Hiển thị</span>
+            <span  class="colorful" [ngClass]="getTestQuestionGroup.status == 0 ? 'fail' : 'passed' " *ngIf="getTestQuestionGroup.status == 0">Ẩn</span>
+          </td>
+          <td>{{getTestQuestionGroup.order}}</td>
+        </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[getTestQuestionGroup.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="onDeleteTeacher(getTestQuestionGroup.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+        </p-overlayPanel>
+    </ng-template>
+  </p-table> 
+</div>
+
+<p-paginator [rows]="params.pageSize" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>

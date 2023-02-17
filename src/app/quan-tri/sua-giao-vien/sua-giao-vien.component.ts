@@ -33,7 +33,8 @@ export class SuaGiaoVienComponent implements OnInit {
     this.isLoading = true
     this.apiService.getTeacherById(id).subscribe((responseData) => {
       console.log(responseData);
-      this.editTeacher = responseData.data
+      this.editTeacher = responseData.data;
+      this.editTeacher.status = responseData.data.status == 1 ? true : false;
       this.isLoading = false
     })
   }

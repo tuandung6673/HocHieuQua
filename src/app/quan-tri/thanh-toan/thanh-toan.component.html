@@ -57,8 +57,8 @@
         <td style="min-width: 150px;">{{payment.otherPhone}}</td>
         <td style="min-width: 200px;">{{payment.otherEmail}}</td>
         <td style="display: flex; justify-content: center; min-width: 200px;">
-          <span *ngIf="payment.isPayment == 1"><i class="pi pi-check"></i></span>
-          <span *ngIf="payment.isPayment == 0"><i class="pi pi-times"></i></span>
+          <span *ngIf="payment.isPayment == 1" style="color: #0b5ed7"><i class="pi pi-check"></i></span>
+          <span *ngIf="payment.isPayment == 0" style="color: #dc3545"><i class="pi pi-times"></i></span>
         </td>
         <td style="min-width: 200px;">{{payment.paymentDate}}</td>
         <td style="min-width: 200px;">{{payment.expireDate}}</td>
