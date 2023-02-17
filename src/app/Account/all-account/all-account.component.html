@@ -17,7 +17,7 @@
           <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
-        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left" (click)="op2.toggle($event)"></p-button>
         <p-button [routerLink]="['them-tai-khoan']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
@@ -59,18 +59,33 @@
               <span class="colorful" [ngClass]="account.status == 0 ? 'fail' : 'passed' " *ngIf="account.status == 0">Tạm khóa</span>
             </td>
         </tr>
-        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
-          <ng-template pTemplate>
-              <div class="option" [routerLink]="[account.id]">
-                  <i class="pi pi-pencil"></i> Sửa
-              </div>
-              <div class="option" (click)="deleteCandidate(account.id)">
-                  <i class="pi pi-trash"></i> Xóa
-              </div>
-          </ng-template>
-      </p-overlayPanel>
-      </ng-template>
+    </ng-template>
   </p-table>
 </div>
-
+  
 <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
+
+<p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+  <ng-template pTemplate>
+    <div class="option" [routerLink]="[account.id]">
+        <i class="pi pi-pencil"></i> Sửa
+    </div>
+    <div class="option" (click)="deleteCandidate(account.id)">
+        <i class="pi pi-trash"></i> Xóa
+    </div>
+  </ng-template>
+</p-overlayPanel>
+
+<div class="search_advance">
+  <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px', marginLeft: '-300px'}">
+    <ng-template pTemplate>
+      <div class="grid">
+        <div class="col-12 search_advance_titke">Tìm kiếm nâng cao</div>
+        <div class="col-12">
+          
+        </div>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
+</div>
+
