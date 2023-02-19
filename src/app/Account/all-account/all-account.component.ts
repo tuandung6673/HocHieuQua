@@ -28,7 +28,7 @@ export class AllAccountComponent implements OnInit {
   }
 
   getAllAccount() {
-    this.spinner.show();
+    // this.spinner.show();
     this.apiService.getAccounts(this.params.filter, this.params.offSet, this.params.pageSize, this.params.RoleId).subscribe((responseData) => {
       console.log('All account', this.accounts);
       this.accounts = responseData.data.data

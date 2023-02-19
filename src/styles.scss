@@ -182,3 +182,17 @@ body {
   color: #fff;
   
 }
+
+.p-overlaypanel {
+  .search_advance {
+    padding: 20px;
+    .search_advance_title {
+      font-weight: 600;
+      padding: 10px 0;
+      font-size: 16px;
+    }
+    .search_advance_main {
+      padding: 0 10px;
+    }
+  }
+}

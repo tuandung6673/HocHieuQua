@@ -76,16 +76,16 @@
   </ng-template>
 </p-overlayPanel>
 
-<div class="search_advance">
-  <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px', marginLeft: '-300px'}">
-    <ng-template pTemplate>
-      <div class="grid">
-        <div class="col-12 search_advance_titke">Tìm kiếm nâng cao</div>
+<p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
+  <ng-template pTemplate>
+    <div class="grid search_advance">
+      <div class="col-12 search_advance_title">Tìm kiếm nâng cao</div>
+      <div class="grid search_advance_main">
         <div class="col-12">
-          <!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown> -->
+          <p-dropdown [(ngModel)]="params.RoleId" placeholder="Quyền"></p-dropdown>
         </div>
       </div>
-    </ng-template>
-  </p-overlayPanel>
-</div>
+    </div>
+  </ng-template>
+</p-overlayPanel>
 
