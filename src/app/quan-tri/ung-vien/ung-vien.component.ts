@@ -21,6 +21,8 @@ export class UngVienComponent implements OnInit {
   }
   candidates : RecruitCandidate[] = [];
   isLoading: boolean = false;
+  interviewPassOptions : any[] = [];
+  statusOptions:any[] = [];
   constructor(
     private apiService: ApiService,
     private spinner : NgxSpinnerService,
@@ -30,6 +32,16 @@ export class UngVienComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCandidates();
+    this.interviewPassOptions = [
+      {label: 'Tất cả', value: -1},
+      {label: 'Phỏng vấn đạt', value: 1},
+      {label: 'Phỏng vấn trượt', value: 0}
+    ];
+    this.statusOptions = [
+      {label: 'Tất cả', value: -1},
+      {label: 'Đã phỏng vấn', value: 1},
+      {label: 'Chưa phỏng vấn', value: 0}
+    ]
   }
 
   getCandidates() {

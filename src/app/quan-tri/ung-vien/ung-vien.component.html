@@ -21,8 +21,8 @@
               <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="query.filter"/>
               <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
             </div>
-            <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
-            <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+            <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+            <!-- <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button> -->
           </div>
         </div>
     </div>
@@ -80,5 +80,28 @@
                 </ng-template>
             </p-overlayPanel>
         </ng-template>
-        </p-table>
+    </p-table>
 </div>
+
+
+<p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
+    <ng-template pTemplate>
+      <div class="grid search_advance">
+        <div class="col-12 search_advance_title">Tìm kiếm nâng cao</div>
+        <div class="grid search_advance_main">
+          <div class="col-12">
+            <small>Phỏng vấn đạt</small>
+            <p-dropdown [(ngModel)]="query.interviewPass" [options]="interviewPassOptions" placeholder="Phỏng vấn đạt"></p-dropdown>
+          </div>
+          <div class="col-12">
+            <small>Đã phỏng vấn</small>
+            <p-dropdown [(ngModel)]="query.status" [options]="statusOptions" placeholder="Đã phỏng vấn"></p-dropdown>
+          </div>
+        </div>
+        <div class="search_advance_actions">
+          <p-button label="Làm mới" icon="pi pi-sync"></p-button>
+          <p-button label="Tìm kiếm" (click)="onSearch()" icon="pi pi-search"></p-button>
+        </div>  
+      </div>
+    </ng-template>
+  </p-overlayPanel>

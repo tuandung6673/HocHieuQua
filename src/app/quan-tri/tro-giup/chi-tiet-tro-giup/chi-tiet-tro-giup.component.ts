@@ -33,7 +33,7 @@ export class ChiTietTroGiupComponent implements OnInit {
     this.screenOptions = [
       {label: 'Tất cả', value: ''},
       {label: 'Quản trị', value :'admin'},
-      {label: 'User', value: 'user'}
+      {label: 'Trang chủ', value: 'user'}
     ]
   }
 

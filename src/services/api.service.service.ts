@@ -179,8 +179,8 @@ export class ApiService {
   }
 
   // Slide
-  getSlide(offSet: number = 0, pageSize: number = 0, screen = '', filter = '') : Observable<BaseReponse<Slide>> {
-    return this.http.get<BaseReponse<Slide>>(`${this.url}/Slide?offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&filter=${filter}`)
+  getSlide(queryParams) : Observable<BaseReponse<Slide>> {
+    return this.http.get<BaseReponse<Slide>>(`${this.url}/Slide?` + queryParams)
   }
 
   getSlideById(id: string) : Observable<BaseRetail<Slide>> {
@@ -259,7 +259,7 @@ export class ApiService {
 
   // New Category
   getNewCategory(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<NewCatagory>> {
-    return this.http.get<BaseReponse<NewCatagory>>(`${this.url}/NewsCategory?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
+    return this.http.get<BaseReponse<NewCatagory>>(`${this.url}/NewsCategory?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=-1`)
   }
 
   getNewCategoryByid(id: string) : Observable<BaseRetail<NewCatagory>>{

@@ -1,8 +1,10 @@
+import * as queryString from 'querystring-es3';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { Slide } from '../../../models/slide.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-slide',
@@ -21,25 +23,31 @@ export class SlideComponent implements OnInit {
     pageSize: 5,
     screen: '',
     filter: '',
-    totalRecord: 0
+    status: -1
   }
+  totalRecord : number;
+  statusOptions : any[] = [];
 
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router, private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.isLoading = true
-    this.getSlides()
+    this.getSlides();
+    this.statusOptions = [
+      {label: 'Tất cả', value: -1},
+      {label: 'Hiển thị', value: 1},
+      {label: 'Ẩn', value: 0}
+    ];
   }
   
   getSlides() {
-    this.apiService.getSlide(this.params.offSet, this.params.pageSize, this.params.screen, this.params.filter).subscribe((responseData) => {
-      console.log(responseData.data.data);
-      this.slides = responseData.data.data
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
-      this.isLoading = false
+    this.spinner.show();
+    const queryParams = queryString.stringify(this.params)
+    this.apiService.getSlide(queryParams).subscribe((responseData) => {
+      this.slides = responseData.data.data;
+      this.totalRecord = responseData.data.recordsTotal
+      this.isLoading = false;
+      this.spinner.hide();
     })
   }
   onSearch() {

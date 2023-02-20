@@ -17,8 +17,9 @@ export class DanhMucComponent implements OnInit {
     offSet: 0,
     pageSize: 5,
     filter: '',
-    totalRecord: 0
+    // status: -1
   }
+  totalRecord: number
   
   constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
   
@@ -29,12 +30,8 @@ export class DanhMucComponent implements OnInit {
   getNewCategorys() {
     this.isLoading = true
     this.apiService.getNewCategory(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
-      this.newCategorys = responseData.data.data
-      console.log(this.newCategorys);
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
+      this.newCategorys = responseData.data.data;
+      this.totalRecord = responseData.data.recordsTotal
       this.isLoading = false
     })
   }

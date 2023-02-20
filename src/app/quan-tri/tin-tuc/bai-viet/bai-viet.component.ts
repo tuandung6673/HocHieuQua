@@ -18,14 +18,21 @@ export class BaiVietComponent implements OnInit {
     filter: '',
     categoryId: '',
     totalRecord: 0,
-    status: 1
+    status: -1
   }
-
+  statusOptions : any[] = [];
+  categoryIdOptions : any[] = [];
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.isLoading = true
-    this.getNews()
+    this.getNews();
+    this.statusOptions = [
+      {label: 'Tất cả', value: -1},
+      {label: 'Đã phỏng vấn', value: 1},
+      {label: 'Chưa phỏng vấn', value: 0}
+    ];
+    this.getCategoryIdOptions();
   }
 
   getNews() {
@@ -38,6 +45,18 @@ export class BaiVietComponent implements OnInit {
       }
       console.log(this.news);
       this.isLoading = false
+    })
+  }
+
+  getCategoryIdOptions() {
+    this.apiService.getNewCategory().subscribe(response => {
+      this.categoryIdOptions = response.data.data.map(c => {
+        return {
+          label: c.name,
+          value: c.id
+        }
+      })
+      this.categoryIdOptions = [{label: 'Tất cả', value: ''}, ...this.categoryIdOptions]
     })
   }
 

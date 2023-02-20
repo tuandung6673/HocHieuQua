@@ -27,12 +27,6 @@ export class GioiThieuComponent implements OnInit {
     })
   }
 
-  // async getData() {
-  //   const newsResponse = await this.apiService.getNews();
-  //   const categoryReponse = await this.apiService.getNewCategory();
-
-  // }
-
   getData(id) {
     this.spinner.show()
     forkJoin([
@@ -48,20 +42,5 @@ export class GioiThieuComponent implements OnInit {
       this.spinner.hide()
     })
   }
-
-  // // getNews() {
-  //   this.apiService.getNews().subscribe((responseData) => {
-  //     this.news = responseData.data.data
-  //     this.mostViewNew = responseData.data.data.slice(0, 4)
-  //     this.lastestNew = responseData.data.data.slice(-4)
-  //   })
-  // }
-
-  // getNewsCategory() {
-  //   this.apiService.getNewCategory().subscribe((responseData) => {
-  //     this.newsCategory = responseData.data.data
-  //   })
-  // }
-
 
 }

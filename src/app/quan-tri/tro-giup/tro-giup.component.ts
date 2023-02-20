@@ -21,6 +21,7 @@ export class TroGiupComponent implements OnInit {
     filter: ''
   }
   totalRecord : number;
+  screenOptions : any[]=[]
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
@@ -30,6 +31,11 @@ export class TroGiupComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGuides();
+    this.screenOptions = [
+      {label: 'Tất cả', value: ''},
+      {label: 'Trang chủ', value: 'user'},
+      {label: 'Quản trị', value: 'admin'}
+    ];
   }
 
   getGuides() {
