@@ -1,3 +1,4 @@
+import * as queryString from 'querystring-es3';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
@@ -18,21 +19,29 @@ export class AllAccountComponent implements OnInit {
     offSet: 0,
     pageSize: 10,
     filter: '',
-    RoleId: '',
-    totalRecord: 0
+    roleId: ''
   }
+  totalRecord : number
+  roleParams = {
+    offSet: 0,
+    pageSize: 1000,
+    filter: '',
+  }
+  roleOptions : any[] = [];
   constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.getAllAccount()
+    this.getAllAccount();
+    this.getRoldOption();
   }
 
   getAllAccount() {
-    // this.spinner.show();
-    this.apiService.getAccounts(this.params.filter, this.params.offSet, this.params.pageSize, this.params.RoleId).subscribe((responseData) => {
-      console.log('All account', this.accounts);
+    this.spinner.show();
+    const queryParams = queryString.stringify(this.params)
+    this.apiService.getAccounts(queryParams).subscribe((responseData) => {
+      // console.log('All account', this.accounts);
       this.accounts = responseData.data.data
-      this.params.totalRecord = responseData.data.recordsTotal;
+      this.totalRecord = responseData.data.recordsTotal
       this.spinner.hide();
     })
   }
@@ -67,6 +76,18 @@ export class AllAccountComponent implements OnInit {
       pageSize: event.rows
     }
     this.getAllAccount()
+  }
+
+  getRoldOption() {
+    const queryParams = queryString.stringify(this.roleParams);
+    this.apiService.getRoles(queryParams).subscribe(response => {
+      this.roleOptions = response.data.data.map(role => {
+        return {
+          label: role.name,
+          value: role.id
+        }
+      })
+    })
   }
 
 }

@@ -1,8 +1,7 @@
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-// import { Subject } from '../../../../../../../../../../models/subject.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'src/models/subject.model';
+import * as queryString from 'querystring-es3';
 
 
 @Component({
@@ -20,14 +19,20 @@ export class MonHocComponent implements OnInit {
     offSet: 0,
     pageSize: 5,
     classId: '',
-    filter: '',
-    totalRecord: 0
+    filter: ''
   }
-
+  classParams = {
+    filter: '',
+    offSet: 0,
+    pageSize: 1000
+  }
+  totalRecord : number;
+  classOption : any[]
   constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService ) { }
 
   ngOnInit(): void {
-    this.getSubjects()
+    this.getSubjects();
+    this.getClassroomForOption();
   }
   
   getSubjects() {
@@ -40,16 +45,22 @@ export class MonHocComponent implements OnInit {
           classRooms: classRooms
         }
       })
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
+      this.totalRecord = responseData.data.recordsTotal;
       this.isLoading = false
     })
   }
 
   onSearch() {
     this.getSubjects()
+  }
+
+  getClassroomForOption () {
+    this.apiService.getClassroom().subscribe((response) => {
+      this.classOption = response.data.data.map((a) => {
+        return {label: a.name, value: a.id}
+      })
+      this.classOption = [{label: 'Tất cả', value: ''}, ...this.classOption]
+    })
   }
  
   paginate(event) {

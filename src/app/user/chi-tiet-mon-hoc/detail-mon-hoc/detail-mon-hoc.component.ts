@@ -48,7 +48,7 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.teacherName = this.detailCourse.teachers.map((teacher) => {
-      return teacher.fullName
+      return teacher.name
     })    
   }
 

@@ -2,6 +2,8 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Account } from 'src/models/account.model';
+import * as queryString from 'querystring-es3';
+
 
 @Component({
   selector: 'app-sua-account',
@@ -14,6 +16,11 @@ export class SuaAccountComponent implements OnInit {
   isLoading: boolean = false
   editAccount: Account = new Account()
   roleOptions : any = []
+  roldParams = {
+    offSet: 0,
+    pageSize: 1000,
+    filter: '',
+  }
 
   constructor(private route : ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
@@ -37,7 +44,8 @@ export class SuaAccountComponent implements OnInit {
   }
 
   getRoles() {
-    this.apiService.getRoles().subscribe((responseData) => {
+    const queryParams = queryString.stringify(this.roldParams)
+    this.apiService.getRoles(queryParams).subscribe((responseData) => {
       this.roleOptions = responseData.data.data.map((role) => {
         return {name: role.name, code: role.id}
       })
@@ -47,10 +55,7 @@ export class SuaAccountComponent implements OnInit {
   onSubmit() {
     const updateAccount = {...this.editAccount}
     updateAccount.status = updateAccount.status ? 1 : 0
-
-    // console.log(updateAccount);
     this.apiService.postAccount(updateAccount).subscribe((responseData) => {
-      console.log('Update/New Account', responseData);
       alert(responseData.message)
       this.router.navigate(['quan-tri/tai-khoan'])
     })

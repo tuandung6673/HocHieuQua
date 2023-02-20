@@ -46,7 +46,7 @@ export class ChiTietMonHocComponent implements OnInit {
     ]).subscribe((responseData) => {
       this.detailCourse = responseData[0].data
       this.teacherName = responseData[0].data.teachers.map((teacher) => {
-        return teacher.fullName
+        return teacher.name
       })
       this.comments = responseData[1].data.data
       this.isPayment = responseData[2].data.valid

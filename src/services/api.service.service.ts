@@ -45,8 +45,8 @@ export class ApiService {
   ) { }
 
   // Account
-  getAccounts(filter: string = '', offset: number = 0, pageSize: number = 10, RoleId: string =''): Observable<BaseReponse<Account>> {
-    return this.http.get<BaseReponse<Account>>(`${this.url}/Account?filter=${filter}&offSet=${offset}&pageSize=${pageSize}&RoleId=${RoleId}`);
+  getAccounts(queryParams): Observable<BaseReponse<Account>> {
+    return this.http.get<BaseReponse<Account>>(`${this.url}/Account?` + queryParams);
   }
 
   getAccountsById(id: string = '') : Observable<BaseRetail<Account>> {
@@ -104,12 +104,12 @@ export class ApiService {
   }
 
   // Role
-  getRoles(offSet: number = 0, pageSize: number = 1000, filter : string = '') : Observable<BaseReponse<Role>> {
-    return this.http.get<BaseReponse<Role>>(`${this.url}/Role?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
+  getRoles(queryParams) : Observable<BaseReponse<Role>> {
+    return this.http.get<BaseReponse<Role>>(`${this.url}/Role?` + queryParams)
   }
 
   // Teacher
-  getTeacher(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Teacher>> {
+  getTeacher(offSet: number = 0, pageSize: number = 1000, filter = '') : Observable<BaseReponse<Teacher>> {
     return this.http.get<BaseReponse<Teacher>>(`${this.url}/Teacher?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 
@@ -236,8 +236,8 @@ export class ApiService {
 
   // Tesst
 
-  getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '') : Observable<BaseReponse<Test>> {
-    return this.http.get<BaseReponse<Test>>(`${this.url}/test?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&classId=${classId}&courseId=${courseId}&subjectId=${subjectId}&testCategoryId=${testCategoryId}`)
+  getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '', IsShowInAbilityTest = -1) : Observable<BaseReponse<Test>> {
+    return this.http.get<BaseReponse<Test>>(`${this.url}/test?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&classId=${classId}&courseId=${courseId}&subjectId=${subjectId}&testCategoryId=${testCategoryId}&IsShowInAbilityTest=${IsShowInAbilityTest}`)
   }
 
   getTestById(id: string) : Observable<BaseRetail<Test>> {
@@ -377,5 +377,10 @@ export class ApiService {
   // TestQuestionGroup 
   getTestQuestionGroup(queryParams) : Observable<BaseReponse<TestQuestionGroup>> {
     return this.http.get<BaseReponse<TestQuestionGroup>>(`${this.url}/TestQuestionGroup?` + queryParams)
+  }
+
+  // TestQuestionTyep 
+  getTestQuestionType(queryParams) : Observable<BaseReponse<any>> {
+    return this.http.get<BaseReponse<any>>(`${this.url}/TestQuestionType?` + queryParams)
   }
 }

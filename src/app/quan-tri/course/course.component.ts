@@ -24,32 +24,63 @@ export class CourseComponent implements OnInit {
     subjectId : '' ,
     accountId : '',
     classId : '',
-    totalRecord: 0
   }
-
+  totalRecord : number;
+  teacherOptions : any[] = [];
+  classOptions : any[] = [];
+  subjectOptions : any[] = [];
   constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.getCourses()
+    this.getCourses();
+    this.getTeacherOption();
+    this.getClassOption();
   }
-
+  
   getCourses() {
     this.isLoading = true
     this.apiService.getCourse(this.params.teacherId, this.params.classId, this.params.offSet, this.params.pageSize, this.params.filter, this.params.status, this.params.isPayment, this.params.accountId, this.params.subjectId).subscribe((responseData) => {
-      console.log(responseData.data.data);
       this.courses = responseData.data.data
-
       this.courses.map((course) => {
         course.teacherName = course.teachers.map((teacher) => {
-          return teacher.fullName
+          return teacher.name
         })
       })
-      
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
+      this.totalRecord = responseData.data.recordsTotal
       this.isLoading = false
+    })
+  }
+
+  getTeacherOption() {
+    this.apiService.getTeacher().subscribe(response => {
+      this.teacherOptions = response.data.data.map(teacher => {
+        return {
+          label: teacher.name,
+          value: teacher.id
+        }
+      })
+    })
+  }
+
+  getClassOption() {
+    this.apiService.getClassroom().subscribe(response => {
+      this.classOptions = response.data.data.map(c => {
+        return {
+          label: c.name,
+          value: c.id
+        }
+      })
+    })
+  }
+
+  getSubjectOption() {
+    this.apiService.getSubject(0, 1000, this.params.classId, '').subscribe(response => {
+      this.subjectOptions = response.data.data.map(s => {
+        return {
+          label: s.name,
+          value: s.id
+        }
+      })
     })
   }
 

@@ -21,8 +21,23 @@ export class CauHoiComponent implements OnInit {
     testQuestionGroupId: -1,
     testQuestionTypeCode: ''
   }
+  testGroupParams = {
+    filter: '',
+    offSet: 0,
+    pageSize: 1000,
+    status: 1
+  }
+  testTypeParams = {
+    filter: '',
+    offSet: 0,
+    pageSize: 1000
+  }
+  
   testQuestions : TestQuestion[] = [];
   totalRecord : number;
+  testQuestionTypeOptions : any[] = [];
+  testQuestionGroupOptions : any[] = [];
+  levelOptions : any[] = [];
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
@@ -32,6 +47,15 @@ export class CauHoiComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTestQuestion();
+    this.levelOptions = [
+      {label: 'Tất cả', value: -1},
+      {label: 'Dễ', value: 1},
+      {label: 'Trung bình', value: 2},
+      {label: 'Khó', value: 3},
+      {label: 'Rất khó', value: 4},
+    ];
+    this.getTestQuestionGroupOptions();
+    this.getTestQuestionTypeOptions();
   }
 
   getTestQuestion() {
@@ -41,6 +65,30 @@ export class CauHoiComponent implements OnInit {
       this.testQuestions = response.data.data;
       this.totalRecord = response.data.recordsTotal;
       this.spinner.hide();
+    })
+  }
+
+  getTestQuestionTypeOptions() {
+    const queryParams = queryString.stringify(this.testTypeParams)
+    this.apiService.getTestQuestionType(queryParams).subscribe(response => {
+      this.testQuestionTypeOptions = response.data.data.map(t => {
+        return {
+          label: t.name,
+          value: t.code
+        }
+      })
+    }) 
+  }
+
+  getTestQuestionGroupOptions() {
+    const queryParams = queryString.stringify(this.testGroupParams)
+    this.apiService.getTestQuestionGroup(queryParams).subscribe(response => {
+      this.testQuestionGroupOptions = response.data.data.map(t => {
+        return {
+          label: t.name,
+          value: t.id
+        }
+      })
     })
   }
 

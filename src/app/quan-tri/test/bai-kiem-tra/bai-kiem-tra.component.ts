@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 // import { Test } from './../../../models/test.model';
 import { Test } from 'src/models/test.model';
 import { ApiService } from 'src/services/api.service.service';
@@ -21,22 +22,61 @@ export class BaiKiemTraComponent implements OnInit {
     courseId: '',
     subjectId: '',
     testCategoryId: '',
-    totalRecord: 0 
+    totalRecord: 0,
+    IsShowInAbilityTest: -1
   }
-
-  constructor(private apiService: ApiService) { }
+  testCategoryOptions : any[] = [];
+  classOptions : any[] = [];
+  subjectOptions : any[] = [];
+  IsShowInAbilityTestOption : any[] = []
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.getTests()
+    this.getTests();  
+    this.testCategoryOptions = [
+      {label: 'Tất cả', value: ''},
+      {label: 'Kiểm tra', value: 'kiem-tra'},
+      {label: 'Bài giảng', value: 'bai-giang'}
+    ];
+    this.IsShowInAbilityTestOption = [
+      {label: 'Tất cả', value: -1},
+      {label: 'Hiển thị', value: 1},
+      {label: 'Ẩn', value: 0}
+    ]
+    this.getClassOptions();
   }
 
   getTests() {
-    this.apiService.getTest(this.params.offSet, this.params.pageSize, this.params.filter, this.params.classId, this.params.courseId, this.params.subjectId, this.params.testCategoryId).subscribe((responseData) => {
+    this.spinner.show();
+    this.apiService.getTest(this.params.offSet, this.params.pageSize, this.params.filter, this.params.classId, this.params.courseId, this.params.subjectId, this.params.testCategoryId, this.params.IsShowInAbilityTest).subscribe((responseData) => {
       this.tests = responseData.data.data
       this.params = {
         ...this.params,
         totalRecord: responseData.data.recordsTotal
       }
+      this.spinner.hide();
+    })
+  }
+
+  getClassOptions() {
+    this.apiService.getClassroom().subscribe(response => {
+      this.classOptions = response.data.data.map(c => {
+        return {
+          label: c.name,
+          value: c.id
+        }
+      })
+    })
+  }
+
+  getSubjectOption() {
+    this.apiService.getSubject(0, 1000, this.params.classId, '').subscribe(response => {
+      this.subjectOptions = response.data.data.map(s => {
+        return {
+          label: s.name,
+          value: s.id
+        }
+      })
     })
   }
 

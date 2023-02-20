@@ -6,7 +6,7 @@
     <div class="info">
       <div class="left">
         <img [src]="detailTeacher.avatar" />
-        <p>{{detailTeacher.fullName}}</p>
+        <p>{{detailTeacher.name}}</p>
       </div>
       <div class="right">
         <div>
@@ -29,7 +29,7 @@
   </div>
   <div>
     <div class="header">
-      <p>Khóa học của giảng viên {{detailTeacher.fullName}}</p>
+      <p>Khóa học của giảng viên {{detailTeacher.name}}</p>
     </div>
     <div>
       <div *ngFor="let course of courses">

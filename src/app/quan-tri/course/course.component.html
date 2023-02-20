@@ -21,7 +21,7 @@
           <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
-        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
         <p-button [routerLink]="['them-khoa-hoc']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
@@ -81,7 +81,33 @@
     </ng-template>
   </p-table>
   
-  <p-paginator [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 25]"></p-paginator>
+  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 25]"></p-paginator>
 </div>
 
+
+<p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
+  <ng-template pTemplate>
+    <div class="grid search_advance">
+      <div class="col-12 search_advance_title">Tìm kiếm nâng cao</div>
+      <div class="grid search_advance_main">
+        <div class="col-12">
+          <small>Giáo viên</small>
+          <p-dropdown [(ngModel)]="params.teacherId" [options]="teacherOptions" placeholder="Giáo viên"></p-dropdown>
+        </div>
+        <div class="col-12">
+          <small>Lớp học</small>
+          <p-dropdown [(ngModel)]="params.classId" [options]="classOptions" (onChange)="getSubjectOption()" placeholder="Lớp học"></p-dropdown>
+        </div>
+        <div class="col-12">
+          <small>Môn học</small>
+          <p-dropdown [(ngModel)]="params.subjectId" [options]="subjectOptions" placeholder="Môn học"></p-dropdown>
+        </div>
+      </div>
+      <div class="search_advance_actions">
+        <p-button label="Làm mới" icon="pi pi-sync"></p-button>
+        <p-button label="Tìm kiếm" (click)="onSearch()" icon="pi pi-search"></p-button>
+      </div>  
+    </div>
+  </ng-template>
+</p-overlayPanel>
 

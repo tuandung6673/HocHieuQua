@@ -16,8 +16,14 @@ export class ThanhToanComponent implements OnInit {
     offSet: 0,
     pageSize: 5,
     filter: '',
-    IsPayment: -1
+    isPayment: -1
   }
+  statusOptions = [
+    {label: 'Tất cả', value: -1},
+    {label: 'Chưa thanh toán', value: 0},
+    {label: 'Đã thanh toán', value: 1}
+  ]
+
   paymentList : Payment[] = [];
   totalRecord : number;
 

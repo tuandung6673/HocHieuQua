@@ -1,14 +1,22 @@
 export class Teacher {
-  id = "";
-  fullName = "";
-  avatar = "";
-  description = "";
-  descriptionShort = "";
-  order: any = null;
-  createdDate = "";
-  modifiedDate: null;
-  createdBy = "";
-  modifiedBy = "";
-  status: any = 0;
-  name = "";
+  id: "";
+  description: "";
+  descriptionShort: "";
+  order: any ;
+  createdDate: "";
+  modifiedDate: "";
+  createdBy: "";
+  modifiedBy: "";
+  status: any ;
+  accountId: "";
+  totalStudent: any ;
+  averageRate: any ;
+  userName: "";
+  address: "";
+  name: "";
+  email: "";
+  phone: "";
+  avatar: "";
+  birthday: "";
+  identityNo: ""
 }

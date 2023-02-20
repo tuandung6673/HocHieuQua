@@ -63,7 +63,7 @@
   </p-table>
 </div>
   
-<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
+<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
 
 <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
   <ng-template pTemplate>
@@ -82,9 +82,13 @@
       <div class="col-12 search_advance_title">Tìm kiếm nâng cao</div>
       <div class="grid search_advance_main">
         <div class="col-12">
-          <p-dropdown [(ngModel)]="params.RoleId" placeholder="Quyền"></p-dropdown>
+          <p-dropdown [(ngModel)]="params.roleId" [options]="roleOptions" placeholder="Quyền"></p-dropdown>
         </div>
       </div>
+      <div class="search_advance_actions">
+        <p-button label="Làm mới" icon="pi pi-sync"></p-button>
+        <p-button label="Tìm kiếm" (click)="onSearch()" icon="pi pi-search"></p-button>
+      </div>  
     </div>
   </ng-template>
 </p-overlayPanel>
