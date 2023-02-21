@@ -3,7 +3,7 @@
     <div class="col-3 menu-left">
       <div style="font-size: 13px;">Màn hình</div>
       <div>
-        <p-dropdown [options]="screenOptions" [(ngModel)]="params.screen" placeholder="Màn hình"></p-dropdown>
+        <p-dropdown [options]="screenOptions" [(ngModel)]="params.screen" placeholder="Màn hình" (onChange)="onSearch()"></p-dropdown>
       </div>
     </div>
     <div class="col-9 menu-right">

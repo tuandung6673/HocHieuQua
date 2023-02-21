@@ -13,6 +13,10 @@
   display: flex;
 }
 
+.info p {
+  margin: 0;
+}
+
 ::ng-deep .login .p-button {
   border: none;
   color: #3B82F6;

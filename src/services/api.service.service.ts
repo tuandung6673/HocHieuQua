@@ -388,4 +388,13 @@ export class ApiService {
   getTestQuestionType(queryParams) : Observable<BaseReponse<any>> {
     return this.http.get<BaseReponse<any>>(`${this.url}/TestQuestionType?` + queryParams)
   }
+
+  // Notificatiion
+  getNotification(queryParams) : Observable<BaseReponse<Notification>> {
+    return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification?` + queryParams)
+  }
+
+  getAdminNotification(queryParams) : Observable<BaseReponse<Notification>> {
+    return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification/GetAdminNotifications?` + queryParams)
+  }
 }

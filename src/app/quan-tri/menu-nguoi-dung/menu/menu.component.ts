@@ -43,4 +43,8 @@ export class MenuComponent implements OnInit {
     })
   }
 
+  onSearch() {
+    this.getMenu()
+  }
+
 }
