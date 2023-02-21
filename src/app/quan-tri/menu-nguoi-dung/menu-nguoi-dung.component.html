@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Menu</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Quản trị menu người dùng</div>
+      </div>
+      <!-- <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div> -->
+    </div>
+  </div>
+  <p-tabView>
+    <p-tabPanel header="Menu">
+      <app-menu></app-menu>
+    </p-tabPanel>
+    <p-tabPanel header="Hành động">
+      <app-hanh-dong></app-hanh-dong>
+    </p-tabPanel>
+    <p-tabPanel header="Nhóm quyền">
+      <app-nhom-quyen></app-nhom-quyen>
+    </p-tabPanel>
+  </p-tabView>
+</div>

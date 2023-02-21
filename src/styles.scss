@@ -55,6 +55,9 @@ body {
     > * {
       margin: 0 5px;
     }
+    > *:last-child {
+      margin-right: 0px;
+    }
     .search-btn {
       display: flex;
       .btn {
@@ -105,6 +108,10 @@ body {
 
 .p-datatable-wrapper {
   max-height: 65vh;
+}
+
+.tabView .p-datatable-wrapper {
+  max-height: 60vh;
 }
 
 .p-datatable {

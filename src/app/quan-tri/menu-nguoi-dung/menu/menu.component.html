@@ -1,0 +1,63 @@
+<div class="wrapper tabView">
+  <div class="grid">
+    <div class="col-3 menu-left">
+      <div style="font-size: 13px;">Màn hình</div>
+      <div>
+        <p-dropdown [options]="screenOptions" [(ngModel)]="params.screen" placeholder="Màn hình"></p-dropdown>
+      </div>
+    </div>
+    <div class="col-9 menu-right">
+      <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+    </div>
+  </div>
+  <p-table [value]="menus" responsiveLayout="scroll" rowHover="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 2.25em" pFrozenColumn>
+          <!-- <p-tableHeaderCheckbox></p-tableHeaderCheckbox> -->
+        </th> 
+        <th pFrozenColumn style="width: 50px;"></th>
+        <th>Tên</th>
+        <th>Đường dẫn</th>
+        <th>Biểu tượng</th>
+        <th>Sắp xếp</th>
+        <th>Màn hình</th>
+        <th>Trạng thái</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-menu>
+      <tr>
+        <td style="width: 2.25em" pFrozenColumn>
+          <span *ngIf="menu.childs.length">
+            <i class="pi pi-chevron-right"></i>
+          </span>
+        </td>
+        <td pFrozenColumn style="width: 50px" >
+          <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+        </td>
+        <td>{{menu.name}}</td>
+        <td>{{menu.path}}</td>
+        <td>
+          <i [class]="menu.icon"></i>
+        </td>
+        <td>{{menu.order}}</td>
+        <td>{{menu.screen}}</td>
+        <td>
+          <span class="colorful" [ngClass]="menu.status == 0 ? 'fail' : 'passed' " *ngIf="menu.status == 1">Hiển thị</span>
+          <span class="colorful" [ngClass]="menu.status == 0 ? 'fail' : 'passed' " *ngIf="menu.status == 0">Ẩn</span>
+        </td>
+      </tr>
+      <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+        <ng-template pTemplate>
+            <div class="option" [routerLink]="[menu.id]">
+                <i class="pi pi-pencil"></i> Sửa
+            </div>
+            <div class="option" (click)="onDeleteTeacher(menu.id)">
+                <i class="pi pi-trash"></i> Xóa
+            </div>
+        </ng-template>
+      </p-overlayPanel>
+    </ng-template>
+  </p-table>
+</div>
+

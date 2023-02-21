@@ -122,6 +122,10 @@ import { ThanhToanComponent } from './quan-tri/thanh-toan/thanh-toan.component';
 import { GiupDoComponent } from './quan-tri/giup-do/giup-do.component';
 import { CauHoiComponent } from './quan-tri/cau-hoi/cau-hoi.component';
 import { NhomCauHoiComponent } from './quan-tri/nhom-cau-hoi/nhom-cau-hoi.component';
+import { MenuComponent } from './quan-tri/menu-nguoi-dung/menu/menu.component';
+import { MenuNguoiDungComponent } from './quan-tri/menu-nguoi-dung/menu-nguoi-dung.component';
+import { HanhDongComponent } from './quan-tri/menu-nguoi-dung/hanh-dong/hanh-dong.component';
+import { NhomQuyenComponent } from './quan-tri/menu-nguoi-dung/nhom-quyen/nhom-quyen.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -166,7 +170,8 @@ const appRoutes: Routes = [
       {path: 'thanh-toan', component: ThanhToanComponent},
       {path: 'giup-do', component: GiupDoComponent},
       {path: 'cau-hoi', component: CauHoiComponent},
-      {path: 'nhom-cau-hoi', component: NhomCauHoiComponent}
+      {path: 'nhom-cau-hoi', component: NhomCauHoiComponent},
+      {path: 'menu', component: MenuNguoiDungComponent}
     ]
   },
   {
@@ -286,7 +291,11 @@ const appRoutes: Routes = [
     ThanhToanComponent,
     GiupDoComponent,
     CauHoiComponent,
-    NhomCauHoiComponent
+    NhomCauHoiComponent,
+    MenuComponent,
+    MenuNguoiDungComponent,
+    HanhDongComponent,
+    NhomQuyenComponent
       ],
   imports: [
     CKEditorModule,

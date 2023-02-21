@@ -1,3 +1,4 @@
+import { Action } from './../models/action.model';
 import { Guide } from './../models/guide.model';
 import { CourseSchedule } from './../models/courseSchedule.model';
 import { Slide } from './../models/slide.model';
@@ -108,6 +109,10 @@ export class ApiService {
     return this.http.get<BaseReponse<Role>>(`${this.url}/Role?` + queryParams)
   }
 
+  getAction(queryParams) : Observable<BaseReponse<Action>> {
+    return this.http.get<BaseReponse<Action>>(`${this.url}/Role/GetActions?` + queryParams)
+  }
+
   // Teacher
   getTeacher(offSet: number = 0, pageSize: number = 1000, filter = '') : Observable<BaseReponse<Teacher>> {
     return this.http.get<BaseReponse<Teacher>>(`${this.url}/Teacher?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
@@ -169,8 +174,8 @@ export class ApiService {
   }
 
   // MenusTree
-  getMenusTree(offSet: number = 0, pageSize: number = 100, filter = "", screen = "", status = -1 ) : Observable<BaseReponse<MenusTree>> {
-    return this.http.get<BaseReponse<MenusTree>>(`${this.url}/Menu/GetMenusTree?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
+  getMenusTree(queryParams) : Observable<BaseReponse<MenusTree>> {
+    return this.http.get<BaseReponse<MenusTree>>(`${this.url}/Menu/GetMenusTree?` + queryParams)
   }
   
   // Footer

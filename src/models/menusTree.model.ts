@@ -8,5 +8,5 @@ export class MenusTree {
   screen = "";
   order: any = null;
   actions = "";
-  childs: any
+  childs: any[]
 }

@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import * as queryString from 'querystring-es3';
+
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,13 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   menusTree: any
-
+  params = {
+    filter: '',
+    offSet: 0,
+    pageSize: 1000,
+    screen: 'admin',
+    status: 1
+  }
   constructor(private apiService: ApiService, private router: Router) { }
 
   buildTree = (arr: any[]) => {
@@ -36,7 +44,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.apiService.getMenusTree(0, 1000, '' , 'admin', 1).subscribe((responseData) => {
+    const queryParams = queryString.stringify(this.params)
+    this.apiService.getMenusTree(queryParams).subscribe((responseData) => {
       this.menusTree = this.buildTree(responseData.data.data);
     });
   }
