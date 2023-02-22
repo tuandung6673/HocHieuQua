@@ -1,0 +1,115 @@
+<div class="wrapper treeTable">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Step</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Step</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <!-- <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button> -->
+        <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
+    </div>
+  </div>
+
+  <p-table [value]="steps" dataKey="id" rowHover="true">
+    <ng-template pTemplate="header">
+        <tr>
+          <th pFrozenColumn style="width: 30px"></th>
+          <!-- <th pFrozenColumn style="width: 40px;"></th> -->
+
+          <th>Tên nhóm</th>
+          <th>Sắp xếp</th>
+          <th>Thời gian</th>
+          <th>Màn hình</th>
+          <th>Nút chuyển</th>
+          <th>Hiển thị</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-expanded="expanded" let-step>
+        <tr>
+            <td pFrozenColumn>
+              <button type="button" pButton pRipple [pRowToggler]="step" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <!-- <td pFrozenColumn style="width: 40px" >
+              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+            </td> -->
+            <td>
+                {{step.name}}
+            </td>
+            <td>{{step.order}}</td>
+            <td>{{step.delay}}</td>
+            <td>{{step.screen}}</td>
+            <td>
+              <span  class="colorful" [ngClass]="step.showNavigation == 0 ? 'fail' : 'passed' " *ngIf="step.showNavigation == 0">Ẩn</span>
+              <span  class="colorful" [ngClass]="step.showNavigation == 0 ? 'fail' : 'passed' " *ngIf="step.showNavigation == 1">Hiển thị</span>
+            </td>
+            <td>
+              <span  class="colorful" [ngClass]="step.status == 0 ? 'fail' : 'passed' " *ngIf="step.status == 0">Ẩn</span>
+              <span  class="colorful" [ngClass]="step.status == 0 ? 'fail' : 'passed' " *ngIf="step.status == 1">Hiển thị</span>
+            </td>
+        </tr>
+        <!-- <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[step.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" (click)="onDeleteCourse(step.id)">
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+        </p-overlayPanel> -->
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-step>
+      <tr>
+          <td colspan="7">
+              <div class="p-p-3">
+                  <p-table [value]="step.steps" dataKey="id"  rowHover="true">
+                      <ng-template pTemplate="header">
+                          <tr>
+                            <!-- <th style="width: 5rem"></th> -->
+                            <th style="min-width: 250px">Tiêu đề chính</th>
+                            <th style="min-width: 250px">Tiêu đề con</th>
+                            <th style="width: 600px;">Mô tả</th>
+                            <th style="width: 100px;">Sắp xếp</th>
+                            <th style="width: 100px;">Hiển thị</th>
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-order>
+                          <tr>
+                            <td style="min-width: 250px">
+                                {{order.title}}
+                            </td>
+                            <td style="min-width: 250px">{{order.subTitle}}</td>
+                            <td style="width: 600px" [innerHTML]="order.description"></td>
+                            <td style="width: 100px;">{{order.order}}</td>
+                            <td style="width: 100px;">
+                              <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 0">Ẩn</span>
+                              <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 1">Hiển thị</span>
+                            </td>
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="emptymessage">
+                          <tr>
+                              <td colspan="6">There are no order for this product yet.</td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

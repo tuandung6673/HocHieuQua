@@ -36,6 +36,7 @@ import {PasswordModule} from 'primeng/password';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
+import {TreeTableModule} from 'primeng/treetable';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -127,10 +128,12 @@ import { MenuNguoiDungComponent } from './quan-tri/menu-nguoi-dung/menu-nguoi-du
 import { HanhDongComponent } from './quan-tri/menu-nguoi-dung/hanh-dong/hanh-dong.component';
 import { NhomQuyenComponent } from './quan-tri/menu-nguoi-dung/nhom-quyen/nhom-quyen.component';
 import { ThongBaoComponent } from './quan-tri/thong-bao/thong-bao.component';
+import { StepComponent } from './quan-tri/step/step.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
     children: [
+      {path: '', redirectTo: 'tai-khoan', pathMatch: 'full'},
       {path: 'danh-muc-tin-tuc', component: DanhMucComponent},
       {path: 'danh-muc-tin-tuc/:id', component: SuaDanhMucComponent},
       {path: 'danh-muc-tin-tuc/them-moi', component: SuaDanhMucComponent},
@@ -173,7 +176,8 @@ const appRoutes: Routes = [
       {path: 'cau-hoi', component: CauHoiComponent},
       {path: 'nhom-cau-hoi', component: NhomCauHoiComponent},
       {path: 'menu', component: MenuNguoiDungComponent},
-      {path: 'thong-bao', component: ThongBaoComponent}
+      {path: 'thong-bao', component: ThongBaoComponent},
+      {path: 'step/0', component: StepComponent}
     ]
   },
   {
@@ -298,7 +302,8 @@ const appRoutes: Routes = [
     MenuNguoiDungComponent,
     HanhDongComponent,
     NhomQuyenComponent,
-    ThongBaoComponent
+    ThongBaoComponent,
+    StepComponent
       ],
   imports: [
     CKEditorModule,
@@ -311,6 +316,7 @@ const appRoutes: Routes = [
     InputTextModule,
     ToggleButtonModule,
     MenubarModule,
+    TreeTableModule,
     ToastModule,
     InputSwitchModule,
     ProgressSpinnerModule,

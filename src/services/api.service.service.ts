@@ -33,6 +33,7 @@ import { PaymentType} from 'src/models/paymentType.model';
 import { Payment } from 'src/models/payment.model';
 import { TestQuestion } from 'src/models/testQuestion.model';
 import { TestQuestionGroup } from 'src/models/testQuestionGroup.model';
+import { Step } from 'src/models/step.model';
 
 @Injectable({
   providedIn: 'root'
@@ -396,5 +397,10 @@ export class ApiService {
 
   getAdminNotification(queryParams) : Observable<BaseReponse<Notification>> {
     return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification/GetAdminNotifications?` + queryParams)
+  }
+
+  // Step
+  getStep(queryParams) : Observable<BaseReponse<Step>> {
+    return this.http.get<BaseReponse<Step>>(`${this.url}/step?` + queryParams)
   }
 }
