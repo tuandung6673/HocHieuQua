@@ -10,7 +10,7 @@
       <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
     </div>
   </div>
-  <p-table [value]="menus" responsiveLayout="scroll" rowHover="true">
+  <p-table [value]="menus" responsiveLayout="scroll" rowHover="true" dataKey="id">
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 2.25em" pFrozenColumn>
@@ -25,12 +25,10 @@
         <th>Trạng thái</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-menu>
+    <ng-template pTemplate="body" let-menu let-expanded="expanded">
       <tr>
-        <td style="width: 2.25em" pFrozenColumn>
-          <span *ngIf="menu.childs.length">
-            <i class="pi pi-chevron-right"></i>
-          </span>
+        <td pFrozenColumn>
+          <button *ngIf="menu.childs.length" type="button" pButton pRipple [pRowToggler]="menu" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
         </td>
         <td pFrozenColumn style="width: 50px" >
           <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
@@ -49,7 +47,7 @@
       </tr>
       <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
         <ng-template pTemplate>
-            <div class="option" [routerLink]="[menu.id]">
+            <div class="option" (click)="showDialog(menu)">
                 <i class="pi pi-pencil"></i> Sửa
             </div>
             <div class="option" (click)="onDeleteTeacher(menu.id)">
@@ -58,6 +56,170 @@
         </ng-template>
       </p-overlayPanel>
     </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-menu>
+      <tr>
+          <td colspan="7">
+              <div class="p-p-3">
+                  <p-table [value]="menu.childs" dataKey="id" rowHover="true">
+                      <ng-template pTemplate="header">
+                          <tr>
+                            <th style="width: 2.25em" pFrozenColumn>
+                              <!-- <p-tableHeaderCheckbox></p-tableHeaderCheckbox> -->
+                            </th> 
+                            <th pFrozenColumn style="width: 50px;"></th>
+                            <th >Tên</th>
+                            <th >Đường dẫn</th>
+                            <th >Biểu tượng</th>
+                            <th >Sắp xếp</th>
+                            <th >Màn hình</th>
+                            <th >Trạng thái</th>
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-order>
+                          <tr>
+                            <td pFrozenColumn>
+                              <button *ngIf="order.childs.length" type="button" pButton pRipple [pRowToggler]="menu" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                            </td>
+                            <td pFrozenColumn style="width: 50px" >
+                              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+                            </td>
+                            <td >
+                                {{order.name}}
+                            </td>
+                            <td >{{order.path}}</td>
+                            <td >
+                              <i [class]="order.icon"></i>
+                            </td>
+                            <td >{{order.order}}</td>
+                            <td >{{order.screen}}</td>
+                            <td >
+                              <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 0">Ẩn</span>
+                              <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 1">Hiển thị</span>
+                            </td>
+                          </tr>
+                          <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+                            <ng-template pTemplate>
+                                <div class="option" (click)="showDialog()">
+                                    <i class="pi pi-pencil"></i> Sửa
+                                </div>
+                                <div class="option" (click)="onDeleteTeacher(menu.id)">
+                                    <i class="pi pi-trash"></i> Xóa
+                                </div>
+                            </ng-template>
+                          </p-overlayPanel>
+                      </ng-template>
+
+                      <ng-template pTemplate="rowexpansion" let-order>
+                        <tr>
+                            <td colspan="7">
+                                <div class="p-p-3">
+                                    <p-table [value]="order.childs" dataKey="id" rowHover="true">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                              <!-- <th style="width: 5rem"></th> -->
+                                              <th >Tên</th>
+                                              <th >Đường dẫn</th>
+                                              <th >Biểu tượng</th>
+                                              <th >Sắp xếp</th>
+                                              <th >Màn hình</th>
+                                              <th >Trạng thái</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-order>
+                                            <tr>
+                                              <td >
+                                                  {{order.name}}
+                                              </td>
+                                              <td >{{order.path}}</td>
+                                              <td >
+                                                <i [class]="order.icon"></i>
+                                              </td>
+                                              <td >{{order.order}}</td>
+                                              <td >{{order.screen}}</td>
+                                              <td >
+                                                <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 0">Ẩn</span>
+                                                <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 1">Hiển thị</span>
+                                              </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </td>
+                        </tr>
+                      </ng-template>                      
+                  </p-table>
+              </div>
+          </td>
+      </tr>
+    </ng-template>
   </p-table>
 </div>
 
+<p-dialog header="Chi tiết Menu" [(visible)]="displayBasic" >
+  <div class="dialog-wrapper grid">
+    <div class="col-6">
+      <small>Tên</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-spin pi-spinner"></i>
+          <input type="text" pInputText [(ngModel)]="selectMenu.name"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <small>Đường dẫn</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-spin pi-spinner"></i>
+          <input type="text" pInputText [(ngModel)]="selectMenu.path"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <small>Menu cha</small>
+      <div>
+        <p-dropdown placeholder="Menu cha"></p-dropdown>
+      </div>
+    </div>
+    <div class="col-6">
+      <small>Thứ tự</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-spin pi-spinner"></i>
+          <input type="text" pInputText [(ngModel)]="selectMenu.order"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <small>Icon</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-spin pi-spinner"></i>
+          <input type="text" pInputText [(ngModel)]="selectMenu.icon" />
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <small>Màn hình</small>
+      <div>
+        <p-dropdown [options]="screenOption" [(ngModel)]="selectMenu.screen" placeholder="Màn hình"></p-dropdown>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Hành động</small>
+      <div>
+        <p-multiSelect [filter]="false" [options]="actionsOptions" [(ngModel)]="abc" (onChange)="abcd()"></p-multiSelect>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Hiển thị</small>
+      <div>
+        <p-inputSwitch [(ngModel)]="selectMenu.status"></p-inputSwitch>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

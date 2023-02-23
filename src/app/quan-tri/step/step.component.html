@@ -40,7 +40,7 @@
     <ng-template pTemplate="body" let-expanded="expanded" let-step>
         <tr>
             <td pFrozenColumn>
-              <button type="button" pButton pRipple [pRowToggler]="step" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              <button *ngIf="step.steps.length" type="button" pButton pRipple [pRowToggler]="step" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
             </td>
             <!-- <td pFrozenColumn style="width: 40px" >
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>

@@ -37,6 +37,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
 import {TreeTableModule} from 'primeng/treetable';
+import {TreeSelectModule} from 'primeng/treeselect';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -320,6 +321,7 @@ const appRoutes: Routes = [
     ToastModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    TreeSelectModule,
     CheckboxModule,
     SplitButtonModule,
     ProgressBarModule,
