@@ -129,6 +129,8 @@ import { HanhDongComponent } from './quan-tri/menu-nguoi-dung/hanh-dong/hanh-don
 import { NhomQuyenComponent } from './quan-tri/menu-nguoi-dung/nhom-quyen/nhom-quyen.component';
 import { ThongBaoComponent } from './quan-tri/thong-bao/thong-bao.component';
 import { StepComponent } from './quan-tri/step/step.component';
+import { QuanTriFooterComponent } from './quan-tri/quan-tri-footer/quan-tri-footer.component';
+import { ChiTietFooterComponent } from './quan-tri/quan-tri-footer/chi-tiet-footer/chi-tiet-footer.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -177,6 +179,8 @@ const appRoutes: Routes = [
       {path: 'nhom-cau-hoi', component: NhomCauHoiComponent},
       {path: 'menu', component: MenuNguoiDungComponent},
       {path: 'thong-bao', component: ThongBaoComponent},
+      {path: 'footer', component: QuanTriFooterComponent},
+      {path: 'footer/:id', component: ChiTietFooterComponent},
       {path: 'step/0', component: StepComponent}
     ]
   },
@@ -303,7 +307,9 @@ const appRoutes: Routes = [
     HanhDongComponent,
     NhomQuyenComponent,
     ThongBaoComponent,
-    StepComponent
+    StepComponent,
+    QuanTriFooterComponent,
+    ChiTietFooterComponent
       ],
   imports: [
     CKEditorModule,

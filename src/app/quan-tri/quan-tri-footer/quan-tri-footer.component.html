@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="guide">
+          <span><i class="pi pi-home"></i></span>
+          <i>/</i>
+          <span>Quản trị</span>
+          <i>/</i>
+          <span class="active">Quản lý Footer</span>
+        </div>
+        <div class="header-2">
+          <div class="header-left">
+            <div class="empty"></div>
+            <div class="main-title">Quản lý Footer</div>
+          </div>
+          <div class="header-right">
+            <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+          </div>
+        </div>
+    </div>
+
+    <p-table [value]="footers" responsiveLayout="scroll" rowHover="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pFrozenColumn style="width: 2.25em">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pFrozenColumn style="width: 50px;"></th>
+                <th>Tiêu đề</th>
+                <th>Hiển thị</th>
+                <th>Sắp xếp</th>
+                <th>Vị trí</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-footer>
+            <tr>
+                <td pFrozenColumn style="width: 2.25em">
+                    <p-tableCheckbox [value]="footer"></p-tableCheckbox>
+                </td>
+                <td pFrozenColumn style="width: 50px" >
+                    <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+                </td>
+                <td>{{footer.title}}</td>
+                <td>
+                    <span  class="colorful" [ngClass]="footer.status == 0 ? 'fail' : 'passed' " *ngIf="footer.status == 0">Ẩn</span>
+                     <span  class="colorful" [ngClass]="footer.status == 0 ? 'fail' : 'passed' " *ngIf="footer.status == 1">Hiển thị</span>
+                </td>
+                <td>{{footer.order}}</td>
+                <td>{{footer.position}}</td>
+            </tr>
+            <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+                <ng-template pTemplate>
+                    <div class="option" [routerLink]="[footer.id]">
+                        <i class="pi pi-pencil"></i> Sửa
+                    </div>
+                    <div class="option" (click)="deleteFooter(footer.id)">
+                        <i class="pi pi-trash"></i> Xóa
+                    </div>
+                </ng-template>
+            </p-overlayPanel>
+        </ng-template>
+    </p-table>
+</div>
+<p-paginator [rows]="query.pageSize" [totalRecords]="totalRecoed" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
