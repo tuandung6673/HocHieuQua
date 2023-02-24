@@ -184,6 +184,18 @@ export class ApiService {
     return this.http.get<BaseReponse<Footer>>(`${this.url}/footer?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
   }
 
+  getFooterById(id: string) : Observable<BaseRetail<Footer>> {
+    return this.http.get<BaseRetail<Footer>>(`${this.url}/Footer/` + id)
+  }
+
+  postFooter(data: Footer) {
+    return this.http.post<Message>(`${this.url}/Footer`, data)
+  }
+
+  deleteFooter(id : string) {
+    return this.http.delete(`${this.url}/Footer/` + id)
+  }
+
   // Slide
   getSlide(queryParams) : Observable<BaseReponse<Slide>> {
     return this.http.get<BaseReponse<Slide>>(`${this.url}/Slide?` + queryParams)

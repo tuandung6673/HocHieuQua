@@ -40,7 +40,6 @@ export class LogInOutComponent implements OnInit, OnDestroy{
         this.message.add({summary: 'Thông báo', severity: 'success', detail: 'Đăng nhập thành công'})
 
         this.delay = setTimeout(() => {
-          console.log('setTimeout');
           this.message.clear()
           this.router.navigate(['/'])
         }, 500);
@@ -52,7 +51,6 @@ export class LogInOutComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    console.log('clearTimeout');
     clearTimeout(this.delay)
   }
 

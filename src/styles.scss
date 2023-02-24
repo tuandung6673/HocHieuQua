@@ -29,6 +29,7 @@ body {
 .p-datatable-thead {
   z-index: -100;
 }
+
 .header-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -292,5 +293,77 @@ body {
     .p-dialog-header-icons {
       display: none;
     }
+  }
+}
+
+.detail {
+  font-size: 16px;
+  small {
+    margin-bottom: 3px;
+  }
+  .p-input-icon-right {
+    width: 100%;
+    height: 40px;
+    .p-inputtext {
+      font-size: 14px;
+      width: 100%;
+      height: 40px;
+    }
+  }
+  .inputSwitch {
+    display: flex;
+    align-items: center;
+    small {
+      margin-bottom: 0;
+    }
+    .p-inputswitch {
+      margin: 5px 5px 0 5px;
+      height: 20px;
+      width: 40px;
+    }
+  }
+  .ckeditor {
+    padding: 10px 0;
+  }
+  .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    transform: translateX(2rem);
+  }
+  .detail-action {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: end;
+    & > * {
+      margin: 0px 5px;
+    }
+    & > :last-child {
+      margin-right: 0;
+    }
+    .p-button {
+      height: 40px;
+      background: #007bff;
+      border: 1px solid #007bff;
+    }
+    .p-button-label {
+      font-size: 15px;
+      // font-weight: 600;
+    }
+    .p-button-icon {
+      font-size: 15px;
+      // font-weight: 600;
+    }
+    .cancel-btn {
+      .p-button {
+        background-color: transparent;
+        border: 1px solid;
+        color: #007bff;
+      }
+    }
+  }
+}
+
+.wrapper {
+  .p-datatable .p-datatable-thead > tr > th {
+    background: #afd0f1;
   }
 }

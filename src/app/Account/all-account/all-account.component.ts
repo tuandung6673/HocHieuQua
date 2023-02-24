@@ -36,7 +36,7 @@ export class AllAccountComponent implements OnInit {
   }
 
   getAllAccount() {
-    this.spinner.show();
+    // this.spinner.show();
     const queryParams = queryString.stringify(this.params)
     this.apiService.getAccounts(queryParams).subscribe((responseData) => {
       // console.log('All account', this.accounts);
