@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Footer } from './../../../models/footer.model';
+import { ExportService } from 'src/services/export.service';
 @Component({
   selector: 'app-quan-tri-footer',
   templateUrl: './quan-tri-footer.component.html',
@@ -16,7 +17,8 @@ export class QuanTriFooterComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private exportService: ExportService
   ) { }
   footers : any[] = [];
   totalRecoed : number;
@@ -47,5 +49,9 @@ export class QuanTriFooterComponent implements OnInit {
   deleteFooter(id) {
     
   }
+
+  // export() {
+  //   this.exportService.exportExcel(JSON.stringify(this.footers), 'Quản lý Footer')
+  // }
 
 }

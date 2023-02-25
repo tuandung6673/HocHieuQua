@@ -46,4 +46,8 @@ export class SuaTinTuyenDungComponent implements OnInit {
     })
   }
 
+  cancel() {
+    
+  }
+
 }

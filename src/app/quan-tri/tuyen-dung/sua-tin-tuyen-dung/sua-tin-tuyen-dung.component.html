@@ -1,49 +1,81 @@
-<form (ngSubmit)="onSubmit()">
-  <div class="grid">
-    <div class="col-12">
-      <label for="name" class="block">Tiêu đề</label>
-      <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.name" name="name" />
+<div class="wrapper">
+  <div class="header">
+      <div class="guide">
+        <span><i class="pi pi-home"></i></span>
+        <i>/</i>
+        <span>Quản trị</span>
+        <i>/</i>
+        <span>Tuyển dụng</span>
+        <i>/</i>
+        <span class="active">Quản lý Tuyển dụng</span>
+      </div>
+      <div class="header-2">
+        <div class="header-left">
+          <div class="empty"></div>
+          <div class="main-title" *ngIf="id && id != 'them-moi'" >Chi tiết Tuyển dụng</div>
+          <div class="main-title" *ngIf="id == 'them-moi'" >Thêm Tuyển dụng</div>
+        </div>
+        <div class="header-right">
+        </div>
+      </div>
+  </div>
+  <div class="detail grid">
+    <div class="col-6">
+      <small>Tiêu đề</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.name" name="name" />
+        </span>
+      </div>
     </div>
     <div class="col-6">
-      <label for="price" class="block">Giá</label>
-      <input id="price" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.price" name="price" />
+      <small>Giá</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-spin pi-spinner"></i>
+            <input id="price" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.price" name="price" />
+          </span>
+        </div>
     </div>
     <div class="col-6">
-      <label for="address" class="block">Địa chỉ</label>
-      <input id="address" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.address" name="address" />
+      <small>Địa chỉ</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-spin pi-spinner"></i>
+            <input id="address" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.address" name="address" />
+          </span>
+        </div>
     </div>
     <div class="col-6">
-      <label for="order" class="block">Thứ tự</label>
-      <input id="order" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.order" name="order" />
+      <small>Tags</small>
+      <div>
+        <p-chips [(ngModel)]="editRecruit.tags" name="tags" ></p-chips>
+      </div>
     </div>
-    <div class="col-3">
-      <label for="status" class="block">Hiển thị</label>
+    <div class="col-3 inputSwitch">
+      <small>Hiển thị</small>
       <p-inputSwitch [(ngModel)]="editRecruit.status"  name="status"></p-inputSwitch>
     </div>
-    <div class="col-3">
-      <label for="isHot" class="block">Nóng hổi</label>
+    <div class="col-3 inputSwitch">
+      <small>Nóng hỏi</small>
       <p-inputSwitch [(ngModel)]="editRecruit.isHot"  name="isHot"></p-inputSwitch>
     </div>
-    <div class="col-12">
-      <label for="order" class="block">Tags</label>
-      <p-chips [(ngModel)]="editRecruit.tags" name="tags" ></p-chips>
-    </div>
-    <div class="col-12">
-      <label for="order" class="block">Yêu cầu</label>
+    <div class="col-12 ckeditor">
+      <small>Yêu cầu</small>
       <ckeditor [editor]="Editor" name="shortContent" [(ngModel)]="editRecruit.requirement"></ckeditor>
     </div>
-    <div class="col-12">
-      <label for="order" class="block">Nội dung bài viết</label>
+    <div class="col-12 ckeditor">
+      <small>Nội dung bài viết</small>
       <ckeditor [editor]="Editor" name="content" [(ngModel)]="editRecruit.content"></ckeditor>
     </div>
+    <div class="detail-action">
+      <div class="cancel-btn">
+        <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+      </div>
+      <div class="save-btn">
+        <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+      </div>
+    </div>
   </div>
-  <button style="margin: 10px" pButton pRipple label="Quay lại" icon="pi pi-times"></button>
-  <button 
-    style="margin: 10px" 
-    type="submit" 
-    pButton pRipple 
-    label="Lưu" 
-    icon="pi pi-check"
-    >
-  </button>
-</form>
+</div>

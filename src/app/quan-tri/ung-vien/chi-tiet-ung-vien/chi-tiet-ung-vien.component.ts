@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
 export class ChiTietUngVienComponent implements OnInit {
 
   Editor = ClassicEditor;
-  editRecruitCandidate : RecruitCandidate;
+  editRecruitCandidate : RecruitCandidate = new RecruitCandidate();
   id : string;
   constructor(
     private apiService: ApiService,
@@ -28,9 +28,9 @@ export class ChiTietUngVienComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    // if(this.id && this.id != 'them-moi') {
+    if(this.id && this.id != 'them-moi') {
       this.getCandidate(this.id)
-    // }
+    }
   }
 
   getCandidate(id:string) {

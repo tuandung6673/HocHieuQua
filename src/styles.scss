@@ -16,6 +16,7 @@ body {
 
 .ck-content {
   min-height: 200px;
+  max-height: 500px;
 }
 
 .p-element .p-datatable-table {
@@ -358,6 +359,16 @@ body {
         border: 1px solid;
         color: #007bff;
       }
+    }
+  }
+  .p-chips {
+    width: 100%;
+    height: 40px;
+    .p-chips-multiple-container {
+      width: 100%;
+    }
+    .p-chips-token-label {
+      font-size: 13px;
     }
   }
 }

@@ -12,7 +12,8 @@
         <div class="header-2">
           <div class="header-left">
             <div class="empty"></div>
-            <div class="main-title">Chi tiết Footer</div>
+            <div class="main-title" *ngIf="footerId && footerId != 'them-ung-vien'" >Chi tiết Footer</div>
+            <div class="main-title" *ngIf="footerId == 'them-ung-vien'" >Thêm Footer</div>
           </div>
           <div class="header-right">
           </div>
@@ -23,7 +24,7 @@
         <small>Tiêu đề</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-spin pi-spinner"></i>
+            <i class="pi pi-user"></i>
             <input type="text" pInputText [(ngModel)]="footer.title"/>
           </span>
         </div>

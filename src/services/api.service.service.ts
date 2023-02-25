@@ -189,7 +189,7 @@ export class ApiService {
   }
 
   postFooter(data: Footer) {
-    return this.http.post<Message>(`${this.url}/Footer`, data)
+    return this.http.post<Message>(`${this.url}/footer`, data)
   }
 
   deleteFooter(id : string) {

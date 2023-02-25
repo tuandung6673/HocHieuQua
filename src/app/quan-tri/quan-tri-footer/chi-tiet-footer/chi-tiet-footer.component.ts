@@ -5,6 +5,8 @@ import { ApiService } from 'src/services/api.service.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { Subject } from './../../../../models/subject.model';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-chi-tiet-footer',
@@ -21,18 +23,21 @@ export class ChiTietFooterComponent implements OnInit {
     private route : ActivatedRoute,
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private messageService : MessageService
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.footerId = params['id']
     })
-    this.getFooterById();
+    if(this.footerId && this.footerId != 'them-ung-vien') {
+      this.getFooterById();
+    }
   }
 
   getFooterById() {
-    // this.spinner.show();
+    this.spinner.show();
     this.apiService.getFooterById(this.footerId).subscribe((response) => {
       this.footer = response.data as Footer; 
       // console.log(response.data);
@@ -47,7 +52,16 @@ export class ChiTietFooterComponent implements OnInit {
   }
 
   save() {
-
+    const data = {...this.footer};
+    data.status = data.status ? 1 : 0;
+    this.apiService.postFooter(data).subscribe(response => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'success', detail: 'Cập nhật Footer thành công'})
+        this.router.navigate(['/quan-tri/footer'])
+      } else {
+        this.messageService.add({severity: 'success', summary: 'success', detail: 'Cập nhật Footer thất bại'})
+      }
+    })
   }
 
 }
