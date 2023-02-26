@@ -40,4 +40,8 @@ export class SuaDanhMucComponent implements OnInit {
     })
   }
 
+  cancel() {
+    
+  }
+
 }

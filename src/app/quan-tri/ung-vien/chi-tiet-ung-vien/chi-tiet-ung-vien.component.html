@@ -1,63 +1,68 @@
-<div class="wrapper detail">
-    <div class="guide">
-      <span><i class="pi pi-home"></i></span>
-      <i>/</i>
-      <span>Quản trị </span>
-      <i>/</i>
-      <span>Ứng viên</span>
-      <i>/</i>
-      <span class="active">Chi tiết ứng viên</span>
-    </div>
-  
-    <div class="title">
-      <div class="empty"></div>
-      <div class="main-title">Chi tiết Ứng viên</div>
+<div class="wrapper">
+    <div class="header">
+        <div class="guide">
+          <span><i class="pi pi-home"></i></span>
+          <i>/</i>
+          <span>Quản trị</span>
+          <i>/</i>
+          <span>Ứng viên</span>
+          <i>/</i>
+          <span class="active">Chi tiết Ứng viên</span>
+        </div>
+        <div class="header-2">
+          <div class="header-left">
+            <div class="empty"></div>
+            <div class="main-title" *ngIf="id && id != 'them-ung-vien'" >Chi tiết Ứng viên</div>
+            <div class="main-title" *ngIf="id == 'them-ung-vien'" >Thêm Ứng viên</div>
+          </div>
+          <div class="header-right">
+          </div>
+        </div>
     </div>
 
-    <div class="candidate-info">
+    <div class="detail">
       <p class="infor">Thông tin ứng viên</p>
       <div class="grid">
         <div class="col-6">
-          <div class="header">Họ tên</div>
+          <small>Họ tên</small>
           <span class="input p-input-icon-right">
             <i class="pi pi-sort-numeric-down"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.name" name="name"/>
           </span>  
         </div>
         <div class="col-6">
-          <div class="header">Email</div>
+          <small>Email</small>
           <span class="input p-input-icon-right">
             <i class="pi pi-sort-numeric-down"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.email" name="email"/>
           </span>  
         </div>
         <div class="col-6">
-          <div class="header">Điện thoại</div>
+          <small>Điện thoại</small>
           <span class="input p-input-icon-right">
             <i class="pi pi-sort-numeric-down"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.phone" name="phone"/>
           </span>  
         </div>
         <div class="col-6">
-          <div class="header">Ngày ứng tuyển</div>
+          <small>Ngày ứng tuyển</small>
           <span class="input p-input-icon-right">
             <i class="pi pi-sort-numeric-down"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.applyDate" name="applyDate"/>
           </span>  
         </div>
         <div style="color: #6c757d; padding: 0 10px;" class="col-12">
-          <div class="header">Nội dung</div>
+          <small>Nội dung</small>
           <p>{{editRecruitCandidate.content}}</p>
         </div>
         <div style="color: #6c757d; padding: 0 10px;" class="col-12">
-          <div class="header">Bài tuyển dụng</div>
+          <small>Bài tuyển dụng</small>
           <p>{{editRecruitCandidate.recruitName}}</p>
         </div>
       </div>
     </div>
-
     <hr>
-    <div class="intern-info">
+    <div class="detail">
       <p class="infor">Thông tin phỏng vấn</p>
       <div class="grid">
         <div class="col-6">

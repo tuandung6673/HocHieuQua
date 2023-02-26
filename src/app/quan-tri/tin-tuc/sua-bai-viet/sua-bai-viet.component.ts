@@ -62,4 +62,8 @@ export class SuaBaiVietComponent implements OnInit {
     })
   }
 
+
+  cancel() {
+    
+  }
 }

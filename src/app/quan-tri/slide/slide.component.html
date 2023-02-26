@@ -58,10 +58,10 @@
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
-              <div class="option" [routerLink]="[subject.id]">
+              <div class="option" [routerLink]="[slide.id]">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" (click)="confirmDeleteSubject(subject.id)">
+              <div class="option" (click)="confirmDeleteslide(subject.id)">
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>

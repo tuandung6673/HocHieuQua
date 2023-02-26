@@ -1,26 +1,55 @@
-<form (ngSubmit)="onSubmit()">
-  <div class="grid">
-    <div class="col-12">
-      <label for="name" class="block">Tên môn học</label>
-      <input id="name" type="username" aria-describedby="name-help" [(ngModel)]="editNewCategory.name" pInputText  name="name" />
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Tin tức</span>
+      <i>/</i>
+      <span class="active">Chi tiết Danh mục tin tức</span>
     </div>
-    <div class="col-6">
-      <label for="name" class="block">Thứ tự</label>
-      <input id="name" type="username" aria-describedby="name-help" [(ngModel)]="editNewCategory.order" pInputText  name="order" />
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-moi'" >Chi tiết Danh mục tin tức</div>
+        <div class="main-title" *ngIf="id == 'them-moi'" >Thêm Danh mục tin tức</div>
+      </div>
+      <div class="header-right">
+      </div>
     </div>
-    <div class="col-6">
-      <label for="checked" class="block">Hiển thị</label>
-      <p-inputSwitch [(ngModel)]="editNewCategory.status"  name="status"></p-inputSwitch>
-    </div>
-
-    <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
-    <button 
-      style="margin: 10px" 
-      type="submit" 
-      pButton pRipple 
-      label="Save" 
-      icon="pi pi-check"
-      >
-    </button>
   </div>
-</form>
+
+  <div class="detail grid">
+    <div class="col-12">
+      <small>Tên môn học</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input id="name" type="username" aria-describedby="name-help" [(ngModel)]="editNewCategory.name" pInputText  name="name" />
+          </span>
+        </div>
+    </div>
+    <div class="col-6">
+      <small>Thứ tự</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-spin pi-spinner"></i>
+            <input id="name" type="username" aria-describedby="name-help" [(ngModel)]="editNewCategory.order" pInputText  name="order" />
+          </span>
+        </div>
+    </div>
+    <div class="col-6 inputSwitch">
+      <small>Hiển thị</small>
+      <p-inputSwitch [(ngModel)]="editNewCategory.status"></p-inputSwitch>
+    </div>
+    <div class="detail-action">
+      <div class="cancel-btn">
+        <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+      </div>
+      <div class="save-btn">
+        <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,42 +1,73 @@
-<div style="margin: 10px"></div>
 
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Tin tức</span>
+      <i>/</i>
+      <span class="active">Chi tiết Tin tức</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-moi'" >Chi tiết Tin tức</div>
+        <div class="main-title" *ngIf="id == 'them-moi'" >Thêm Tin tức</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
 </div>
 
-<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
   <div class="grid">
     <div class="col-3">
       <img [src]="editNew.avatar ? editNew.avatar : defaultAvatar" width="220" height="200" />
     </div>
     <div class="col-9">
-      <div class="grid">
+      <div class="detail grid">
         <div class="col-12">
-          <label for="avatar" class="block">Avatar</label>
-          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.avatar" name="avatar"/>
+          <small>Avatar</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.avatar" name="avatar"/>
+            </span>
+          </div>
         </div>
         <div class="col-12">
-          <label for="title" class="block">Tiêu đề</label>
-          <input id="title" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.title" name="title"/>
+          <small>Tiêu đề</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input id="title" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.title" name="title"/>
+            </span>
+          </div>
         </div>
         <div class="col-12">
-          <label for="order" class="block">Thứ tự</label>
-          <input id="order" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.order" name="order"/>
+          <small>Thứ tự</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input id="order" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.order" name="order"/>
+            </span>
+          </div>
         </div>
         <div class="col-3">
-          <label for="order" class="block">Tags</label>
+          <small>Tags</small>
           <p-chips [(ngModel)]="editNew.tags" name="tags" ></p-chips>
         </div>
         <div class="col-3">
-          <label for="order" class="block">Danh mục</label>
+          <small>Danh mục</small>
           <p-dropdown [options]="newCategoryOption" [(ngModel)]="editNew.categoryId" optionLabel="name" optionValue="code" name="subjectId"></p-dropdown>
         </div>
         <div class="col-3">
-          <label for="order" class="block">Đánh giá</label>
+          <small>Đánh giá</small>
           <p-rating [(ngModel)]="editNew.rate" name="rate" [cancel]="false"></p-rating>
         </div>
-        <div class="col-3">
-          <label for="order" class="block">Hiển thị</label>
+        <div class="col-3 inputSwitch">
+          <small>Hiển thị</small>
           <p-inputSwitch [(ngModel)]="editNew.status" name="status"></p-inputSwitch>
         </div>
         <div class="col-12">
@@ -47,16 +78,15 @@
           <label for="order" class="block">Mô tả chi tiết</label>
           <ckeditor [editor]="Editor" name="content" [(ngModel)]="editNew.content"></ckeditor>
         </div>
+        <div class="detail-action">
+          <div class="cancel-btn">
+            <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+          </div>
+          <div class="save-btn">
+            <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+          </div>
+        </div>
       </div>
-      <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
-      <button 
-        style="margin: 10px" 
-        type="submit" 
-        pButton pRipple 
-        label="Save" 
-        icon="pi pi-check"
-        >
-      </button>
     </div>
   </div>
-</form>
+</div>
