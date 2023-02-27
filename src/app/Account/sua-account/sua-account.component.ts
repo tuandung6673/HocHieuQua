@@ -61,4 +61,7 @@ export class SuaAccountComponent implements OnInit {
     })
   }
   
+  cancel() {
+    
+  }
 }

@@ -91,3 +91,13 @@
   background: rgb(206, 178, 178);
   cursor: pointer;
 }
+
+.bell {
+  margin: 4px 15px 0 15px;
+  i {
+    font-size: 18px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

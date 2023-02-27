@@ -59,22 +59,22 @@
               <span class="colorful" [ngClass]="account.status == 0 ? 'fail' : 'passed' " *ngIf="account.status == 0">Tạm khóa</span>
             </td>
         </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+            <div class="option" [routerLink]="[account.id]">
+                <i class="pi pi-pencil"></i> Sửa
+            </div>
+            <div class="option" (click)="deleteCandidate(account.id)">
+                <i class="pi pi-trash"></i> Xóa
+            </div>
+          </ng-template>
+        </p-overlayPanel>
     </ng-template>
   </p-table>
 </div>
   
 <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
 
-<p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
-  <ng-template pTemplate>
-    <div class="option" [routerLink]="[account.id]">
-        <i class="pi pi-pencil"></i> Sửa
-    </div>
-    <div class="option" (click)="deleteCandidate(account.id)">
-        <i class="pi pi-trash"></i> Xóa
-    </div>
-  </ng-template>
-</p-overlayPanel>
 
 <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
   <ng-template pTemplate>

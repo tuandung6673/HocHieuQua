@@ -20,6 +20,9 @@
     </div>
 
     <div [ngClass]="isToken ? 'logined' : 'none' ">
+      <div class="bell">
+        <i class="pi pi-bell" (click)="op.toggle($event)"></i>
+      </div>
       <div class="avatar">
         <img [src]="defaultAvatar"/>
       </div>
@@ -32,3 +35,9 @@
     </div>
   </div>
 </div>
+
+<p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '450px'}">
+  <ng-template pTemplate>
+      ABC
+  </ng-template>
+</p-overlayPanel>

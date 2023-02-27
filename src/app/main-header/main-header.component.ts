@@ -1,19 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Authentication } from 'src/models/authentication.model';
+import { ApiService } from 'src/services/api.service.service';
+import * as queryString from 'querystring-es3';
+import { Notification } from 'src/models/notification.model';
 
 @Component({
   selector: 'app-main-header',
   templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.css']
+  styleUrls: ['./main-header.component.scss']
 })
 export class MainHeaderComponent implements OnInit {
 
+  params = {
+    accountId: '',
+    filter: '',
+    isRead: -1,
+    offSet: 0,
+    pageSize: 5
+  }
+  noti: Notification[] = [];
   items : any
   userData: Authentication
   isToken: boolean = false
   defaultAvatar = 'https://phongreviews.com/wp-content/uploads/2022/11/avatar-facebook-mac-dinh-12.jpg';
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) {
+
+  }
 
   ngOnInit(): void {
     this.isToken = localStorage.getItem('userToken') ? true : false
@@ -44,14 +57,23 @@ export class MainHeaderComponent implements OnInit {
       {label: 'Đăng xuất', icon: 'pi pi-sign-out', command: () => {
         this.logout()
       }},
-
     ]
+    setInterval(() => {
+      this.getNotification();
+    }, 20000)
   }
 
   logout() {
     localStorage.removeItem('userToken')
     localStorage.removeItem('userData')
     this.router.navigate(['/dang-nhap'])
+  }
+
+  getNotification() {
+    const queryParams = queryString.stringify(this.params)
+    this.apiService.getNotification(queryParams).subscribe(response => {
+      this.noti = response.data.data
+    })
   }
 
 }

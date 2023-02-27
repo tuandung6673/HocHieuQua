@@ -1,101 +1,126 @@
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
-
 <div class="wrapper">
-  <form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-    <div class="grid" style="display: flex">
-      <div class="col-4">
+
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Tài khoản</span>
+      <i>/</i>
+      <span class="active">Chi tiết Tài khoản</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-tai-khoan'" >Chi tiết Tài khoản</div>
+        <div class="main-title" *ngIf="id == 'them-tai-khoan' || !id" >Thêm Tài khoản</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
+  </div>
+
+    <div class="grid" >
+      <div class="col-3">
         <div class="field">
           <label for="avatar" class="block">Avatar</label>
           <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editAccount.avatar" name="avatar"/>
         </div>
         <img [src]="editAccount.avatar" width="100%" height="200" />
       </div>
-      <div class="col-8">
-        <div class="grid">
+      <div class="col-9 grid detail">
           <div class="col-6">
-            <div class="field">
-              <label for="userName" class="block">Tài khoản đăng nhập</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="userName" type="text" aria-describedby="username-help" pInputText name="userName" [(ngModel)]="editAccount.userName" />
-            </div>
+            <small>Tài khoản đăng nhập</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="userName" type="text" aria-describedby="username-help" pInputText name="userName" [(ngModel)]="editAccount.userName" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>Mật khẩu</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" [(ngModel)]="editAccount.password" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>Tên</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editAccount.name" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>Email</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editAccount.email" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>Số điện thoại</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editAccount.phone" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>CCCD/CMND</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editAccount.identityNo" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>Lớp</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="className" type="text" aria-describedby="username-help" pInputText name="className" [(ngModel)]="editAccount.className" />
+                </span>
+              </div>
+          </div>
+          <div class="col-6">
+            <small>Ngày sinh</small>
+              <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-spin pi-spinner"></i>
+                  <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="birthday" type="date" aria-describedby="username-help" pInputText name="birthday" [(ngModel)]="editAccount.birthday" />
+                </span>
+              </div>
           </div>
   
           <div class="col-6">
-            <div class="field">
-              <label for="password" class="block">Mật khẩu</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" [(ngModel)]="editAccount.password" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="name" class="block">Tên</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editAccount.name" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="email" class="block">Email</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editAccount.email" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="phone" class="block">Số điện thoại</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editAccount.phone" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="identityNo" class="block">CCCD/CMND</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editAccount.identityNo" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="className" class="block">Lớp</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="className" type="text" aria-describedby="username-help" pInputText name="className" [(ngModel)]="editAccount.className" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="birthday" class="block">Ngày sinh</label>
-              <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="birthday" type="date" aria-describedby="username-help" pInputText name="birthday" [(ngModel)]="editAccount.birthday" />
-            </div>
-          </div>
-  
-          <div class="col-6">
-            <div class="field">
-              <label for="roleId" class="block">Quyền</label>
+              <small>Quyền</small>
               <p-dropdown [options]="roleOptions" [(ngModel)]="editAccount.roleId" defaultLabel="Chọn quyền" optionLabel="name" optionValue="code" option display="chip" name="roleId"></p-dropdown>
-            </div>
           </div>
   
-          <div class="col-6">
-            <div class="field">
-              <label for="status" class="block">Hoạt động</label>
-              <p-inputSwitch [(ngModel)]="editAccount.status" name="status"></p-inputSwitch>
+          <div class="col-6 inputSwitch">
+            <small>Hoạt động</small>
+            <p-inputSwitch [(ngModel)]="editAccount.status" name="status"></p-inputSwitch>
+          </div>
+          <div class="detail-action">
+            <div class="cancel-btn">
+              <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+            </div>
+            <div class="save-btn">
+              <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
             </div>
           </div>
-          
-          <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
-          <button 
-            style="margin: 10px" 
-            type="submit" 
-            pButton pRipple 
-            label="Save" 
-            icon="pi pi-check"
-            >
-          </button>
         
-        </div>
       </div>
     </div>
-  </form>
 </div>
