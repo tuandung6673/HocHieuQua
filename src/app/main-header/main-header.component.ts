@@ -32,6 +32,7 @@ export class MainHeaderComponent implements OnInit {
     this.isToken = localStorage.getItem('userToken') ? true : false
     this.userData = JSON.parse(localStorage.getItem('userData'))
     // console.log(this.userData);
+    this.getNotification();
     this.items = [
       {label: 'Quản trị', icon: 'pi pi-setting', command: () => {
         this.router.navigate(['/quan-tri'])
