@@ -407,6 +407,14 @@ export class ApiService {
     return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification?` + queryParams)
   }
 
+  getNotificationById(id:string) : Observable<BaseRetail<Notification>> {
+    return this.http.get<BaseRetail<Notification>>(`${this.url}/Notification/` + id)
+  }
+
+  postNotification(data) {
+    return this.http.post<Message>(`${this.url}/Notification`, data)
+  }
+
   getAdminNotification(queryParams) : Observable<BaseReponse<Notification>> {
     return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification/GetAdminNotifications?` + queryParams)
   }

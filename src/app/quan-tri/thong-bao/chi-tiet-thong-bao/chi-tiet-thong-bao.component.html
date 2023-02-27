@@ -1,0 +1,67 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="guide">
+          <span><i class="pi pi-home"></i></span>
+          <i>/</i>
+          <span>Quản trị</span>
+          <i>/</i>
+          <span>Footer</span>
+          <i>/</i>
+          <span class="active">Chi tiết thông báo</span>
+        </div>
+        <div class="header-2">
+          <div class="header-left">
+            <div class="empty"></div>
+            <div class="main-title" *ngIf="id && id != 'them-moi'" >Chi tiết Thông báo</div>
+            <div class="main-title" *ngIf="id == 'them-moi'" >Thêm Thông báo</div>
+           </div>
+          <div class="header-right">
+          </div>
+        </div>
+    </div>
+
+    <div class="detail grid">
+        <div class="col-12">
+            <small>Tiêu đề</small>
+            <div>
+              <span class="p-input-icon-right">
+                <i class="pi pi-user"></i>
+                <input type="text" pInputText [(ngModel)]="editNoti.title"/>
+              </span>
+            </div>
+        </div>
+        <div class="col-6">
+            <small>Link chuyển trang</small>
+            <div>
+              <span class="p-input-icon-right">
+                <i class="pi pi-user"></i>
+                <input type="text" pInputText [(ngModel)]="editNoti.routerLink"/>
+              </span>
+            </div>
+        </div>
+        <div class="col-6">
+            <small>Link chuyển trang</small>
+            <div>
+              <span class="p-input-icon-right">
+                <i class="pi pi-user"></i>
+                <input type="text" pInputText [(ngModel)]="editNoti.routerLink"/>
+              </span>
+            </div>
+        </div>
+        <div class="col-6 inputSwitch">
+            <small>Hiển thị</small>
+            <p-inputSwitch [(ngModel)]="editNoti.status"></p-inputSwitch>
+        </div>
+        <div class="col-12 ckeditor">
+            <ckeditor [editor]="Editor" [(ngModel)]="editNoti.content"></ckeditor>
+        </div>
+        <div class="detail-action">
+            <div class="cancel-btn">
+              <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+            </div>
+            <div class="save-btn">
+              <p-button label="Lưu" (click)="save()" icon="pi pi-check"></p-button>
+            </div>
+        </div>
+    </div>
+</div>

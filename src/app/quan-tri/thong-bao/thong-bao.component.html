@@ -18,7 +18,7 @@
               <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
             </div>
             <!-- <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left" (click)="op2.toggle($event)"></p-button> -->
-            <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+            <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
           </div>
         </div>
     </div>
@@ -67,10 +67,10 @@
             </tr>
             <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
                 <ng-template pTemplate>
-                    <div class="option" [routerLink]="[candidate.id]">
+                    <div class="option" [routerLink]="[adminNotification.id]">
                         <i class="pi pi-pencil"></i> Sửa
                     </div>
-                    <div class="option" (click)="deleteCandidate(candidate.id)">
+                    <div class="option" (click)="deleteCandidate(adminNotification.id)">
                         <i class="pi pi-trash"></i> Xóa
                     </div>
                 </ng-template>

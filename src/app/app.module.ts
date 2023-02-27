@@ -132,6 +132,7 @@ import { ThongBaoComponent } from './quan-tri/thong-bao/thong-bao.component';
 import { StepComponent } from './quan-tri/step/step.component';
 import { QuanTriFooterComponent } from './quan-tri/quan-tri-footer/quan-tri-footer.component';
 import { ChiTietFooterComponent } from './quan-tri/quan-tri-footer/chi-tiet-footer/chi-tiet-footer.component';
+import { ChiTietThongBaoComponent } from './quan-tri/thong-bao/chi-tiet-thong-bao/chi-tiet-thong-bao.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent,
@@ -180,6 +181,7 @@ const appRoutes: Routes = [
       {path: 'nhom-cau-hoi', component: NhomCauHoiComponent},
       {path: 'menu', component: MenuNguoiDungComponent},
       {path: 'thong-bao', component: ThongBaoComponent},
+      {path: 'thong-bao/:id', component: ChiTietThongBaoComponent},
       {path: 'footer', component: QuanTriFooterComponent},
       {path: 'footer/:id', component: ChiTietFooterComponent},
       {path: 'step/0', component: StepComponent}
@@ -310,10 +312,11 @@ const appRoutes: Routes = [
     ThongBaoComponent,
     StepComponent,
     QuanTriFooterComponent,
-    ChiTietFooterComponent
+    ChiTietFooterComponent,
+    ChiTietThongBaoComponent
       ],
   imports: [
-    CKEditorModule,
+  CKEditorModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
