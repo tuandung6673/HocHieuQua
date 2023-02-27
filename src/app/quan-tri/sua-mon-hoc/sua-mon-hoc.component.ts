@@ -29,10 +29,13 @@ export class SuaMonHocComponent implements OnInit {
     this.getClassroomForOption();
   }
 
+  cancel() {
+
+  }
+
   getEditSubject (id: string) {
     this.isLoading = true
     this.apiService.getSubjectById(id).subscribe((responseData) => {
-      console.log('Subject By Id', responseData.data);
       this.editSubject = responseData.data
       this.isLoading = false
     })
@@ -47,9 +50,6 @@ export class SuaMonHocComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Save Btn');
-    console.log(this.editSubject);
-    
     const updateSubject = {...this.editSubject}
     updateSubject.status = updateSubject.status ? 1 : 0
     this.apiService.postSubject(updateSubject).subscribe((responseData) => {

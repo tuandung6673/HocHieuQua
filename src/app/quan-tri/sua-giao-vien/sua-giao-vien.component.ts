@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Teacher } from 'src/models/teacher.model';
@@ -18,12 +19,13 @@ export class SuaGiaoVienComponent implements OnInit {
   editTeacher: Teacher = new Teacher()
   isLoading: boolean = false
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
-
-  ngOnInit(){
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
+  }
+
+  ngOnInit(){
     if(this.id && this.id != 'them-giao-vien') {
       this.getEditTeacher(this.id)
     }
@@ -32,10 +34,8 @@ export class SuaGiaoVienComponent implements OnInit {
   getEditTeacher(id: string) {
     this.isLoading = true
     this.apiService.getTeacherById(id).subscribe((responseData) => {
-      console.log(responseData);
       this.editTeacher = responseData.data;
       this.editTeacher.status = responseData.data.status == 1 ? true : false;
-      this.isLoading = false
     })
   }
 
@@ -44,9 +44,17 @@ export class SuaGiaoVienComponent implements OnInit {
     dataSave.status = dataSave.status ? 1 : 0;
     this.apiService.postTeacher(dataSave)
     .subscribe(reponse => {
-      console.log('Submit Teacher', reponse);
-      this.router.navigate(['quan-tri/giao-vien'])
+      if(reponse.status == 'success') {
+        this.messageService.add({severity: 'success', summary:'Thành công', detail: 'Cập nhật Giáo viên thành công'})
+        this.router.navigate(['quan-tri/giao-vien'])
+      } else {
+        this.messageService.add({severity: 'warn', summary:'Thất bại', detail: 'Cập nhật Giáo viên thất bại'})
+      }
     })
+  }
+
+  cancel() {
+
   }
 
 }

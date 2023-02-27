@@ -79,4 +79,4 @@
     </ng-template>
   </p-table>
 </div>
-<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>

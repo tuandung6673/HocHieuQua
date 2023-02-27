@@ -19,8 +19,8 @@ export class GiaoVienComponent implements OnInit {
     offSet: 0,
     pageSize: 5,
     filter : '',
-    totalRecord: 0
   }
+  totalRecord: any
 
   constructor(private apiService: ApiService, private router: Router,
     private confirmationService: ConfirmationService, private messageService: MessageService) { }
@@ -32,12 +32,8 @@ export class GiaoVienComponent implements OnInit {
   getTeachers() {
     this.isLoading = true
     this.apiService.getTeacher(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
-      console.log('Tat ca GV', responseData.data.data);
-      this.teachers = responseData.data.data
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
+      this.teachers = responseData.data.data;
+      this.totalRecord = responseData.data;
       this.isLoading = false
     })
   }
@@ -47,11 +43,8 @@ export class GiaoVienComponent implements OnInit {
   }
 
   onDeleteTeacher(id: string) {
-    console.log(id);
     this.apiService.deleteTeacher(id).subscribe((responseData) => {
-      console.log('Delete Teacher', responseData);
       this.teachers = this.teachers.filter(teacher =>  teacher.id != id)
-      console.log(this.teachers);
     })
   }
 

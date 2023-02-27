@@ -16,7 +16,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 export class ChiTietThongBaoComponent implements OnInit {
   Editor = ClassicEditor;
   id : string;
-  editNoti : any
+  editNoti : Notification = new Notification()
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
@@ -38,17 +38,25 @@ export class ChiTietThongBaoComponent implements OnInit {
   getDetail() {
     this.spinner.show();
     this.apiService.getNotificationById(this.id).subscribe(response => {
-      this.editNoti = response.data;
-      this.spinner.hide()
+      this.editNoti = response.data; 
+      this.spinner.hide();
     })
   }
 
   cancel() {
-
+    this.router.navigate(['/quan-tri/thong-bao'])
   }
   
   save() {
-
+    const data = this.editNoti;
+    this.apiService.postNotification(data).subscribe(response => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: 'Cập nhật thông báo thành công'});
+        this.router.navigate(['/quan-tri/thong-bao'])
+      } else {
+        this.messageService.add({severity: 'warn', summary: 'Thất bại', detail: 'Cập nhật thông báo thất bại'});
+      }
+    })
   }
 
 }

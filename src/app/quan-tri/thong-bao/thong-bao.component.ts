@@ -2,6 +2,7 @@ import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Notification } from 'src/models/notification.model';
 
 @Component({
   selector: 'app-thong-bao',

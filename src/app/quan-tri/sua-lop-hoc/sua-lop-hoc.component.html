@@ -1,47 +1,73 @@
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
 
-<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-  <div class="wrapper">
-    <div class="grid">
-      <div class="col-3">
-        <div>
-          <img [src]="editClassroom.avatar ? editClassroom.avatar : defaultAvatar" width="200"/>
-        </div>
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Lớp học</span>
+      <i>/</i>
+      <span class="active">Chi tiết Lớp học</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-lop-hoc'" >Chi tiết Lớp học</div>
+        <div class="main-title" *ngIf="id == 'them-lop-hoc' || !id" >Thêm Lớp học</div>
       </div>
-      <div class="col-9">
-        <div class="field">
-          <label for="usernameInput" class="block">Avatar</label>
-          <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editClassroom.avatar" />
-        </div>
-      
-        <div class="field">
-          <label for="name" class="block">Tên lớp học</label>
-          <input formGroupName="name" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
-        </div>
-      
-        <div class="field">
-          <label for="checked" class="block">Hiển thị</label>
-          <p-inputSwitch [(ngModel)]="editClassroom.status" name="status"></p-inputSwitch>
-        </div>
-  
-        <div class="field">
-          <label for="orderInput" class="block">Sắp xếp</label>
-          <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editClassroom.order"/>
-        </div>
-        
-        <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
-        <button 
-          style="margin: 10px" 
-          type="submit" 
-          pButton pRipple 
-          label="Save" 
-          icon="pi pi-check"
-          >
-        </button>
+      <div class="header-right">
       </div>
     </div>
-  
   </div>
-</form>
+
+  <div class="grid">
+    <div class="col-3">
+      <div>
+        <img [src]="editClassroom.avatar ? editClassroom.avatar : defaultAvatar" width="200"/>
+      </div>
+    </div>
+    <div class="col-9 detail grid">
+      <div class="col-12">
+        <small>Avatar</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editClassroom.avatar" />
+          </span>
+        </div>
+      </div>
+      <div class="col-12">
+        <small>Tên lớp học</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input formGroupName="name" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
+          </span>
+        </div>
+      </div>
+      <div class="col-6">
+        <small>Sắp xếp</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editClassroom.order"/>
+          </span>
+        </div>
+      </div>
+      <div class="col-6 inputSwitch">
+        <label for="checked" class="block">Hiển thị</label>
+        <p-inputSwitch [(ngModel)]="editClassroom.status" name="status"></p-inputSwitch>
+      </div>
+      <div class="detail-action">
+        <div class="cancel-btn">
+          <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+        </div>
+        <div class="save-btn">
+          <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

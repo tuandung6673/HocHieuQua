@@ -14,7 +14,7 @@ export class ChiTietTroGiupComponent implements OnInit {
 
   Editor = ClassicEditor;
   screenOptions: any = [];
-  editGuide : Guide;
+  editGuide : Guide = new Guide();
   id: string;
   constructor(
     private apiService: ApiService, 
@@ -27,7 +27,7 @@ export class ChiTietTroGiupComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    if(this.id && this.id != 'them-giao-vien') {
+    if(this.id && this.id != 'them-moi') {
       this.getGuideEdit(this.id)
     }
     this.screenOptions = [

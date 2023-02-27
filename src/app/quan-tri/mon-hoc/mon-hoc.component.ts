@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class MonHocComponent implements OnInit {
   }
   totalRecord : number;
   classOption : any[]
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService ) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService, private messageService: MessageService ) { }
 
   ngOnInit(): void {
     this.getSubjects();
@@ -36,7 +37,7 @@ export class MonHocComponent implements OnInit {
   }
   
   getSubjects() {
-    this.isLoading = true
+    this.spinner.show()
     this.apiService.getSubject(this.params.offSet, this.params.pageSize, this.params.classId, this.params.filter).subscribe((responseData) => {
       this.subjects = responseData.data.data.map((eachSubject) => {
         const classRooms = eachSubject.classRooms.map(t => t.name).toString();
@@ -46,7 +47,7 @@ export class MonHocComponent implements OnInit {
         }
       })
       this.totalRecord = responseData.data.recordsTotal;
-      this.isLoading = false
+      this.spinner.hide()
     })
   }
 

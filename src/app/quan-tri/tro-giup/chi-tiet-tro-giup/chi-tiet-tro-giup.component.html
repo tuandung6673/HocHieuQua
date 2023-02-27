@@ -1,20 +1,28 @@
 <div class="wrapper">
-  <div class="crumb">
-    <span><i class="pi pi-home"></i></span>
-    <i>/</i>
-    <span>Quản trị</span>
-    <i>/</i>
-    <span>Trợ giúp</span>
-    <i>/</i>
-    <span class="active">Chi tiết trợ giúp</span>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Trợ giúp</span>
+      <i>/</i>
+      <span class="active">Chi tiết trợ giúp</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-moi'" >Chi tiết Trợ giúp</div>
+        <div class="main-title" *ngIf="id == 'them-moi'" >Thêm Trợ giúp</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
   </div>
-  <!-- <div class="title">
-    <div class="empty"></div>
-    <p>Chi tiết trợ giúp</p>
-  </div> -->
-  <div class="main grid">
+
+  <div class="detail grid">
     <div class="col-12">
-      <p>Tiêu đề</p>
+      <small>Tiêu đề</small>
       <div>
         <span class="input p-input-icon-right">
           <i class="pi pi-user"></i>
@@ -23,7 +31,7 @@
       </div>
     </div>
     <div class="col-6">
-      <p>Thứ tự</p>
+      <small>Thứ tự</small>
       <div>
         <span class="input p-input-icon-right">
           <i class="pi pi-sort-numeric-down"></i>
@@ -32,7 +40,7 @@
       </div>
     </div>
     <div class="col-6">
-      <p>Màn hình</p>
+      <small>Màn hình</small>
       <div class="input">
         <p-dropdown [options]="screenOptions" [(ngModel)]="editGuide.screen"></p-dropdown>
       </div>
@@ -46,16 +54,13 @@
     <div class="col-12">
       <ckeditor [editor]="Editor" name="content" [(ngModel)]="editGuide.content"></ckeditor>
     </div>
-  </div>
-  <div class="actions">
-    <button style="margin: 10px" pButton pRipple label="Hủy" icon="pi pi-times" (click)="cancelBtn()"></button>
-    <button 
-      (click)="postGuide()"
-      style="margin: 10px"
-      pButton pRipple 
-      label="Lưu" 
-      icon="pi pi-check"
-      >
-    </button>
+    <div class="detail-action">
+      <div class="cancel-btn">
+        <p-button label="Hủy" icon="pi pi-times" (click)="cancelBtn()"></p-button>
+      </div>
+      <div class="save-btn">
+        <p-button label="Lưu" (click)="postGuide()" icon="pi pi-check"></p-button>
+      </div>
+    </div>
   </div>
 </div>

@@ -35,7 +35,7 @@
                 <th>Ngày sinh</th>
                 <th>Học lực</th>
                 <th>Ghi chú</th>
-                <th>Trạng thái</th>
+                <th style="width: 130px;">Trạng thái</th>
                 <th>Tùy chọn</th>
             </tr>
         </ng-template>
@@ -54,11 +54,9 @@
                   {{adviceRequest.academicAbility}}
                 </td>
                 <td>{{adviceRequest.comment}}</td>
-                <td *ngIf="adviceRequest.isAdvice" >
-                  <span [ngClass]="adviceRequest.isAdvice ? 'isAdvice' : 'nonAdvice' ">Đã tư vấn</span>
-                </td>
-                <td *ngIf="!adviceRequest.isAdvice" >
-                  <span [ngClass]="adviceRequest.isAdvice ? 'isAdvice' : 'nonAdvice' ">Chưa tư vấn</span>
+                <td style="width: 130px">
+                  <span *ngIf="adviceRequest.isAdvice" [ngClass]="adviceRequest.isAdvice ? 'isAdvice' : 'nonAdvice' ">Đã tư vấn</span>
+                  <span *ngIf="!adviceRequest.isAdvice" [ngClass]="adviceRequest.isAdvice ? 'isAdvice' : 'nonAdvice' ">Chưa tư vấn</span>
                 </td>
                 <td>
                   <div style="float: right;">
@@ -68,10 +66,10 @@
             </tr>
             <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
               <ng-template pTemplate>
-                  <div class="option" [routerLink]="[recruit.id]">
+                  <div class="option" [routerLink]="[adviceRequest.id]">
                       <i class="pi pi-pencil"></i> Xem chi tiết
                   </div>
-                  <div class="option" (click)="confirmDeleteAdviceRequest(recruit.id)">
+                  <div class="option" (click)="confirmDeleteAdviceRequest(adviceRequest.id)">
                       <i class="pi pi-trash"></i> Xóa
                   </div>
               </ng-template>

@@ -18,7 +18,7 @@ export class BaseRetail<T> {
   statusCode = 0;
   message = '';
   status = '';
-  data: T = null;
+  data: T;
 }
 
 

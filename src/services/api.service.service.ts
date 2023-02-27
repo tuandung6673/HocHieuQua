@@ -34,6 +34,7 @@ import { Payment } from 'src/models/payment.model';
 import { TestQuestion } from 'src/models/testQuestion.model';
 import { TestQuestionGroup } from 'src/models/testQuestionGroup.model';
 import { Step } from 'src/models/step.model';
+import { Notification } from 'src/models/notification.model';
 
 @Injectable({
   providedIn: 'root'

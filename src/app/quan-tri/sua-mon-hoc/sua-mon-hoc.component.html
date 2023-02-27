@@ -1,7 +1,4 @@
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
-<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+<!-- <form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
   <div class="grid">
     <div class="wrapper grid">
       <div class="col-3">
@@ -44,4 +41,83 @@
       </div>
     </div>
   </div>
-</form>
+</form> -->
+
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Môn học</span>
+      <i>/</i>
+      <span class="active">Chi tiết Môn học</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-mon-hoc'" >Chi tiết Môn học</div>
+        <div class="main-title" *ngIf="id == 'them-mon-hoc' || !id" >Thêm Môn học</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-3">
+      <img [src]="editSubject.avatar ? editSubject.avatar : defaultAvatar" width="220" height="220" />
+    </div>
+    <div class="col-9 detail grid">
+      <div class="col-12">
+        <small>Avatar</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editSubject.avatar" name="avatar"/>
+          </span>
+        </div>
+      </div>
+      <div class="col-12">
+        <small>Tên môn học</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editSubject.name" name="name" />
+          </span>
+        </div>
+      </div>
+      <div class="col-12">
+        <small>Lớp học</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <p-multiSelect [filter]="false" [options]="optionsLopHoc" [(ngModel)]="editSubject.classRoomIds" defaultLabel="Chọn lớp học" optionLabel="name" optionValue="code" option display="chip" name="classRoomIds"></p-multiSelect>
+          </span>
+        </div>
+      </div>
+      <div class="col-6">
+        <small>Sắp xếp</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+            <input id="order" type="username" aria-describedby="order-help" pInputText [(ngModel)]="editSubject.order" name="order" />
+          </span>
+        </div>
+      </div>
+      <div class="col-6 inputSwitch">
+        <small>Hiển thị</small>
+        <p-inputSwitch name="status" [(ngModel)]="editSubject.status"></p-inputSwitch>
+      </div>
+      <div class="detail-action">
+        <div class="cancel-btn">
+          <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+        </div>
+        <div class="save-btn">
+          <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

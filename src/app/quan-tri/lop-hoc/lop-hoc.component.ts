@@ -31,7 +31,6 @@ export class LopHocComponent implements OnInit {
   getClassRooms() {
     this.isLoading = true
     this.apiService.getClassroom(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
-      console.log("Tat ca lop hoc", responseData.data.data);
       this.classrooms = responseData.data.data;
       this.params = {
         ...this.params,

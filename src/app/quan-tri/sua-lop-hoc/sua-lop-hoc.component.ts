@@ -21,27 +21,31 @@ export class SuaLopHocComponent implements OnInit {
     this.route.params.subscribe((param: Params) => {
       this.id = param['id']
     })
+    console.log(this.id);
+    
     if(this.id && this.id != 'sua-lop-hoc') {
       this.getEditClassroom(this.id)
     }
   }
 
   getEditClassroom(id: string) {
-    this.isLoading = true
     this.apiService.getClassroomById(id).subscribe((responseData) => {
-      console.log(responseData);
-      this.editClassroom = responseData.data
-      this.isLoading = false
+      this.editClassroom = responseData.data;
+      this.editClassroom.status = responseData.data.status == 1;
     })
   }
 
   onSubmit() {
     const updateClassroom = {...this.editClassroom}
-    updateClassroom.status = updateClassroom ? 1 : 0
+    updateClassroom.status = updateClassroom.status ? 1 : 0
     this.apiService.postClassroom(updateClassroom).subscribe((responseData) => {
       console.log(responseData);
       this.router.navigate(['quan-tri/lop-hoc'])
     })
+  }
+
+  cancel() {
+
   }
 
 }
