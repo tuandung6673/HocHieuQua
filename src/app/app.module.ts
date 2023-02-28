@@ -133,9 +133,11 @@ import { StepComponent } from './quan-tri/step/step.component';
 import { QuanTriFooterComponent } from './quan-tri/quan-tri-footer/quan-tri-footer.component';
 import { ChiTietFooterComponent } from './quan-tri/quan-tri-footer/chi-tiet-footer/chi-tiet-footer.component';
 import { ChiTietThongBaoComponent } from './quan-tri/thong-bao/chi-tiet-thong-bao/chi-tiet-thong-bao.component';
+import { ThongBaoAllComponent } from './user/thong-bao-all/thong-bao-all.component';
+import { AdminGuard } from 'src/auth/adminGuard.service';
 const appRoutes: Routes = [
   {
-    path: 'quan-tri', component: AdminComponent,
+    path: 'quan-tri', component: AdminComponent, canActivate: [AdminGuard],
     children: [
       {path: '', redirectTo: 'tai-khoan', pathMatch: 'full'},
       {path: 'danh-muc-tin-tuc', component: DanhMucComponent},
@@ -207,7 +209,8 @@ const appRoutes: Routes = [
       {path: 'tai-khoan/doi-mat-khau', component: DoiMatKhauComponent, canActivate: [AuthGuardService]},
       {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent, canActivate: [AuthGuardService]},
       {path: 'tai-khoan/kich-hoat-khoa-hoc', component: KichHoatKhoaHocComponent, canActivate: [AuthGuardService]},
-      {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent, canActivate: [AuthGuardService]}
+      {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent, canActivate: [AuthGuardService]},
+      {path: 'thong-bao/:type', component: ThongBaoAllComponent}
     ]
   },
   {
@@ -313,7 +316,8 @@ const appRoutes: Routes = [
     StepComponent,
     QuanTriFooterComponent,
     ChiTietFooterComponent,
-    ChiTietThongBaoComponent
+    ChiTietThongBaoComponent,
+    ThongBaoAllComponent
       ],
   imports: [
   CKEditorModule,
@@ -355,7 +359,7 @@ const appRoutes: Routes = [
     OverlayPanelModule
     
   ],
-  providers: [ConfirmationService, MessageService, AuthGuardService, {
+  providers: [ConfirmationService, MessageService, AuthGuardService, AdminGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

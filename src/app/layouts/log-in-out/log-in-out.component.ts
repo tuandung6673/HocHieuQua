@@ -8,7 +8,7 @@ import { AuthService } from 'src/services/authService.service';
 @Component({
   selector: 'app-log-in-out',
   templateUrl: './log-in-out.component.html',
-  styleUrls: ['./log-in-out.component.css']
+  styleUrls: ['./log-in-out.component.scss']
 })
 export class LogInOutComponent implements OnInit, OnDestroy{
 

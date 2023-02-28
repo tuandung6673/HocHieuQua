@@ -3,11 +3,8 @@
     <div class="logo" >
       <img class="image" src="https://hochieuqua7.web.app/images/logo.png" width="75px" height="65px" routerLink=""/>
     </div>
+    
     <div class="search">
-      <span class="p-input-icon-right">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Search" />
-      </span>
     </div>
 
     <div [ngClass]="isToken ? 'none' : 'action' " >
@@ -52,7 +49,7 @@
         </div>
       </div>
       <hr>
-      <div class="view-more">
+      <div (click)="op.toggle($event)" class="view-more" [routerLink]="['/thong-bao/all']">
         Xem thêm
       </div>
     </div>

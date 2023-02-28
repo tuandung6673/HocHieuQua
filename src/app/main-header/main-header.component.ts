@@ -12,6 +12,7 @@ import { Notification } from 'src/models/notification.model';
 })
 export class MainHeaderComponent implements OnInit {
 
+  isLogin = localStorage.getItem('userToken');
   params = {
     accountId: '',
     filter: '',
@@ -32,9 +33,8 @@ export class MainHeaderComponent implements OnInit {
     this.isToken = localStorage.getItem('userToken') ? true : false
     this.userData = JSON.parse(localStorage.getItem('userData'))
     // console.log(this.userData);
-    this.getNotification();
     this.items = [
-      {label: 'Quản trị', icon: 'pi pi-setting', command: () => {
+      {label: 'Quản trị', icon: 'pi pi-cog', command: () => {
         this.router.navigate(['/quan-tri'])
       }},
       {label: 'Thông tin cá nhân ', icon: 'pi pi-users', command: () => {
@@ -59,9 +59,12 @@ export class MainHeaderComponent implements OnInit {
         this.logout()
       }},
     ]
-    setInterval(() => {
+    if(this.isLogin) {
       this.getNotification();
-    }, 20000)
+      setInterval(() => {
+        this.getNotification();
+      }, 60000)
+    }
   }
 
   logout() {

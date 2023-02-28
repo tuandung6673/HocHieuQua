@@ -1,23 +1,23 @@
-import { Injectable } from "@angular/core";
+import { MessageService } from 'primeng/api';
+
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { MessageService } from "primeng/api";
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable()
-export class AuthGuardService implements CanActivate, CanActivateChild {
-  constructor(
-    private router : Router,
-    private messageService: MessageService
-  ) {}
 
-  token = localStorage.getItem('userToken')
+export class AdminGuard implements CanActivate, CanActivateChild {
+  userData = JSON.parse(localStorage.getItem('userData'));
+  userRole : any
+  constructor(private messageService: MessageService) {
+    this.userRole = JSON.parse(this.userData.roles);  
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.token) {
-      return true
+    if(this.userRole[0].role_id == 'admin') {
+      return true;
     } else {
-      this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Bạn cần đăng nhập để truy cập chức năng này !'})
-      this.router.navigate(['/dang-nhap'])
+      this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Bạn không có quyền truy cập chức năng này'})
     }
   }
 

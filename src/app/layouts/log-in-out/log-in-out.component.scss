@@ -10,19 +10,40 @@
   left: 50%;
   transform:translate(-50%,-50%);
   width: 50%;
-  height: 100%;
+  height: 60%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  // grid-gap: 10px;
   border-radius: 10px;
   box-shadow: 0 0 31px 2px #a9a6a6;
 }
 
+@media only screen and (max-width: 1280px) {
+  .main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 95%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    // grid-gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 31px 2px #a9a6a6;
+  }
+}
+
+.main-right {
+  padding: 10px;
+  // margin-top: 10px;
+  // height: 100%;
+}
 
 .main .main-left {
   height: 100%;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+  // display: grid;
+  // grid-template-rows: 1fr 1fr;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px ;
 
@@ -33,10 +54,6 @@
   /* margin-top: 35px; */
   width: 100%;
   height: 70%;
-}
-
-.main-right {
-  margin-top: 10px;
 }
 
 .desc {
@@ -65,51 +82,40 @@
   text-decoration: underline;
 }
 
-.main-right {
+.right-input {
   width: 100%;
 }
 
-.input-right {
-  width: 100%;
-}
-
-.form-group {
+.input-username {
   width: 100%;
 }
 
 ::ng-deep .p-input-icon-left {
   width: 100%;
-}
-
-::ng-deep .form-group .p-inputtext {
   height: 40px;
-  width: 90%;
+  i {
+    font-size: 14px;
+  }
 }
 
-.form-group {
-  position: relative;
+::ng-deep .input-username .p-inputtext {
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
 }
 
-.form-group .label {
-  z-index: 1;
-  color: black;
-  font-weight: lighter;
-  top: -7px;
-  left: 15px;
-  width: 10px;
-  position: absolute;
-  background: #fff;
+::ng-deep .input-password .p-inputtext {
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
 }
 
-.form-group .input {
-  z-index: 0;
+::ng-deep .input-password .p-password-input {
+  width: 100%;
+  height: 40px;
 }
 
-.warning {
-  color: red;
+.action {
+  margin-top: 10px;
 }
 
-.pre-warning {
-  height: 14px;
-  background-color: #fff;
-}

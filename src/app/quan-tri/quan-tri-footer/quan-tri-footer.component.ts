@@ -35,7 +35,6 @@ export class QuanTriFooterComponent implements OnInit {
       this.spinner.hide();
     })  
   }
-
   
   paginate(event) {
     this.query = {

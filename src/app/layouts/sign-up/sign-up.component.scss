@@ -10,16 +10,28 @@
   left: 50%;
   transform:translate(-50%,-50%);
   width: 50%;
-  height: 60%;
+  height: 80%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  // grid-gap: 10px;
   border-radius: 10px;
   box-shadow: 0 0 31px 2px #a9a6a6;
 }
 
-.main-right {
-  margin-top: 10px;
+@media only screen and (max-width: 1480px) {
+  .main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 95%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    // grid-gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 31px 2px #a9a6a6;
+  }
 }
 
 .main .main-left {
@@ -36,6 +48,11 @@
   /* margin-top: 35px; */
   width: 100%;
   height: 70%;
+}
+
+.main-right {
+  padding: 10px;
+
 }
 
 .desc {
@@ -64,31 +81,53 @@
   text-decoration: underline;
 }
 
-.right-input {
+.main-right {
   width: 100%;
 }
 
-.input-username {
+.input-right {
+  width: 100%;
+}
+
+.form-group {
   width: 100%;
 }
 
 ::ng-deep .p-input-icon-left {
   width: 100%;
+  height: 40px;
 }
 
-::ng-deep .input-username .p-inputtext {
-  width: 90%;
+::ng-deep .form-group .p-inputtext {
+  font-size: 14px;
+  height: 40px;
+  width: 100%;
 }
 
-::ng-deep .input-password .p-inputtext {
-  width: 90%;
+.form-group {
+  position: relative;
 }
 
-::ng-deep .input-password .p-password-input {
-  width: 90%;
+.form-group .label {
+  z-index: 1;
+  color: black;
+  font-weight: lighter;
+  top: -7px;
+  left: 15px;
+  width: 10px;
+  position: absolute;
+  background: #fff;
 }
 
-.action {
-  margin-top: 10px;
+.form-group .input {
+  z-index: 0;
 }
 
+.warning {
+  color: red;
+}
+
+.pre-warning {
+  height: 14px;
+  background-color: #fff;
+}

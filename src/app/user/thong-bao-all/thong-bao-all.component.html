@@ -1,0 +1,50 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <!-- <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Footer</span>
+      <i>/</i>
+      <span class="active">Quản lý Footer</span> -->
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Thông báo của tôi</div>
+      </div>
+      <div class="header-right">
+        <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="col-4">
+      <div class="noti-left">
+        <div class="noti-item flex" *ngFor="let notee of listOfNoti" (click)="currentItem(notee)" [ngClass]="{active: notee.id == currentId}">
+          <div *ngIf="notee.fromAvatar" class="noti-ava">
+            <img [src]="notee.fromAvatar" width="60px" height="60px"/>
+          </div>
+          <div *ngIf="!notee.fromAvatar" class="noti-ava">
+            <img src="https://hochieuqua7.web.app/images/menu/account.png" width="60px" height="60px"/>
+          </div>
+          <div class="noti-info">
+            <div>{{notee.title}}</div>
+            <div>{{notee.createdDate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="noti-right" [innerHTML]="currentContent">
+      </div>
+      <div *ngIf="currentLink" class="directDetail" [routerLink]="currentLink">Chuyển đến chi tiết</div>
+    </div>
+  </div>
+</div>
+
+<p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,30]"></p-paginator>

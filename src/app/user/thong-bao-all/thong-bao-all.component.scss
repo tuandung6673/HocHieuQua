@@ -1,0 +1,28 @@
+.noti-item {
+  padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+    background: rgba(232, 237, 240, 0.76);
+    border-radius: 10px;
+    // padding-top: 5px;
+    // padding-left: 5px;
+  }
+}
+
+.directDetail {
+  margin-top: 20px;
+  color: #015fbd;
+  font-size: 14px;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.active {
+  background: rgba(139,209,250,.76) !important;
+  cursor: pointer;
+  border-radius: 10px;
+  // padding-top: 5px;
+  // padding-left: 5px;
+}
