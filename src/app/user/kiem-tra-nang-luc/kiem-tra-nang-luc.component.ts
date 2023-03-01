@@ -56,6 +56,7 @@ export class KiemTraNangLucComponent implements OnInit {
       }
       this.spinner.hide();
     })
+    this.subjectId = '';
     this.getTest();
   }
   

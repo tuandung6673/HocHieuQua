@@ -1,10 +1,37 @@
-// @import "~swiper/css";
-// @import "~swiper/css/pagination";
-// @import "~swiper/css/navigation";
-
+.carousel {
+  width: 100% !important;
+  height: 350px;
+  ::ng-deep .p-carousel-container {
+    position: relative;
+  }
+  ::ng-deep .p-carousel-prev {
+    z-index: 100;
+    position: absolute;
+    color: white;
+    padding: 18px;
+    border-radius: 100%;
+    background: #d8d8d8;
+    font-size: 18px;
+    color: gray;
+  }
+  ::ng-deep .p-carousel-next {
+    right: 0;
+    z-index: 100;
+    position: absolute;
+    color: white;
+    padding: 18px;
+    border-radius: 100%;
+    background: #d8d8d8;
+    font-size: 18px;
+    color: gray;
+  }
+}
 
 .slide-image {
   width: 100%;
+  height: 350px;
+  object-fit: cover;
+
 }
 ::ng-deep .p-carousel-indicators {
   display: none !important;
@@ -47,6 +74,8 @@
 }
 
 .class-wrapper {
+  width: 65%;
+  margin: 0 auto;
   height: 150px;
 }
 

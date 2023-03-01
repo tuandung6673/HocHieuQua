@@ -1,10 +1,12 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 
-<p-carousel [value]="imageSlider" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="2000">
-  <ng-template let-slide pTemplate="item">
-    <img [src]="slide.imageUrl" class="slide-image" />
-  </ng-template>
-</p-carousel>
+<div class="carousel">
+  <p-carousel [value]="imageSlider" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="2000">
+    <ng-template let-slide pTemplate="item">
+      <img [src]="slide.imageUrl" class="slide-image" />
+    </ng-template>
+  </p-carousel>
+</div>
 
 <div class="class-wrapper">
   <app-class [home]="home"></app-class>
@@ -12,11 +14,11 @@
 
 <br>
 
-<div *ngFor="let subject of home?.subjects">
+<div style="width: 65%; margin: 0 auto;" *ngFor="let subject of home?.subjects">
   <app-tong-quan-subject [subject]="subject"></app-tong-quan-subject>
 </div>
 
-<div style="width: 100%">
+<div style="width: 65%; margin: 0 auto;">
   <div class="header-title">
     <span>Tham gia HocHieuQua với 4 bước</span>
   </div>
@@ -43,7 +45,7 @@
   </div>
 </div>
 
-<div class="teacher" >
+<div class="teacher"  style="width: 65%; margin: 0 auto">
   <div class="header-title">
     <span>Đội ngũ giáo viên</span>
   </div>
@@ -53,13 +55,15 @@
   </div>
 </div>
 
-<div class="quizs">
-  <div class="header-title">
-    <span>Đố vui</span> 
-  </div>
-  <app-quiz [home]="home"></app-quiz>
-  <div class="view-all">
-    <p [routerLink]="['/gioi-thieu']">Xem tất cả <i class="pi pi-fast-forward"></i></p>
+<div class="quizs" style="width: 100%">
+  <div style="width: 65%; margin: 0 auto">
+    <div class="header-title">
+      <span>Đố vui</span> 
+    </div>
+    <app-quiz [home]="home"></app-quiz>
+    <div class="view-all">
+      <p [routerLink]="['/gioi-thieu']">Xem tất cả <i class="pi pi-fast-forward"></i></p>
+    </div>
   </div>
 </div>
 
