@@ -25,6 +25,8 @@ export class MainHeaderComponent implements OnInit {
   userData: Authentication
   isToken: boolean = false
   defaultAvatar = 'https://phongreviews.com/wp-content/uploads/2022/11/avatar-facebook-mac-dinh-12.jpg';
+  newNoti : boolean = false;
+  firstLoad : boolean = true;
   constructor(private router: Router, private apiService: ApiService) {
 
   }
@@ -76,8 +78,28 @@ export class MainHeaderComponent implements OnInit {
   getNotification() {
     const queryParams = queryString.stringify(this.params)
     this.apiService.getNotification(queryParams).subscribe(response => {
-      this.noti = response.data.data
+      this.noti = response.data.data;
+      this.checkNewNoti(this.noti);
     })
+  }
+
+  checkNewNoti(notiList) {
+    notiList.map(noti => {
+      if(noti.isRead == 0) {
+        this.newNoti = true;
+      }
+    })
+  }
+
+  setRead(noti) {
+    if(noti.routerLink) {
+      this.router.navigate([noti.routerLink])
+    } else {
+      this.router.navigate(['/thong-bao/all'])
+    }
+    if(noti.isRead == 0) {
+      this.apiService.setNotiRead(noti.id).subscribe();
+    }
   }
 
 }

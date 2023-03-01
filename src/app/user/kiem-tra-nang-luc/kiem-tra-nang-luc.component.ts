@@ -12,10 +12,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KiemTraNangLucComponent implements OnInit {
 
-  classList : Classroom[] = [];
-  subjectList : Subject[] = [];
-  classId : any;
-  subjectId : any;
+  classList  = [];
+  subjectList  = [{label: 'Tất cả', value: ''}];
+  classId : any = '';
+  subjectId : any = '';
   tests : any[] = [];
   constructor(
     private apiService: ApiService,
@@ -23,15 +23,21 @@ export class KiemTraNangLucComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getClassroom()
+    this.getClassroom();
+    this.getTest()
   }
 
   getClassroom() {
     this.spinner.show()
     this.apiService.getClassroom().subscribe((response) => {
       if(response.status == 'success') {
-        this.classList = response.data.data
-        this.spinner.hide()
+        this.classList = response.data.data.map(c => {
+          return {
+            label: c.name,
+            value: c.id
+          }
+        })
+        this.classList = [{label: 'Tất cả', value: ''}, ...this.classList]
       }
     })
   }
@@ -40,22 +46,16 @@ export class KiemTraNangLucComponent implements OnInit {
     this.spinner.show()
     this.apiService.getSubject(0, 100, classId).subscribe((response) => {
       if(response.status == 'success') {
-        this.subjectList = response.data.data
-        this.spinner.hide()
+        this.subjectList = response.data.data.map(s => {
+          return {
+            label: s.name,
+            value: s.id
+          }
+        })
+        this.subjectList = [{label: 'Tất cả', value: ''}, ...this.subjectList]
       }
+      this.spinner.hide();
     })
-  }
-
-  
-  selectedClass(c) {
-    this.classId = c.id
-    this.subjectId = ''
-    this.tests = []
-    this.getSubject(c.id)
-  }
-  
-  selectedSubject(s) {
-    this.subjectId = s.id
     this.getTest();
   }
   

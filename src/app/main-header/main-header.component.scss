@@ -95,6 +95,7 @@
 .bell {
   margin-top: 4px;
   margin-right: 25px;
+  position: relative;
   i {
     font-size: 18px;
     &:hover {
@@ -103,13 +104,38 @@
   }
 }
 
+.circleFill {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  font-size: 12px !important;
+  color: red;
+}
+
 .noti-item {
   border-radius: 3px;
   margin: 10px 0;
+  position: relative;
   &:hover {
     background: #becedfbf;
     cursor: pointer;
   }
+}
+
+.noti-isRead {
+  height: 90%;
+  position: absolute;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  i {
+    color: #007bff;
+    font-size: 13px;
+  }
+}
+
+.isRead {
+  color: #007bff;
 }
 
 .noti-info {

@@ -420,6 +420,10 @@ export class ApiService {
     return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification/GetAdminNotifications?` + queryParams)
   }
 
+  setNotiRead(id:string) {
+    return this.http.post(`${this.url}/Notification/SetNotificationRead?id=` + id, '')
+  }
+
   // Step
   getStep(queryParams) : Observable<BaseReponse<Step>> {
     return this.http.get<BaseReponse<Step>>(`${this.url}/step?` + queryParams)

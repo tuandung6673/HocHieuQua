@@ -3,7 +3,7 @@
     <div class="logo" >
       <img class="image" src="https://hochieuqua7.web.app/images/logo.png" width="75px" height="65px" routerLink=""/>
     </div>
-    
+
     <div class="search">
     </div>
 
@@ -17,8 +17,9 @@
     </div>
 
     <div [ngClass]="isToken ? 'logined' : 'none' ">
-      <div class="bell">
-        <i class="pi pi-bell" (click)="op.toggle($event)"></i>
+      <div class="bell" (click)="op.toggle($event)">
+        <i class="pi pi-bell"></i>
+        <i *ngIf="newNoti" class="pi pi-circle-fill circleFill"></i>
       </div>
       <div class="avatar">
         <img [src]="defaultAvatar"/>
@@ -36,16 +37,19 @@
 <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '400px'}">
   <ng-template pTemplate>
     <div class="noti-wrapper">
-      <div class="noti-item flex" *ngFor="let notee of noti" [routerLink]="notee.routerLink ? notee.routerLink : '/quan-tri'">
+      <div class="noti-item flex" *ngFor="let notee of noti" (click)="setRead(notee); op.toggle($event)">
         <div *ngIf="notee.fromAvatar" class="noti-ava">
           <img [src]="notee.fromAvatar" width="60px" height="60px"/>
         </div>
         <div *ngIf="!notee.fromAvatar" class="noti-ava">
           <img src="https://hochieuqua7.web.app/images/menu/account.png" width="60px" height="60px"/>
         </div>
-        <div class="noti-info">
+        <div class="noti-info" [ngClass]="{isRead: notee.isRead == 0}">
           <div>{{notee.title}}</div>
           <div>{{notee.createdDate}}</div>
+        </div>
+        <div class="noti-isRead" *ngIf="notee.isRead == 0">
+          <i class="pi pi-circle-fill"></i>
         </div>
       </div>
       <hr>

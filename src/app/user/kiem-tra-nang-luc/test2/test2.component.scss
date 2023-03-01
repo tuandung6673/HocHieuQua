@@ -1,6 +1,6 @@
 .test {
   width: 100%;
-  margin: 15px 0 15px 0;
+  // margin: 15px 0 15px 0;
   padding: 10px 5px 10px 5px;
   border-radius: 10px;
 }
@@ -10,18 +10,64 @@
 }
 
 .action {
+  display: flex;
+  justify-content: end;
   .button {
     padding: 5px;
-    border-radius: 5px;
-    background: #2196f3;
-    border: 1px solod #2196f3;
-    color: white;
+    background: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    color: #fff;
     cursor: pointer;
     margin-bottom: 30px;
+    font-size: 15px;
     &:hover {
-      padding: 5px;
-      border-radius: 5px;
-      background: #45a0eb;
+      // padding: 5px;
+      // border-radius: 5px;
+      // background: #45a0eb;
+      background: #0069d9;
+      border-color: #0069d9;
+      color: #fff;
     }
+    i {
+      margin: 0 2px;
+      font-size: 15px;
+    }
+  }
+}
+
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  i {
+    padding: 5px 10px;
+    background: rgba(0,128,255,.205);
+    border-radius: 5px;
+    font-size: 15px;
+  }
+}
+
+.infor-2 {
+  margin-top: 10px;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  div {
+    margin-left: 0px;
+  }
+  > * {
+    margin: 0 10px;
+  }
+  > * {
+    &:first-child {
+      margin-left: 0px;
+      margin-right: 5px;
+    }
+  }
+  i {
+    font-size: 15px;
   }
 }

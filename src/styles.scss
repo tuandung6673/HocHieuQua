@@ -60,6 +60,14 @@ body {
     > *:last-child {
       margin-right: 0px;
     }
+    .p-dropdown-label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .p-dropdown-item {
+      font-size: 14px;
+    }
     .search-btn {
       display: flex;
       .btn {

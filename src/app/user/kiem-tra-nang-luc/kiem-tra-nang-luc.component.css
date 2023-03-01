@@ -9,3 +9,12 @@
   background-color: rgb(199, 199, 219);
   border-radius: 5px;
 }
+
+.content {
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.content img {
+  height: 70vh;
+}

@@ -1,19 +1,19 @@
 <div class="grid test" [ngClass]="index % 2 == 0 ? 'even': 'odd'" >
   <div class="col-4 infor">
-    <div style="margin-bottom: 5px">
+    <div class="title">
       <i class="pi pi-book"></i>
       {{test.name}}
     </div>
-    <div class="flex">
-      <div class="flex align-content-center">
+    <div class="flex infor-2">
+      <div class="timer">
         <i class="pi pi-clock"></i>
-        <p>{{test.time}} phút</p>
+        <div>{{test.time}} phút</div>
+        <i class="timer" class="pi pi-question-circle"></i>
       </div>
-      <i style="margin-left: 10px" class="pi pi-question-circle"></i>
     </div>
   </div>
   <div class="col-4 blank"></div>
-  <div class="col-4 action flex justify-content-end">
+  <div class="col-4 action">
     <p class="button">
       <i class="pi pi-play"></i>
       Thi ngay
