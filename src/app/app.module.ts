@@ -135,6 +135,7 @@ import { ChiTietFooterComponent } from './quan-tri/quan-tri-footer/chi-tiet-foot
 import { ChiTietThongBaoComponent } from './quan-tri/thong-bao/chi-tiet-thong-bao/chi-tiet-thong-bao.component';
 import { ThongBaoAllComponent } from './user/thong-bao-all/thong-bao-all.component';
 import { AdminGuard } from 'src/auth/adminGuard.service';
+import { TatCaKhoaHocComponent } from './user/tat-ca-khoa-hoc/tat-ca-khoa-hoc.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent, canActivate: [AdminGuard],
@@ -201,6 +202,7 @@ const appRoutes: Routes = [
       {path: 'tuyen-dung', component: TuyenDungComponent},
       {path: 'tuyen-dung/:id', component: ChiTietTuyenDungComponent},
       {path: 'huong-dan', component: HuongDanComponent},
+      {path: 'khoa-hoc', component: TatCaKhoaHocComponent},
       {path: 'khoa-hoc/:id', component: KhoaHocComponent},
       {path: 'giao-vien', component: UserGvComponent},
       {path: 'giao-vien/:id', component: UserChiTietGvComponent},
@@ -317,7 +319,8 @@ const appRoutes: Routes = [
     QuanTriFooterComponent,
     ChiTietFooterComponent,
     ChiTietThongBaoComponent,
-    ThongBaoAllComponent
+    ThongBaoAllComponent,
+    TatCaKhoaHocComponent
       ],
   imports: [
   CKEditorModule,

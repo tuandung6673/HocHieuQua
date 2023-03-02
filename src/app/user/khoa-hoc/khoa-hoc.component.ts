@@ -26,7 +26,6 @@ export class KhoaHocComponent implements OnInit {
   getCourse() {
     this.spinner.show()
     this.apiService.getCourse('', this.id).subscribe((responseData) => {
-      console.log(responseData.data.data);
       this.courses = responseData.data.data
       this.totalRecord = responseData.data.recordsTotal
       this.spinner.hide()

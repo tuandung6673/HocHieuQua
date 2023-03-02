@@ -240,6 +240,10 @@ export class ApiService {
     return this.http.get<BaseRetail<Course>>(`${this.url}/Course/${id}`)
   }
 
+  getCourseUser(queryParams) : Observable<BaseReponse<Course>> {
+    return this.http.get<BaseReponse<Course>>(`${this.url}/Course/GetCoursesUser?` + queryParams)
+  }
+
   postCourse(data: Course) {
     return this.http.post(`${this.url}/Course`, data)
   }

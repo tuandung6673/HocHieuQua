@@ -1,19 +1,28 @@
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiService } from './../../../services/api.service.service';
+import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
-  selector: 'app-kiem-tra-nang-luc',
-  templateUrl: './kiem-tra-nang-luc.component.html',
-  styleUrls: ['./kiem-tra-nang-luc.component.css']
+  selector: 'app-tat-ca-khoa-hoc',
+  templateUrl: './tat-ca-khoa-hoc.component.html',
+  styleUrls: ['./tat-ca-khoa-hoc.component.scss']
 })
-export class KiemTraNangLucComponent implements OnInit {
+export class TatCaKhoaHocComponent implements OnInit {
 
   classList  = [];
   subjectList  = [{label: 'Tất cả', value: ''}];
   classId : any = '';
   subjectId : any = '';
-  tests : any[] = [];
+  params = {
+    classId: '',
+    filter: '',
+    offSet: 0,
+    pageSize: 10000,
+    status: 1,
+    subjectId: '' 
+  }
+
   constructor(
     private apiService: ApiService,
     private spinner : NgxSpinnerService
@@ -21,7 +30,7 @@ export class KiemTraNangLucComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClassroom();
-    this.getTest()
+    this.getCourse()
   }
 
   getClassroom() {
@@ -36,8 +45,8 @@ export class KiemTraNangLucComponent implements OnInit {
         })
         this.classList = [{label: 'Tất cả', value: ''}, ...this.classList]
       }
+      this.spinner.hide();
     })
-    this.spinner.hide();
   }
 
   getSubject(classId) {
@@ -54,16 +63,16 @@ export class KiemTraNangLucComponent implements OnInit {
       }
       this.spinner.hide();
     })
-    this.subjectId = '';
-    this.getTest();
+    this.getCourse();
   }
-  
-  getTest() {
-    this.spinner.show()
-    this.apiService.getTest(0, 100, '', this.classId, '', this.subjectId, 'kiem-tra').subscribe((response) => {
-      this.tests = response.data.data
-      this.spinner.hide()
+
+  getCourse() {
+    const queryParams = queryString.stringify(this.params);
+    this.spinner.show();
+    this.apiService.getCourseUser(queryParams).subscribe(response => {
+      console.log(response.data.data);
+      this.spinner.hide();
     })
   }
-  
+
 }

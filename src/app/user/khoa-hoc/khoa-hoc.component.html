@@ -1,13 +1,12 @@
-<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-
-
-<div class="header">
-  <p class="title">Danh sách khóa học</p>
-  <p class="record">Tìm thấy <span>{{totalRecord}}</span> khóa học</p>
-</div>
-
-<div class="list">
-  <div class="item" *ngFor="let course of courses">
-    <app-tong-quan-item [course]="course"></app-tong-quan-item>
+<div class="user-wrapper">
+  <div class="header">
+    <p class="title">Danh sách khóa học</p>
+    <p class="record">Tìm thấy <span>{{totalRecord}}</span> khóa học</p>
+  </div>
+  
+  <div class="list">
+    <div class="item" *ngFor="let course of courses">
+      <app-tong-quan-item [course]="course"></app-tong-quan-item>
+    </div>
   </div>
 </div>
