@@ -1,9 +1,32 @@
-<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-
-<div [ngClass]="isDisplayDialog ? 'active' : '' ">
-  <div class="header">
+<div class="user-wrapper wrapper" [ngClass]="isDisplayDialog ? 'active' : '' ">
+  <!-- <div class="header">
     <p>{{detailRecruit.name}}</p>
+  </div> -->
+
+  <div class="header">
+    <div class="guide">
+      <!-- <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Thanh toán</span> -->
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">{{detailRecruit.name}}</div>
+      </div>
+      <div class="header-right">
+        <!-- <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left" (click)="op2.toggle($event)"></p-button> -->
+        <!-- <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button> -->
+      </div>
+    </div>
   </div>
+
   <div class="wrapper"> 
     <div class="ung-tuyen">
       <p-button label="Ứng tuyển ngay" (onClick)="onDisplayDialog()"></p-button>

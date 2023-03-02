@@ -26,6 +26,7 @@ export class HuongDanComponent implements OnInit {
     this.spinner.show()
     this.apiService.getFAQ().subscribe((responseData) => {
       this.FAQs = responseData.data.data
+      this.faqSelected = responseData.data.data[0].id;
       this.content = responseData.data.data[0].content
       this.title = responseData.data.data[0].title
       this.spinner.hide()

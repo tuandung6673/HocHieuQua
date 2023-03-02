@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-tuyen-dung-item',
@@ -7,10 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TuyenDungItemComponent implements OnInit {
 
-  @Input() tuyendung : any
+  @Input() tuyendung : any;
+  dateConverted : any;
   constructor() { }
 
   ngOnInit(): void {
+    const date = this.tuyendung.createdDate ;
+    this.dateConverted = moment(date).format('DD-MM-YYYY k:mm:ss');
   }
 
 }

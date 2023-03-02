@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import * as moment from 'moment'
 @Component({
   selector: 'app-tin-tuc-item',
   templateUrl: './tin-tuc-item.component.html',
@@ -11,6 +11,7 @@ export class TinTucItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

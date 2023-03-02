@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Authentication } from 'src/models/authentication.model';
 import { ApiService } from 'src/services/api.service.service';
 import * as queryString from 'querystring-es3';
+import * as moment from 'moment'
 import { Notification } from 'src/models/notification.model';
 
 @Component({
@@ -79,6 +80,9 @@ export class MainHeaderComponent implements OnInit {
     const queryParams = queryString.stringify(this.params)
     this.apiService.getNotification(queryParams).subscribe(response => {
       this.noti = response.data.data;
+      this.noti.map(n => {
+        n.createdDate = moment(n.createdDate).format('DD-MM-YYYY k:mm:ss')
+      })
       this.checkNewNoti(this.noti);
     })
   }

@@ -3,6 +3,7 @@ import { ApiService } from 'src/services/api.service.service';
 import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
 import { Notification } from 'src/models/notification.model';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-thong-bao-all',
@@ -39,6 +40,9 @@ export class ThongBaoAllComponent implements OnInit {
     this.spinner.show();
     this.apiService.getNotification(queryParams).subscribe(response => {
       this.listOfNoti = response.data.data;
+      this.listOfNoti.map(n => {
+        n.createdDate = moment(n.createdDate).format('DD-MM-YYYY k:mm:ss')
+      })
       this.totalRecord = response.data.recordsTotal;
       this.currentItem(response.data.data[0])
       this.spinner.hide();

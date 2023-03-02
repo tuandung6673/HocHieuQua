@@ -1,10 +1,13 @@
 <div class="user-wrapper">
+  <div class="header-left">
+    <div class="empty"></div>
+    <div class="main-title">Những câu hỏi thường gặp</div>
+  </div>
   <div class="huong-dan">
     <div class="huong-dan-menu">
-      <div class="title">Những câu hỏi thường gặp</div>
       <div  class="faq-list" >
-        <div *ngFor="let faq of FAQs">
-          <p class="faq-item" (click)="onSelect(faq)" [ngClass]="faq.id == faqSelected ? 'active' : '' ">{{faq.title}}</p>
+        <div *ngFor="let faq of FAQs; index as idx">
+          <p class="faq-item" (click)="onSelect(faq)" [ngClass]="faq.id == faqSelected ? 'active' : '' ">{{idx + 1}}.{{faq.title}}</p>
         </div>
       </div> 
     </div>

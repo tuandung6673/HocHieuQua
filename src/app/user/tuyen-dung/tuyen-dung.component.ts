@@ -6,7 +6,7 @@ import { ApiService } from 'src/services/api.service.service';
 @Component({
   selector: 'app-tuyen-dung',
   templateUrl: './tuyen-dung.component.html',
-  styleUrls: ['./tuyen-dung.component.css']
+  styleUrls: ['./tuyen-dung.component.scss']
 })
 export class TuyenDungComponent implements OnInit {
 

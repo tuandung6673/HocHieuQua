@@ -2,6 +2,8 @@
   margin-top: 20px;
   display: grid;
   grid-template-columns: 2fr 5fr;
+  grid-gap: 10px;
+  font-size: 15px;
 }
 
 .title {
@@ -16,6 +18,11 @@
   padding: 10px;
 }
 
+.faq-item {
+  margin: 0;
+  padding: 10px 0;
+  padding-left: 10px;
+}
 
 .faq-item:hover {
   border-radius: 5px;
@@ -24,10 +31,12 @@
 }
 
 .huong-dan-content {
+  padding-top: 10px;
   min-width: 100%;
 }
 
 .active {
   border-radius: 5px;
   background: rgba(7, 65, 122, 0.123);
+  font-weight: bold;
 }

@@ -5,6 +5,7 @@ import { New } from 'src/models/new.model';
 import { ApiService } from 'src/services/api.service.service';
 import { NewCatagory } from 'src/models/newCategory.model';
 import { forkJoin } from 'rxjs';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-gioi-thieu',
@@ -34,7 +35,10 @@ export class GioiThieuComponent implements OnInit {
       this.apiService.getNewCategory(),
 
     ]).subscribe(response => {
-      this.news = response[0].data.data
+      this.news = response[0].data.data;
+      this.news.map(n => {
+        n.createdDate = moment(n.createdDate).format('DD-MM-YYYY k:mm:ss')
+      })
       this.mostViewNew = response[0].data.data.slice(0, 3)
       this.lastestNew = response[0].data.data.slice(-3)
 
