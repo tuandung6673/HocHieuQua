@@ -1,5 +1,5 @@
 <div class="user-wrapper">
-  <<div class="header">
+  <div class="header">
     <div class="guide">
     </div>
     <div class="header-2">
@@ -12,5 +12,13 @@
         <p-dropdown [options]="subjectList" label="Môn học" [(ngModel)]="params.subjectId" (onChange)="getCourse()"></p-dropdown>
       </div>
     </div>
+  </div>
+  <div class="all-course grid">
+    <ng-container *ngFor="let course of courses">
+      <div class="col-3">
+        {{course.name}}
+        
+      </div> 
+    </ng-container>
   </div>
 </div>

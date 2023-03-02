@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="user-wrapper">
 
   <hr>
   <div class="main-footer" >
@@ -29,11 +29,11 @@
   </div>
   
   <hr>
-  <div class="grid" *ngIf="footer && footer.length">
-    <div class="col-8">
+  <div class=" main-footer2" *ngIf="footer && footer.length">
+    <div >
       <div [innerHTML]="footer[1]?.content"></div>
     </div>
-    <div class="col-4">
+    <div >
       <div [innerHTML]="footer[2]?.content"></div>
     </div>
   </div>

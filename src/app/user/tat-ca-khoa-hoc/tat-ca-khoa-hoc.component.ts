@@ -2,6 +2,7 @@ import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
+import { Course } from 'src/models/course.model';
 
 @Component({
   selector: 'app-tat-ca-khoa-hoc',
@@ -22,6 +23,8 @@ export class TatCaKhoaHocComponent implements OnInit {
     status: 1,
     subjectId: '' 
   }
+
+  courses: Course[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -70,7 +73,7 @@ export class TatCaKhoaHocComponent implements OnInit {
     const queryParams = queryString.stringify(this.params);
     this.spinner.show();
     this.apiService.getCourseUser(queryParams).subscribe(response => {
-      console.log(response.data.data);
+      this.courses = response.data.data;
       this.spinner.hide();
     })
   }
