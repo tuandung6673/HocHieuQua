@@ -1,18 +1,17 @@
-<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-
-
-<div class="huong-dan">
-  <div class="huong-dan-menu">
-    <div class="title">Những câu hỏi thường gặp</div>
-    <div  class="faq-list" >
-      <div *ngFor="let faq of FAQs">
-        <p class="faq-item" (click)="onSelect(faq)" [ngClass]="faq.id == faqSelected ? 'active' : '' ">{{faq.title}}</p>
-      </div>
-    </div> 
-  </div>
-  <div class="huong-dan-content">
-    <p style="font-weight: bold;">{{title}}</p>
-    <div [innerHTML]="content"></div>
+<div class="user-wrapper">
+  <div class="huong-dan">
+    <div class="huong-dan-menu">
+      <div class="title">Những câu hỏi thường gặp</div>
+      <div  class="faq-list" >
+        <div *ngFor="let faq of FAQs">
+          <p class="faq-item" (click)="onSelect(faq)" [ngClass]="faq.id == faqSelected ? 'active' : '' ">{{faq.title}}</p>
+        </div>
+      </div> 
+    </div>
+    <div class="huong-dan-content">
+      <p style="font-weight: bold;">{{title}}</p>
+      <div [innerHTML]="content"></div>
+    </div>
   </div>
 </div>
 

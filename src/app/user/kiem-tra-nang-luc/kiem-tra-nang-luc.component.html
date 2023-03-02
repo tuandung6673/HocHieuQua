@@ -1,42 +1,4 @@
-<!-- <div>
-  <div>
-    <h3>Các đề ôn thi hay</h3>
-  </div>
-  <div class="grid">
-    <div class="col-3">
-      <div class="class-wrapper">
-        <h4 style="margin-left:10px ; font-weight: bold;"><i class="pi pi-qrcode"></i>Lớp học</h4>
-        <div class="classes">
-          <div *ngFor="let class of classList" class="flex list-none">
-            <div class="classabc" (click)="selectedClass(class)" [ngClass]="classId == class.id ? 'active' : '' ">{{class.name}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="subject-wrapper">
-        <h4 style="margin-left: 10px; font-weight: bold;">
-          <i class="pi pi-qrcode"></i>
-          Môn học
-        </h4>
-        <div class="subjects">
-          <div *ngFor="let subject of subjectList">
-            <div class="classabc" (click)="selectedSubject(subject)" [ngClass]="subjectId == subject.id ? 'active' : '' ">{{subject.name}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-9 content">
-      <div *ngIf="tests.length == 0">
-        <p style="text-align: center; margin-top: 20px">Không có dữ liệu hiển thị</p>
-        <img src="https://hochieuqua7.web.app/images/course/not-found2.gif" />
-      </div>
-      <div *ngFor="let test of tests; let i = index">
-        <app-test2 [test]="test" [index]="i"></app-test2>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="wrapper">
+<div class="user-wrapper">
   <div class="header">
     <div class="guide">
     </div>

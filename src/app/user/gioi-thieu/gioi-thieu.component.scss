@@ -21,6 +21,14 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.new-wrapper {
+  grid-gap: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px hsl(0deg 1% 65% / 12%);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 20px;
+}
 
 
 

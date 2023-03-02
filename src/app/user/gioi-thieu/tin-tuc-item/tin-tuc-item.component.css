@@ -1,4 +1,5 @@
 .wrapper {
+  padding: 5px;
   margin: 6px;
   box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
   border-radius: 10px;
@@ -7,7 +8,8 @@
 
 .wrapper:hover {
   cursor: pointer;
-  box-shadow: 0 5px 10px -3px #1b4ead
+  box-shadow: 0 5px 10px -3px #1b4ead;
+  color: #1b4ead;
 }
 
 
@@ -15,11 +17,17 @@ img {
   padding: 5px;
   width: 100%;
   border-radius: 12px;
+  object-fit: contain;
 }
 
 .title {
-  height: 60px;
+  font-size: 18px;
+  font-weight: 700;
+  height: 55px;
   padding: 5px;
+  color: #2c2b2b;
+  letter-spacing: 1px;
+  overflow: hidden;
 }
 
 .infor {

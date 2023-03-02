@@ -9,11 +9,16 @@
 }
 
 .wrapper {
+  width: 65%;
+  margin: 0 auto;
   padding: 10px;
   margin-top: 20px;
   box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
   .description {
     display: flex;
+    i {
+      font-size: 14px;
+    }
     p {
       margin-right: 15px;
     }

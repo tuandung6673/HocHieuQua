@@ -12,3 +12,7 @@
 .text:hover {
   color: rgb(108, 108, 207);
 }
+
+i {
+  font-size: 15px;
+}

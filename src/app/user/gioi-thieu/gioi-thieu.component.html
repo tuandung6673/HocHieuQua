@@ -1,25 +1,28 @@
-<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-
-<div class="banner">
-  <img src="https://hochieuqua7.web.app/images/user/library/cover.jpg" alt="image"/>
-</div>
-
-<div class="grid">
-  <div class="col-8">
-    <p class="header">Tin tức</p>
-    <div class="grid">
-      <ng-container *ngFor="let tintuc of news">
-        <div class="col-6 item">
+<div class="user-wrapper">
+  <div class="banner">
+    <img src="https://hochieuqua7.web.app/images/user/library/cover.jpg" alt="image"/>
+  </div>
+  
+  <div class="grid new-wrapper">
+    <div>
+      <div>
+        <div class="empty"></div>
+        <p class="header">Tin tức</p>
+      </div>
+      <div class="grid">
+        <ng-container *ngFor="let tintuc of news">
+          <div class="col-6 item">
             <app-tin-tuc-item [tintuc]="tintuc" [routerLink]="['/gioi-thieu', tintuc.id]"></app-tin-tuc-item>
           </div>
-      </ng-container>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="grid">
-      <div class="col-12">
-        <app-gioi-thieu-phai [newsCategory]="newsCategory" [mostViewNew]="mostViewNew" [lastestNew]="lastestNew"></app-gioi-thieu-phai>
+        </ng-container>
       </div>
     </div>
-  </div>
-<div>
+    <div>
+      <div class="grid">
+        <div class="col-12">
+          <app-gioi-thieu-phai [newsCategory]="newsCategory" [mostViewNew]="mostViewNew" [lastestNew]="lastestNew"></app-gioi-thieu-phai>
+        </div>
+      </div>
+    </div>
+  <div>
+</div>
