@@ -13,12 +13,21 @@
       </div>
     </div>
   </div>
-  <div class="all-course grid">
-    <ng-container *ngFor="let course of courses">
-      <div class="col-3">
-        {{course.name}}
-        
-      </div> 
-    </ng-container>
+  <div class="all-course">
+    <div class="course-item" *ngFor="let course of courses" [routerLink]="['/mon-hoc', course.id]">
+      <img class="image" [src]="course.courseAvatar" />
+      <div class="text">
+        <div class="name">{{course.name}}</div>
+        <div class="futer">
+          <div class="rating">
+            <p-rating [(ngModel)]="course.rating" [cancel]="false" [readonly]="true"></p-rating>
+          </div>
+          <div class="price">
+            <div *ngIf="course.priceDiscount != 0" class="priceDiscount">{{course.priceDiscount | number}}</div>
+            <div class="final-price">{{course.price | number}}đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
