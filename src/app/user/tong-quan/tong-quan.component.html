@@ -1,6 +1,6 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 
-<div class="carousel">
+<div class="carousel user-wrapper">
   <p-carousel [value]="imageSlider" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="2000">
     <ng-template let-slide pTemplate="item">
       <img [src]="slide.imageUrl" class="slide-image" />
@@ -14,11 +14,11 @@
 
 <br>
 
-<div style="width: 65%; margin: 0 auto;" *ngFor="let subject of home?.subjects">
+<div class="user-wrapper" *ngFor="let subject of home?.subjects">
   <app-tong-quan-subject [subject]="subject"></app-tong-quan-subject>
 </div>
 
-<div style="width: 65%; margin: 0 auto;">
+<div class="user-wrapper">
   <div class="header-title">
     <span>Tham gia HocHieuQua với 4 bước</span>
   </div>
@@ -45,7 +45,120 @@
   </div>
 </div>
 
-<div class="teacher"  style="width: 65%; margin: 0 auto">
+<div class="user-wrapper">
+  <div class="content">
+    <div class="title">
+      <div class="label">Tham gia học với 4 bước đơn giản</div>
+      <div class="empty-title"></div>
+    </div>
+    <div class="main-content">
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638094143746446951_tim kiem.gif" alt="avatar"/>
+        </div>
+        <div class="text">Tìm kiếm</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638094174988213925_mien phi.gif" alt="avatar"/>
+        </div>
+        <div class="text">Học thử</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638094179607024960_tien 4.gif" alt="avatar"/>
+        </div>
+        <div class="text">Thanh toán</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638094174286198871_hop video.gif" alt="avatar"/>
+        </div>
+        <div class="text">Vào học</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="title">
+      <div class="label">Lý do học tập tại Học Hiệu Quả</div>
+      <div class="empty-title"></div>
+    </div>
+    <div class="main-content bg">
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080063672055902_906175.png" alt="avatar"/>
+        </div>
+        <div class="text">100+ Giảng viên</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080065418218595_2231642.png" alt="avatar"/>
+        </div>
+        <div class="text">Bài giảng chất lượng</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080067636368761_5980133.png" alt="avatar"/>
+        </div>
+        <div class="text">Học mãi mãi</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080065459054377_2472253.png" alt="avatar"/>
+        </div>
+        <div class="text">Hỗ trợ trực tiếp</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080067340447889_5466095.png" alt="avatar"/>
+        </div>
+        <div class="text">Hỗ trợ 24/7</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="title">
+      <div class="label">Trải nghiệm phương pháp học hiện đại</div>
+      <div class="empty-title"></div>
+    </div>
+    <div class="main-content">
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080064933645968_1478956.png" alt="avatar"/>
+        </div>
+        <div class="text">Học mọi lúc mọi nơi</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080065867317001_3459504.png" alt="avatar"/>
+        </div>
+        <div class="text">Chi phí hợp lý</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080067868101826_9066641.png" alt="avatar"/>
+        </div>
+        <div class="text">Tính ứng dụng cao</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080066733821910_4214144.png" alt="avatar"/>
+        </div>
+        <div class="text">Tương tác giảng viên</div>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="https://api.hochieuqua.vn/images/638080066242121579_7366336.png" alt="avatar"/>
+        </div>
+        <div class="text">Hỗ trợ 24/7</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="teacher user-wrapper">
   <div class="header-title">
     <span>Đội ngũ giáo viên</span>
   </div>
@@ -56,7 +169,7 @@
 </div>
 
 <div class="quizs" style="width: 100%">
-  <div style="width: 65%; margin: 0 auto">
+  <div class="user-wrapper">
     <div class="header-title">
       <span>Đố vui</span> 
     </div>
