@@ -8,6 +8,7 @@ import { Authentication } from 'src/models/authentication.model';
 import * as queryString from 'querystring-es3';
 import { PaymentType } from 'src/models/paymentType.model';
 import { Payment } from 'src/models/payment.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-mon-hoc',
@@ -26,6 +27,7 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
   user : Authentication;
   activeIndex2 : any;
   userData ;
+  relateCourse : any[] = [];
   query = {
     filter : '',
     offset : 0,
@@ -37,7 +39,8 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
   constructor(
     private apiService : ApiService,
     private spinner : NgxSpinnerService,
-    private message : MessageService
+    private message : MessageService,
+    private router: Router
   ) { 
     this.user = JSON.parse(localStorage.getItem('userData'));
   }
@@ -132,5 +135,12 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
       this.spinner.hide();
     })
   }
+
+  directCourse(id) {
+    this.router.navigate(['/mon-hoc', id]);
+    setTimeout(() => {
+      window.location.reload();
+    }, 100)
+  } 
 
 }

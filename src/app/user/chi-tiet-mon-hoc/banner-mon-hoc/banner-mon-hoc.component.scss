@@ -1,0 +1,41 @@
+.banner {
+  width: 100%;
+  height: 180px;
+  background: #0069da;
+  color: #fff;
+  align-items: center;
+  position: relative;
+  .user-wrapper {
+    padding: 50px 0;
+    .header {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    .info {
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 15px;
+        i {
+          font-size: 14px;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+  .math {
+    height: 200px;
+    width: 280px;
+    position: absolute;
+    top: 0;
+    left: 35%;
+  }
+  .math2 {
+    position: absolute;
+    height: 200px;
+    width: 280px;
+    top: 20%;
+    right: 5%;
+  }
+}
+

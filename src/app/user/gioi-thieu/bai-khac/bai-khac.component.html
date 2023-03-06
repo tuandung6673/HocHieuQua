@@ -2,7 +2,7 @@
 
 <p-tabPanel class="tab" header="Nhiều lượt xem">
   <div *ngFor="let view of mostViewNew">
-    <div class="title" [routerLink]="['/gioi-thieu', view.id]">
+    <div class="title2" [routerLink]="['/gioi-thieu', view.id]">
       <p>{{view.title}}</p>
       <hr>
     </div>
@@ -10,7 +10,7 @@
 </p-tabPanel>
 <p-tabPanel class="tab" header="Bài mới nhất">
   <div *ngFor="let lastest of lastestNew">
-    <div class="title" [routerLink]="['/gioi-thieu', lastest.id]">
+    <div class="title2" [routerLink]="['/gioi-thieu', lastest.id]">
       <p>{{lastest.title}}</p>
       <hr>
     </div>

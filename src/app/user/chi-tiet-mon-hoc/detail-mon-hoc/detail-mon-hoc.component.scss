@@ -7,7 +7,8 @@
 
 .detail-right {
   border-radius: 8px;
-  border: 1px solid hsla(0,0%,50%,.486);
+  // border: 1px solid hsla(0,0%,50%,.486);
+  // position: absolute;
   img {
     width: 100%;
     border-radius: 5px;
@@ -44,6 +45,9 @@
   font-weight: 700;
   margin-bottom: 10px;
   width: 100%;
+  .p-button-icon {
+    font-size: 14px;
+  }
 }
 
 .inputArea span {
@@ -81,5 +85,65 @@
 .pay {
   span {
     color: blue;
+  }
+}
+
+.course-relate {
+  margin-top: 15px;
+  .relate-title {
+    position: relative;
+    margin: 10px 0;
+    .title2 {
+      color: #0c0c0c;
+      font-size: 22px;
+      font-weight: bolder;
+      padding: 5px 0;
+    }
+    .empty {
+      height: 5px;
+      background-color: rgba(0, 115, 247, 0.5);
+      border-radius: 40%;
+      position: absolute;
+      width: 120px;
+      bottom: 5px;
+      left: 5px;
+      // transform: translateX(-50%);
+      // left: 50%;
+      // right: 50%;
+    }
+  }
+}
+
+.detail-relate {
+  display: flex;
+  height: 110px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  &:hover {
+    background: rgba(0,119,255,.089);
+    cursor: pointer;
+  }
+  img {
+    height: 100%;
+    width: 140px;
+    margin-right: 10px;
+  }
+  .relate-info  {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    i {
+      color: #1e90ff;
+      font-size: 14px;
+    }
+  }
+  
+  .relate-name {
+    font-size: 20px;
+    font-weight: 600;
   }
 }

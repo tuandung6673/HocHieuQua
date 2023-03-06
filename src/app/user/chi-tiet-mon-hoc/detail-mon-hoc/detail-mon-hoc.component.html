@@ -21,7 +21,24 @@
       <p-button label="Đăng ký học" icon="pi pi-user-plus" styleClass="p-button" (click)="onRegister()" ></p-button>
     </div>
     <div class="detail-text">
+      <div [innerHTML]="detailCourse.courseInfo1"></div>
       <div [innerHTML]="detailCourse.courseInfo2"></div>
+    </div>
+    <div class="course-relate">
+      <div class="relate-title">
+        <div class="title2">Khóa học liên quan</div>
+        <div class="empty"></div>
+      </div>
+      <div class="detail-relate" *ngFor="let courseRelate of detailCourse.courseRelevants" (click)="directCourse(courseRelate.id)">
+        <img [src]="courseRelate.courseAvatar" height="100%" width="100%"/>
+        <div style="width: 100%;">
+          <div class="relate-name">{{courseRelate.name}}</div>
+          <div class="relate-info">
+            <div>5 <i class="pi pi-star-fill"></i></div>
+            <div>{{courseRelate.price |  number}}đ</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

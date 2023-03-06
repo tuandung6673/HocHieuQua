@@ -1,6 +1,0 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  margin-top: 10px;
-  grid-gap: 20px;
-}

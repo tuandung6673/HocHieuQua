@@ -11,7 +11,7 @@
   transition: box-shadow .2s;
 }
 
-.title:hover {
+.title2:hover {
   cursor: pointer;
 }
 
@@ -19,12 +19,12 @@
   font-size: 15px;
 }
 
-::ng-deep .title {
+::ng-deep .title2 {
   color: #495057;
   font-size: 14px;
 }
 
-::ng-deep .title:hover {
+::ng-deep .title2:hover {
   cursor: pointer;
   color: rgb(108, 108, 207);
 }

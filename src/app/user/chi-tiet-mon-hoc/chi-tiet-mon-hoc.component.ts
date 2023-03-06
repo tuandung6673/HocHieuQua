@@ -9,7 +9,7 @@ import * as queryString from 'querystring-es3';
 @Component({
   selector: 'app-chi-tiet-mon-hoc',
   templateUrl: './chi-tiet-mon-hoc.component.html',
-  styleUrls: ['./chi-tiet-mon-hoc.component.css']
+  styleUrls: ['./chi-tiet-mon-hoc.component.scss']
 })
 export class ChiTietMonHocComponent implements OnInit {
 

@@ -45,7 +45,8 @@ export class Course {
   courseSchedules: CourseSchedule[] = [];
   classRoom: Classroom = null ;
   testUsers: TestUser[] = [];
-  courseRatingSummary: CourseRatingSummary = null
+  courseRatingSummary: CourseRatingSummary = null;
+  courseRelevants : Course[] = [];
 }
 
 

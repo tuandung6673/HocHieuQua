@@ -4,7 +4,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 @Component({
   selector: 'app-banner-mon-hoc',
   templateUrl: './banner-mon-hoc.component.html',
-  styleUrls: ['./banner-mon-hoc.component.css']
+  styleUrls: ['./banner-mon-hoc.component.scss']
 })
 export class BannerMonHocComponent implements OnInit {
 
