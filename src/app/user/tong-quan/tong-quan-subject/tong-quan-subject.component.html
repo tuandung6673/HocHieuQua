@@ -1,4 +1,7 @@
 <ng-container *ngIf="subject.courses.length != 0">
-  <p class="subject-name">Khóa học {{subject.name}} nổi bật</p>
+  <div class="title">
+    <div class="subject-name label">Khóa học {{subject.name}} nổi bật</div>
+    <div class="empty-title"></div>
+  </div>
   <app-tong-quan-list [subject]="subject"></app-tong-quan-list>
 </ng-container>

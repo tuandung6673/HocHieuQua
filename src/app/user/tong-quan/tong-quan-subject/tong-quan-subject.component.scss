@@ -1,0 +1,14 @@
+.title {
+  display: flex !important;
+  justify-content: start !important;
+  margin-bottom: 10px !important;
+  .empty-title {
+    width: 200px !important;
+    transform: none !important;
+    left: 5% !important;
+  }
+}
+.subject-name {
+  font-size: 20px;
+  font-weight: bolder;
+}
