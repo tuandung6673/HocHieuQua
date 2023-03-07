@@ -1,5 +1,5 @@
 .comment {
-  margin: 5px;
+  margin: 10px 5px;
   display: flex;
   justify-content: space-between;
   .avatar {
@@ -9,11 +9,84 @@
   }
 }
 
-.main { 
-  display: flex;
-  gap: 15px;
+.child {
+  .comment2 {
+    margin: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  padding-left: 70px;
+  .avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+  }
 }
 
 .username {
   font-weight: 600;
+}
+
+.content {
+  margin: 0;
+}
+
+.main {
+  width: 100%;
+  margin-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  background: hsla(0,3%,94%,.555);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.response {
+  padding-left: 75px;
+  transform: translateY(-8px);
+  color: gray;
+  font-size: 12px;
+  font-weight: 600;
+  span {
+    cursor: pointer;
+    &:hover {
+      color: #494949;
+    }
+  }
+}
+
+.comment-answer {
+  padding-left: 75px;
+  display: flex;
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+  }
+  .answer-input {
+    position: relative;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 10px 5px;
+    ::ng-deep .p-inputtext {
+      height: 35px;
+      width: 100%;
+      background: hsla(0,3%,94%,.555);
+      border-radius: 10px;
+      font-size: 14px;
+      padding-left: 12px;
+    }
+    span {
+      color: #007bff;
+      cursor: pointer;
+      position: absolute;
+      right: 12px;
+      top: 25%;
+    } 
+    i {
+      font-size: 14px;
+    }
+  }
 }

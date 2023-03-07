@@ -21,7 +21,7 @@ export class ChiTietMonHocComponent implements OnInit {
     accountId: '',
     courseId: ''
   }
-  accoundId = JSON.parse(localStorage.getItem('userData')).id;
+  accoundId = JSON.parse(localStorage.getItem('userData'))?.id;
   isPayment : boolean = true;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private apiService: ApiService) { }
 

@@ -4,8 +4,8 @@
       <img [src]="detailCourse.courseAvatar"/>
     </div>
     <div class="detail-name">
-      <p style="font-weight: bold;">{{detailCourse.name}}</p>
-      <p>{{teacherName}}</p>
+      <p>{{detailCourse.name}}</p>
+      <!-- <p>{{teacherName}}</p> -->
     </div>
     <div class="detail-price">
       <p class="pre-price">{{detailCourse.price | number}}đ</p>
@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<p-dialog header="Yêu cầu tư vấn" [(visible)]="display" [style]="{width: '45vh', height: '50vh'}" [draggable]="false">
+<p-dialog header="Yêu cầu tư vấn" [(visible)]="display" [style]="{width: '45vh', height: '50vh'}" [draggable]="false" position="center">
   <div class="grid inputArea">
     <div class="col-12">
       <span class="p-input-icon-left">

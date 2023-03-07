@@ -17,11 +17,13 @@ import { Router } from '@angular/router';
 })
 export class DetailMonHocComponent implements OnInit, OnChanges {
 
+  isLogin = localStorage.getItem('userToken');
   @Input() detailCourse: Course
   @Input() teacherName;
   @Input() isPayment;
   display : boolean = false;
   display1 : boolean = false;
+  display2 : boolean = false;
   advice : Advice = new Advice();
   checkValid: boolean = true;
   user : Authentication;

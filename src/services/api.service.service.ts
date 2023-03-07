@@ -302,6 +302,10 @@ export class ApiService {
     return this.http.get<BaseReponse<Comment>>(`${this.url}/Comment?screen=${screen}&filter=${filter}&parentId=${parentId}&offSet=${offSet}&pageSize=${pageSize}`)
   }
 
+  postComment(data : Comment) {
+    return this.http.post<Message>(`${this.url}/Comment`, data)
+  }
+
   // Recruit
   getRecruit(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Recruit>> {
     return this.http.get<BaseReponse<Recruit>>(`${this.url}/Recruit?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)

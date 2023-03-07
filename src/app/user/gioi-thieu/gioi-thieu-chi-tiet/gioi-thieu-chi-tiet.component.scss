@@ -25,6 +25,13 @@
   }
 }
 
+@media only screen and (max-width: 1280px) {
+  .wrapper {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
 ::ng-deep .content img{
   width: 100% !important;
 }

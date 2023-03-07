@@ -2,12 +2,14 @@ export class Comment {
   id = "";
   content = "";
   userId = "";
-  createdDate = "";
+  createdDate :any = null;
   createBy = "";
-  modifiedDate = "";
+  modifiedDate :any = null;
   modifiedBy = "";
   parentId = "";
   screen = "";
   userName = "";
   avatar = ""
+  status : any = null;
+  comments: Comment[] = [];
 } 

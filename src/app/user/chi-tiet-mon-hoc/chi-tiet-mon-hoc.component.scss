@@ -6,17 +6,10 @@
 }
 
 .detail-right {
-  position: relative;
-  // background: #fff;
-  // border: 1px solid #80808024;
-  // border-radius: 10px;
-  // box-shadow: 0 0 5px #808080ad;
-} 
-.detail-mon-hoc {
-  position: absolute;
-    top: -40px;
-    background: #fff;
-    border: 1px solid #80808024;
-    border-radius: 10px;
-    box-shadow: 0 0 5px #808080ad;
+  padding: 10px;
+  transform: translateY(-50px);
+  border: 1px solid #80808024;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #808080ad;
+  background: #fff;
 }
