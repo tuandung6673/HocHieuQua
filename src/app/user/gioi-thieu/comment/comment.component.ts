@@ -13,7 +13,7 @@ import { Comment } from 'src/models/comment.model';
 export class CommentComponent implements OnInit, OnChanges {
 
   userData = JSON.parse(localStorage.getItem('userData'))
-  @Input() comments : Comment[] = [];
+  comments : Comment[] = [];
   defaultAvatar : string = "https://hochieuqua7.web.app/images/menu/account.png";
   commentAnswer : any = '';
   answerInput : any;
@@ -33,15 +33,21 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.comments.map(c => {
-      c.createdDate = moment(c.createdDate).format('DD-MM-YYYY k:mm:ss');
-      c.comments.map(c2 => {
-        c2.createdDate = moment(c2.createdDate).format('DD-MM-YYYY k:mm:ss');
-      })
-    })
+    
   }
 
   ngOnInit(): void {
+    this.spinner.show();
+    this.apiSerivce.getComment(this.id).subscribe(response => {
+      this.comments = response.data.data;
+      this.comments.map(c => {
+        c.createdDate = moment(c.createdDate).format('DD-MM-YYYY k:mm:ss');
+        c.comments.map(c2 => {
+          c2.createdDate = moment(c2.createdDate).format('DD-MM-YYYY k:mm:ss');
+        })
+      })
+      this.spinner.hide();
+    })
   }
 
   displayAnswer(comment) {

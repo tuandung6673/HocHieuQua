@@ -42,7 +42,9 @@
     </div>
   <!-- </div> -->
   <div class="comment-answer" *ngIf="commentAnswer == comment.id">
-    <img class="avatar" [src]="userData.avatar" />
+    <div style="width: 45px;">
+      <img class="avatar" [src]="userData.avatar" />
+    </div>
     <div class="answer-input">
       <input type="text" pInputText [(ngModel)]="answerInput" placeholder="Nhập phản hồi"> 
       <span (click)="sendAnswer()">
@@ -53,7 +55,7 @@
 </div>
 <hr>
 <div class="new-comment">
-  <div style="display: flex; align-items: center;">
+  <div style="display: flex; align-items: center; width: 45px;">
     <img class="avatar" [src]="userData.avatar" />
   </div>
   <div class="answer-input">

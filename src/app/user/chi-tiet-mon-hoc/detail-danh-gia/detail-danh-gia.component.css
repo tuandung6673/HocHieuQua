@@ -7,7 +7,8 @@
 
 .content {
   border-radius: 8px;
-  border: 1px solid hsla(0,0%,50%,.486)
+  border: 1px solid hsla(0,0%,50%,.486);
+  padding: 10px;
 }
 
 .content .wrapper {
