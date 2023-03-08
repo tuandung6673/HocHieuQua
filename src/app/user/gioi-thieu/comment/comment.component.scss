@@ -2,11 +2,11 @@
   margin: 10px 5px;
   display: flex;
   justify-content: space-between;
-  .avatar {
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
-  }
+  // .avatar {
+  //   height: 45px;
+  //   width: 45px;
+  //   border-radius: 100%;
+  // }
 }
 
 .child {
@@ -16,11 +16,11 @@
     justify-content: space-between;
   }
   padding-left: 70px;
-  .avatar {
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
-  }
+}
+.avatar {
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
 }
 
 .username {
@@ -33,7 +33,7 @@
 
 .main {
   width: 100%;
-  margin-left: 15px;
+  margin-left: 10px;
   display: flex;
   justify-content: space-between;
   background: hsla(0,3%,94%,.555);
@@ -42,7 +42,7 @@
 }
 
 .response {
-  padding-left: 75px;
+  padding-left: 65px;
   transform: translateY(-8px);
   color: gray;
   font-size: 12px;
@@ -58,35 +58,49 @@
 .comment-answer {
   padding-left: 75px;
   display: flex;
-  img {
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
-  }
-  .answer-input {
-    position: relative;
-    padding-left: 15px;
-    display: flex;
-    align-items: center;
+  // img {
+  //   height: 45px;
+  //   width: 45px;
+  //   border-radius: 100%;
+  // }
+}
+.answer-input {
+  position: relative;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 5px;
+  ::ng-deep .p-inputtext {
+    height: 35px;
     width: 100%;
-    margin: 10px 5px;
-    ::ng-deep .p-inputtext {
-      height: 35px;
-      width: 100%;
-      background: hsla(0,3%,94%,.555);
-      border-radius: 10px;
-      font-size: 14px;
-      padding-left: 12px;
-    }
-    span {
-      color: #007bff;
-      cursor: pointer;
-      position: absolute;
-      right: 12px;
-      top: 25%;
-    } 
-    i {
-      font-size: 14px;
-    }
+    background: hsla(0,3%,94%,.555);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 12px;
   }
+  span {
+    color: #007bff;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 25%;
+  } 
+  i {
+    font-size: 14px;
+  }
+}
+
+.new-comment {
+  display: flex;
+  ::ng-deep .p-inputtext {
+    height: 40px !important;
+  }
+  span {
+    top: 28% !important;
+  }
+}
+
+hr {
+    margin: 15px 0;
 }

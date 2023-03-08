@@ -17,6 +17,7 @@ export class CommentComponent implements OnInit, OnChanges {
   defaultAvatar : string = "https://hochieuqua7.web.app/images/menu/account.png";
   commentAnswer : any = '';
   answerInput : any;
+  newCommentContent : any = '';
   commentModel : Comment = new Comment();
   id;
   constructor(
@@ -47,16 +48,29 @@ export class CommentComponent implements OnInit, OnChanges {
     this.commentAnswer = comment.id;
   }
 
-  sendAnswer() {
+  sendAnswer(hasParent : boolean = true) {
     const data = {...this.commentModel};
-    data.content = this.answerInput;
-    data.parentId = this.commentAnswer;
+    if(hasParent) {
+      data.parentId = this.commentAnswer;
+      data.content = this.answerInput;
+    } else {
+      data.content = this.newCommentContent
+    }
     data.screen = this.id;
     data.userId = this.userData.userId;
     data.status = 0;
+    // console.log(data);
+    
     this.apiSerivce.postComment(data).subscribe(response => {
-      console.log(response);
-      
+      this.answerInput = "";
+      this.newCommentContent = "";
+      if(response.status == 'success') {
+        this.spinner.show();
+        this.apiSerivce.getComment(this.id).subscribe(cmt => {
+          this.comments = cmt.data.data;
+          this.spinner.hide();
+        })
+      }
     })
   }
 

@@ -42,7 +42,7 @@
     </div>
   <!-- </div> -->
   <div class="comment-answer" *ngIf="commentAnswer == comment.id">
-    <img [src]="userData.avatar" />
+    <img class="avatar" [src]="userData.avatar" />
     <div class="answer-input">
       <input type="text" pInputText [(ngModel)]="answerInput" placeholder="Nhập phản hồi"> 
       <span (click)="sendAnswer()">
@@ -50,4 +50,17 @@
       </span>
     </div>
   </div>
+</div>
+<hr>
+<div class="new-comment">
+  <div style="display: flex; align-items: center;">
+    <img class="avatar" [src]="userData.avatar" />
+  </div>
+  <div class="answer-input">
+    <input type="text" pInputText [(ngModel)]="newCommentContent" placeholder="Bình luận..."> 
+    <span (click)="sendAnswer(false)">
+      <i class="pi pi-send"></i>
+    </span>
+  </div>
+
 </div>
