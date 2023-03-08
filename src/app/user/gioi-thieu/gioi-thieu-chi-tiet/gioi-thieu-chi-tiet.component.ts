@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { New } from 'src/models/new.model';
+import * as moment from 'moment'
+
 import { Comment } from 'src/models/comment.model';
 
 @Component({
@@ -37,7 +39,8 @@ export class GioiThieuChiTietComponent implements OnInit {
       this.apiService.getNewCategory(),
       this.apiService.getComment(this.id)
     ]).subscribe((responseData) => {
-      this.editNews = responseData[0].data
+      this.editNews = responseData[0].data;
+      this.editNews.createdDate = moment(this.editNews.createdDate).format('DD-MM-YYYY k:mm:ss')
 
       this.mostViewNew = responseData[1].data.data.slice(0, 3)
       this.lastestNew = responseData[1].data.data.slice(-3)
