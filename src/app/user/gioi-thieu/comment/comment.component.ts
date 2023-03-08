@@ -27,26 +27,28 @@ export class CommentComponent implements OnInit, OnChanges {
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
-    })
-    // console.log(this.id);
-    
+    })    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
+
   }
 
   ngOnInit(): void {
     this.spinner.show();
     this.apiSerivce.getComment(this.id).subscribe(response => {
       this.comments = response.data.data;
-      this.comments.map(c => {
-        c.createdDate = moment(c.createdDate).format('DD-MM-YYYY k:mm:ss');
-        c.comments.map(c2 => {
-          c2.createdDate = moment(c2.createdDate).format('DD-MM-YYYY k:mm:ss');
-        })
-      })
+      this.fetchTime();
       this.spinner.hide();
+    })
+  }
+
+  fetchTime() {
+    this.comments.map(c => {
+      c.createdDate = moment(c.createdDate).format('DD-MM-YYYY k:mm:ss');
+      c.comments.map(c2 => {
+        c2.createdDate = moment(c2.createdDate).format('DD-MM-YYYY k:mm:ss');
+      })
     })
   }
 
@@ -65,15 +67,15 @@ export class CommentComponent implements OnInit, OnChanges {
     data.screen = this.id;
     data.userId = this.userData.userId;
     data.status = 0;
-    // console.log(data);
-    
     this.apiSerivce.postComment(data).subscribe(response => {
       this.answerInput = "";
       this.newCommentContent = "";
+      this.commentAnswer = '';
       if(response.status == 'success') {
         this.spinner.show();
         this.apiSerivce.getComment(this.id).subscribe(cmt => {
           this.comments = cmt.data.data;
+          this.fetchTime();
           this.spinner.hide();
         })
       }

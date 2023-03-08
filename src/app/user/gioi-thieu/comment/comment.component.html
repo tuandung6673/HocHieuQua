@@ -1,7 +1,7 @@
 <div *ngFor="let comment of comments">
   <hr>
   <div class="comment">
-    <div>
+    <div style="display: flex; align-items: center;">
       <img class="avatar" [src]="comment.avatar ? comment.avatar : defaultAvatar"/>
     </div>
     <div class="main">
@@ -23,7 +23,7 @@
   <!-- <div style="border-left: 1px dashed #d8d8d8"> -->
     <div class="child" *ngFor="let child of comment.comments">
       <div class="comment2">
-        <div>
+        <div style="display: flex; align-items: center;"> 
           <img class="avatar" [src]="child.avatar ? child.avatar : defaultAvatar"/>
         </div>
         <div class="main">
@@ -42,7 +42,7 @@
     </div>
   <!-- </div> -->
   <div class="comment-answer" *ngIf="commentAnswer == comment.id">
-    <div style="width: 45px;">
+    <div style="width: 45px; display: flex; align-items: center;">
       <img class="avatar" [src]="userData.avatar" />
     </div>
     <div class="answer-input">
