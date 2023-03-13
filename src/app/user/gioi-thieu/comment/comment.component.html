@@ -46,7 +46,7 @@
       <img class="avatar" [src]="userData.avatar" />
     </div>
     <div class="answer-input">
-      <input type="text" pInputText [(ngModel)]="answerInput" placeholder="Nhập phản hồi"> 
+      <input type="text" pInputText [(ngModel)]="answerInput" placeholder="Nhập phản hồi" (keydown.enter)="sendAnswer()"> 
       <span (click)="sendAnswer()">
         <i class="pi pi-send"></i>
       </span>
@@ -59,7 +59,7 @@
     <img class="avatar" [src]="userData.avatar" />
   </div>
   <div class="answer-input">
-    <input type="text" pInputText [(ngModel)]="newCommentContent" placeholder="Bình luận..."> 
+    <input type="text" pInputText [(ngModel)]="newCommentContent" placeholder="Bình luận..." (keydown.enter)="sendAnswer(false)"> 
     <span (click)="sendAnswer(false)">
       <i class="pi pi-send"></i>
     </span>

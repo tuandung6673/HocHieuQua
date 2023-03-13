@@ -1,9 +1,11 @@
-<div class="abc">
-  <i class="pi pi-home"></i>
-  / Kích hoạt khóa học
-</div>
-
-<div class="main">
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span class="active">Kích hoạt khóa học</span>
+    </div>
+  </div>
   <div class="grid">
     <div class="grid col-3">
       <div class="col-12 avatar flex justify-content-center">
@@ -19,7 +21,7 @@
         <div [routerLink]="['/tai-khoan/khoa-hoc-cua-toi']">
           <i class="pi pi-slack" ></i> Khóa học của tôi
         </div>
-        <div class="active">
+        <div class="activee">
           <i class="pi pi pi-key" ></i> Kích hoạt khóa học
         </div >
         <div [routerLink]="['/tai-khoan/qua-trinh-hoc-tap']">

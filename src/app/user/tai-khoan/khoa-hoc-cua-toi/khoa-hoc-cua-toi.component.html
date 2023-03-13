@@ -1,9 +1,11 @@
-<div class="abc">
-  <i class="pi pi-home"></i>
-  / Khóa học của tôi
-</div>
-
-<div class="main">
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span class="active">Khóa học của tôi</span>
+    </div>
+  </div>
   <div class="grid">
     <div class="grid col-3">
       <div class="col-12 avatar flex justify-content-center">
@@ -16,7 +18,7 @@
         <div [routerLink]="['/tai-khoan/doi-mat-khau']">
           <i class="pi pi-qrcode"></i> Đổi mật khẩu
         </div>
-        <div class="active">
+        <div class="activee">
           <i class="pi pi-slack"></i> Khóa học của tôi
         </div>
         <div [routerLink]="['/tai-khoan/kich-hoat-khoa-hoc']"> 
@@ -33,7 +35,7 @@
         <div *ngIf="myCourses.length == 0">
           <img src="https://hochieuqua7.web.app/images/common/table-not-found.gif" height="300px" width="100%"/>
         </div>
-        <div *ngIf="myCourses.length > 0" class="flex">
+        <div *ngIf="myCourses.length > 0" class="courseWrapper">
           <div class="m-2" *ngFor="let myCourse of myCourses">
             <app-tong-quan-item [course]="myCourse"></app-tong-quan-item>
           </div>

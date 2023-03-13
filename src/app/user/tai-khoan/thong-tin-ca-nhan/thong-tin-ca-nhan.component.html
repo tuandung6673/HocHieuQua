@@ -1,16 +1,18 @@
-<div class="abc">
-  <i class="pi pi-home"></i>
-  / Thông tin cá nhân
-</div>
-
-<div class="main">
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span class="active">Thông tin cá nhân</span>
+    </div>
+  </div>
   <div class="grid">
     <div class="grid col-3">
       <div class="col-12 avatar flex justify-content-center">
         <img src="https://hochieuqua7.web.app/images/menu/account.png" width="100px" height="100px">
       </div>
       <div class="col-12 options">
-        <div class="active">
+        <div class="activee">
           <i class="pi pi-user"></i> Thông tin
         </div>
         <div [routerLink]="['/tai-khoan/doi-mat-khau']">

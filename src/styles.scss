@@ -265,8 +265,17 @@ body {
   height: 600px;
 }
 
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  z-index: -1000;
+}
 
 @media only screen and (max-width: 1280px) {
+  .wrapper {
+    width: 95%;
+    margin: 0 auto;
+  }
   .p-dialog {
     width: 95%;
     margin: 0 auto;
