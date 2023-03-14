@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Account } from './../../../../models/account.model';
 import { MessageService } from 'primeng/api';
@@ -5,6 +6,9 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 
 import * as queryString from 'querystring-es3';
+import { Title } from '@angular/platform-browser';
+import { NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -24,13 +28,19 @@ export class ThongTinCaNhanComponent implements OnInit {
   }
   info : Account = new Account()
   constructor(
+    private router: Router,
     private apiService: ApiService,
     private messageService: MessageService,
-    private spinner : NgxSpinnerService
+    private spinner : NgxSpinnerService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
-    this.getAccount()
+    this.getAccount();
+    this.router.events.pipe(  
+      filter(event => event instanceof NavigationEnd),  
+  ).subscribe(() =>
+      this.titleService.setTitle('Thông tin cá nhân'));
   }
 
 

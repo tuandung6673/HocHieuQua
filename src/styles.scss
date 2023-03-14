@@ -123,6 +123,8 @@ body {
 
 .p-datatable-wrapper {
   max-height: 65vh;
+  // z-index: -100000;
+  //   position: inherit;
 }
 
 // .tabView .p-datatable-wrapper {
@@ -265,17 +267,7 @@ body {
   height: 600px;
 }
 
-.wrapper {
-  width: 70%;
-  margin: 0 auto;
-  z-index: -1000;
-}
-
 @media only screen and (max-width: 1280px) {
-  .wrapper {
-    width: 95%;
-    margin: 0 auto;
-  }
   .p-dialog {
     width: 95%;
     margin: 0 auto;
