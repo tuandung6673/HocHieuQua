@@ -9,14 +9,16 @@
           <div style="width: 35px; height: 35px; margin-right: 10px;">
             <img *ngIf="test.isFree" src="https://hochieuqua7.web.app/images/user/chi-tiet-khoa-hoc/free_icon.png" width="35px" height="35px"/>
           </div>
-          <p>{{test.name}}</p>
-          <div style="float: right;">
-            <span *ngIf="test.testCategoryCode == 'kiem-tra' ">
-              <i class="pi pi-copy"></i>
-            </span>
-            <span *ngIf="test.testCategoryCode == 'bai-giang' ">
-              <i class="pi pi-play"></i>
-            </span>
+          <div class="main-test">
+            <p>{{test.name}}</p>
+            <div>
+              <span *ngIf="test.testCategoryCode == 'kiem-tra' ">
+                <i class="pi pi-copy"></i>
+              </span>
+              <span *ngIf="test.testCategoryCode == 'bai-giang' ">
+                <i class="pi pi-play"></i>
+              </span>
+            </div>            
           </div>
         </div>
       </p-accordionTab>

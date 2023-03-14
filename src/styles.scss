@@ -407,6 +407,22 @@ body {
   .p-datatable .p-datatable-thead > tr > th {
     background: #afd0f1;
   }
+  .p-accordion-header-link {
+    font-size: 14px;
+    background: #007bffd3 !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    color: #fff !important;
+    text-decoration: none;
+    color: #fff !important;
+    &:hover {
+      text-decoration: none;
+      color: #fff !important;
+    }
+  }
+  .p-accordion .p-accordion-content {
+    padding: 10px;
+  }
 }
 
 .title {

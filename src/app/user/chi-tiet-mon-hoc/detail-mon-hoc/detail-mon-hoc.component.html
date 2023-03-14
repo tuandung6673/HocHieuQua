@@ -90,7 +90,7 @@
   </div>
 </p-dialog>
 
-<p-dialog header="Đăng kí khóa học" [(visible)]="display1" [style]="{width: '600px', height: '500px'}" [draggable]="false">
+<p-dialog header="Đăng kí khóa học" [(visible)]="display1" [style]="{width: '600px', height: '500px'}" [draggable]="false" class="registerDialog">
   <p-tabView [(activeIndex)]="activeIndex2">
     <p-tabPanel header="Thông tin">
       <div class="grid register">
@@ -135,8 +135,8 @@
         </div>
       </div>
     </p-tabPanel>
-    <p-tabPanel header="Thanh toán">
-        <div class="pay">
+    <p-tabPanel header="Thanh toán" class="pay">
+        <div >
           <p>
             Bạn đã chọn hình thức thanh toán <span>Chuyển khoản</span>, vui lòng chuyển khoản <span>{{detailCourse.priceDiscount | number}} VND</span>
             tới 1 trong các tài khoản ngân hàng dưới đây. Nội dung chuyển khoản: <span>{{userData.phone}}_{{detailCourse.code}}</span>
