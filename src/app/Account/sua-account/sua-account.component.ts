@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Account } from 'src/models/account.model';
 import * as queryString from 'querystring-es3';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -22,7 +23,12 @@ export class SuaAccountComponent implements OnInit {
     filter: '',
   }
 
-  constructor(private route : ActivatedRoute, private apiService: ApiService, private router: Router) { }
+  constructor(
+    private route : ActivatedRoute, 
+    private apiService: ApiService, 
+    private router: Router,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -56,7 +62,12 @@ export class SuaAccountComponent implements OnInit {
     const updateAccount = {...this.editAccount}
     updateAccount.status = updateAccount.status ? 1 : 0
     this.apiService.postAccount(updateAccount).subscribe((responseData) => {
-      alert(responseData.message)
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật tài khoản thành công'})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+        
+      }
       this.router.navigate(['quan-tri/tai-khoan'])
     })
   }
