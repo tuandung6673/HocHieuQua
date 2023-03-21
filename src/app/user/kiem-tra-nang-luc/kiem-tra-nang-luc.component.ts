@@ -17,7 +17,9 @@ export class KiemTraNangLucComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private spinner : NgxSpinnerService
-  ) { }
+  ) {
+    document.title = "Kiểm tra năng lực"
+  }
 
   ngOnInit(): void {
     this.getClassroom();

@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  footer: any
+  footer: any;
+  footerLeft : any;;
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -17,7 +18,7 @@ export class FooterComponent implements OnInit {
 
   getFooter() {
     this.apiService.getFooter().subscribe((responseData) => {
-      this.footer = responseData.data.data
+      this.footer = responseData.data.data;
     })
   }
 

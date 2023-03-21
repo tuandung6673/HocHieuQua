@@ -4,6 +4,7 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as moment from 'moment'
 import { Comment } from 'src/models/comment.model';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-comment',
@@ -16,7 +17,7 @@ export class CommentComponent implements OnInit, OnChanges {
   comments : Comment[] = [];
   defaultAvatar : string = "https://hochieuqua7.web.app/images/menu/account.png";
   commentAnswer : any = '';
-  answerInput : any;
+  answerInput : string;
   newCommentContent : any = '';
   commentModel : Comment = new Comment();
   id;
@@ -36,10 +37,15 @@ export class CommentComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.apiSerivce.getComment(this.id).subscribe(response => {
+    this.apiSerivce.getComment(this.id)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide()
+      })
+    )
+    .subscribe(response => {
       this.comments = response.data.data;
       this.fetchTime();
-      this.spinner.hide();
     })
   }
 
@@ -57,16 +63,19 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   sendAnswer(hasParent : boolean = true) {
-    const data = {...this.commentModel};
+    let data = {...this.commentModel};
     if(hasParent) {
       data.parentId = this.commentAnswer;
       data.content = this.answerInput;
     } else {
       data.content = this.newCommentContent
     }
-    data.screen = this.id;
-    data.userId = this.userData.userId;
-    data.status = 0;
+    data = {
+      ...data,
+      screen: this.id,
+      userId: this.userData.userId,
+      status: 0,
+    }
     this.apiSerivce.postComment(data).subscribe(response => {
       this.answerInput = "";
       this.newCommentContent = "";

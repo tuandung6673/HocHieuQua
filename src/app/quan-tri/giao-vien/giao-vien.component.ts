@@ -23,7 +23,9 @@ export class GiaoVienComponent implements OnInit {
   totalRecord: any
 
   constructor(private apiService: ApiService, private router: Router,
-    private confirmationService: ConfirmationService, private messageService: MessageService) { }
+    private confirmationService: ConfirmationService, private messageService: MessageService) {
+      document.title = "Giáo viên";
+    }
 
   ngOnInit(): void {
     this.getTeachers()

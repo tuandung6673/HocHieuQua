@@ -11,7 +11,9 @@ import { ApiService } from 'src/services/api.service.service';
 export class TuyenDungComponent implements OnInit {
 
   recruit : Recruit[] = []
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
+    document.title = "Tuyển dụng"
+  }
 
   ngOnInit(): void {
     this.getRecruit()

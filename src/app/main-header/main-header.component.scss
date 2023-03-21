@@ -7,10 +7,12 @@
   width: 100%;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .action {
   display: flex;
+
 }
 
 .info p {
@@ -22,6 +24,8 @@
   color: #3B82F6 ;
   background-color: #fff ;
   border-radius: 2px ;
+  font-size: 16px;
+  margin: 0 10px;
 }
 
 ::ng-deep .login .p-button:hover {
@@ -32,6 +36,12 @@
 ::ng-deep .signup .p-button {
   border: none;
   border-radius: 2px;
+  font-size: 16px;
+  margin: 0 10px;
+  background: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  color: #fff;
 }
 
 .logo {

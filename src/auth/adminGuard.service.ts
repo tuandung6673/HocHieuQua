@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
 
 export class AdminGuard implements CanActivate, CanActivateChild {
   userData = JSON.parse(localStorage.getItem('userData'));
-  userRole : any
-  constructor(private messageService: MessageService) {
+  userRole : any;
+  constructor(private messageService: MessageService, private router: Router) {
     this.userRole = JSON.parse(this.userData.roles);  
   }
 
@@ -17,7 +17,8 @@ export class AdminGuard implements CanActivate, CanActivateChild {
     if(this.userRole[0].role_id == 'admin') {
       return true;
     } else {
-      this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Bạn không có quyền truy cập chức năng này'})
+      this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Bạn không có quyền truy cập chức năng này'});
+      this.router.navigate(["/"]);
     }
   }
 

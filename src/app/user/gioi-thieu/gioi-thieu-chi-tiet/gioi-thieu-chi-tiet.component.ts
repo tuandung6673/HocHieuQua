@@ -1,12 +1,13 @@
-import { forkJoin } from 'rxjs';
+import { New } from './../../../../models/new.model';
+import { forkJoin, finalize } from 'rxjs';
 import { ApiService } from './../../../../services/api.service.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
-import { New } from 'src/models/new.model';
 import * as moment from 'moment'
 
 import { Comment } from 'src/models/comment.model';
+import { NewCatagory } from 'src/models/newCategory.model';
 
 @Component({
   selector: 'app-gioi-thieu-chi-tiet',
@@ -16,12 +17,14 @@ import { Comment } from 'src/models/comment.model';
 export class GioiThieuChiTietComponent implements OnInit {
 
   comments : Comment[] = []
-  lastestNew : any
-  mostViewNew : any
-  newsCategory : any
-  editNews : New = new New()
-  id: string
-  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private apiService: ApiService) { }
+  lastestNew : New[] = [];
+  mostViewNew : New[] = [];
+  newsCategory : NewCatagory[] = [];
+  editNews : New = new New();
+  id: string;
+  constructor(
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -38,7 +41,13 @@ export class GioiThieuChiTietComponent implements OnInit {
       this.apiService.getNews(),
       this.apiService.getNewCategory(),
       this.apiService.getComment(this.id)
-    ]).subscribe((responseData) => {
+    ])
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       this.editNews = responseData[0].data;
       this.editNews.createdDate = moment(this.editNews.createdDate).format('DD-MM-YYYY k:mm:ss')
 
@@ -52,13 +61,4 @@ export class GioiThieuChiTietComponent implements OnInit {
       this.spinner.hide()
     })
   }
-
-  // getDetailNews(id) {
-  //   this.spinner.show()
-  //   this.apiService.getNewsById(id).subscribe((responseData) => {
-  //     this.editNews = responseData.data
-  //     this.spinner.hide()
-  //   })
-  // }
-
 }

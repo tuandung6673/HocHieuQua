@@ -16,10 +16,12 @@ export class GioiThieuComponent implements OnInit {
   
   id : string
   news: New[] = []
-  mostViewNew: any;
-  lastestNew: any
+  mostViewNew: New[] = [];
+  lastestNew: New[] = [];
   newsCategory: NewCatagory[] = []
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private route: ActivatedRoute) {
+    document.title = "Tin tức"
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

@@ -10,12 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HuongDanComponent implements OnInit {
 
-  title: any
-  content: any
-  faqSelected : any
+  title: string;
+  content: string;
+  faqSelected : string;
   FAQs : FAQ[] = []
   isDisplayContent: boolean = false
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
+    document.title = "Hướng dẫn"
+  }
 
   ngOnInit(): void {
     this.getFAQ()

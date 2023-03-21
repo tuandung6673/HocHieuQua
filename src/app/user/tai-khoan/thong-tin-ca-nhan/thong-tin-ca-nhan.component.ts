@@ -56,11 +56,18 @@ export class ThongTinCaNhanComponent implements OnInit {
   }
 
   updateLocal() {
-    const clone = {...JSON.parse(localStorage.getItem('userData'))}
+    let clone = {...JSON.parse(localStorage.getItem('userData'))}
     clone.name = this.info.name
     clone.phone = this.info.phone
     clone.email = this.info.email
     clone.identityNo = this.info.identityNo
+    clone = {
+      ...clone, 
+      name: this.info.name,
+      phone: this.info.phone,
+      email: this.info.email,
+      identityNo: this.info.identityNo,
+    }
     // localStorage.removeItem('userData')
     localStorage.setItem('userData', JSON.stringify(clone))
   }

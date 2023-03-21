@@ -32,7 +32,9 @@ export class ThanhToanComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private confimationService: ConfirmationService,
     private messageService: MessageService
-  ) { }
+  ) {
+    document.title = "Thanh toán";
+  }
 
   ngOnInit(): void {
     this.getPayment()

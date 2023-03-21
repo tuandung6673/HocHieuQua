@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GiupDoComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    document.title = "Giúp đỡ";
+  }
 
   ngOnInit(): void {
   }

@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CthCourseComponent implements OnInit {
 
-  id : string
-  coursesSchedule: CourseSchedule[] = []
+  id : string;
+  coursesSchedule: CourseSchedule[] = [];
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
@@ -19,7 +19,9 @@ export class CthCourseComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    this.getCourseSchedule(this.id)
+    if(this.id && this.id != 'them-moi') {
+      this.getCourseSchedule(this.id)
+    }
   }
 
   getCourseSchedule(courseId: string) {

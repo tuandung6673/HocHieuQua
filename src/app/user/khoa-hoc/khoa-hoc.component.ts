@@ -14,7 +14,9 @@ export class KhoaHocComponent implements OnInit {
   courses: Course[] = []
   totalRecord: number = 0
   id: string
-  constructor(private apiService: ApiService ,private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  constructor(private apiService: ApiService ,private route: ActivatedRoute, private spinner: NgxSpinnerService) {
+    document.title = "Khóa học"
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

@@ -29,7 +29,9 @@ export class TatCaKhoaHocComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private spinner : NgxSpinnerService
-  ) { }
+  ) {
+    document.title = "Khóa học"
+  }
 
   ngOnInit(): void {
     this.getClassroom();

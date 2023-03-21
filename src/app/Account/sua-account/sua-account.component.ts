@@ -13,11 +13,11 @@ import { MessageService } from 'primeng/api';
 })
 export class SuaAccountComponent implements OnInit {
 
-  id: string
-  isLoading: boolean = false
-  editAccount: Account = new Account()
+  id: string;
+  isLoading: boolean = false;
+  editAccount: Account = new Account();
   roleOptions : any = []
-  roldParams = {
+  roleParams = {
     offSet: 0,
     pageSize: 1000,
     filter: '',
@@ -36,21 +36,26 @@ export class SuaAccountComponent implements OnInit {
     })
     if(this.id && this.id != 'them-tai-khoan') {
       this.getEditAccount(this.id)
-    } 
+    } else {
+      document.title = "Thêm tài khoản"
+    }
     this.getRoles()
   }
 
   getEditAccount(id: string) {
     this.isLoading = true
     this.apiService.getAccountsById(id).subscribe((responseData) => {
-      this.editAccount = responseData.data
-      this.editAccount.status = this.editAccount.status == 1
+      if(responseData.status == 'success') {
+        document.title = "Tài khoản " + responseData.data.name;
+        this.editAccount = responseData.data
+        this.editAccount.status = this.editAccount.status == 1
+      }
       this.isLoading = false
     })
   }
 
   getRoles() {
-    const queryParams = queryString.stringify(this.roldParams)
+    const queryParams = queryString.stringify(this.roleParams)
     this.apiService.getRoles(queryParams).subscribe((responseData) => {
       this.roleOptions = responseData.data.data.map((role) => {
         return {name: role.name, code: role.id}

@@ -1,8 +1,8 @@
 export class Footer {
-  id = "";
-  title = "";
-  content = "";
+  id : any = "";
+  title : any = "";
+  content : any = "";
   status: any = 0;
   order: any = 0;
-  position = ""
+  position : any = ""
 }

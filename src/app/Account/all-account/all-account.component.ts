@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/a
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/models/account.model';
 import { ApiService } from 'src/services/api.service.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-all-account',
@@ -27,8 +28,10 @@ export class AllAccountComponent implements OnInit {
     pageSize: 1000,
     filter: '',
   }
-  roleOptions : any[] = [];
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private spinner: NgxSpinnerService) { }
+  roleOptions = [];
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private spinner: NgxSpinnerService) {
+    document.title = "Tài khoản"
+  }
 
   ngOnInit() {
     this.getAllAccount();
@@ -36,9 +39,15 @@ export class AllAccountComponent implements OnInit {
   }
 
   getAllAccount() {
-    // this.spinner.show();
+    this.spinner.show();
     const queryParams = queryString.stringify(this.params)
-    this.apiService.getAccounts(queryParams).subscribe((responseData) => {
+    this.apiService.getAccounts(queryParams)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       // console.log('All account', this.accounts);
       this.accounts = responseData.data.data
       this.totalRecord = responseData.data.recordsTotal

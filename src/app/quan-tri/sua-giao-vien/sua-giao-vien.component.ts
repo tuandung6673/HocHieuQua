@@ -27,13 +27,16 @@ export class SuaGiaoVienComponent implements OnInit {
 
   ngOnInit(){
     if(this.id && this.id != 'them-giao-vien') {
-      this.getEditTeacher(this.id)
+      this.getEditTeacher(this.id);
+    } else {
+      document.title = "Thêm giáo viên";
     }
   }
 
   getEditTeacher(id: string) {
     this.isLoading = true
     this.apiService.getTeacherById(id).subscribe((responseData) => {
+      document.title = "Giáo viên " + responseData.data.name;
       this.editTeacher = responseData.data;
       this.editTeacher.status = responseData.data.status == 1 ? true : false;
     })

@@ -12,15 +12,15 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 })
 export class SuaCourseComponent implements OnInit {
 
-  Editor = ClassicEditor
-  isLoading: boolean = false
-  id: any
+  Editor = ClassicEditor;
+  isLoading: boolean = false;
+  id: string;
   editCourse: Course = new Course()
   cloneCourse: Course = new Course()
-  classRoomOption: any = []
+  classRoomOption = []
   subjectOption: any = []
   teacherOption: any = []
-  teacherSelected: any = []
+
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   
 

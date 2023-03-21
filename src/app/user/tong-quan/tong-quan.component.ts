@@ -14,7 +14,9 @@ export class TongQuanComponent implements OnInit {
 
   home : any
   imageSlider = []
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
+    document.title = "Trang chủ"
+  }
 
   ngOnInit(): void {
     this.spinner.show()
