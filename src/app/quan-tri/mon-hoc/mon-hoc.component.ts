@@ -29,7 +29,9 @@ export class MonHocComponent implements OnInit {
   }
   totalRecord : number;
   classOption : any[]
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService, private messageService: MessageService ) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService, private messageService: MessageService ) {
+    document.title = "Môn học";
+  }
 
   ngOnInit(): void {
     this.getSubjects();

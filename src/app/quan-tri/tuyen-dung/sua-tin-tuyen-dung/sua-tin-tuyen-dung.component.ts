@@ -21,12 +21,17 @@ export class SuaTinTuyenDungComponent implements OnInit {
       this.id = params['id']
     })
     if(this.id && this.id != 'them-moi') {
-      this.getEditRecruit(this.id)
+      this.getEditRecruit(this.id);
+      document.title = "Tuyển dụng"
+
+    } else {
+      document.title = "Thêm tin Tuyển dụng"
     }
   }
 
   getEditRecruit(id: string) {
     this.apiService.getRecruitById(id).subscribe((responseData) => {
+      // document.title = "Tuyển dụng"
       this.editRecruit = responseData.data
       this.editRecruit.status = this.editRecruit.status == 1
       this.editRecruit.isHot = this.editRecruit.isHot == 1

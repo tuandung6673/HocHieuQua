@@ -19,12 +19,15 @@ export class SuaDanhMucComponent implements OnInit {
       this.id = params['id']
     })
     if(this.id && this.id != 'them-moi') {
-      this.getEditCategory(this.id)
+      this.getEditCategory(this.id);
+    } else {
+      document.title = "Thêm mới Danh mục Tin tức"
     }
   }
 
   getEditCategory(id: string) {
     this.apiService.getNewCategoryByid(id).subscribe((responseData) => {
+      document.title = "Danh mục " + responseData.data.name;
       this.editNewCategory = responseData.data
       this.editNewCategory.status = this.editNewCategory.status == 1 
     })

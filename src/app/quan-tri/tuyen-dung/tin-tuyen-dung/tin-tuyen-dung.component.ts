@@ -22,7 +22,9 @@ export class TinTuyenDungComponent implements OnInit {
     private apiService: ApiService,
     private messageService: MessageService,  
     private confirmationService: ConfirmationService
-  ) { }
+  ) {
+    document.title = "Tuyển dụng"
+  }
 
   ngOnInit(): void {    
     this.getRecruit()

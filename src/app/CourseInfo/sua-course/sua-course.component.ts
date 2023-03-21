@@ -1,6 +1,6 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Course } from 'src/models/course.model';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
@@ -12,6 +12,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 })
 export class SuaCourseComponent implements OnInit {
 
+  @Output() newItemEvent = new EventEmitter<string>();
   Editor = ClassicEditor;
   isLoading: boolean = false;
   id: string;
@@ -27,34 +28,32 @@ export class SuaCourseComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.isLoading = true;
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
-    this.getEditCourse(this.id)
-    this.getAllTeacher()
-    this.getClassroomOption()
+    if(this.id && this.id != 'them-khoa-hoc') {
+      this.getEditCourse(this.id)
+      this.getAllTeacher()
+      this.getClassroomOption()
+    } else {
+      document.title = "Thêm khóa học"
+    }
   }
 
   getEditCourse(id: string) {
     if(this.id && this.id != 'them-khoa-hoc') {
       this.apiService.getCourseById(this.id).subscribe((responseData) => {
-        this.editCourse = responseData.data
-
+        this.editCourse = responseData.data;
+        this.newItemEvent.emit(responseData.data.name);
         responseData.data.teacherId = responseData.data.teachers.map((teacher) => {
           return teacher.id
         })
-
         this.isLoading = false
-
         // this.cloneCourse = {...this.editCourse}
         this.editCourse.status = this.editCourse.status == 1 ? true : false
-        
         this.getSubjectsOption(responseData.data.classRoomId)
       })
-    } 
-    else 
-    {
+    } else {
       this.isLoading = false
     }
   }

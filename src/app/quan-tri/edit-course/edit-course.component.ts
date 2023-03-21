@@ -12,4 +12,8 @@ export class EditCourseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getNameCourse(name) {
+    document.title = "Khóa học " + name;
+  }
+
 }

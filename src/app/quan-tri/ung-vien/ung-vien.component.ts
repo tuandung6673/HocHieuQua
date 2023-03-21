@@ -28,7 +28,9 @@ export class UngVienComponent implements OnInit {
     private spinner : NgxSpinnerService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-  ) { }
+  ) {
+    document.title = "Ứng viên"
+  }
 
   ngOnInit(): void {
     this.getCandidates();

@@ -25,6 +25,8 @@ export class SuaMonHocComponent implements OnInit {
     })
     if(this.id && this.id != 'them-mon-hoc') {
       this.getEditSubject(this.id)
+    } else {
+      document.title = "Thêm môn học";
     }
     this.getClassroomForOption();
   }
@@ -36,6 +38,7 @@ export class SuaMonHocComponent implements OnInit {
   getEditSubject (id: string) {
     this.isLoading = true
     this.apiService.getSubjectById(id).subscribe((responseData) => {
+      document.title = "Môn học " + responseData.data.name; 
       this.editSubject = responseData.data
       this.isLoading = false
     })

@@ -64,9 +64,9 @@ export class MainHeaderComponent implements OnInit {
     ]
     if(this.isLogin) {
       this.getNotification();
-      // setInterval(() => {
-      //   this.getNotification();
-      // }, 60000)
+      setInterval(() => {
+        this.getNotification();
+      }, 60000)
     }
   }
 

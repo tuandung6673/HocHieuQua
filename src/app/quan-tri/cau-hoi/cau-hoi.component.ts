@@ -43,7 +43,9 @@ export class CauHoiComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) { }
+  ) {
+    document.title = "Câu hỏi"
+  }
 
   ngOnInit(): void {
     this.getTestQuestion();

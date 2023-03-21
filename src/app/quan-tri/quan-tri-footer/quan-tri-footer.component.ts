@@ -19,7 +19,9 @@ export class QuanTriFooterComponent implements OnInit {
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
     private exportService: ExportService
-  ) { }
+  ) {
+    document.title = "Footer"
+  }
   footers : any[] = [];
   totalRecoed : number;
 

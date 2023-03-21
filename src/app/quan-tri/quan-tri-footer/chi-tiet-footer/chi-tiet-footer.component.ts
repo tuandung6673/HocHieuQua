@@ -33,12 +33,15 @@ export class ChiTietFooterComponent implements OnInit {
     })
     if(this.footerId && this.footerId != 'them-ung-vien') {
       this.getFooterById();
+    } else {
+      document.title = "Thêm mới Footer"
     }
   }
 
   getFooterById() {
     this.spinner.show();
     this.apiService.getFooterById(this.footerId).subscribe((response) => {
+      document.title = "Footer " + response.data.title;
       this.footer = response.data as Footer; 
       // console.log(response.data);
       

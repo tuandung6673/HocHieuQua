@@ -26,7 +26,9 @@ export class SuaBaiVietComponent implements OnInit {
       this.id = params['id']
     })
     if(this.id && this.id != 'them-moi') {
-      this.getEditNews(this.id)
+      this.getEditNews(this.id);
+    } else {
+      document.title = "Thêm mới Tin tức"
     }
     this.getNewCategoryOption()
   }
@@ -34,6 +36,7 @@ export class SuaBaiVietComponent implements OnInit {
   getEditNews(id: string) {
     this.isLoading = true
     this.apiService.getNewsById(id).subscribe((responseData) => {
+      document.title = "Tin tức " + responseData.data.title;
       this.editNew = responseData.data
       this.editNew.tags = (this.editNew.tags as string).split(',')
       this.editNew.status = this.editNew.status == 1

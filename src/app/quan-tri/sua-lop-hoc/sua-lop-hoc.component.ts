@@ -25,11 +25,14 @@ export class SuaLopHocComponent implements OnInit {
     
     if(this.id && this.id != 'sua-lop-hoc') {
       this.getEditClassroom(this.id)
+    } else {
+      document.title = "Thêm Lớp học";
     }
   }
 
   getEditClassroom(id: string) {
     this.apiService.getClassroomById(id).subscribe((responseData) => {
+      document.title = "Lớp học " + responseData.data.name;
       this.editClassroom = responseData.data;
       this.editClassroom.status = responseData.data.status == 1;
     })

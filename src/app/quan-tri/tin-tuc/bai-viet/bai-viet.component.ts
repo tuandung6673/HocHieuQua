@@ -22,7 +22,9 @@ export class BaiVietComponent implements OnInit {
   }
   statusOptions : any[] = [];
   categoryIdOptions : any[] = [];
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    document.title = "Tin tức"
+  }
 
   ngOnInit(): void {
     this.isLoading = true

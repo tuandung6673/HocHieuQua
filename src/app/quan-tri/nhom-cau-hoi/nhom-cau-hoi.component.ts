@@ -25,7 +25,9 @@ export class NhomCauHoiComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) { }
+  ) {
+    document.title = "Nhóm câu hỏi"
+  }
 
   ngOnInit(): void {
     this.getTestQuestionGroup();

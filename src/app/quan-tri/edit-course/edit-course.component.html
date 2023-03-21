@@ -1,6 +1,6 @@
 <p-tabView>
   <p-tabPanel header="Thông tin">  
-    <app-sua-course></app-sua-course>
+    <app-sua-course (newItemEvent)="getNameCourse($event)"></app-sua-course>
   </p-tabPanel>
   <p-tabPanel header="Chương trình học">
     <app-cth-course></app-cth-course>

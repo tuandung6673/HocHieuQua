@@ -29,7 +29,7 @@ export class ChiTietUngVienComponent implements OnInit {
       this.id = params['id']
     })
     if(this.id && this.id != 'them-moi') {
-      this.getCandidate(this.id)
+      this.getCandidate(this.id);
     }
   }
 
@@ -37,6 +37,7 @@ export class ChiTietUngVienComponent implements OnInit {
     this.spinner.show();
     this.apiService.getRecruitCandidateById(id).subscribe((response) => {
       if(response.status == 'success') {
+        document.title = "Ứng viên " + response.data.name;
         this.editRecruitCandidate = response.data;
         this.editRecruitCandidate.interviewPass = this.editRecruitCandidate.interviewPass == 1 ? true : false;
         this.editRecruitCandidate.status = this.editRecruitCandidate.status == 1 ? true : false;

@@ -29,7 +29,9 @@ export class CourseComponent implements OnInit {
   teacherOptions : any[] = [];
   classOptions : any[] = [];
   subjectOptions : any[] = [];
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) {
+    document.title = "Khóa học";
+  }
 
   ngOnInit(): void {
     this.getCourses();

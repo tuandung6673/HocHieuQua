@@ -21,7 +21,9 @@ export class DanhMucComponent implements OnInit {
   }
   totalRecord: number
   
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) {
+    document.title = "Danh mục tin tức"
+  }
   
   ngOnInit(): void {
     this.getNewCategorys()

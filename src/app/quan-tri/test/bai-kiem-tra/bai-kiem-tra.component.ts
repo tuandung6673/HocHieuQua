@@ -29,7 +29,9 @@ export class BaiKiemTraComponent implements OnInit {
   classOptions : any[] = [];
   subjectOptions : any[] = [];
   IsShowInAbilityTestOption : any[] = []
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) { }
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
+    document.title = "Bài kiểm tra"
+  }
 
   ngOnInit(): void {
     this.getTests();  

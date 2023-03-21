@@ -25,7 +25,9 @@ export class StepComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private spinner : NgxSpinnerService
-  ) { }
+  ) {
+    document.title = "Step"
+  }
 
   ngOnInit(): void {
     this.getStep();

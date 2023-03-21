@@ -9,7 +9,9 @@ import { ApiService } from 'src/services/api.service.service';
 })
 export class LopHocComponent implements OnInit {
   
-  constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    document.title = "Lớp học"
+  }
 
   defaultAvatar = 'https://imgt.taimienphi.vn/cf/Images/tt/2020/7/15/anh-dai-dien-facebook-y-nghia-cho-con-trai-26.jpg'
   classrooms : any

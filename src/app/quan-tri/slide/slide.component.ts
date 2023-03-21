@@ -28,7 +28,9 @@ export class SlideComponent implements OnInit {
   totalRecord : number;
   statusOptions : any[] = [];
 
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router, private spinner:NgxSpinnerService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router, private spinner:NgxSpinnerService) {
+    document.title = "Slide"
+  }
 
   ngOnInit(): void {
     this.isLoading = true
