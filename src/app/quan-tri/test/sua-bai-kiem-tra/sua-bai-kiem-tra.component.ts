@@ -43,10 +43,9 @@ export class SuaBaiKiemTraComponent implements OnInit {
       this.test.isAutoSendMail = response.data.isAutoSendMail == 1 ? true : false;
       this.test.status = response.data.status == 1 ? true : false;
       this.test.isFree = response.data.isFree == 1 ? true : false;
-
+      this.spinner.hide();
       console.log(this.commentConfiguration);
       
-      this.spinner.hide();
     })
   }
 

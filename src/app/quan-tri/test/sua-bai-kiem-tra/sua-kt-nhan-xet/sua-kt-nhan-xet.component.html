@@ -1,0 +1,26 @@
+<div class="guide-text">
+    <b>
+        <i>Cài đặt nhận xét </i><i>(Ưu tiên lấy theo thứu tự từ trên xuống dưới)</i>
+    </b>
+</div>
+<div class="grid">
+    <div *ngFor="let comment of commentConfiguration; let i = index" class="grid col-12 detail">
+        <div class="col-3">
+            <small>Từ</small>
+            <p-dropdown [options]="fromOptions" [(ngModel)]="commentConfiguration[i].from"></p-dropdown>
+        </div>
+        <div class="col-3">
+            <small>Đến</small>
+            <p-dropdown [options]="toOptions" [(ngModel)]="commentConfiguration[i].to"></p-dropdown>
+        </div>
+        <div class="col-6">
+            <small>Nhận xét</small>
+            <div>
+                <span class="p-input-icon-right">
+                  <i class="pi pi-trash"></i>
+                  <input id="comment" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="commentConfiguration[i].comment" name="comment"/>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
