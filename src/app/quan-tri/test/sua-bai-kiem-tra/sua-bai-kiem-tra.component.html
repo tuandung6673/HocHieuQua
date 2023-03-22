@@ -1,1 +1,47 @@
-<p>sua-bai-kiem-tra works!</p>
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Bài kiểm tra</span>
+      <i>/</i>
+      <span class="active" *ngIf="id && id != 'them-moi'">Chi tiết bài kiểm tra</span>
+      <span class="active" *ngIf="id == 'them-moi'">Thêm mới</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-moi'">Chi tiết bài kiểm tra</div>
+        <div class="main-title" *ngIf="id == 'them-moi'">Thêm Bài kiểm tra</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
+  </div>
+  <div class="detail">
+    <p-tabView>
+      <p-tabPanel header="Chi tiết" leftIcon="pi pi-info-circle">
+        <app-sua-kt-chi-tiet [test]="test"></app-sua-kt-chi-tiet>
+      </p-tabPanel>
+      <p-tabPanel header="Câu hỏi" leftIcon="pi pi-question">
+        <app-sua-kt-cau-hoi></app-sua-kt-cau-hoi>
+      </p-tabPanel>
+      <p-tabPanel header="Nhận xét" leftIcon="pi pi-cog">
+        <app-sua-kt-nhan-xet [commentConfiguration]="commentConfiguration"></app-sua-kt-nhan-xet>
+      </p-tabPanel>
+      <p-tabPanel header="Bình luận" leftIcon="pi pi-comment">
+        <app-sua-kt-binh-luan></app-sua-kt-binh-luan>
+      </p-tabPanel>
+    </p-tabView>
+    <div class="detail-action">
+      <div class="cancel-btn">
+        <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+      </div>
+      <div class="save-btn">
+        <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+      </div>
+    </div>
+  </div>
+</div>

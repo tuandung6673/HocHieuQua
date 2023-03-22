@@ -46,7 +46,7 @@ body {
     width: 5px;
   }
   .main-title {
-    color: #0059ce;
+    color: #0c0c0c;
     font-size: 22px;
     font-weight: bolder;
     padding: 3px 10px;
@@ -277,6 +277,11 @@ body {
     width: 95%;
     margin: 0 auto;
   }
+  .detail {
+    .detail-action {
+      right: 2.5% !important;
+    }
+  }
 }
 
 .dialog-wrapper {
@@ -363,6 +368,9 @@ body {
     width: 40px;
   }
   .detail-action {
+    position: fixed;
+    bottom: 10px;
+    right: 15%;
     width: 100%;
     padding: 20px 0;
     display: flex;
@@ -402,6 +410,19 @@ body {
     }
     .p-chips-token-label {
       font-size: 13px;
+    }
+  }
+  .p-tabview-nav-content {
+    font-size: 15px;
+    .p-tabview-nav {
+      .p-tabview-nav-link {
+        // &:hover {
+          text-decoration: none !important;
+        // }
+        .p-tabview-left-icon {
+          font-size: 17px;
+        }
+      }
     }
   }
 }

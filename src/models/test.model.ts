@@ -1,16 +1,40 @@
 import { Quizz } from './quizz.model';
+import { TestUser } from './testUser.model';
 export class Test {
-  id = "";
-  name = "";
-  description = "";
+  id: any = "";
+  name: any = "";
+  description: any = "";
   time: any = 0;
   status: any = 0;
-  thumbnail = "";
-  testCategoryId = "";
-  testCategoryCode = "";
-  testCategoryName = "";
-  order: any = null;
+  thumbnail: any = "";
+  testCategoryId: any = "";
+  testCategoryCode: any = "";
+  testCategoryName: any = "";
+  order: any = 0;
   isFree: any = 0;
+  createdBy: any = "";
+  createdDate: any = "";
+  modifiedDate: any = "";
+  modifiedBy: any = "";
+  remainMinute: any = 0;
   quizzs: Quizz[] = [];
-  courseScheduleId = ""
+  commentConfiguration: any = "";
+  courseScheduleId: any = "";
+  testComment: any = "";
+  isAutoSendMail: any = 0;
+  numberQuestionPass: any = 0;
+  totalPointPass: any = 0;
+  numberOfTest: any = 0;
+  isShowInAbilityTest: any = 0;
+  courseId: any = "";
+  videoUrl: any = "";
+  testQuestionGroupId: any = 0;
+  isTestPass: true;
+  testUsers: TestUser[] = [];
+  totalPoint: any = 0;
+  deadlineDate: any = "";
+  isNotification: any = 0;
+  isSpecial: any = 0;
+  accountsSpecial: any = "";
+  isAutoSort: any = 0
 }

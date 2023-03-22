@@ -1,11 +1,23 @@
 export class Quizz {
-  id = "";
-  answer = "";
-  content = "";
-  description = "";
-  testId = "";
+  id: any = "";
+  name: any = "";
+  answer: any = "";
+  content: any = "";
+  description: any = "";
   point: any = 0;
-  testQuestionTypeCode = "";
+  testQuestionTypeCode: any = "";
+  testQuestionTypeName: any = "";
   order: any = 0;
-  quizzConfigSets = ""
+  quizzConfigSets: any = "";
+  isAdd: any = 0;
+  testId: any = "";
+  createdDate: any = "";
+  createdBy: any = "";
+  modifiedDate: any = "";
+  modifiedBy: any = "";
+  testQuestionGroupId: any = 0;
+  testQuestionGroupName: any = "";
+  level: any = 0;
+  teacherIds: any = "";
+  isAutoSort: any = 0
 }

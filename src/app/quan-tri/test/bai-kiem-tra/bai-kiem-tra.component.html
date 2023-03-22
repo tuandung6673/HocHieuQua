@@ -1,24 +1,4 @@
 <div class="wrapper">
-
-  <!-- <div style="text-align: center;" *ngIf="isLoading">
-    <p-progressSpinner></p-progressSpinner>
-  </div>
-  
-  <div class="grid" *ngIf="!isLoading">
-    <div class="col-4">
-      <button class="btn btn-success" [routerLink]="['them-bai-kiem-tra']">Thêm mới</button>
-    </div>
-  
-    <div class="col-8">
-      <div style="float: right;">
-        <span class="p-input-icon-right">
-          <i (click)="onSearch()" class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
-        </span>
-      </div>
-    </div>
-  </div> -->
-
   <div class="header">
     <div class="guide">
       <span><i class="pi pi-home"></i></span>
@@ -42,7 +22,7 @@
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
         <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
-        <p-button [routerLink]="['them-bai-kiem-tra']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
   </div>

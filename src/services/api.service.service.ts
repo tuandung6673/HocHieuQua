@@ -36,6 +36,7 @@ import { TestQuestion } from 'src/models/testQuestion.model';
 import { TestQuestionGroup } from 'src/models/testQuestionGroup.model';
 import { Step } from 'src/models/step.model';
 import { Notification } from 'src/models/notification.model';
+import { TestCategory } from 'src/models/testCategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -266,6 +267,11 @@ export class ApiService {
 
   getTestById(id: string) : Observable<BaseRetail<Test>> {
     return this.http.get<BaseRetail<Test>>(`${this.url}/test/${id}`)
+  }
+
+  // TestCategory
+  getTestCategory(queryParams) : Observable<BaseReponse<TestCategory>> {
+    return this.http.get<BaseReponse<TestCategory>>(`${this.url}/TestCategory?` + queryParams)
   }
 
   // News

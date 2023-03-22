@@ -136,6 +136,10 @@ import { ChiTietThongBaoComponent } from './quan-tri/thong-bao/chi-tiet-thong-ba
 import { ThongBaoAllComponent } from './user/thong-bao-all/thong-bao-all.component';
 import { AdminGuard } from 'src/auth/adminGuard.service';
 import { TatCaKhoaHocComponent } from './user/tat-ca-khoa-hoc/tat-ca-khoa-hoc.component';
+import { SuaKtChiTietComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-chi-tiet/sua-kt-chi-tiet.component';
+import { SuaKtCauHoiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/sua-kt-cau-hoi.component';
+import { SuaKtNhanXetComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-nhan-xet/sua-kt-nhan-xet.component';
+import { SuaKtBinhLuanComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-binh-luan/sua-kt-binh-luan.component';
 const appRoutes: Routes = [
   {
     path: 'quan-tri', component: AdminComponent, canActivate: [AdminGuard],
@@ -320,7 +324,11 @@ const appRoutes: Routes = [
     ChiTietFooterComponent,
     ChiTietThongBaoComponent,
     ThongBaoAllComponent,
-    TatCaKhoaHocComponent
+    TatCaKhoaHocComponent,
+    SuaKtChiTietComponent,
+    SuaKtCauHoiComponent,
+    SuaKtNhanXetComponent,
+    SuaKtBinhLuanComponent
       ],
   imports: [
   CKEditorModule,

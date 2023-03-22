@@ -1,0 +1,76 @@
+<div class="detail grid">
+  <div class="col-3">
+    <small>Loại bài kiểm tra</small>
+    <p-dropdown [options]="testCategoryOptions" [(ngModel)]="test.testCategoryCode" name="testCategoryCode"></p-dropdown>
+  </div>
+  <div class="col-9">
+    <small>Tiêu đề</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="name" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.name" name="name"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-3">
+    <small>Thứ tự</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="order" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.order" name="order"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-3">
+    <small>Thời gian (phút)</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="time" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.time" name="time"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-3">
+    <small>Số điểm qua bài kiểm tra</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="totalPointPass" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.totalPointPass" name="totalPointPass"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-3">
+    <small>Số lần được kiểm tra</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="numberOfTest" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.numberOfTest" name="numberOfTest"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-3">
+    <small>Hạn nộp bài</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="deadlineDate" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.deadlineDate" name="deadlineDate"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-3 inputSwitch">
+    <small>Hiển thị ở kiểm tra năng lực</small>
+    <p-inputSwitch [(ngModel)]="test.isShowInAbilityTest" name="isShowInAbilityTest"></p-inputSwitch>
+  </div>
+  <div class="col-3 inputSwitch">
+    <small>Gửi mail khi nộp bài</small>
+    <p-inputSwitch [(ngModel)]="test.isAutoSendMail" name="isAutoSendMail"></p-inputSwitch>
+  </div>
+  <div class="col-3 inputSwitch">
+    <small>Trạng thái</small>
+    <p-inputSwitch [(ngModel)]="test.status" name="status"></p-inputSwitch>
+  </div>
+  <div class="col-3 inputSwitch">
+    <small>Miễn phí</small>
+    <p-inputSwitch [(ngModel)]="test.isFree" name="isFree"></p-inputSwitch>
+  </div>
+</div>
