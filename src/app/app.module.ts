@@ -10,6 +10,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {ImageModule} from 'primeng/image';
+import {CalendarModule} from 'primeng/calendar';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessagesModule} from 'primeng/messages';
@@ -341,6 +342,7 @@ const appRoutes: Routes = [
     InputTextModule,
     ToggleButtonModule,
     MenubarModule,
+    CalendarModule,
     TreeTableModule,
     ToastModule,
     InputSwitchModule,

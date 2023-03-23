@@ -1,9 +1,11 @@
+import { MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { Test } from 'src/models/test.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sua-bai-kiem-tra',
@@ -14,7 +16,13 @@ export class SuaBaiKiemTraComponent implements OnInit {
   id: string = null;
   test : Test = new Test();
   commentConfiguration : any;
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(
+    private apiService: ApiService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private spinner: NgxSpinnerService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -38,7 +46,8 @@ export class SuaBaiKiemTraComponent implements OnInit {
     .subscribe((response) => {
       document.title = "Bài kiểm tra " + response.data.name;
       this.test = response.data;
-      this.commentConfiguration = JSON.parse(response.data.commentConfiguration)
+      this.commentConfiguration = JSON.parse(response.data.commentConfiguration);
+      this.test.deadlineDate = moment(this.test.deadlineDate).format('DD/MM/YYYY k:mm')
       this.test.isShowInAbilityTest = response.data.isShowInAbilityTest == 1 ? true : false;
       this.test.isAutoSendMail = response.data.isAutoSendMail == 1 ? true : false;
       this.test.status = response.data.status == 1 ? true : false;
@@ -62,19 +71,46 @@ export class SuaBaiKiemTraComponent implements OnInit {
   // }
 
   cancel() {
+    this.router.navigate(['/quan-tri/bai-kiem-tra'])
+  }
 
+  checkValidate(comment) : boolean {
+    return comment.every(c => c.comment != '')
   }
 
   onSubmit() {
     const dataUpdate = {
       ...this.test,
+      commentConfiguration: JSON.stringify(this.commentConfiguration),
       testCategoryId: this.test.testCategoryCode,
       isShowInAbilityTest: this.test.isShowInAbilityTest ? 1 : 0,
       isAutoSendMail: this.test.isAutoSendMail ? 1 : 0,
       status: this.test.status ? 1 : 0,
       isFree: this.test.isFree ? 1 : 0,
     }
-    console.log(dataUpdate);
-    
+
+    // console.log(dataUpdate);
+    // console.log(this.checkValidate(this.commentConfiguration));
+
+    if(this.checkValidate(this.commentConfiguration)) {
+      this.spinner.show();
+      this.apiService.postTest(dataUpdate)
+      .pipe(
+        finalize(() => {
+          this.spinner.hide();
+        })
+      )
+      .subscribe((response) => {
+        if(response.status == 'success') {
+          this.spinner.hide();
+          this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.message});
+          this.router.navigate(['/quan-tri/bai-kiem-tra'])
+        } else {
+          this.messageService.add({severity: 'error', summary: 'Thất bại', detail: response.message});
+        }
+      })
+    } else {
+      this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Nhập tất cả trường Nhận xét'})
+    }
   }
 }

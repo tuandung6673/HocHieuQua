@@ -1,0 +1,20 @@
+.add {
+  i {
+    font-size: 15px;
+    color: #007bff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    &:hover {
+      background: rgba(0,123,255,.04);
+    }
+  } 
+}
+.trash-icon {
+  cursor: pointer;
+  color: #007bff !important;
+}
+
+.error {
+  background: #e5e5eb !important;
+}

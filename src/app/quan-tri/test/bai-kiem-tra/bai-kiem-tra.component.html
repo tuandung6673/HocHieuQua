@@ -27,41 +27,52 @@
     </div>
   </div>
 
-  <p-table [value]="tests" responsiveLayout="scroll" rowHover="true" *ngIf="!isLoading">
+  <p-table [value]="tests" responsiveLayout="scroll" [scrollable]="true" rowHover="true" *ngIf="!isLoading">
     <ng-template pTemplate="header">
         <tr>
             <th pFrozenColumn style="width: 2.25em">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
             <th pFrozenColumn style="width: 60px;"></th>
-            <th>Tên</th>
-            <th>Loại bài</th>
-            <th>Miễn phí</th>
-            <th>Trạng thái</th>
+            <th pFrozenColumn style="min-width: 500px;">Tên</th>
+            <th style="min-width: 200px">Hạn nộp</th>
+            <th style="min-width: 150px">Loại bài</th>
+            <th style="min-width: 150px">Miễn phí</th>
+            <th style="min-width: 150px">Gửi mail</th>
+            <th style="min-width: 150px">Trạng thái</th>
+            <th style="min-width: 150px">KT năng lực</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-test>
         <tr>
-            <td pFrozenColumn>
+            <td pFrozenColumn style="width: 2.25em">
               <p-tableCheckbox [value]="test"></p-tableCheckbox>
             </td>
             <td pFrozenColumn style="width: 60px" >
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
             </td>
-            <td style="color: #0b5ed7; font-weight: 650;">{{test.name}}</td>
-            <td>{{test.testCategoryName}}</td>
-            <td>
+            <td pFrozenColumn style="color: #0b5ed7; font-weight: 650; min-width: 500px;">{{test.name}}</td>
+            <td style="min-width: 200px;">{{test.deadlineDate != 'Invalid date' ? test.deadlineDate : ''}}</td>
+            <td style="min-width: 150px;">{{test.testCategoryName}}</td>
+            <td style="min-width: 150px;">
               <!-- <div *ngIf="test.isFree == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></div>
               <div *ngIf="test.isFree == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></div> -->
               <span class="colorful" [ngClass]="test.isFree == 0 ? 'fail' : 'passed' " *ngIf="test.isFree == 1">Miễn phí</span>
               <span class="colorful" [ngClass]="test.isFree == 0 ? 'fail' : 'passed' " *ngIf="test.isFree == 0">Mất phí</span>
-            
             </td>
-            <td>
+            <td style="min-width: 150px;">
+              <span class="colorful" [ngClass]="test.isAutoSendMail == 0 ? 'fail' : 'passed' " *ngIf="test.isAutoSendMail == 1">Gửi</span>
+              <span class="colorful" [ngClass]="test.isAutoSendMail == 0 ? 'fail' : 'passed' " *ngIf="test.isAutoSendMail == 0">Không</span>
+            </td>
+            <td style="min-width: 150px;">
               <!-- <div *ngIf="test.status == 0"><i class="pi pi-times" style="font-size: 1.5rem"></i></div>
               <div *ngIf="test.status == 1"><i class="pi pi-check" style="font-size: 1.5rem"></i></div> -->
               <span class="colorful" [ngClass]="test.status == 0 ? 'fail' : 'passed' " *ngIf="test.status == 1">Hiển thị</span>
               <span class="colorful" [ngClass]="test.status == 0 ? 'fail' : 'passed' " *ngIf="test.status == 0">Ẩn</span>
+            </td>
+            <td style="min-width: 150px;">
+              <span class="colorful" [ngClass]="test.isShowInAbilityTest == 0 ? 'fail' : 'passed' " *ngIf="test.isShowInAbilityTest == 1">Hiển thị</span>
+              <span class="colorful" [ngClass]="test.isShowInAbilityTest == 0 ? 'fail' : 'passed' " *ngIf="test.isShowInAbilityTest == 0">Ẩn</span>
             </td>
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
@@ -77,7 +88,7 @@
       </ng-template>
   </p-table>
   
-  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
 </div>
 
 

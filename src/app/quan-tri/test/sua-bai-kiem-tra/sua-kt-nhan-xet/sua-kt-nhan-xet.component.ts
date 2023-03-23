@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommentConfigure } from 'src/models/commentConfigure.model';
 import { Test } from 'src/models/test.model';
 
 @Component({
@@ -11,6 +12,7 @@ export class SuaKtNhanXetComponent implements OnInit {
   @Input() commentConfiguration;
   fromOptions = [];
   toOptions = [];
+  newCommentConfigure : CommentConfigure = new CommentConfigure();
   // configure = []
   constructor() {
 
@@ -18,11 +20,23 @@ export class SuaKtNhanXetComponent implements OnInit {
 
   ngOnInit(): void {
     for(let i=0; i<100; i+=5) {
-      this.fromOptions.push({label: `${i}%`, value: i});
+      this.fromOptions.push({label: `${i}%`, value: i == 0 ? -1 : i});
       this.toOptions.push({label: `${i+4}%`, value: i+4});
     }
     this.toOptions.splice(-1);
     this.toOptions.push({label: '100%', value: 100})
     // console.log(this.toOptions);  
   }
+
+  deleteComment(index) {
+    this.commentConfiguration.splice(index, 1);   
+  }
+
+  newComment() {
+    this.commentConfiguration.unshift({
+      ...this.newCommentConfigure
+    })
+  }
+
+  
 }

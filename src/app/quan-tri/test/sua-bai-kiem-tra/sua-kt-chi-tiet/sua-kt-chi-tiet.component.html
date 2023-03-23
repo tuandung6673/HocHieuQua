@@ -52,8 +52,9 @@
     <small>Hạn nộp bài</small>
     <div>
       <span class="p-input-icon-right">
-        <i class="pi pi-user"></i>
-        <input id="deadlineDate" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.deadlineDate" name="deadlineDate"/>
+        <!-- <i class="pi pi-user"></i> -->
+        <!-- <input id="deadlineDate" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.deadlineDate" name="deadlineDate"/> -->
+        <p-calendar [(ngModel)]="test.deadlineDate" [showTime]="true" inputId="time" dateFormat="dd/mm/yy"></p-calendar>
       </span>
     </div>
   </div>

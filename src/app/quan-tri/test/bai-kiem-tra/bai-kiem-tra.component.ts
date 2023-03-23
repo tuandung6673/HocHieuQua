@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Test } from 'src/models/test.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-bai-kiem-tra',
@@ -16,7 +17,7 @@ export class BaiKiemTraComponent implements OnInit {
   search: string
   params = {
     offSet: 0,
-    pageSize: 5,
+    pageSize: 10,
     classId: '',
     filter: '',
     courseId: '',
@@ -51,7 +52,10 @@ export class BaiKiemTraComponent implements OnInit {
   getTests() {
     this.spinner.show();
     this.apiService.getTest(this.params.offSet, this.params.pageSize, this.params.filter, this.params.classId, this.params.courseId, this.params.subjectId, this.params.testCategoryId, this.params.IsShowInAbilityTest).subscribe((responseData) => {
-      this.tests = responseData.data.data
+      this.tests = responseData.data.data;
+      this.tests.map((t) => {
+        t.deadlineDate = moment(t.deadlineDate).format('DD/MM/YYYY k:mm');
+      })
       this.params = {
         ...this.params,
         totalRecord: responseData.data.recordsTotal

@@ -269,6 +269,10 @@ export class ApiService {
     return this.http.get<BaseRetail<Test>>(`${this.url}/test/${id}`)
   }
 
+  postTest(data: Test) : Observable<Message> {
+    return this.http.post<Message>(`${this.url}/test`, data)
+  }
+
   // TestCategory
   getTestCategory(queryParams) : Observable<BaseReponse<TestCategory>> {
     return this.http.get<BaseReponse<TestCategory>>(`${this.url}/TestCategory?` + queryParams)
