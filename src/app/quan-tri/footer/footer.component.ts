@@ -23,8 +23,6 @@ export class FooterComponent implements OnInit {
       this.footerLeft = responseData.data.data.filter(r => {
         return r.position == 'bottom-left';
       })
-      console.log(this.footerLeft);
-      
       this.footerRight = responseData.data.data.filter(r => {
         return r.position == 'bottom-right';
       })
