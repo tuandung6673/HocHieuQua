@@ -247,7 +247,7 @@ export class ApiService {
   }
 
   postCourse(data: Course) {
-    return this.http.post(`${this.url}/Course`, data)
+    return this.http.post<Message>(`${this.url}/Course`, data)
   }
 
   deleteCourse(id: string) {

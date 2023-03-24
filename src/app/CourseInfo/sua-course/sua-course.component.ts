@@ -3,12 +3,13 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Course } from 'src/models/course.model';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-sua-course',
   templateUrl: './sua-course.component.html',
-  styleUrls: ['./sua-course.component.css']
+  styleUrls: ['./sua-course.component.scss']
 })
 export class SuaCourseComponent implements OnInit {
 
@@ -25,7 +26,7 @@ export class SuaCourseComponent implements OnInit {
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -41,21 +42,17 @@ export class SuaCourseComponent implements OnInit {
   }
 
   getEditCourse(id: string) {
-    if(this.id && this.id != 'them-khoa-hoc') {
-      this.apiService.getCourseById(this.id).subscribe((responseData) => {
-        this.editCourse = responseData.data;
-        this.newItemEvent.emit(responseData.data.name);
-        responseData.data.teacherId = responseData.data.teachers.map((teacher) => {
-          return teacher.id
-        })
-        this.isLoading = false
-        // this.cloneCourse = {...this.editCourse}
-        this.editCourse.status = this.editCourse.status == 1 ? true : false
-        this.getSubjectsOption(responseData.data.classRoomId)
+    this.apiService.getCourseById(this.id).subscribe((responseData) => {
+      this.editCourse = responseData.data;
+      this.newItemEvent.emit(responseData.data.name);
+      responseData.data.teacherId = responseData.data.teachers.map((teacher) => {
+        return teacher.id;
       })
-    } else {
-      this.isLoading = false
-    }
+      this.editCourse.status = this.editCourse.status == 1 ? true : false;
+      this.editCourse.isShowHome = this.editCourse.isShowHome == 1 ? true : false
+
+      this.getSubjectsOption(responseData.data.classRoomId)
+    })
   }
 
   getClassroomOption() {
@@ -87,39 +84,28 @@ export class SuaCourseComponent implements OnInit {
     this.getSubjectsOption(this.editCourse.classRoomId)
   }
 
-  onSubmit() {
-    // const updateData ={
-    //   classRoomId: this.editCourse.classRoomId,
-    //   code: this.editCourse.code,
-    //   courseAvatar: this.editCourse.courseAvatar,
-    //   courseBanner: this.editCourse.courseBanner,
-    //   courseInfo1: this.editCourse.courseInfo1,
-    //   courseInfo2: this.editCourse.courseInfo1,
-    //   courseThumbnail: this.editCourse.courseThumbnail,
-    //   name: this.editCourse.name,
-    //   price: this.editCourse.price,
-    //   priceDiscount: this.editCourse.priceDiscount,
-    //   shortSummary: this.editCourse.shortSummary,
-    //   status: this.editCourse.status,
-    //   studentNum: this.editCourse.studentNum,
-    //   subjectId: this.editCourse.subjectId,
-    //   teacherId: this.editCourse.teacherId
-    // }
-    this.isLoading = true;
+  cancel() {
+    this.router.navigate(['/quan-tri/khoa-hoc'])
+  }
+
+  save() {
     const updateData = {...this.editCourse}
     updateData.status = updateData.status ? 1 : 0
+    updateData.isShowHome = updateData.isShowHome ? 1 : 0
     updateData.teacherId = updateData.teacherId.toString()
-    
     updateData.price = +updateData.price;
     updateData.priceDiscount = +updateData.priceDiscount;
     updateData.studentNum = +updateData.studentNum
 
-    console.log(updateData);
+    // console.log(updateData);
     this.apiService.postCourse(updateData).subscribe((responseData) => {
-      console.log('Update/New Course', responseData);
-      this.isLoading = false
-      this.router.navigate(['quan-tri/khoa-hoc'])
+      // console.log('Update/New Course', responseData);
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
+        this.router.navigate(['quan-tri/khoa-hoc']);
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+      }
     })
   }
-
 }

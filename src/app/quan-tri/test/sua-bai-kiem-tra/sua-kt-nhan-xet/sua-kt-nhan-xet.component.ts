@@ -25,7 +25,6 @@ export class SuaKtNhanXetComponent implements OnInit {
     }
     this.toOptions.splice(-1);
     this.toOptions.push({label: '100%', value: 100})
-    // console.log(this.toOptions);  
   }
 
   deleteComment(index) {

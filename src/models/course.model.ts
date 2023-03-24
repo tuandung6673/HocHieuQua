@@ -36,6 +36,7 @@ export class Course {
   modifiedBy = "";
   promotionTime = "";
   totalRating: any = null;
+  isShowHome: any = null;
   totalStudent: any = null;
   currentRate: any = null;
   averageRating: any = null;

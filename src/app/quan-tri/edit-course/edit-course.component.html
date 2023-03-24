@@ -1,11 +1,37 @@
-<p-tabView>
-  <p-tabPanel header="Thông tin">  
-    <app-sua-course (newItemEvent)="getNameCourse($event)"></app-sua-course>
-  </p-tabPanel>
-  <p-tabPanel header="Chương trình học">
-    <app-cth-course></app-cth-course>
-  </p-tabPanel>
-  <p-tabPanel header="Điểm">
-    <app-diem-course></app-diem-course>
-  </p-tabPanel>
-</p-tabView>
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Khóa học</span>
+      <i>/</i>
+      <span class="active">Chi tiết Khóa học</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-khoa-hoc'" >Chi tiết Khóa học</div>
+        <div class="main-title" *ngIf="id == 'them-khoa-hoc'" >Thêm Khóa học</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
+  </div>
+  <div class="detail grid">
+    <div class="col-12">
+      <p-tabView>
+        <p-tabPanel header="Thông tin">  
+          <app-sua-course (newItemEvent)="getNameCourse($event)"></app-sua-course>
+        </p-tabPanel>
+        <p-tabPanel header="Chương trình học" [selected]="true">
+          <app-cth-course></app-cth-course>
+        </p-tabPanel>
+        <p-tabPanel header="Điểm">
+          <app-diem-course></app-diem-course>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>

@@ -60,16 +60,6 @@
               <span  class="colorful" [ngClass]="step.status == 0 ? 'fail' : 'passed' " *ngIf="step.status == 1">Hiển thị</span>
             </td>
         </tr>
-        <!-- <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
-          <ng-template pTemplate>
-              <div class="option" [routerLink]="[step.id]">
-                  <i class="pi pi-pencil"></i> Sửa
-              </div>
-              <div class="option" (click)="onDeleteCourse(step.id)">
-                  <i class="pi pi-trash"></i> Xóa
-              </div>
-          </ng-template>
-        </p-overlayPanel> -->
     </ng-template>
 
     <ng-template pTemplate="rowexpansion" let-step>

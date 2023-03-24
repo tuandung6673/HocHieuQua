@@ -1,9 +1,4 @@
-/* form {
-  width: 80%;
-  margin: 0 auto;
-} */
-
-.field {
+/* .field {
   width: 100%;
 }
 
@@ -16,12 +11,6 @@
   width: 80%;
 }
 
-img {
-  width: 80%;
-  height: 200px;
-  object-fit: cover;
-}
-
 ::ng-deep .edit-course .p-inputtext-lg {
   width: 100%;
 }
@@ -32,4 +21,12 @@ img {
 
 ::ng-deep .edit-course .p-multiselect {
   width: 100%;
+} */
+
+img {
+  border-radius: 6px;
+  margin-top: 2px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }

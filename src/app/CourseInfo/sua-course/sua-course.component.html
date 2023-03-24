@@ -1,114 +1,115 @@
-<div style="text-align: center;" *ngIf="isLoading">
-  <p-progressSpinner></p-progressSpinner>
-</div>
-
-<form (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-  <div class="grid" style="display: flex">
-    <div class="col-3 left">
-        <div class="field">
-          <label for="avatar" class="block">Avatar</label>
-          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseAvatar" name="courseAvatar"/>
+<div class="grid detail">
+  <div class="col-3" style="padding-right: 10px;">
+    <div class="grid">
+      <div class="col-12">
+        <small>Avatar</small>
+        <div>
+          <span class="p-input-icon-right">
+            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseAvatar" name="courseAvatar"/>
+          </span>
         </div>
         <img [src]="editCourse.courseAvatar ? editCourse.courseAvatar : defaultAvatar" />
-        <div class="field">
-          <label for="avatar" class="block">Banner</label>
-          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseBanner" name="courseBanner"/>
+      </div>
+      <div class="col-12">
+        <small>Banner</small>
+        <div>
+          <span  class="p-input-icon-right">
+            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseBanner" name="courseBanner"/>
+          </span>
         </div>
         <img [src]="editCourse.courseBanner ? editCourse.courseBanner : defaultAvatar" />
-        <div class="field">
-          <label for="avatar" class="block">Thumbnail</label>
-          <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseThumbnail" name="courseThumbnail"/>
+      </div>
+      <!-- <div class="col-12">
+        <small>Thumbnail</small>
+        <div>
+          <span  class="p-input-icon-right">
+            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseThumbnail" name="courseThumbnail"/>
+          </span>
         </div>
         <img [src]="editCourse.courseThumbnail ? editCourse.courseThumbnail : defaultAvatar" />
-    </div>
-
-    <div class="col-9 edit-course">
-      <div class="grid" >
-        <div class="col-4">
-          <div class="field" >
-            <label for="usernameInput" class="block">Tên khóa học</label>
-            <input formGroupName="suaCourseForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editCourse.name" />
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Lớp học</label>
-            <p-dropdown class="input" (onChange)="reloadSubject()" [options]="classRoomOption" [(ngModel)]="editCourse.classRoomId" optionLabel="name" optionValue="code" name="classRoomId"></p-dropdown>
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Môn học</label>
-            <p-dropdown class="input" [options]="subjectOption" [(ngModel)]="editCourse.subjectId" optionLabel="name" optionValue="code" name="subjectId"></p-dropdown>
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Giá</label>
-            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="price" type="text" aria-describedby="username-help" pInputText name="price" [(ngModel)]="editCourse.price" />
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Giá giảm</label>
-            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="priceDiscount" type="text" aria-describedby="username-help" pInputText name="priceDiscount" [(ngModel)]="editCourse.priceDiscount" />
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Số học sinh</label>
-            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="studentNum" type="text" aria-describedby="username-help" pInputText name="studentNum" [(ngModel)]="editCourse.studentNum" />
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Giáo viên</label>
-            <p-multiSelect [filter]="false" class="input" [options]="teacherOption" [(ngModel)]="editCourse.teacherId" defaultLabel="Chọn giáo viên" optionLabel="name" optionValue="code" option display="chip" name="teacherSelected"></p-multiSelect>
-          </div>
-        </div>
-        
-        <div class="col-4">
-          <div class="field">
-            <label for="usernameInput" class="block">Hiển thị</label>
-            <p-inputSwitch class="input" [(ngModel)]="editCourse.status" name="status"></p-inputSwitch>
-          </div>
-        </div>
-
-        <div class="card col-12">
-          <p-tabView>
-              <p-tabPanel header="Mô tả ngắn">  
-                <ckeditor [editor]="Editor" name="shortSummary" [(ngModel)]="editCourse.shortSummary"></ckeditor>
-              </p-tabPanel>
-              <p-tabPanel header="Thông tin khóa học">
-                <ckeditor [editor]="Editor" name="courseInfo1" [(ngModel)]="editCourse.courseInfo1"></ckeditor>
-              </p-tabPanel>
-              <p-tabPanel header="Thông tin giáo viên">
-                <ckeditor [editor]="Editor" name="courseInfo2" [(ngModel)]="editCourse.courseInfo2"></ckeditor>
-              </p-tabPanel>
-          </p-tabView>
-        </div>
-      </div>
-
-      <div class="col-9">
-        <div class="field">
-          <button style="margin: 10px" pButton pRipple label="Cancel" icon="pi pi-times"></button>
-          <button 
-            style="margin: 10px" 
-            type="submit" 
-            pButton pRipple 
-            label="Save" 
-            icon="pi pi-check"
-            >
-          </button>
-        </div>
-      </div>
-
+      </div> -->
     </div>
   </div>
-</form>
+
+  <div class="col-9">
+    <div class="grid">
+      <div class="col-4">
+        <small>Tên khóa học</small>
+        <div>
+          <span class="p-input-icon-right">
+            <input formGroupName="suaCourseForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editCourse.name" />
+          </span>
+        </div>
+      </div>
+      <div class="col-4">
+        <small>Lớp học</small>
+        <p-dropdown class="input" (onChange)="reloadSubject()" [options]="classRoomOption" [(ngModel)]="editCourse.classRoomId" optionLabel="name" optionValue="code" name="classRoomId"></p-dropdown>
+      </div>
+      <div class="col-4">
+        <small>Môn học</small>
+        <p-dropdown class="input" [options]="subjectOption" [(ngModel)]="editCourse.subjectId" optionLabel="name" optionValue="code" name="subjectId"></p-dropdown>
+      </div>
+      <div class="col-4">
+        <small>Giá</small>
+        <div>
+          <span class="p-input-icon-right">
+            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="price" type="text" aria-describedby="username-help" pInputText name="price" [(ngModel)]="editCourse.price" />
+          </span>
+        </div>
+      </div>
+      <div class="col-4">
+        <small>Giá giảm</small>
+        <div>
+          <span class="p-input-icon-right">
+            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="priceDiscount" type="text" aria-describedby="username-help" pInputText name="priceDiscount" [(ngModel)]="editCourse.priceDiscount" />
+          </span>
+        </div>
+      </div>
+      <div class="col-4">
+        <small>Số học sinh</small>
+        <div>
+          <span class="p-input-icon-right">
+            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="studentNum" type="text" aria-describedby="username-help" pInputText name="studentNum" [(ngModel)]="editCourse.studentNum" />
+          </span>
+        </div>
+      </div>
+      <div class="col-4">
+        <small>Giáo viên</small>
+        <div>
+          <span class="p-input-icon-right">
+            <p-multiSelect [filter]="false" class="input" [options]="teacherOption" [(ngModel)]="editCourse.teacherId" defaultLabel="Chọn giáo viên" optionLabel="name" optionValue="code" option display="chip" name="teacherSelected"></p-multiSelect>
+          </span>
+        </div>
+      </div>
+      <div class="col-4 inputSwitch">
+        <small>Hiển thị</small>
+        <p-inputSwitch class="input" [(ngModel)]="editCourse.status" name="status"></p-inputSwitch>
+      </div>
+      <div class="col-4 inputSwitch">
+        <small>HT Trang chủ</small>
+        <p-inputSwitch class="input" [(ngModel)]="editCourse.isShowHome" name="status"></p-inputSwitch>
+      </div>
+      <div class="card col-12">
+        <p-tabView>
+            <p-tabPanel header="Mô tả ngắn">  
+              <ckeditor [editor]="Editor" name="shortSummary" [(ngModel)]="editCourse.shortSummary"></ckeditor>
+            </p-tabPanel>
+            <p-tabPanel header="Thông tin khóa học">
+              <ckeditor [editor]="Editor" name="courseInfo1" [(ngModel)]="editCourse.courseInfo1"></ckeditor>
+            </p-tabPanel>
+            <p-tabPanel header="Thông tin giáo viên">
+              <ckeditor [editor]="Editor" name="courseInfo2" [(ngModel)]="editCourse.courseInfo2"></ckeditor>
+            </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+  <div class="detail-action">
+    <div class="cancel-btn">
+      <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+    </div>
+    <div class="save-btn">
+      <p-button label="Lưu" (click)="save()" icon="pi pi-check"></p-button>
+    </div>
+  </div>
+</div>

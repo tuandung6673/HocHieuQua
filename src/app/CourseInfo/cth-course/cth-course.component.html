@@ -1,10 +1,11 @@
 <div class="wrapper">
 
   <div class="card">
-    <p-table [value]="coursesSchedule">
+    <p-table [value]="coursesSchedule" dataKey="id" rowHover="true">
         <ng-template pTemplate="header">
             <tr>
-                <th pFrozenColumn></th>
+                <th pFrozenColumn style="width: 30px"></th>
+                <th pFrozenColumn style="width: 30px"></th>
                 <th pSortableColumn="code">Tên <p-sortIcon field="code"></p-sortIcon></th>
                 <th pSortableColumn="name">Thứ tự <p-sortIcon field="name"></p-sortIcon></th>
                 <th pSortableColumn="category">Trạng Thái <p-sortIcon field="category"></p-sortIcon></th>
@@ -12,7 +13,10 @@
         </ng-template>
         <ng-template pTemplate="body" let-courseSchedule>
             <tr>
-              <td pFrozenColumn style="min-width: 50px" >
+              <td pFrozenColumn style="width: 30px">
+                <button *ngIf="courseSchedule.tests.length > 0" type="button" pButton pRipple [pRowToggler]="courseSchedule" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              </td>
+              <td pFrozenColumn style="width: 30px" >
                 <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
               </td>
               <td>{{courseSchedule.name}}</td>
@@ -30,6 +34,40 @@
                   </div>
               </ng-template>
             </p-overlayPanel>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-courseSchedule>
+          <tr>
+            <td colspan="7">
+              <div class="p-p-3">
+                <p-table [value]="courseSchedule.tests" dataKey="id" rowHover="true">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>Tên</th>
+                      <th>Loại bài</th>
+                      <th>Thời gian</th>
+                      <th>Hạn nộp</th>
+                      <th>Trạng thái</th>
+                      <th>Miễn phí</th>
+                      <th>Tự gửi Mail</th>
+                      <th>Kiểm tra năng lực</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-order>
+                    <tr>
+                      <td>{{order.name}}</td>
+                      <td>{{order.testCategoryName}}</td>
+                      <td>{{order.time}}</td>
+                      <td>{{order.deadlineDate}}</td>
+                      <td>{{order.status}}</td>
+                      <td>{{order.isFree}}</td>
+                      <td>{{order.isAutoSendMail}}</td>
+                      <td>{{order.isShowInAbilityTest}}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </td>
+          </tr>
         </ng-template>
     </p-table>
   </div>
