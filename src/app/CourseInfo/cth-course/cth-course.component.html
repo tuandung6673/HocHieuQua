@@ -43,25 +43,37 @@
                   <ng-template pTemplate="header">
                     <tr>
                       <th>Tên</th>
-                      <th>Loại bài</th>
+                      <th style="min-width: 110px;">Loại bài</th>
                       <th>Thời gian</th>
-                      <th>Hạn nộp</th>
-                      <th>Trạng thái</th>
-                      <th>Miễn phí</th>
-                      <th>Tự gửi Mail</th>
-                      <th>Kiểm tra năng lực</th>
+                      <th style="min-width: 140px;">Hạn nộp</th>
+                      <th style="min-width: 110px;">Trạng thái</th>
+                      <th style="min-width: 110px;">Miễn phí</th>
+                      <th style="min-width: 110px;">Tự gửi Mail</th>
+                      <th style="min-width: 110px;">Kiểm tra năng lực</th>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-order>
                     <tr>
                       <td>{{order.name}}</td>
-                      <td>{{order.testCategoryName}}</td>
+                      <td style="min-width: 110px;">{{order.testCategoryName}}</td>
                       <td>{{order.time}}</td>
-                      <td>{{order.deadlineDate}}</td>
-                      <td>{{order.status}}</td>
-                      <td>{{order.isFree}}</td>
-                      <td>{{order.isAutoSendMail}}</td>
-                      <td>{{order.isShowInAbilityTest}}</td>
+                      <td style="min-width: 140px;">{{order.deadlineDate}}</td>
+                      <td style="min-width: 110px;">
+                        <span *ngIf="order.status == 1" style="color: #0b5ed7"><i class="pi pi-check"></i></span>
+                        <span *ngIf="order.status == 0" style="color: #dc3545"><i class="pi pi-times"></i></span>
+                      </td>
+                      <td style="min-width: 110px;">
+                        <span *ngIf="order.isFree == 1" style="color: #0b5ed7"><i class="pi pi-check"></i></span>
+                        <span *ngIf="order.isFree == 0" style="color: #dc3545"><i class="pi pi-times"></i></span>
+                      </td>
+                      <td style="min-width: 110px;">
+                        <span *ngIf="order.isAutoSendMail == 1" style="color: #0b5ed7"><i class="pi pi-check"></i></span>
+                        <span *ngIf="order.isAutoSendMail == 0" style="color: #dc3545"><i class="pi pi-times"></i></span>
+                      </td>
+                      <td style="min-width: 110px;">
+                        <span *ngIf="order.isShowInAbilityTest == 1" style="color: #0b5ed7"><i class="pi pi-check"></i></span>
+                        <span *ngIf="order.isShowInAbilityTest == 0" style="color: #dc3545"><i class="pi pi-times"></i></span>
+                      </td>
                     </tr>
                   </ng-template>
                 </p-table>

@@ -449,6 +449,14 @@ body {
   .p-datatable .p-datatable-thead > tr > th {
     background: #afd0f1;
   }
+  .p-datatable .p-sortable-column {
+    &:hover {
+      background: #8fb9e2 !important;
+    }
+  }
+  .p-datatable .p-sortable-column:focus {
+    background: #8fb9e2 !important;
+  }
   .p-accordion-header-link {
     font-size: 14px;
     background: #007bffd3 !important;

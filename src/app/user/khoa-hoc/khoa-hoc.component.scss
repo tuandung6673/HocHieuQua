@@ -8,13 +8,15 @@
       color: blue;
     }
   }
-  .title {
+  .titlee {
     font-weight: bold;
   }
 }
 
 .list {
-  display: flex;
+  // display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 .item {
   margin: 10px;
