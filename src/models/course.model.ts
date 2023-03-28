@@ -1,3 +1,5 @@
+import { CourseReleVant } from './courseRelevant.model';
+import { CourseRating } from 'src/models/courseRating.model';
 import { TestUser } from './testUser.model';
 import { CourseRatingSummary } from './courseRatingSummary.model';
 import { Classroom } from './classroom.model';
@@ -5,83 +7,51 @@ import { Account } from "./account.model"
 import { Subject } from './subject.model';
 import { Teacher } from './teacher.model';
 import { CourseSchedule } from './courseSchedule.model';
+import { UserRating } from './userRating.model';
 
 export class Course {
-  id = "";
-  name = "";
-  code = "";
-  courseAvatar = "";
-  courseThumbnail = "";
-  courseBanner = "";
-  shortSummary = "";
-  courseInfo1 = "";
-  courseInfo2 = "";
-  price: any = null;
-  priceDiscount: any = null;
-  studentNum: any = null;
-  status: any = null;
-  order: any = null;
-  rating: any = null;
-  classRoomId = "";
-  classRoomName = "";
-  subjectId = "";
-  subjectName = "";
-  teacherId : string | string[] = [];
-  teacherName : string | string[] = [];
-  accountId = "";
-  accountName = "";
-  createdDate = "";
-  modifiedDate = "";
-  createdBy = "";
-  modifiedBy = "";
-  promotionTime = "";
-  totalRating: any = null;
-  isShowHome: any = null;
-  totalStudent: any = null;
-  currentRate: any = null;
-  averageRating: any = null;
+  id: string =  "";
+  name: string =  "";
+  code: string =  "";
+  courseAvatar: string =  "";
+  courseThumbnail: string =  "";
+  courseBanner: string =  "";
+  shortSummary: string =  "";
+  courseInfo1: string =  "";
+  courseInfo2: string =  "";
+  price: any =  0;
+  priceDiscount: any =  0;
+  studentNum: any =  0;
+  status: any =  0;
+  order: any =  0;
+  rating: any =  0;
+  isShowHome: any =  0;
+  classRoomId: string =  "";
+  classRoomName: string =  "";
+  subjectId: string =  "";
+  subjectName: string =  "";
+  teacherId: any =  "";
+  teacherName: any =  "";
+  accountId: string =  "";
+  accountName: string =  "";
+  createdDate: string =  "";
+  modifiedDate: string =  "";
+  createdBy: string =  "";
+  modifiedBy: string =  "";
+  promotionTime: string =  "";
+  totalRating: any =  0;
+  totalStudent: any =  0;
+  currentRate: any =  0;
+  userRating: UserRating = new UserRating();
+  averageRating: any =  0;
   teachers: Teacher[] = [];
-  subject: Subject = null;
-  accounts: Account[] = [] ;
+  subject: Subject = new Subject();
+  accounts: Account[] = [];
   courseSchedules: CourseSchedule[] = [];
-  classRoom: Classroom = null ;
+  classRoom: Classroom = new Classroom();
   testUsers: TestUser[] = [];
-  courseRatingSummary: CourseRatingSummary = null;
-  courseRelevants : Course[] = [];
+  courseRatingSummary: CourseRatingSummary = new CourseRatingSummary();
+  courseRatings: CourseRating[] = [];
+  courseRelevants: CourseReleVant[] = []; 
+  isPassCourse: boolean = false;
 }
-
-
-// export class Course {
-//   accountId: '';
-//   accountName: '';
-//   accounts: Account[] = [];
-//   classRoom: Classroom[] = [];
-//   classRoomId = "";
-//   classRoomName = "";
-//   code = "";
-//   courseAvatar = "";
-//   courseBanner = "";
-//   courseInfo1 = "";
-//   courseInfo2 = "";
-//   courseSchedules: any;
-//   courseThumbnail = "";
-//   id = "";
-//   name = "";
-//   order: any = null;
-//   price: any = null;
-//   priceDiscount: any = null;
-//   rating: any = null;
-//   shortSummary = "";
-//   status: any = null
-//   studentNum: any = null
-//   subject: Subject[] = []
-//   subjectId = "";
-//   subjectName = "";
-//   teacherId: any = null
-//   teacherName: any = null
-//   teachers: Teacher[] = []
-//   testUsers: any = null
-// }
-    
-
-

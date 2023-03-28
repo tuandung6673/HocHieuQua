@@ -25,11 +25,11 @@
         <p-tabPanel header="Thông tin">  
           <app-sua-course (newItemEvent)="getNameCourse($event)"></app-sua-course>
         </p-tabPanel>
-        <p-tabPanel header="Chương trình học" [selected]="true">
+        <p-tabPanel header="Chương trình học">
           <app-cth-course></app-cth-course>
         </p-tabPanel>
         <p-tabPanel header="Điểm">
-          <app-diem-course></app-diem-course>
+          <app-diem-course ></app-diem-course>
         </p-tabPanel>
       </p-tabView>
     </div>

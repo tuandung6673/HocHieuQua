@@ -34,11 +34,11 @@ export class SuaCourseComponent implements OnInit {
     })
     if(this.id && this.id != 'them-khoa-hoc') {
       this.getEditCourse(this.id)
-      this.getAllTeacher()
-      this.getClassroomOption()
     } else {
       document.title = "Thêm khóa học"
     }
+    this.getAllTeacher()
+    this.getClassroomOption()
   }
 
   getEditCourse(id: string) {
@@ -65,7 +65,6 @@ export class SuaCourseComponent implements OnInit {
 
   getSubjectsOption(classRoomId: string) {
     this.apiService.getSubject(0, 1000, classRoomId, '' ).subscribe((subjectOption) => {
-      console.log('Subject Option', subjectOption);
       this.subjectOption = subjectOption.data.data.map((subject) => {
         return {name: subject.name, code: subject.id}
       })

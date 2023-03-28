@@ -36,6 +36,15 @@ body {
   margin: 0 auto;
 }
 
+// .p-toast-top-right {
+//   width: 300px;
+//   .p-toast-message-icon {
+//     font-size: 25px;  
+//   }
+//   .p-toast-message-text {
+//     font-size: 14px;
+//   }
+// }choose
 .header-left {
   display: flex;
   margin: 10px 0;
@@ -143,22 +152,32 @@ body {
     font-size: 16px;
   }
   .p-overlaypanel .p-overlaypanel-content{
-    padding: 10px 0;
+    padding: 10px 0 !important;
+    
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 4px;
   }
 }
+.p-overlaypanel .p-overlaypanel-content {
+  padding: 10px 0 !important;
+}
 
 .choose {
-  border-radius: 40%;
   padding: 5px;
+  display: flex;
   i {
+    border-radius: 40%;
+    padding: 3px;
+    margin: 0 7px;
     font-size: 15px;
     color: #0b5ed7;
-  }
-  &:hover {
-    cursor: pointer;
-    background-color: #dee3e9;
+    > *:last-child {
+      margin-right: 0;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: #dee3e9;
+    }
   }
 }
 .option {

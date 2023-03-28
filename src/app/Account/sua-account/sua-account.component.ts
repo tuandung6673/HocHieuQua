@@ -68,7 +68,7 @@ export class SuaAccountComponent implements OnInit {
     updateAccount.status = updateAccount.status ? 1 : 0
     this.apiService.postAccount(updateAccount).subscribe((responseData) => {
       if(responseData.status == 'success') {
-        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật tài khoản thành công'})
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật tài khoản thành công', life: 100000})
       } else {
         this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
         

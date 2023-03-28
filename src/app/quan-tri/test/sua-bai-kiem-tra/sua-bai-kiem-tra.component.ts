@@ -14,6 +14,8 @@ import * as moment from 'moment';
 })
 export class SuaBaiKiemTraComponent implements OnInit {
   id: string = null;
+  courseId : string = null;
+  testId : string = null;
   test : Test = new Test();
   commentConfiguration : any;
   constructor(
@@ -26,10 +28,16 @@ export class SuaBaiKiemTraComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id']
+      console.log(params);
+      
+      this.testId = params['testId']
+      this.courseId = params['courseId'];      
+      this.id = params['id'];
     });
-    if(this.id && this.id != 'them-moi') {
+    if(this.id && this.id != 'them-moi' && !this.courseId) {
       this.getTest(this.id);
+    } else if (this.courseId && this.testId) {
+      this.getTest(this.testId);
     } else {
       document.title = "Thêm Bài kiểm tra";
     }
@@ -53,8 +61,6 @@ export class SuaBaiKiemTraComponent implements OnInit {
       this.test.status = response.data.status == 1 ? true : false;
       this.test.isFree = response.data.isFree == 1 ? true : false;
       this.spinner.hide();
-      console.log(this.commentConfiguration);
-      
     })
   }
 
@@ -81,9 +87,11 @@ export class SuaBaiKiemTraComponent implements OnInit {
   onSubmit() {
     const dataUpdate = {
       ...this.test,
+      accountsSpecial: JSON.stringify([]),
       commentConfiguration: JSON.stringify(this.commentConfiguration),
       testCategoryId: this.test.testCategoryCode,
       isShowInAbilityTest: this.test.isShowInAbilityTest ? 1 : 0,
+      deadlineDate : this.test.deadlineDate == "Invalid date" ? null : this.test.deadlineDate,
       isAutoSendMail: this.test.isAutoSendMail ? 1 : 0,
       status: this.test.status ? 1 : 0,
       isFree: this.test.isFree ? 1 : 0,

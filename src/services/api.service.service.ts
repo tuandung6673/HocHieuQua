@@ -259,6 +259,10 @@ export class ApiService {
     return this.http.get<BaseReponse<CourseSchedule>>(`${this.url}/CourseSchedule?offSet=${offSet}&pageSize=${pageSize}&courseId=${courseId}&filter=${filter}`)
   }
 
+  postCourseSchedule(data : CourseSchedule) {
+    return this.http.post<Message>(`${this.url}/CourseSchedule`, data)
+  }
+
   // Tesst
 
   getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '', IsShowInAbilityTest = -1) : Observable<BaseReponse<Test>> {

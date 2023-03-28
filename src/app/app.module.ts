@@ -173,6 +173,8 @@ const appRoutes: Routes = [
       {path: 'faq/:id', component: SuaFaqComponent},
       {path: 'khoa-hoc', component: CourseComponent},
       {path: 'khoa-hoc/:id', component: EditCourseComponent},
+      {path: 'khoa-hoc/:id/:courseId/them-moi', component: SuaBaiKiemTraComponent},
+      {path: 'khoa-hoc/:id/:courseId/:testId', component: SuaBaiKiemTraComponent},
       {path: 'khoa-hoc/them-khoa-hoc', component: EditCourseComponent},
       {path: 'bai-kiem-tra', component: BaiKiemTraComponent},
       {path: 'bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
