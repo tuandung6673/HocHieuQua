@@ -4,6 +4,7 @@ import { Test } from 'src/models/test.model';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-bai-kiem-tra',
@@ -30,7 +31,7 @@ export class BaiKiemTraComponent implements OnInit {
   classOptions : any[] = [];
   subjectOptions : any[] = [];
   IsShowInAbilityTestOption : any[] = []
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService, private messageService: MessageService) {
     document.title = "Bài kiểm tra"
   }
 
@@ -101,6 +102,24 @@ export class BaiKiemTraComponent implements OnInit {
       pageSize: event.rows
     }
     this.getTests()
+  }
+
+  deleteTest(id: string) {
+    this.confirmationService.confirm({
+      message: 'Bạn có muốn xóa Bài kiểm tra này?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteTest(id).subscribe(response => {
+          if(response.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.data.messages});
+            this.tests = this.tests.filter(d =>d.id != id)
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thất bại', detail: response.data.messages})
+          }
+        })
+      }
+    })
   }
 
 }

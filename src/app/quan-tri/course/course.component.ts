@@ -101,31 +101,23 @@ export class CourseComponent implements OnInit {
 
   onDeleteCourse(id: string) {
     this.apiService.deleteCourse(id).subscribe((responseData) => {
-      this.courses = this.courses.filter(course => course.id != id)
-      // console.log('Delete Course', responseData);
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
+        this.courses = this.courses.filter(course => course.id != id)
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+      }
     })
   }
 
   confirmDeleteCourse(id: string) {
     this.confirmationService.confirm({
-        message: 'Bạn có muốn xóa love này ?',
+        message: 'Bạn có muốn khóa học này ?',
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
+            // this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteCourse(id)
-        },
-        reject: (type) => {
-            switch(type) {
-                case ConfirmEventType.REJECT:
-                    this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-                break;
-                case ConfirmEventType.CANCEL:
-                    this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-                break;
-                default: 
-                  return
-            }
         }
     });
   }

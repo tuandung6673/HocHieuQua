@@ -251,7 +251,7 @@ export class ApiService {
   }
 
   deleteCourse(id: string) {
-    return this.http.delete(`${this.url}/Course/${id}`)
+    return this.http.delete<Message>(`${this.url}/Course/${id}`)
   }
 
   // CourseSchedule
@@ -275,6 +275,10 @@ export class ApiService {
 
   postTest(data: Test) : Observable<Message> {
     return this.http.post<Message>(`${this.url}/test`, data)
+  }
+
+  deleteTest(id: string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/test/${id}`)
   }
 
   // TestCategory

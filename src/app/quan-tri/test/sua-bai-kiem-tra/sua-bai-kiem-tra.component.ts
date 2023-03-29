@@ -18,6 +18,44 @@ export class SuaBaiKiemTraComponent implements OnInit {
   testId : string = null;
   test : Test = new Test();
   commentConfiguration : any;
+  commentConfigList = [
+    {
+      from: -1,
+      to: 24,
+      comment: "Bài làm tệ quá, con cần hoàn thiện và chăm chỉ hơn nhé!",
+      isFixed: false
+    },
+    {
+      from: 25,
+      to: 49,
+      comment: "Bài làm không tốt lắm, con cần hoàn thiện và chăm chỉ hơn nhé!",
+      isFixed: false
+    },
+    {
+      from: 50,
+      to: 69,
+      comment: "Bài làm khá, còn một số chỗ sai, cần chú ý hơn. Chúc mừng con!",
+      isFixed: false
+    },
+    {
+      from: 70,
+      to: 84,
+      comment: "Bài làm tốt, Chúc mừng con. Hãy tiếp túc phát huy nhé!",
+      isFixed: false
+    },
+    {
+      from: 85,
+      to: 100,
+      comment: "Bài làm xuất sắc, chúc mừng con đã đạt được thành này. Hãy phát phát huy!",
+      isFixed: false
+    },
+    {
+      from: -1,
+      to: 100,
+      comment: "Chúc mừng con đã hoàn thành bài kiểm tra!",
+      isFixed: true
+    }
+  ]
   constructor(
     private apiService: ApiService, 
     private route: ActivatedRoute, 
@@ -40,6 +78,7 @@ export class SuaBaiKiemTraComponent implements OnInit {
       this.getTest(this.testId);
     } else {
       document.title = "Thêm Bài kiểm tra";
+      this.commentConfiguration = this.commentConfigList;
     }
   }
 
@@ -85,6 +124,7 @@ export class SuaBaiKiemTraComponent implements OnInit {
   }
 
   onSubmit() {
+    // this.test.deadlineDate = moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm')
     const dataUpdate = {
       ...this.test,
       accountsSpecial: JSON.stringify([]),

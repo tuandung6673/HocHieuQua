@@ -80,7 +80,7 @@
               <div class="option" [routerLink]="[test.id]">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" >
+              <div class="option" (click)="deleteTest(test.id)" >
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>

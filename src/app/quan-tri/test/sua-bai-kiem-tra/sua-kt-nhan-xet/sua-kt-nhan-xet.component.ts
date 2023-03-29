@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommentConfigure } from 'src/models/commentConfigure.model';
 import { Test } from 'src/models/test.model';
@@ -14,7 +15,7 @@ export class SuaKtNhanXetComponent implements OnInit {
   toOptions = [];
   newCommentConfigure : CommentConfigure = new CommentConfigure();
   // configure = []
-  constructor() {
+  constructor(private messageService: MessageService) {
 
   }
 
@@ -28,7 +29,11 @@ export class SuaKtNhanXetComponent implements OnInit {
   }
 
   deleteComment(index) {
-    this.commentConfiguration.splice(index, 1);   
+    if(this.commentConfiguration[index].isFixed == false) {
+      this.commentConfiguration.splice(index, 1);   
+    } else {
+      this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Không xóa được Config mặc định'})
+    }
   }
 
   newComment() {
