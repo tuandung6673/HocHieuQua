@@ -25,7 +25,7 @@
         <p-tabPanel header="Thông tin">  
           <app-sua-course (newItemEvent)="getNameCourse($event)"></app-sua-course>
         </p-tabPanel>
-        <p-tabPanel header="Chương trình học">
+        <p-tabPanel header="Chương trình học" [selected]="isBack">
           <app-cth-course></app-cth-course>
         </p-tabPanel>
         <p-tabPanel header="Điểm">

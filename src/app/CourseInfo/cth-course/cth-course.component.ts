@@ -6,6 +6,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cth-course',
@@ -39,8 +40,10 @@ export class CthCourseComponent implements OnInit {
       })
     )
     .subscribe((responseData) => {
-      // console.log(responseData.data.data);
       this.coursesSchedule = responseData.data.data;
+      this.coursesSchedule[0].tests.map(t => {
+        t.deadlineDate = moment(t.deadlineDate).format('DD/MM/YYYY k:mm')
+      })
       this.spinner.hide();
     })
   }

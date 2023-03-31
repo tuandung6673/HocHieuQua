@@ -6,6 +6,7 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { Test } from 'src/models/test.model';
 import * as moment from 'moment';
+import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
 
 @Component({
   selector: 'app-sua-bai-kiem-tra',
@@ -17,6 +18,7 @@ export class SuaBaiKiemTraComponent implements OnInit {
   courseId : string = null;
   testId : string = null;
   test : Test = new Test();
+  testCourseSchedule : TestCourseSchedule = new TestCourseSchedule();
   commentConfiguration : any;
   commentConfigList = [
     {
@@ -61,16 +63,16 @@ export class SuaBaiKiemTraComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router, 
     private spinner: NgxSpinnerService,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       console.log(params);
       
-      this.testId = params['testId']
       this.courseId = params['courseId'];      
       this.id = params['id'];
+      this.testId = params['testId']
     });
     if(this.id && this.id != 'them-moi' && !this.courseId) {
       this.getTest(this.id);
@@ -151,8 +153,17 @@ export class SuaBaiKiemTraComponent implements OnInit {
       .subscribe((response) => {
         if(response.status == 'success') {
           this.spinner.hide();
-          this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.message});
-          this.router.navigate(['/quan-tri/bai-kiem-tra'])
+          // this.router.navigate(['/quan-tri/bai-kiem-tra'])
+          if(this.id && this.courseId && !this.testId) {
+            this.postTestCourseSchedule(response.data);
+            this.router.navigate(['/quan-tri/khoa-hoc', this.id], {queryParams: {isBack: 1}})
+          } else if (this.testId) {
+            this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.message});
+            this.router.navigate(['/quan-tri/khoa-hoc', this.id], {queryParams: {isBack: 1}})
+          } else {
+            this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.message});
+            this.router.navigate(['/quan-tri/bai-kiem-tra'])
+          }
         } else {
           this.messageService.add({severity: 'error', summary: 'Thất bại', detail: response.message});
         }
@@ -160,5 +171,23 @@ export class SuaBaiKiemTraComponent implements OnInit {
     } else {
       this.messageService.add({severity: 'warn', summary: 'Thông báo', detail: 'Nhập tất cả trường Nhận xét'})
     }
+  }
+
+  postTestCourseSchedule(responseData) {
+    const data : TestCourseSchedule = {
+      ...this.testCourseSchedule,
+      courseScheduleId: this.courseId,
+      testId: responseData,
+      deadlineDate: this.test.deadlineDate == "Invalid date" ? null : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm'),
+    }
+    this.apiService.postTestCourseSchedule(data).subscribe(res2 => {
+      if(res2.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: res2.data.messages});
+        // router đi đâu ?? 
+
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: res2.data.messages});
+      }
+    })
   }
 }

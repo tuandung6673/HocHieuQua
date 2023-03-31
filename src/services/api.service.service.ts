@@ -37,6 +37,7 @@ import { TestQuestionGroup } from 'src/models/testQuestionGroup.model';
 import { Step } from 'src/models/step.model';
 import { Notification } from 'src/models/notification.model';
 import { TestCategory } from 'src/models/testCategory.model';
+import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
 
 @Injectable({
   providedIn: 'root'
@@ -279,6 +280,11 @@ export class ApiService {
 
   deleteTest(id: string) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/test/${id}`)
+  }
+
+  // TestCourseSchedule 
+  postTestCourseSchedule(data : TestCourseSchedule) {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/TestCourseSchedule`, data)
   }
 
   // TestCategory

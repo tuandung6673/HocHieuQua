@@ -10,6 +10,7 @@ import { ApiService } from 'src/services/api.service.service';
 })
 export class EditCourseComponent implements OnInit {
 
+  isBack : boolean = false;
   id: string;
   editCourse: Course = new Course()
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
@@ -17,6 +18,9 @@ export class EditCourseComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
+    })
+    this.route.queryParams.subscribe(params => {
+      this.isBack = params?.isBack == "1" ? true : false;
     })
   }
 

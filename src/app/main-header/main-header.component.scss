@@ -46,15 +46,16 @@
 
 .logo {
   width: 30%;
+  img {
+    float: right;
+    object-fit: contain;
+  }
 }
 
 .search {
   width: 40%;
 }
 
-.image {
-  float: right;
-}
 
 .none {
   display: none;

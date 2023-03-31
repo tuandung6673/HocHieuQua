@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { Payment } from 'src/models/payment.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-thanh-toan',
@@ -46,6 +47,11 @@ export class ThanhToanComponent implements OnInit {
     this.apiService.getPayment(queryParams).subscribe((response) => {
       this.totalRecord = response.data.recordsTotal;
       this.paymentList = response.data.data;
+      this.paymentList.map((pm) => {
+        pm.paymentDate = moment(pm.paymentDate).format('DD/MM/YYYY k:mm');
+        pm.expireDate = pm.expireDate ? moment(pm.expireDate).format('DD/MM/YYYY k:mm') : null;
+        pm.modifiedDate = moment(pm.modifiedDate).format('DD/MM/YYYY k:mm');
+      })
       this.spinner.hide();
     })
   }
