@@ -297,6 +297,10 @@ export class ApiService {
     return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/TestCourseSchedule`, data)
   }
 
+  deleteTestCourseSchedule(query) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/TestCourseSchedule?` + query)
+  }
+
   // TestCategory
   getTestCategory(queryParams) : Observable<BaseReponse<TestCategory>> {
     return this.http.get<BaseReponse<TestCategory>>(`${this.url}/TestCategory?` + queryParams)

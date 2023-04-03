@@ -6,6 +6,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
+import * as queryString from 'querystring-es3';
 import * as moment from 'moment';
 
 @Component({
@@ -41,8 +42,13 @@ export class CthCourseComponent implements OnInit {
     )
     .subscribe((responseData) => {
       this.coursesSchedule = responseData.data.data;
-      this.coursesSchedule[0].tests.map(t => {
-        t.deadlineDate = moment(t.deadlineDate).format('DD/MM/YYYY k:mm')
+      // this.coursesSchedule[0].tests.map(t => {
+      //   t.deadlineDate = moment(t.deadlineDate).format('DD/MM/YYYY k:mm')
+      // })
+      this.coursesSchedule.forEach((c) => {
+        return c.tests.map(t => {
+          t.deadlineDate = moment(t.deadlineDate).format('DD/MM/YYYY k:mm')
+        })
       })
       this.spinner.hide();
     })
@@ -77,9 +83,32 @@ export class CthCourseComponent implements OnInit {
       accept: () => {
         this.apiService.deleteCourseSchedule(item.id).subscribe(reponse => {
           if(reponse.status == 'success') {
-            this.messageService.add({severity:'success', summary: 'Thành công', detail: reponse.data.messages})
+            this.messageService.add({severity:'success', summary: 'Thành công', detail: reponse.data.messages});
+            this.coursesSchedule = this.coursesSchedule.filter(c => c.id != item.id)
           } else {
             this.messageService.add({severity:'error', summary: 'Thất bại', detail: reponse.data.messages})
+          }
+        })
+      }
+    })
+  }
+
+  deleteTestCourseSchedule(courseId, testId) {
+    const queryParams = queryString.stringify({testCourseScheduleId: courseId, testId: testId})
+    this.confimationService.confirm({
+      message: 'Bạn có chắc chắn xóa bài học này không?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteTestCourseSchedule(queryParams).subscribe(response => {
+          if(response.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.data.messages});
+            // this.getCourseSchedule();
+            this.coursesSchedule.filter(c => c.id == courseId).map(t => {
+              t.tests = t.tests.filter(x => x.id != testId);
+            })
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thất bại', detail: response.data.messages})
           }
         })
       }

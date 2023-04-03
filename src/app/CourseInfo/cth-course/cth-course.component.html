@@ -1,7 +1,30 @@
-<div class="wrapper">
+<div class="wrapper cth">
+
+  <div class="header">
+    <div class="guide">
+      <!-- <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Lớp học</span> -->
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <!-- <div class="empty"></div>
+        <div class="main-title">Lớp học</div> -->
+      </div>
+      <div class="header-right">
+        <!-- <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div> -->
+        <p-button [routerLink]="['them-lop-hoc']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+      </div>
+    </div>
+  </div>
 
   <div class="card">
-    <p-table [value]="coursesSchedule" dataKey="id" rowHover="true">
+    <p-table [value]="coursesSchedule" dataKey="id" rowHover="true" >
         <ng-template pTemplate="header">
             <tr>
                 <th pFrozenColumn style="width: 30px"></th>
@@ -72,7 +95,7 @@
               </ng-template>
             </p-dialog>
         </ng-template>
-        <ng-template pTemplate="rowexpansion" let-courseSchedule>
+        <ng-template pTemplate="rowexpansion" let-courseSchedule >
           <tr>
             <td colspan="7">
               <div class="p-p-3">
@@ -123,7 +146,7 @@
                             <div class="option" [routerLink]="[courseSchedule.id, order.id]">
                                 <i class="pi pi-pencil"></i> Sửa
                             </div>
-                            <div class="option" >
+                            <div class="option" (click)="deleteTestCourseSchedule(courseSchedule.id, order.id)">
                                 <i class="pi pi-trash"></i> Xóa
                             </div>
                         </ng-template>
