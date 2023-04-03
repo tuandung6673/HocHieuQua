@@ -141,95 +141,9 @@ import { SuaKtChiTietComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-c
 import { SuaKtCauHoiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/sua-kt-cau-hoi.component';
 import { SuaKtNhanXetComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-nhan-xet/sua-kt-nhan-xet.component';
 import { SuaKtBinhLuanComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-binh-luan/sua-kt-binh-luan.component';
-const appRoutes: Routes = [
-  {
-    path: 'quan-tri', component: AdminComponent, canActivate: [AdminGuard],
-    children: [
-      {path: '', redirectTo: 'tai-khoan', pathMatch: 'full'},
-      {path: 'danh-muc-tin-tuc', component: DanhMucComponent},
-      {path: 'danh-muc-tin-tuc/:id', component: SuaDanhMucComponent},
-      {path: 'danh-muc-tin-tuc/them-moi', component: SuaDanhMucComponent},
-      {path: 'tuyen-dung', component: TinTuyenDungComponent},
-      {path: 'tuyen-dung/:id', component: SuaTinTuyenDungComponent},
-      {path: 'tuyen-dung/them-moi', component: SuaTinTuyenDungComponent},
-      {path: 'tin-tuc', component: BaiVietComponent},
-      {path: 'tin-tuc/:id', component: SuaBaiVietComponent},
-      {path: 'tin-tuc/them-moi', component: SuaBaiVietComponent},
-      {path: 'tai-khoan', component: AllAccountComponent },
-      {path: 'tai-khoan/:id', component: SuaAccountComponent },
-      {path: 'tai-khoan/them-tai-khoan', component: SuaAccountComponent},
-      {path: 'giao-vien', component: GiaoVienComponent},
-      {path: 'giao-vien/them-giao-vien', component: SuaGiaoVienComponent},
-      {path: 'giao-vien/:id', component: SuaGiaoVienComponent},
-      {path: 'lop-hoc', component: LopHocComponent},
-      {path: 'lop-hoc/them-lop-hoc', component: SuaLopHocComponent},
-      {path: 'lop-hoc/:id', component: SuaLopHocComponent},
-      {path: 'mon-hoc', component: MonHocComponent},
-      {path: 'mon-hoc/:id', component: SuaMonHocComponent},
-      {path: 'mon-hoc/them-mon-hoc', component: SuaMonHocComponent},
-      {path: 'slide', component: SlideComponent},
-      {path: 'faq', component: FaqComponent},
-      {path: 'faq/them-faq', component: SuaFaqComponent},
-      {path: 'faq/:id', component: SuaFaqComponent},
-      {path: 'khoa-hoc', component: CourseComponent},
-      {path: 'khoa-hoc/:id', component: EditCourseComponent},
-      {path: 'khoa-hoc/:id/:courseId/them-moi', component: SuaBaiKiemTraComponent},
-      {path: 'khoa-hoc/:id/:courseId/:testId', component: SuaBaiKiemTraComponent},
-      {path: 'khoa-hoc/them-khoa-hoc', component: EditCourseComponent},
-      {path: 'bai-kiem-tra', component: BaiKiemTraComponent},
-      {path: 'bai-kiem-tra/:id', component: SuaBaiKiemTraComponent},
-      {path: 'bai-kiem-tra/them-bai-kiem-tra', component: SuaBaiKiemTraComponent},
-      {path: 'yeu-cau-tu-van', component: YeuCauTuVanComponent},
-      {path: 'yeu-cau-tu-van/:id', component: ChiTietTuVanComponent},
-      {path: 'tro-giup', component: TroGiupComponent},
-      {path: 'tro-giup/:id', component: ChiTietTroGiupComponent},
-      {path: 'ung-vien', component: UngVienComponent},
-      {path: 'ung-vien/:id', component: ChiTietUngVienComponent},
-      {path: 'thanh-toan', component: ThanhToanComponent},
-      {path: 'giup-do', component: GiupDoComponent},
-      {path: 'cau-hoi', component: CauHoiComponent},
-      {path: 'nhom-cau-hoi', component: NhomCauHoiComponent},
-      {path: 'menu', component: MenuNguoiDungComponent},
-      {path: 'thong-bao', component: ThongBaoComponent},
-      {path: 'thong-bao/:id', component: ChiTietThongBaoComponent},
-      {path: 'footer', component: QuanTriFooterComponent},
-      {path: 'footer/:id', component: ChiTietFooterComponent},
-      {path: 'step/0', component: StepComponent}
-    ]
-  },
-  {
-    path: '', component: UserComponent,
-    children: [
-      {path: '', component: TongQuanComponent},
-      {path: 'tong-quan', component: TongQuanComponent},
-      {path: 'gioi-thieu', component: GioiThieuComponent},
-      {path: 'gioi-thieu/:id', component: GioiThieuChiTietComponent},
-      {path: 'gioi-thieu/danh-muc/:id', component: GioiThieuComponent},
-      {path: 'kiem-tra-nang-luc', component: KiemTraNangLucComponent},
-      {path: 'tuyen-dung', component: TuyenDungComponent},
-      {path: 'tuyen-dung/:id', component: ChiTietTuyenDungComponent},
-      {path: 'huong-dan', component: HuongDanComponent},
-      {path: 'khoa-hoc', component: TatCaKhoaHocComponent},
-      {path: 'khoa-hoc/:id', component: KhoaHocComponent},
-      {path: 'giao-vien', component: UserGvComponent},
-      {path: 'giao-vien/:id', component: UserChiTietGvComponent},
-      {path: 'mon-hoc/:id', component: ChiTietMonHocComponent},
-      {path: 'tai-khoan/thong-tin-ca-nhan', component: ThongTinCaNhanComponent, canActivate: [AuthGuardService]},
-      {path: 'tai-khoan/doi-mat-khau', component: DoiMatKhauComponent, canActivate: [AuthGuardService]},
-      {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent, canActivate: [AuthGuardService]},
-      {path: 'tai-khoan/kich-hoat-khoa-hoc', component: KichHoatKhoaHocComponent, canActivate: [AuthGuardService]},
-      {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent, canActivate: [AuthGuardService]},
-      {path: 'thong-bao/:type', component: ThongBaoAllComponent}
-    ]
-  },
-  {
-    path: 'dang-nhap', component: LogInOutComponent
-  },
-  {
-    path: 'dang-ky', component: SignUpComponent
-  }
- 
-]
+import { DiemThiComponent } from './quan-tri/diem-thi/diem-thi.component';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -331,14 +245,16 @@ const appRoutes: Routes = [
     SuaKtChiTietComponent,
     SuaKtCauHoiComponent,
     SuaKtNhanXetComponent,
-    SuaKtBinhLuanComponent
+    SuaKtBinhLuanComponent,
+    DiemThiComponent
       ],
   imports: [
-  CKEditorModule,
+    AppRoutingModule,
+    CKEditorModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
+    // RouterModule.forRoot(appRoutes),
     ButtonModule,
     PaginatorModule,
     InputTextModule,

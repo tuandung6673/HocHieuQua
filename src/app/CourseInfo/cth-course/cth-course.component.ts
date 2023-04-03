@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CourseSchedule } from './../../../models/courseSchedule.model';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -20,7 +20,7 @@ export class CthCourseComponent implements OnInit {
   displayBasic : boolean = false;
   editSchedule : CourseSchedule = new CourseSchedule();
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService, private messageService: MessageService, private router: Router) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService, private messageService: MessageService, private router: Router, private confimationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -66,6 +66,23 @@ export class CthCourseComponent implements OnInit {
         this.messageService.add({severity: 'error', summary: 'Thất bại', detail: response.message})
       }
       this.getCourseSchedule(this.id)
+    })
+  }
+
+  deleteCourseSchedule(item: CourseSchedule){
+    this.confimationService.confirm({
+      message: 'Bạn có muốn xóa Chương trình học này?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteCourseSchedule(item.id).subscribe(reponse => {
+          if(reponse.status == 'success') {
+            this.messageService.add({severity:'success', summary: 'Thành công', detail: reponse.data.messages})
+          } else {
+            this.messageService.add({severity:'error', summary: 'Thất bại', detail: reponse.data.messages})
+          }
+        })
+      }
     })
   }
 

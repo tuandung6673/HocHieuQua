@@ -38,6 +38,7 @@ import { Step } from 'src/models/step.model';
 import { Notification } from 'src/models/notification.model';
 import { TestCategory } from 'src/models/testCategory.model';
 import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
+import { TestUser } from 'src/models/testUser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -264,6 +265,10 @@ export class ApiService {
     return this.http.post<Message>(`${this.url}/CourseSchedule`, data)
   }
 
+  deleteCourseSchedule(id: string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/CourseSchedule/` + id)
+  }
+
   // Tesst
 
   getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '', IsShowInAbilityTest = -1) : Observable<BaseReponse<Test>> {
@@ -280,6 +285,11 @@ export class ApiService {
 
   deleteTest(id: string) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/test/${id}`)
+  }
+
+  // TestUser
+  getTestUser(queryParams) : Observable<BaseReponse<TestUser>> {
+    return this.http.get<BaseReponse<TestUser>>(`${this.url}/TestUser?` + queryParams)
   }
 
   // TestCourseSchedule 

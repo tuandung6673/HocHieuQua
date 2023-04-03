@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://tank8.bsite.net/api'
+  baseUrl: 'https://tantn.bsite.net/api'
 };

@@ -1,56 +1,34 @@
 export class TestUser {
-  // id = "";
-  // testId = "";
-  // testName = "";
-  // userId = "";
-  // userName = "";
-  // userEmail = "";
-  // userAddress = "";
-  // userPhone = "";
-  // userAnswers = "";
-  // createdDate = "";
-  // modifiedDate = "";
-  // totalExit: any = null;
-  // finishedDate = "";
-  // isSendMail: boolean = null;
-  // totalPoint: any = null;
-  // totalTruth: any = null;
-  // totalWrong: any = null;
-  // isHaveEssay: boolean = null;
-  // extraComment = ""
-
-  id: any = "";
-  testId: any = "";
-  testName: any = "";
-  userId: any = "";
-  userName: any = "";
-  userEmail: any = "";
-  userAddress: any = "";
-  userPhone: any = "";
-  userAnswers: any = "";
-  createdDate: any = "";
-  modifiedDate: any = "";
-  totalExit: any = 0;
-  finishedDate: any = "";
+  id: string = "";
+  testId: string = "";
+  testName: string = "";
+  userId: string = "";
+  userName: string = "";
+  userEmail: string = "";
+  userAddress: string = "";
+  userPhone: string = "";
+  userAnswers: string = "";
+  createdDate: string = "";
+  modifiedDate: string = "";
+  totalExit: number = 0;
+  finishedDate: string = "";
   isSendMail: true;
-  totalPoint: any = 0;
-  totalTruth: any = 0;
-  totalWrong: any = 0;
+  totalPoint: number = 0;
+  totalTruth: number = 0;
+  totalWrong: number = 0;
   isHaveEssay: true;
-  extraComment: any = "";
-  isSubmit: any = 0;
-  comment: any = "";
-  manualPoint: any = 0;
-  isLastest: any = 0;
-  isTestPass: any = 0;
-  subjectId: any = "";
-  subjectName: any = "";
-  classRoomId: any = "";
-  classRoomName: any = "";
-  courseId: any = "";
-  courseName: any = "";
-  numberOfTimesTested: any = 0;
-  // historiesTestUser: [
-  //   "string"
-  // ]
+  extraComment: string = "";
+  isSubmit: number = 0;
+  comment: string = "";
+  manualPoint: number = 0;
+  isLastest: number = 0;
+  isTestPass: number = 0;
+  subjectId: string = "";
+  subjectName: string = "";
+  classRoomId: string = "";
+  classRoomName: string = "";
+  courseId: string = "";
+  courseName: string = "";
+  numberOfTimesTested: number = 0;
+  historiesTestUser = []
 }
