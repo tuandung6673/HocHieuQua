@@ -133,7 +133,7 @@ export class SuaBaiKiemTraComponent implements OnInit {
       commentConfiguration: JSON.stringify(this.commentConfiguration),
       testCategoryId: this.test.testCategoryCode,
       isShowInAbilityTest: this.test.isShowInAbilityTest ? 1 : 0,
-      deadlineDate : this.test.deadlineDate == "Invalid date" ? null : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm'),
+      deadlineDate : this.test.deadlineDate == "Invalid date" ? null : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss'),
       isAutoSendMail: this.test.isAutoSendMail ? 1 : 0,
       status: this.test.status ? 1 : 0,
       isFree: this.test.isFree ? 1 : 0,

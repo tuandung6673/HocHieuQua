@@ -20,6 +20,7 @@ export class CthCourseComponent implements OnInit {
   coursesSchedule: CourseSchedule[] = [];
   displayBasic : boolean = false;
   editSchedule : CourseSchedule = new CourseSchedule();
+  newSchedule : CourseSchedule = new CourseSchedule();
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService, private messageService: MessageService, private router: Router, private confimationService: ConfirmationService) { }
 
@@ -56,7 +57,12 @@ export class CthCourseComponent implements OnInit {
 
   showDialog(item: CourseSchedule) {
     // item.status = item.status == 1 ? true : false;
+    // if(create) {
+    //   this.editSchedule = {...this.editSchedule};
+    // } else {
+      // }
     this.editSchedule = {...item};
+    this.editSchedule.courseId = this.id;
     this.editSchedule.status = this.editSchedule.status == 1 ? true : false;
     
     this.displayBasic = true;

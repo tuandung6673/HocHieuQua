@@ -1,6 +1,7 @@
 import { Quizz } from './quizz.model';
 import { TestUser } from './testUser.model';
 export class Test {
+  accountsNotHaveTest : any = [];
   id: any = "";
   name: any = "";
   description: any = "";
@@ -36,5 +37,6 @@ export class Test {
   isNotification: any = 0;
   isSpecial: any = 0;
   accountsSpecial: any = "";
-  isAutoSort: any = 0
+  isAutoSort: any = 0;
+  comment: string = "";
 }
