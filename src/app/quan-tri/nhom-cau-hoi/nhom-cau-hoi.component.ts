@@ -12,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NhomCauHoiComponent implements OnInit {
 
-  getTestQuestionGroups : TestQuestionGroup[] = [];
+  editGroupsQuestion : TestQuestionGroup = new TestQuestionGroup();
+  newGroupsQuestion : TestQuestionGroup = new TestQuestionGroup();
+  displayBasic: boolean = false;
+  testQuestionGroups : TestQuestionGroup[] = [];
   totalRecords : number;
   params = {
     filter: '',
@@ -37,7 +40,7 @@ export class NhomCauHoiComponent implements OnInit {
     const queryParams = queryString.stringify(this.params);
     this.spinner.show();
     this.apiService.getTestQuestionGroup(queryParams).subscribe(response => {
-      this.getTestQuestionGroups = response.data.data;
+      this.testQuestionGroups = response.data.data;
       this.totalRecords = response.data.recordsTotal;
       this.spinner.hide();
     })
@@ -47,8 +50,22 @@ export class NhomCauHoiComponent implements OnInit {
     this.getTestQuestionGroup();
   }
 
-  onDeleteTeacher(id) {
-
+  onDeleteTestGroup(id) {
+    this.confirmationService.confirm({
+      message: 'Bạn có chắc chắn muốn xóa nhóm câu hỏi này?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteTestQuestionGroup(id).subscribe(response => {
+          if(response.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thành công', detail: response.data.messages});
+            this.testQuestionGroups = this.testQuestionGroups.filter(t => t.id != id);
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thất bại', detail: response.data.messages});
+          }
+        })
+      }
+    })
   }
 
   paginate(event) {
@@ -58,6 +75,27 @@ export class NhomCauHoiComponent implements OnInit {
       pageSize: event.rows
     }
     this.getTestQuestionGroup();
-
   }
+
+  showDialog(item : TestQuestionGroup) {
+    this.editGroupsQuestion = {...item};
+    this.editGroupsQuestion.status = this.editGroupsQuestion.status == '1' ? true : false;
+
+    this.displayBasic = true;
+  }
+
+  postGroupsQuestion(item : TestQuestionGroup) {
+    const updateData = {...item};
+    updateData.status = updateData.status ? 1 : 0;
+
+    this.apiService.postTestQuestionGroup(updateData).subscribe(reponse => {
+      if(reponse.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: reponse.message});
+        this.getTestQuestionGroup();
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: reponse.message})
+      }
+    })
+  }
+
 }

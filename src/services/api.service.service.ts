@@ -215,7 +215,7 @@ export class ApiService {
   }
 
   deleteSlide(id: string) {
-    return this.http.delete(`${this.url}/Slide/${id}`)
+    return this.http.delete<Message>(`${this.url}/Slide/${id}`)
   }
 
   // FAQ
@@ -236,8 +236,8 @@ export class ApiService {
   }
 
   // Course
-  getCourse(teacherId = '', classId = '', offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, accountId = '', subjectId = '') : Observable<BaseReponse<Course>> {
-    return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}`)
+  getCourse(teacherId = '', classId = '', offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, accountId = '', subjectId = '', callFromAdmin: number = 1) : Observable<BaseReponse<Course>> {
+    return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}&callFromAdmin=${callFromAdmin}`)
   }
 
   getCourseById(id: string = '') : Observable<BaseRetail<Course>> {
@@ -443,6 +443,14 @@ export class ApiService {
   // TestQuestionGroup 
   getTestQuestionGroup(queryParams) : Observable<BaseReponse<TestQuestionGroup>> {
     return this.http.get<BaseReponse<TestQuestionGroup>>(`${this.url}/TestQuestionGroup?` + queryParams)
+  }
+
+  postTestQuestionGroup(data : TestQuestionGroup) {
+    return this.http.post<Message>(`${this.url}/TestQuestionGroup`, data)
+  }
+
+  deleteTestQuestionGroup(id : string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/TestQuestionGroup/`+id)
   }
 
   // TestQuestionTyep 

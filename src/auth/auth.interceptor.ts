@@ -1,7 +1,14 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Observable, tap } from "rxjs";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(private router: Router) {}
+  
   token = localStorage.getItem('userToken')
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({
@@ -10,6 +17,15 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     })
 
-    return next.handle(req)
+    return next.handle(req).pipe(tap(() => {},
+      (err : any) => {
+        if(err instanceof HttpErrorResponse) {
+          if(err.status !== 401) {
+            return;
+          }
+          this.router.navigate(['/dang-nhap']);
+        }
+      }
+    ))
   }
 }

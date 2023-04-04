@@ -58,18 +58,17 @@
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
-              <div class="option" [routerLink]="[slide.id]">
+              <div class="option" (click)="editSlide(slide.id)">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" (click)="confirmDeleteslide(subject.id)">
+              <div class="option" (click)="confirmDeleteslide(slide.id)">
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>
       </p-overlayPanel>
       </ng-template>
   </p-table>
-  
-  <p-dialog header="Header" [(visible)]="isDisplayDialog" [style]="{width: '50vw', height: '30vw'}">
+  <!-- <p-dialog header="Header" [(visible)]="isDisplayDialog" [style]="{width: '50vw', height: '30vw'}">
     <form (ngSubmit)="onSubmit()">
       <div class="grid" style="display: flex;">
         <div class="col-4">
@@ -120,7 +119,6 @@
     </form>
   
     <ng-template pTemplate="footer">
-        <!-- <p-button icon="pi pi-check" (click)="isDisplayDialog=false" label="Ok" styleClass="p-button-text"></p-button> -->
         <button style="margin: 10px" pButton pRipple (click)="isDisplayDialog=false" label="Cancel" icon="pi pi-times"></button>
         <button 
           style="margin: 10px" 
@@ -132,11 +130,9 @@
           >
         </button>
     </ng-template>
-  </p-dialog>
-    
+  </p-dialog> -->
   <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
 </div>
-
 
 <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
   <ng-template pTemplate>
@@ -155,3 +151,63 @@
     </div>
   </ng-template>
 </p-overlayPanel>
+
+<p-dialog header="Thêm/Sửa Slide" [(visible)]="isDisplayDialog" [style]="{width: '880px'}">
+  <div class="detail">
+    <div class="col-12 avatar">
+      <img [src]="slideDetail.imageUrl" alt="avatar"/>
+    </div>
+    <div class="col-12">
+      <small>Ảnh</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input id="imageUrl" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="slideDetail.imageUrl" name="imageUrl"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Tên Slide</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.name"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Màn hình hiển thị</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <p-multiSelect [(ngModel)]="slideDetail.screen" name="screen" [options]="menuOptions"></p-multiSelect>
+        </span>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Liên kết link</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.link"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-4">
+      <small>Thứ tự</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.order"/>
+        </span>
+      </div>
+    </div>
+    <div class="col-4 inputSwitch">
+      <small>Hiển thị</small>
+      <p-inputSwitch [(ngModel)]="slideDetail.status" name="status"></p-inputSwitch>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="onSubmit()" label="Ok" styleClass="p-button-text"></p-button>
+</ng-template>
+</p-dialog>

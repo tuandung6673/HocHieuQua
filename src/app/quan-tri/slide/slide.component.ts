@@ -18,6 +18,8 @@ export class SlideComponent implements OnInit {
   slideId: string
   isDisplayDialog: boolean = false
   slideDetail: Slide = new Slide()
+  displayBasic : boolean = false;
+  menuOptions = [];
   params = {
     offSet: 0,
     pageSize: 5,
@@ -40,6 +42,7 @@ export class SlideComponent implements OnInit {
       {label: 'Hiển thị', value: 1},
       {label: 'Ẩn', value: 0}
     ];
+    this.getMenuOptions();
   }
   
   getSlides() {
@@ -75,8 +78,10 @@ export class SlideComponent implements OnInit {
       // console.log('Detail Slide', responseData.data);
       this.slideDetail = responseData.data
       this.slideDetail.screen = (this.slideDetail.screen as string).split(',')
-      this.slideDetail.status = this.slideDetail.status == 1
-    })
+      this.slideDetail.status = this.slideDetail.status == 1;
+      console.log(this.slideDetail);
+      
+    })    
   }
   
   onNewSlide() {
@@ -86,22 +91,29 @@ export class SlideComponent implements OnInit {
 
   onDeleteSlide(id: string) {
     this.apiService.deleteSlide(id).subscribe((responseData) => {
-      console.log(responseData);
-      this.slides = this.slides.filter(slide => slide.id != id )
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
+        this.slides = this.slides.filter(slide => slide.id != id )
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+      }
     })
   }
 
   onSubmit() {
-    this.isDisplayDialog = false
     const updateSlide = {...this.slideDetail}
     updateSlide.screen = updateSlide.screen.toString()
     updateSlide.status = updateSlide.status ? 1 : 0
 
     this.apiService.postSlide(updateSlide).subscribe((responseData) => {
-      console.log(responseData);
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
+        this.getSlides();
+        this.isDisplayDialog = false;
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+      }
     })
-
-    this.router.navigate(['quan-tri/slide'])
   }
 
   confirmDeleteSlide(id: string) {
@@ -110,22 +122,21 @@ export class SlideComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
+            // this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteSlide(id)
-        },
-        reject: (type) => {
-            switch(type) {
-                case ConfirmEventType.REJECT:
-                    this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-                break;
-                case ConfirmEventType.CANCEL:
-                    this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-                break;
-                default: 
-                  return
-            }
         }
     });
+  }
+
+  getMenuOptions() {
+    this.apiService.getMenu('', 0, 100, 'user', 1).subscribe(response => {
+      this.menuOptions = response.data.data.map(m => {
+        return {
+          label: m.name,
+          value: m.code
+        }
+      })
+    })
   }
 
 }

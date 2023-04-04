@@ -143,6 +143,7 @@ import { SuaKtNhanXetComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-n
 import { SuaKtBinhLuanComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-binh-luan/sua-kt-binh-luan.component';
 import { DiemThiComponent } from './quan-tri/diem-thi/diem-thi.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-tiet-cau-hoi.component';
 
 
 @NgModule({
@@ -246,7 +247,8 @@ import { AppRoutingModule } from './app-routing.module';
     SuaKtCauHoiComponent,
     SuaKtNhanXetComponent,
     SuaKtBinhLuanComponent,
-    DiemThiComponent
+    DiemThiComponent,
+    ChiTietCauHoiComponent
       ],
   imports: [
     AppRoutingModule,

@@ -1,3 +1,4 @@
+import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-tiet-cau-hoi.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from 'src/auth/adminGuard.service';
@@ -110,6 +111,7 @@ const routes: Routes = [
       {path: 'thanh-toan', component: ThanhToanComponent},
       {path: 'giup-do', component: GiupDoComponent},
       {path: 'cau-hoi', component: CauHoiComponent},
+      {path: 'cau-hoi/:id', component: ChiTietCauHoiComponent},
       {path: 'nhom-cau-hoi', component: NhomCauHoiComponent},
       {path: 'menu', component: MenuNguoiDungComponent},
       {path: 'thong-bao', component: ThongBaoComponent},

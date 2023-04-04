@@ -1,13 +1,13 @@
 import { TestQuestion } from "./testQuestion.model"
 
 export class TestQuestionGroup {
-  id = "";
+  id : number = 0;
   name = "";
   createdDate = "";
   modifiedDate = "";
   createdBy = "";
   modifiedBy = "";
   order = "";
-  status = "";
+  status : any = null;
   testQuestions : TestQuestion[] = [];
 }

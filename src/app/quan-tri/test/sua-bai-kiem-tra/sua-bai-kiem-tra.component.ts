@@ -68,8 +68,6 @@ export class SuaBaiKiemTraComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      console.log(params);
-      
       this.courseId = params['courseId'];      
       this.id = params['id'];
       this.testId = params['testId']
@@ -96,7 +94,7 @@ export class SuaBaiKiemTraComponent implements OnInit {
       document.title = "Bài kiểm tra " + response.data.name;
       this.test = response.data;
       this.commentConfiguration = JSON.parse(response.data.commentConfiguration);
-      this.test.deadlineDate = moment(this.test.deadlineDate).format('DD/MM/YYYY k:mm')
+      this.test.deadlineDate = this.test.deadlineDate ? moment(this.test.deadlineDate).format('DD/MM/YYYY k:mm') : "";
       this.test.isShowInAbilityTest = response.data.isShowInAbilityTest == 1 ? true : false;
       this.test.isAutoSendMail = response.data.isAutoSendMail == 1 ? true : false;
       this.test.status = response.data.status == 1 ? true : false;
@@ -118,7 +116,11 @@ export class SuaBaiKiemTraComponent implements OnInit {
   // }
 
   cancel() {
-    this.router.navigate(['/quan-tri/bai-kiem-tra'])
+    if(this.courseId) {
+      this.router.navigate(['/quan-tri/khoa-hoc', this.id], {queryParams: {isBack: 1}})
+    } else {
+      this.router.navigate(['/quan-tri/bai-kiem-tra'])
+    }
   }
 
   checkValidate(comment) : boolean {
@@ -126,14 +128,13 @@ export class SuaBaiKiemTraComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.test.deadlineDate = moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm')
     const dataUpdate = {
       ...this.test,
       accountsSpecial: JSON.stringify([]),
       commentConfiguration: JSON.stringify(this.commentConfiguration),
       testCategoryId: this.test.testCategoryCode,
       isShowInAbilityTest: this.test.isShowInAbilityTest ? 1 : 0,
-      deadlineDate : this.test.deadlineDate == "Invalid date" ? null : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss'),
+      deadlineData: moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss') == "Invalid date" ? "" : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss'),
       isAutoSendMail: this.test.isAutoSendMail ? 1 : 0,
       status: this.test.status ? 1 : 0,
       isFree: this.test.isFree ? 1 : 0,
@@ -178,7 +179,8 @@ export class SuaBaiKiemTraComponent implements OnInit {
       ...this.testCourseSchedule,
       courseScheduleId: this.courseId,
       testId: responseData,
-      deadlineDate: this.test.deadlineDate == "Invalid date" ? null : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm'),
+      // deadlineDate: this.test.deadlineDate == "Invalid date" ? null : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm'),
+      deadlineDate: moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm') == "Invalid date" ? "" : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm')
     }
     this.apiService.postTestCourseSchedule(data).subscribe(res2 => {
       if(res2.status == 'success') {

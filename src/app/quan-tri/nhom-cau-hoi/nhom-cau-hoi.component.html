@@ -14,16 +14,16 @@
       </div>
       <div class="header-right">
         <div class="search-btn">
-          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter" (keydown.enter)="onSearch()"/>
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
         <!-- <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button> -->
-        <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        <p-button (click)="showDialog(newGroupsQuestion)" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
   </div>
 
-  <p-table [value]="getTestQuestionGroups" responsiveLayout="scroll" rowHover="true">
+  <p-table [value]="testQuestionGroups" responsiveLayout="scroll" rowHover="true">
     <ng-template pTemplate="header">
       <tr>
         <th pFrozenColumn style="width: 2.25em">
@@ -54,16 +54,45 @@
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
-              <div class="option" [routerLink]="[getTestQuestionGroup.id]">
+              <div class="option" (click)="showDialog(getTestQuestionGroup); op.toggle($event)">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" (click)="onDeleteTeacher(getTestQuestionGroup.id)">
+              <div class="option" (click)="onDeleteTestGroup(getTestQuestionGroup.id)">
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>
         </p-overlayPanel>
     </ng-template>
   </p-table> 
+  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
 </div>
 
-<p-paginator [rows]="params.pageSize" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+<p-dialog header="Thêm/Sửa chương trình học" [(visible)]="displayBasic" [style]="{width: '40vw'}">
+  <div class="detail">
+    <div class="col-12">
+      <small>Tên nhóm</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input id="name" type="text" aria-describedby="avatar-help" pInputText [(ngModel)]="editGroupsQuestion.name" name="name" />
+        </span>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Thứ tự</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-sort-numeric-down"></i>
+          <input id="order" type="text" aria-describedby="avatar-help" pInputText [(ngModel)]="editGroupsQuestion.order" name="order" />
+        </span>
+      </div>
+    </div>
+    <div class="col-12 inputSwitch">
+      <small>Hiển thị</small>
+      <p-inputSwitch [(ngModel)]="editGroupsQuestion.status" name="status"></p-inputSwitch>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayBasic=false; postGroupsQuestion(editGroupsQuestion)" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

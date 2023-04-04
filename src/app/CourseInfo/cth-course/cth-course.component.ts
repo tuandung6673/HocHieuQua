@@ -48,7 +48,7 @@ export class CthCourseComponent implements OnInit {
       // })
       this.coursesSchedule.forEach((c) => {
         return c.tests.map(t => {
-          t.deadlineDate = moment(t.deadlineDate).format('DD/MM/YYYY k:mm')
+          t.deadlineDate = t.deadlineDate ? moment(t.deadlineDate).format('DD/MM/YYYY k:mm') : "";
         })
       })
       this.spinner.hide();

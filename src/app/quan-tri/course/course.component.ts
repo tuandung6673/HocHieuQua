@@ -25,7 +25,7 @@ export class CourseComponent implements OnInit {
     accountId : '',
     classId : '',
   }
-  totalRecord : number;
+  totalRecord : number = 0;
   teacherOptions : any[] = [];
   classOptions : any[] = [];
   subjectOptions : any[] = [];

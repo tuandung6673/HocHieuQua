@@ -21,7 +21,7 @@
           <input placeholder="Nhập nội dung tìm kiếm" type="text" [(ngModel)]="query.filter" (keydown.enter)="onSearch()" pInputText />
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
-        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
+        <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
       </div>
     </div>
   </div>
@@ -32,22 +32,22 @@
         <th pFrozenColumn style="width: 50px;"></th>
         <th pFrozenColumn style="width: 50px;"></th>
         <th pFrozenColumn style="min-width: 200px;">Tên người dùng</th>
-        <th style="min-width: 150px;">Tên bài thi</th>
+        <th style="min-width: 250px;">Tên bài thi</th>
         <th style="min-width: 150px;">Điện thoại</th>
-        <th style="min-width: 200px;">Email</th>
+        <th style="min-width: 250px;">Email</th>
         <th style="min-width: 150px;">Số lần thoát</th>
         <th style="min-width: 150px;">Tổng điểm</th>
         <th style="min-width: 150px;">Tổng câu đúng</th>
         <th style="min-width: 150px;">Tổng câu sai</th>
         <th style="min-width: 150px;">Gửi mail</th>
         <th style="min-width: 150px;">Có tự luận</th>
-        <th style="min-width: 150px;">Ngày tạo</th>
-        <th style="min-width: 150px;">Ngày hoàn thành</th>
-        <th style="min-width: 150px;">Ngày sửa</th>
+        <th style="min-width: 170px;">Ngày tạo</th>
+        <th style="min-width: 170px;">Ngày hoàn thành</th>
+        <th style="min-width: 170px;">Ngày sửa</th>
         <th style="min-width: 150px;">Người sửa</th>
-        <th style="min-width: 150px;">Lớp</th>
-        <th style="min-width: 150px;">Môn học</th>
-        <th style="min-width: 150px;">Khóa học</th>
+        <th style="min-width: 200px;">Lớp</th>
+        <th style="min-width: 200px;">Môn học</th>
+        <th style="min-width: 200px;">Khóa học</th>
         <th style="min-width: 200px;">Ghi chú</th>
       </tr>
     </ng-template>
@@ -60,11 +60,11 @@
           <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
         </td>
         <td pFrozenColumn style="min-width:200px; color: #0b5ed7; font-weight: 650;">{{testUser.userName}}</td>
-        <td style="min-width: 150px;">{{testUser.testName}}</td>
+        <td style="min-width: 250px;">{{testUser.testName}}</td>
         <td style="min-width: 150px;">{{testUser.userPhone}}</td>
-        <td style="min-width: 200px;">{{testUser.userEmail}}</td>
+        <td style="min-width: 250px;">{{testUser.userEmail}}</td>
         <td style="min-width: 150px;">{{testUser.totalExit}}</td>
-        <td style="min-width: 150px;">{{testUser.totalTruthPoint}} / {{testUser.totalPoint}}</td>
+        <td style="min-width: 150px;">{{testUser.totalTruth}} / {{testUser.totalPoint}}</td>
         <td style="min-width: 150px;">{{testUser.totalTruth}}</td>
         <td style="min-width: 150px;">{{testUser.totalWrong}}</td>
         <td style="min-width: 150px;">
@@ -75,13 +75,13 @@
           <i *ngIf="testUser.isTestPass" class="pi pi-check" style="font-size: 1.5rem"></i>
           <i *ngIf="!testUser.isTestPass" class="pi pi-times" style="font-size: 1.5rem"></i>
         </td>
-        <td style="min-width: 150px;">{{testUser.createdDate}}</td>
-        <td style="min-width: 150px;">{{testUser.finishedDate}}</td>
-        <td style="min-width: 150px;">{{testUser.modifiedDate}}</td>
+        <td style="min-width: 170px;">{{testUser.createdDate}}</td>
+        <td style="min-width: 170px;">{{testUser.finishedDate}}</td>
+        <td style="min-width: 170px;">{{testUser.modifiedDate}}</td>
         <td style="min-width: 150px;">{{testUser.extraComment}}</td>
-        <td style="min-width: 150px;">{{testUser.classRoomName}}</td>
-        <td style="min-width: 150px;">{{testUser.subjectName}}</td>
-        <td style="min-width: 150px;">{{testUser.courseName}}</td>
+        <td style="min-width: 200px;">{{testUser.classRoomName}}</td>
+        <td style="min-width: 200px;">{{testUser.subjectName}}</td>
+        <td style="min-width: 200px;">{{testUser.courseName}}</td>
         <td style="min-width: 200px;">{{testUser.comment}}</td>
       </tr>
       <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
@@ -102,7 +102,7 @@
             <p-table [value]="testUser.historiesTestUser" dataKey="id" rowHover="true">
               <ng-template pTemplate="header">
                 <tr>
-                  <!-- <th pFrozenColumn style="width: 50px"></th> -->
+                  <th pFrozenColumn style="width: 50px"></th>
                   <th style="min-width: 200px;" pFrozeColumn>Tên bài thi</th>
                   <th style="min-width: 220px;">Số lần thoát</th>
                   <th style="min-width: 220px;">Tổng điểm</th>
@@ -118,9 +118,9 @@
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-history>
-                <!-- <td pFrozenColumn style="width: 50px;">
+                <td pFrozenColumn style="width: 50px;">
                   <span class="choose" (click)="op2.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-                </td> -->
+                </td>
                 <td style="min-width: 200px;" pFrozeColumn>{{history.testName}}</td>
                 <td style="min-width: 220px;">{{history.totalExit}}</td>
                 <td style="min-width: 220px;">{{history.totalPoint}}</td>
@@ -156,4 +156,33 @@
       </tr>
     </ng-template>
   </p-table>
+
+  <p-paginator [rows]="query.pageSize" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 25]"></p-paginator>
 </div>
+
+
+<p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
+  <ng-template pTemplate>
+    <div class="grid search_advance">
+      <div class="col-12 search_advance_title">Tìm kiếm nâng cao</div>
+      <div class="grid search_advance_main">
+        <div class="col-12">
+          <small>Lớp học</small>
+          <p-dropdown [(ngModel)]="query.classId" [options]="classOptions" (onChange)="getSubjectOption()" placeholder="Lớp học"></p-dropdown>
+        </div>
+        <div class="col-12">
+          <small>Môn học</small>
+          <p-dropdown [(ngModel)]="query.subjectId" [options]="subjectOptions" (onChange)="getCourseOption()" placeholder="Môn học"></p-dropdown>
+        </div>
+        <div class="col-12">
+          <small>Khóa học</small>
+          <p-dropdown [(ngModel)]="query.courseId" [options]="courseOptions" placeholder="Khóa học"></p-dropdown>
+        </div>
+      </div>
+      <div class="search_advance_actions">
+        <p-button label="Làm mới" icon="pi pi-sync"></p-button>
+        <p-button label="Tìm kiếm" (click)="onSearch()" icon="pi pi-search"></p-button>
+      </div>  
+    </div>
+  </ng-template>
+</p-overlayPanel>
