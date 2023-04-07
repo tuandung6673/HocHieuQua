@@ -19,7 +19,6 @@ export class YeuCauTuVanComponent implements OnInit {
     modifiedBy: "",
     modifiedDate: ""
   };
-  isLoading : boolean = false;
   adviceRequests : Advice[] = [];
   query = {
     offSet: 0,
@@ -40,14 +39,12 @@ export class YeuCauTuVanComponent implements OnInit {
 
   getAdvice() {
     this.spinner.show();
-    this.isLoading = true;
     const queryParams = queryString.stringify(this.query)
     this.apiService.getAdvice(queryParams).subscribe((response) => {
       if(response.status == 'success') {
         this.adviceRequests = response.data.data;
       }
       this.spinner.hide();
-      this.isLoading = false;
     })
   }
 

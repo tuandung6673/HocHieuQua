@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <p-table [value]="accounts" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
+  <p-table [value]="accounts" responsiveLayout="scroll" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 2.25em">
@@ -73,7 +73,7 @@
   </p-table>
 </div>
   
-<p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
+<p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
 
 
 <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">

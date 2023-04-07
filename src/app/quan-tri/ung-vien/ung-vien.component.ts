@@ -20,7 +20,6 @@ export class UngVienComponent implements OnInit {
     filter: ''
   }
   candidates : RecruitCandidate[] = [];
-  isLoading: boolean = false;
   interviewPassOptions : any[] = [];
   statusOptions:any[] = [];
   constructor(
@@ -47,7 +46,6 @@ export class UngVienComponent implements OnInit {
   }
 
   getCandidates() {
-    this.isLoading = true;
     this.spinner.show();
     const queryParams = queryString.stringify(this.query)
     this.apiService.getRecruitCandidate(queryParams).subscribe((response) => {
@@ -55,7 +53,6 @@ export class UngVienComponent implements OnInit {
         this.candidates = response.data.data;
       }
       this.spinner.hide();
-      this.isLoading = false;
     })
   }
 

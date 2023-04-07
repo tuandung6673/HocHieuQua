@@ -23,7 +23,7 @@
     </div>
   </div>
   
-  <p-table [value]="slides" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
+  <p-table [value]="slides" responsiveLayout="scroll" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 2.25em">
@@ -61,77 +61,14 @@
               <div class="option" (click)="editSlide(slide.id)">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" (click)="confirmDeleteslide(slide.id)">
+              <div class="option" (click)="confirmDeleteSlide(slide.id)">
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>
       </p-overlayPanel>
       </ng-template>
   </p-table>
-  <!-- <p-dialog header="Header" [(visible)]="isDisplayDialog" [style]="{width: '50vw', height: '30vw'}">
-    <form (ngSubmit)="onSubmit()">
-      <div class="grid" style="display: flex;">
-        <div class="col-4">
-          <div class="field">
-            <img [src]="slideDetail.imageUrl" width="100%" height="200px"/>
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="grid">
-            <div class="col-10">
-              <div class="field">
-                <label for="imageUrl" class="block">Avatar</label>
-                <input id="imageUrl" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="slideDetail.imageUrl" name="imageUrl"/>
-              </div>
-            </div>
-  
-            <div class="col-10">
-              <div class="field">
-                <label for="name" class="block">Tên Slide</label>
-                <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.name"/>
-              </div>
-            </div>
-  
-            <div class="col-10">
-              <div class="field">
-                <label for="screen" class="block">Màn hình</label>
-                <p-chips [(ngModel)]="slideDetail.screen" name="screen" ></p-chips>
-  
-              </div>
-            </div>
-  
-            <div class="col-10">
-              <div class="field">
-                <label for="order" class="block">Sắp xếp</label>
-                <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="order" type="text" aria-describedby="username-help" pInputText name="order" [(ngModel)]="slideDetail.order"/>
-              </div>
-            </div>
-  
-            <div class="col-10">
-              <div class="field">
-                <label for="order" class="block">Hiển thị</label>
-                <p-inputSwitch [(ngModel)]="slideDetail.status" name="status"></p-inputSwitch>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  
-    <ng-template pTemplate="footer">
-        <button style="margin: 10px" pButton pRipple (click)="isDisplayDialog=false" label="Cancel" icon="pi pi-times"></button>
-        <button 
-          style="margin: 10px" 
-          type="submit" 
-          pButton pRipple 
-          label="Save" 
-          icon="pi pi-check"
-          (click)="onSubmit()"
-          >
-        </button>
-    </ng-template>
-  </p-dialog> -->
-  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
 </div>
 
 <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '500px'}">
@@ -155,7 +92,38 @@
 <p-dialog header="Thêm/Sửa Slide" [(visible)]="isDisplayDialog" [style]="{width: '880px'}">
   <div class="detail">
     <div class="col-12 avatar">
-      <img [src]="slideDetail.imageUrl" alt="avatar"/>
+      <div class="empty" *ngIf="!slideDetail.imageUrl">
+        <svg fill="#000000" height="100px" width="100px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 504 504" xml:space="preserve">
+<g>
+	<g>
+		<path d="M311.3,108.412c-15.304,0-27.752,12.44-27.752,27.748c0.004,15.3,12.452,27.748,27.752,27.748
+			s27.752-12.444,27.752-27.748C339.052,120.856,326.604,108.412,311.3,108.412z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M484.356,37.224H19.976C9.12,37.224,0,46.228,0,57.084v299.5c0,10.856,9.12,19.26,19.976,19.26h118.056
+			c0-63,51.2-114.128,114.132-114.128c62.936,0,114.136,51.128,114.136,114.128h118.056c10.856,0,19.644-8.408,19.644-19.26v-299.5
+			C504,46.228,495.212,37.224,484.356,37.224z M391.5,172.22l-74.456,74.476l-113.332-113.32c-1.54-1.54-4.024-1.54-5.564,0
+			l-71.884,71.88l-32.816-32.812c-1.536-1.54-4.172-1.54-5.708,0l-52.304,52.16V72.66H468.56v171.088l-71.5-71.528
+			C395.52,170.68,393.04,170.68,391.5,172.22z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M251.76,285.768c-49.988,0-90.508,40.52-90.508,90.508c0,49.984,40.52,90.5,90.508,90.5
+			c49.988,0,90.508-40.516,90.508-90.5C342.268,326.288,301.752,285.768,251.76,285.768z M297.648,407.268
+			c4.58,4.584,4.58,12.028,0,16.604c-2.22,2.22-5.164,3.436-8.304,3.436c-3.136,0-6.084-1.22-8.3-3.436l-27.808-27.812
+			l-27.804,27.812c-4.436,4.436-12.172,4.428-16.608,0c-4.584-4.58-4.58-12.024,0-16.612l27.804-27.8l-27.804-27.808
+			c-4.584-4.576-4.584-12.028,0-16.604c4.436-4.436,12.172-4.436,16.604,0l27.808,27.804l27.808-27.804
+			c4.424-4.436,12.168-4.436,16.604-0.008c2.22,2.228,3.436,5.172,3.436,8.312c0,3.132-1.22,6.084-3.436,8.3l-27.804,27.808
+			L297.648,407.268z"/>
+	</g>
+</g>
+</svg>
+      </div>
+      <img class="displayAva" *ngIf="slideDetail.imageUrl" [src]="slideDetail.imageUrl" alt="avatar"/>
     </div>
     <div class="col-12">
       <small>Ảnh</small>

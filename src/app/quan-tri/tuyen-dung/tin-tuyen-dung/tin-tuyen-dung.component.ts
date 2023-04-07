@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { finalize } from 'rxjs';
 import { Recruit } from 'src/models/recruit.model';
 import { ApiService } from 'src/services/api.service.service';
 
@@ -11,15 +13,16 @@ import { ApiService } from 'src/services/api.service.service';
 export class TinTuyenDungComponent implements OnInit {
 
   recruits: Recruit[] = []
-  isLoading: boolean = false
   params = {
     offSet: 0,
     pageSize: 2,
     filter: '',
     totalRecord: 0
   }
+  totalRecord : number = 0;
   constructor(
     private apiService: ApiService,
+    private spinner: NgxSpinnerService,
     private messageService: MessageService,  
     private confirmationService: ConfirmationService
   ) {
@@ -31,15 +34,16 @@ export class TinTuyenDungComponent implements OnInit {
   }
 
   getRecruit() {
-    this.isLoading = true
-    this.apiService.getRecruit(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
+    this.spinner.show()
+    this.apiService.getRecruit(this.params.offSet, this.params.pageSize, this.params.filter)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       this.recruits = responseData.data.data
-      // console.log(this.recruits);
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
-      this.isLoading = false
+      this.totalRecord = responseData.data.recordsTotal
     })
   }
 

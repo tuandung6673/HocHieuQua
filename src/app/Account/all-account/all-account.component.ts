@@ -15,7 +15,6 @@ export class AllAccountComponent implements OnInit {
 
   defaultAvatar = 'https://imgt.taimienphi.vn/cf/Images/tt/2020/7/15/anh-dai-dien-facebook-y-nghia-cho-con-trai-26.jpg'
   accounts : Account[] = []
-  isLoading: boolean = false
   params = {
     offSet: 0,
     pageSize: 10,
@@ -57,7 +56,11 @@ export class AllAccountComponent implements OnInit {
 
   onDeleteAccount(id: string) {
     this.apiService.deleteAccount(id).subscribe((responseData) => {
-      console.log(responseData);
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.data.messages})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.data.messages})
+      }
       this.accounts = this.accounts.filter(account => account.id != id)
     })
   }
@@ -68,7 +71,6 @@ export class AllAccountComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteAccount(id)
         }
     });

@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Teacher } from 'src/models/teacher.model';
 import { ApiService } from 'src/services/api.service.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -17,9 +19,8 @@ export class SuaGiaoVienComponent implements OnInit {
   Editor = ClassicEditor;
   id: string = ''
   editTeacher: Teacher = new Teacher()
-  isLoading: boolean = false
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, private spinner: NgxSpinnerService) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
@@ -34,8 +35,14 @@ export class SuaGiaoVienComponent implements OnInit {
   }
 
   getEditTeacher(id: string) {
-    this.isLoading = true
-    this.apiService.getTeacherById(id).subscribe((responseData) => {
+    this.spinner.show();
+    this.apiService.getTeacherById(id)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       document.title = "Giáo viên " + responseData.data.name;
       this.editTeacher = responseData.data;
       this.editTeacher.status = responseData.data.status == 1 ? true : false;

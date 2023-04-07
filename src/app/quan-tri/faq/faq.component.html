@@ -1,15 +1,4 @@
 <div class="wrapper">
-
-  <!-- <div class="row" *ngIf="!isLoading">
-    <div class="col-xs-12">
-      <button class="btn btn-success" [routerLink]="['them-faq']">Thêm FAQ</button>
-    </div>
-  </div>
-  
-  <div style="text-align: center;" *ngIf="isLoading">
-    <p-progressSpinner></p-progressSpinner>
-  </div> -->
-
   <div class="header">
     <div class="guide">
       <span><i class="pi pi-home"></i></span>
@@ -35,7 +24,7 @@
   </div>
   
   
-  <p-table [value]="faqs" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
+  <p-table [value]="faqs" responsiveLayout="scroll" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 2.25em">
@@ -78,5 +67,5 @@
     </ng-template>
   </p-table>
   
-  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
 </div>

@@ -3,6 +3,7 @@ import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/a
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import * as queryString from 'querystring-es3';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,6 @@ export class MonHocComponent implements OnInit {
 
   courses: any
   subjects: any
-  isLoading: boolean = false
   search: string
   params = {
     offSet: 0,
@@ -29,7 +29,7 @@ export class MonHocComponent implements OnInit {
   }
   totalRecord : number;
   classOption : any[]
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService, private messageService: MessageService ) {
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService, private messageService: MessageService) {
     document.title = "Môn học";
   }
 
@@ -40,7 +40,13 @@ export class MonHocComponent implements OnInit {
   
   getSubjects() {
     this.spinner.show()
-    this.apiService.getSubject(this.params.offSet, this.params.pageSize, this.params.classId, this.params.filter).subscribe((responseData) => {
+    this.apiService.getSubject(this.params.offSet, this.params.pageSize, this.params.classId, this.params.filter)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       this.subjects = responseData.data.data.map((eachSubject) => {
         const classRooms = eachSubject.classRooms.map(t => t.name).toString();
         return {
@@ -49,7 +55,6 @@ export class MonHocComponent implements OnInit {
         }
       })
       this.totalRecord = responseData.data.recordsTotal;
-      this.spinner.hide()
     })
   }
 
@@ -82,7 +87,11 @@ export class MonHocComponent implements OnInit {
 
   onDeleteSubject(id: string) {
     this.apiService.deleteSubject(id).subscribe((responseData) => {
-      console.log('Delete Subject', responseData);
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+      }
       this.subjects = this.subjects.filter((subject) => {
         return subject.id != id
       })
@@ -95,7 +104,6 @@ export class MonHocComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteSubject(id)
         },
         reject: (type) => {

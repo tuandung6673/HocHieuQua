@@ -1,6 +1,7 @@
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-faq',
@@ -10,30 +11,28 @@ import { Component, OnInit } from '@angular/core';
 export class FaqComponent implements OnInit {
 
   faqs : any
-  isLoading: boolean = false
   params = {
     offSet: 0,
     pageSize: 5,
-    filter: '',
-    totalRecord: 0
+    filter: ''
   }
+  totalRecord: number = 0;
 
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getFAQs()
   }
   
   getFAQs() {
+    this.spinner.show();
     this.apiService.getFAQ(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
-      console.log(responseData.data.data);
       this.faqs = responseData.data.data
       this.params = {
         ...this.params,
-        totalRecord: responseData.data.recordsTotal
       }
-      this.isLoading = false
+      this.totalRecord = responseData.data.recordsTotal
+      this.spinner.hide();
     })
   }
 
@@ -52,10 +51,12 @@ export class FaqComponent implements OnInit {
 
   onDeleteFAQ (id: string) {
     this.apiService.deleteFAQ(id).subscribe((responseData) => {
-      console.log('Delete FAQ', responseData);
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
+      }
       this.faqs = this.faqs.filter(faq => faq.id != id)
-      console.log(this.faqs);
-      
     })
   }
 
@@ -65,7 +66,6 @@ export class FaqComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteFAQ(id)
         },
         reject: (type) => {

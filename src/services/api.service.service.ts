@@ -77,7 +77,7 @@ export class ApiService {
   }
 
   deleteAccount(id: string) {
-    return this.http.delete(`${this.url}/Account/${id}`)
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Account/${id}`)
   }
 
   updateAccountInfo(data) : Observable<any> {
@@ -132,7 +132,7 @@ export class ApiService {
   }
 
   deleteTeacher(id: string) {
-    return this.http.delete<any>(`${this.url}/Teacher/${id}`)
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Teacher/${id}`)
   }
 
   // Classroom
@@ -149,7 +149,7 @@ export class ApiService {
   }
 
   deleteClassroom(id: string) {
-    return this.http.delete<any>(`${this.url}/Classroom/${id}`)
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Classroom/${id}`)
   }
 
   // Subject
@@ -166,7 +166,7 @@ export class ApiService {
   }
 
   deleteSubject(id: string) {
-    return this.http.delete(`${this.url}/Subject/${id}`)
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Subject/${id}`)
   }
 
   // Home
@@ -232,7 +232,7 @@ export class ApiService {
   }
 
   deleteFAQ(id: string) {
-    return this.http.delete(`${this.url}/FAQ/${id}`)
+    return this.http.delete<Message>(`${this.url}/FAQ/${id}`)
   }
 
   // Course

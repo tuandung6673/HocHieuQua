@@ -1,5 +1,6 @@
+import { finalize } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ApiService } from 'src/services/api.service.service';
 
@@ -12,7 +13,6 @@ import { ApiService } from 'src/services/api.service.service';
 export class GiaoVienComponent implements OnInit {
 
   teachers: any
-  isLoading: boolean = false
   search: string
 
   params = {
@@ -22,7 +22,7 @@ export class GiaoVienComponent implements OnInit {
   }
   totalRecord: any
 
-  constructor(private apiService: ApiService, private router: Router,
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService,
     private confirmationService: ConfirmationService, private messageService: MessageService) {
       document.title = "Giáo viên";
     }
@@ -32,11 +32,17 @@ export class GiaoVienComponent implements OnInit {
   }
   
   getTeachers() {
-    this.isLoading = true
-    this.apiService.getTeacher(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
+    this.spinner.show();
+    this.apiService.getTeacher(this.params.offSet, this.params.pageSize, this.params.filter)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      }) 
+    )
+    .subscribe((responseData) => {
       this.teachers = responseData.data.data;
       this.totalRecord = responseData.data;
-      this.isLoading = false
+      this.spinner.hide();
     })
   }
 
@@ -46,6 +52,11 @@ export class GiaoVienComponent implements OnInit {
 
   onDeleteTeacher(id: string) {
     this.apiService.deleteTeacher(id).subscribe((responseData) => {
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.data.messages})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.data.messages})
+      }
       this.teachers = this.teachers.filter(teacher =>  teacher.id != id)
     })
   }
@@ -65,11 +76,9 @@ export class GiaoVienComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteTeacher(id)
         }
     });
   }
-
 }
 

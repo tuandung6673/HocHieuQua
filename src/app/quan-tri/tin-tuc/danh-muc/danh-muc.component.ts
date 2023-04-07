@@ -2,6 +2,8 @@ import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/a
 import { Component, OnInit } from '@angular/core';
 import { NewCatagory } from 'src/models/newCategory.model';
 import { ApiService } from 'src/services/api.service.service';
+import { finalize, pipe } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-danh-muc',
@@ -10,7 +12,6 @@ import { ApiService } from 'src/services/api.service.service';
 })
 export class DanhMucComponent implements OnInit {
 
-  isLoading: boolean = false
   search: string
   newCategorys : NewCatagory[] = []
   params = {
@@ -21,7 +22,7 @@ export class DanhMucComponent implements OnInit {
   }
   totalRecord: number
   
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService) {
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private spinner: NgxSpinnerService) {
     document.title = "Danh mục tin tức"
   }
   
@@ -30,11 +31,16 @@ export class DanhMucComponent implements OnInit {
   }
 
   getNewCategorys() {
-    this.isLoading = true
-    this.apiService.getNewCategory(this.params.offSet, this.params.pageSize, this.params.filter).subscribe((responseData) => {
+    this.spinner.show();
+    this.apiService.getNewCategory(this.params.offSet, this.params.pageSize, this.params.filter)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       this.newCategorys = responseData.data.data;
       this.totalRecord = responseData.data.recordsTotal
-      this.isLoading = false
     })
   }
 
@@ -44,8 +50,12 @@ export class DanhMucComponent implements OnInit {
 
   onDeleteNewCategory(id: string) {
     this.apiService.deleteNewCategory(id).subscribe((responseData) => {
-      console.log(responseData.message);
-      this.newCategorys = this.newCategorys.filter(d => d.id != id)
+      if(responseData.status == 'success') {
+        this.messageService.add({summary: 'Thành công', severity: 'success', detail: responseData.message})
+        this.newCategorys = this.newCategorys.filter(d => d.id != id)
+      } else {
+        this.messageService.add({summary: 'Thất bại', severity: 'error', detail: responseData.message})
+      }
     })
   }
 
@@ -68,7 +78,6 @@ export class DanhMucComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
             this.onDeleteNewCategory(id)
         },
         reject: (type) => {

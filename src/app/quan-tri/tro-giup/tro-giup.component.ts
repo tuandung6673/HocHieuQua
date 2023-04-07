@@ -13,7 +13,6 @@ import { Component, OnInit } from '@angular/core';
 export class TroGiupComponent implements OnInit {
 
   guides : Guide[] = [];
-  isLoading : boolean = false;
   query = {
     screen: '',
     offSet: 0,
@@ -26,7 +25,7 @@ export class TroGiupComponent implements OnInit {
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +38,6 @@ export class TroGiupComponent implements OnInit {
   }
 
   getGuides() {
-    this.isLoading = true;
     this.spinner.show();
     const queryParams = queryString.stringify(this.query)
     this.apiService.getGuide(queryParams).subscribe((response) => {
@@ -48,7 +46,6 @@ export class TroGiupComponent implements OnInit {
         this.totalRecord = response.data.recordsTotal;
       }
       this.spinner.hide();
-      this.isLoading = false;
     })
   }
 
@@ -70,6 +67,7 @@ export class TroGiupComponent implements OnInit {
     this.apiService.deleteGuide(id).subscribe(response => {
       if(response.status == 'success') {
         this.messageService.add({severity: 'success', summary: 'Success', detail: 'Xóa hướng dẫn thành công'})
+        this.guides = this.guides.filter(g => g.id != id);
       } else {
         this.messageService.add({severity: 'success', summary: 'Unsuccessfully', detail: 'Xóa hướng dẫn thất bại'})
       }

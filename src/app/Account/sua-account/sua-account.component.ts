@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Account } from 'src/models/account.model';
 import * as queryString from 'querystring-es3';
 import { MessageService } from 'primeng/api';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -14,7 +16,6 @@ import { MessageService } from 'primeng/api';
 export class SuaAccountComponent implements OnInit {
 
   id: string;
-  isLoading: boolean = false;
   editAccount: Account = new Account();
   roleOptions : any = []
   roleParams = {
@@ -27,7 +28,8 @@ export class SuaAccountComponent implements OnInit {
     private route : ActivatedRoute, 
     private apiService: ApiService, 
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -43,14 +45,20 @@ export class SuaAccountComponent implements OnInit {
   }
 
   getEditAccount(id: string) {
-    this.isLoading = true
-    this.apiService.getAccountsById(id).subscribe((responseData) => {
+    this.spinner.show();
+    this.apiService.getAccountsById(id)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       if(responseData.status == 'success') {
         document.title = "Tài khoản " + responseData.data.name;
         this.editAccount = responseData.data
         this.editAccount.status = this.editAccount.status == 1
+        this.spinner.hide();
       }
-      this.isLoading = false
     })
   }
 
@@ -68,7 +76,7 @@ export class SuaAccountComponent implements OnInit {
     updateAccount.status = updateAccount.status ? 1 : 0
     this.apiService.postAccount(updateAccount).subscribe((responseData) => {
       if(responseData.status == 'success') {
-        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật tài khoản thành công', life: 100000})
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật tài khoản thành công'})
       } else {
         this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
         

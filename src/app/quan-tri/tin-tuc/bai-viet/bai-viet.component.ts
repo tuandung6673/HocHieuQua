@@ -1,6 +1,8 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { New } from './../../../../models/new.model';
 import { ApiService } from './../../../../services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-bai-viet',
@@ -10,43 +12,43 @@ import { Component, OnInit } from '@angular/core';
 export class BaiVietComponent implements OnInit {
 
   search: string
-  isLoading: boolean = false
   news: New[] = []
   params = {
     offSet: 0,
     pageSize: 5,
     filter: '',
     categoryId: '',
-    totalRecord: 0,
     status: -1
   }
+  totalRecord : number = 0;
   statusOptions : any[] = [];
   categoryIdOptions : any[] = [];
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
     document.title = "Tin tức"
   }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getNews();
     this.statusOptions = [
       {label: 'Tất cả', value: -1},
-      {label: 'Đã phỏng vấn', value: 1},
-      {label: 'Chưa phỏng vấn', value: 0}
+      {label: 'Hiển thị', value: 1},
+      {label: 'Ẩn', value: 0}
     ];
     this.getCategoryIdOptions();
   }
 
   getNews() {
-    // this.isLoading = true
-    this.apiService.getNews(this.params.categoryId, this.params.offSet,this.params.pageSize, this.params.filter, this.params.status).subscribe((responseData) => {
-      this.news = responseData.data.data
-      this.params = {
-        ...this.params,
-        totalRecord: responseData.data.recordsTotal
-      }
-      console.log(this.news);
-      this.isLoading = false
+    this.spinner.show();
+    this.apiService.getNews(this.params.categoryId, this.params.offSet,this.params.pageSize, this.params.filter, this.params.status)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
+      this.news = responseData.data.data;
+      this.totalRecord = responseData.data.recordsTotal
+      this.spinner.hide();
     })
   }
 

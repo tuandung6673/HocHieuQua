@@ -14,7 +14,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class BaiKiemTraComponent implements OnInit {
 
   tests: Test[] = []
-  isLoading: boolean = false
   search: string
   params = {
     offSet: 0,

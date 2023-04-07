@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -14,12 +16,11 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 export class SuaBaiVietComponent implements OnInit {
 
   Editor = ClassicEditor
-  isLoading: boolean = false;
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   id: string
   editNew : New = new New()
   newCategoryOption : any
-  constructor(private apiService: ApiService ,private route: ActivatedRoute, private router: Router) { }
+  constructor(private apiService: ApiService ,private route: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -34,13 +35,22 @@ export class SuaBaiVietComponent implements OnInit {
   }
 
   getEditNews(id: string) {
-    this.isLoading = true
-    this.apiService.getNewsById(id).subscribe((responseData) => {
+    this.spinner.show();
+    this.apiService.getNewsById(id)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       document.title = "Tin tức " + responseData.data.title;
       this.editNew = responseData.data
-      this.editNew.tags = (this.editNew.tags as string).split(',')
-      this.editNew.status = this.editNew.status == 1
-      this.isLoading = false
+      if(this.editNew.tags == "") {
+        this.editNew.tags = null
+      } else {
+        this.editNew.tags = (this.editNew.tags as string).split(',');
+      }
+      this.editNew.status = this.editNew.status == 1 ;
     })  
   }
 
@@ -57,10 +67,7 @@ export class SuaBaiVietComponent implements OnInit {
     updateNews.status = updateNews.status ? 1 : 0
     updateNews.tags = updateNews.tags.toString()
 
-    // console.log(updateNews);
-    
     this.apiService.postNews(updateNews).subscribe((responseData) => {
-      console.log(responseData.message);
       this.router.navigate(['quan-tri/tin-tuc'])
     })
   }

@@ -1,25 +1,4 @@
-
 <div class="wrapper">
-
-  <!-- <div style="text-align: center;" *ngIf="isLoading">
-    <p-progressSpinner></p-progressSpinner>
-  </div>
-  
-  <div class="grid" *ngIf="!isLoading">
-    <div class="col-4">
-      <button class="btn btn-success" [routerLink]="['them-moi']">Thêm mới</button>
-    </div>
-  
-    <div class="col-8">
-      <div style="float: right;">
-        <span class="p-input-icon-right">
-          <i (click)="onSearch()" class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Tìm kiếm" name="search" [(ngModel)]="search" />
-        </span>
-      </div>
-    </div>
-  </div> -->
-
   <div class="header">
     <div class="guide">
       <span><i class="pi pi-home"></i></span>
@@ -48,7 +27,7 @@
     </div>
   </div>
   
-  <p-table [value]="news" responsiveLayout="scroll" *ngIf="!isLoading" rowHover="true">
+  <p-table [value]="news" responsiveLayout="scroll" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 2.25em">
@@ -94,7 +73,7 @@
     </ng-template>
   </p-table>
   
-  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
 </div>
 
 

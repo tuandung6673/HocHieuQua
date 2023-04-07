@@ -5,6 +5,7 @@ import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-slide',
@@ -14,7 +15,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SlideComponent implements OnInit {
 
   slides: any
-  isLoading: boolean = false
   slideId: string
   isDisplayDialog: boolean = false
   slideDetail: Slide = new Slide()
@@ -22,7 +22,7 @@ export class SlideComponent implements OnInit {
   menuOptions = [];
   params = {
     offSet: 0,
-    pageSize: 5,
+    pageSize: 10,
     screen: '',
     filter: '',
     status: -1
@@ -35,7 +35,6 @@ export class SlideComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoading = true
     this.getSlides();
     this.statusOptions = [
       {label: 'Tất cả', value: -1},
@@ -48,11 +47,15 @@ export class SlideComponent implements OnInit {
   getSlides() {
     this.spinner.show();
     const queryParams = queryString.stringify(this.params)
-    this.apiService.getSlide(queryParams).subscribe((responseData) => {
+    this.apiService.getSlide(queryParams)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((responseData) => {
       this.slides = responseData.data.data;
       this.totalRecord = responseData.data.recordsTotal
-      this.isLoading = false;
-      this.spinner.hide();
     })
   }
   onSearch() {
@@ -75,12 +78,9 @@ export class SlideComponent implements OnInit {
 
   getSlideDetailById(id: string) {
     this.apiService.getSlideById(id).subscribe((responseData) => {
-      // console.log('Detail Slide', responseData.data);
       this.slideDetail = responseData.data
       this.slideDetail.screen = (this.slideDetail.screen as string).split(',')
       this.slideDetail.status = this.slideDetail.status == 1;
-      console.log(this.slideDetail);
-      
     })    
   }
   
@@ -122,8 +122,7 @@ export class SlideComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            // this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
-            this.onDeleteSlide(id)
+          this.onDeleteSlide(id)
         }
     });
   }

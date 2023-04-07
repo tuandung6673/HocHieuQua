@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <p-table [value]="tests" responsiveLayout="scroll" [scrollable]="true" rowHover="true" *ngIf="!isLoading">
+  <p-table [value]="tests" responsiveLayout="scroll" [scrollable]="true" rowHover="true">
     <ng-template pTemplate="header">
         <tr>
             <th pFrozenColumn style="width: 2.25em">
@@ -88,7 +88,7 @@
       </ng-template>
   </p-table>
   
-  <p-paginator *ngIf="!isLoading" [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+  <p-paginator [rows]="params.pageSize" [totalRecords]="params.totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
 </div>
 
 

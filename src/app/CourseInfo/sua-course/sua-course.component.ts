@@ -15,7 +15,6 @@ export class SuaCourseComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<string>();
   Editor = ClassicEditor;
-  isLoading: boolean = false;
   id: string;
   editCourse: Course = new Course()
   cloneCourse: Course = new Course()
