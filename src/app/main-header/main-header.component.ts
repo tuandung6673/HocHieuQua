@@ -66,7 +66,7 @@ export class MainHeaderComponent implements OnInit {
       this.getNotification();
       setInterval(() => {
         this.getNotification();
-      }, 60000)
+      }, 300000)
     }
   }
 

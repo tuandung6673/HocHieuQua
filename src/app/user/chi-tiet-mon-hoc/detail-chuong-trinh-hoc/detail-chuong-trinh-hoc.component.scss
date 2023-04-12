@@ -4,18 +4,13 @@
   font-size: 18px;
 }
 
-/* ::ng-deep .main .p-accordion-header {
-  color: #fff;
-  font-weight: bold;
-} */
-
 .test {
   padding: 20px 5px;
   margin: 0 10px;
   display: flex;
   align-items: center;
   &:hover {
-    background: #0d89ec0f
+    background: #0d89ec0f;
   }
   .main-test {
     width: 100%;
@@ -32,7 +27,7 @@
       &:hover {
         transition: .3s ease-in-out;
         color: #fff;
-        background-color: blue;
+        background-color: rgb(118, 118, 219);
       }
     }
   }

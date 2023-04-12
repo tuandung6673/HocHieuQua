@@ -240,8 +240,8 @@ export class ApiService {
     return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}&callFromAdmin=${callFromAdmin}`)
   }
 
-  getCourseById(id: string = '') : Observable<BaseRetail<Course>> {
-    return this.http.get<BaseRetail<Course>>(`${this.url}/Course/${id}`)
+  getCourseById(id: string = '', queryParams) : Observable<BaseRetail<Course>> {
+    return this.http.get<BaseRetail<Course>>(`${this.url}/Course/${id}?` + queryParams)
   }
 
   getCourseUser(queryParams) : Observable<BaseReponse<Course>> {

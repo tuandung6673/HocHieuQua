@@ -3,11 +3,11 @@
     <p>Chương trình học</p>
   </div>
   <div class="main">
-    <p-accordion multiple="true" *ngFor="let course of courseSchedules">
-      <p-accordionTab [header]="course.name">
+    <p-accordion multiple="true" *ngFor="let course of courseSchedules; let i=index">
+      <p-accordionTab [selected]="i==0" [header]="course.name">
         <div *ngFor="let test of course.tests" class="test">
           <div style="width: 35px; height: 35px; margin-right: 10px;">
-            <img *ngIf="test.isFree" src="https://hochieuqua7.web.app/images/user/chi-tiet-khoa-hoc/free_icon.png" width="35px" height="35px"/>
+            <img *ngIf="test.isFree" src="https://hochieuqua7.web.app/images/common/icons/blue/shopping/2981255.png" width="35px" height="35px"/>
           </div>
           <div class="main-test">
             <p>{{test.name}}</p>
@@ -15,7 +15,7 @@
               <span *ngIf="test.testCategoryCode == 'kiem-tra' ">
                 <i class="pi pi-copy"></i>
               </span>
-              <span *ngIf="test.testCategoryCode == 'bai-giang' ">
+              <span *ngIf="test.testCategoryCode == 'bai-giang' " [routerLink]="test.id">
                 <i class="pi pi-play"></i>
               </span>
             </div>            

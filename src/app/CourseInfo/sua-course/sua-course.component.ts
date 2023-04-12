@@ -4,7 +4,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Course } from 'src/models/course.model';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { MessageService } from 'primeng/api';
-
+import * as queryString from 'querystring-es3';
 
 @Component({
   selector: 'app-sua-course',
@@ -21,7 +21,11 @@ export class SuaCourseComponent implements OnInit {
   classRoomOption = []
   subjectOption: any = []
   teacherOption: any = []
-
+  accoundId = JSON.parse(localStorage.getItem('userData'))?.id;
+  courseQuery = {
+    accountId: '',
+    fromAdmin: 0
+  }
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   
 
@@ -41,7 +45,9 @@ export class SuaCourseComponent implements OnInit {
   }
 
   getEditCourse(id: string) {
-    this.apiService.getCourseById(this.id).subscribe((responseData) => {
+    this.courseQuery.accountId = this.accoundId;
+    const courseQueryParams = queryString.stringify(this.courseQuery);
+    this.apiService.getCourseById(this.id, courseQueryParams).subscribe((responseData) => {
       this.editCourse = responseData.data;
       this.newItemEvent.emit(responseData.data.name);
       responseData.data.teacherId = responseData.data.teachers.map((teacher) => {

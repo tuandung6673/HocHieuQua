@@ -63,6 +63,7 @@ import { ChiTietTuyenDungComponent } from './user/tuyen-dung/chi-tiet-tuyen-dung
 import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
+import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
 
 const routes: Routes = [
   {
@@ -139,6 +140,7 @@ const routes: Routes = [
       {path: 'giao-vien', component: UserGvComponent},
       {path: 'giao-vien/:id', component: UserChiTietGvComponent},
       {path: 'mon-hoc/:id', component: ChiTietMonHocComponent},
+      {path: 'mon-hoc/:id/:testId', component: ChiTietBaiHocComponent},
       {path: 'tai-khoan/thong-tin-ca-nhan', component: ThongTinCaNhanComponent, canActivate: [AuthGuardService]},
       {path: 'tai-khoan/doi-mat-khau', component: DoiMatKhauComponent, canActivate: [AuthGuardService]},
       {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent, canActivate: [AuthGuardService]},

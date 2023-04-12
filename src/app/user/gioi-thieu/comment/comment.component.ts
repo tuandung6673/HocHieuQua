@@ -20,14 +20,17 @@ export class CommentComponent implements OnInit, OnChanges {
   answerInput : string;
   newCommentContent : any = '';
   commentModel : Comment = new Comment();
-  id;
+  id : string;
+  testId : string;
   constructor(
     private apiSerivce: ApiService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id']
+      // console.log(params);
+      this.id = params['id'];
+      this.testId = params['testId'];
     })    
   }
 
@@ -36,8 +39,12 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.getComment();
+  }
+  
+  getComment() {
     this.spinner.show();
-    this.apiSerivce.getComment(this.id)
+    this.apiSerivce.getComment(this.testId ? this.testId : this.id)
     .pipe(
       finalize(() => {
         this.spinner.hide()
@@ -60,6 +67,7 @@ export class CommentComponent implements OnInit, OnChanges {
 
   displayAnswer(comment) {
     this.commentAnswer = comment.id;
+    this.answerInput = "";
   }
 
   sendAnswer(hasParent : boolean = true) {
@@ -72,7 +80,7 @@ export class CommentComponent implements OnInit, OnChanges {
     }
     data = {
       ...data,
-      screen: this.id,
+      screen: this.testId ? this.testId : this.id,
       userId: this.userData.userId,
       status: 0,
     }
@@ -81,12 +89,13 @@ export class CommentComponent implements OnInit, OnChanges {
       this.newCommentContent = "";
       this.commentAnswer = '';
       if(response.status == 'success') {
-        this.spinner.show();
-        this.apiSerivce.getComment(this.id).subscribe(cmt => {
-          this.comments = cmt.data.data;
-          this.fetchTime();
-          this.spinner.hide();
-        })
+        // this.spinner.show();
+        // this.apiSerivce.getComment(this.id).subscribe(cmt => {
+        //   this.comments = cmt.data.data;
+        //   this.fetchTime();
+        //   this.spinner.hide();
+        // })
+        this.getComment();
       }
     })
   }

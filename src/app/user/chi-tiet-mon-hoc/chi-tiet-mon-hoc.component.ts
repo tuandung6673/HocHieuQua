@@ -21,6 +21,10 @@ export class ChiTietMonHocComponent implements OnInit {
     accountId: '',
     courseId: ''
   }
+  courseQuery = {
+    accountId: '',
+    fromAdmin: 0
+  }
   accoundId = JSON.parse(localStorage.getItem('userData'))?.id;
   isPayment : boolean = true;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private apiService: ApiService) { }
@@ -36,10 +40,15 @@ export class ChiTietMonHocComponent implements OnInit {
     const query = {...this.query}
     query.accountId = this.accoundId
     query.courseId = this.id
-    const queryParams = queryString.stringify(query)
+    const queryParams = queryString.stringify(query);
+
+    const courseParams = {...this.courseQuery};
+    courseParams.accountId = this.accoundId;
+    const courseQueryParams = queryString.stringify(courseParams)
+
     this.spinner.show()
     forkJoin([
-      this.apiService.getCourseById(this.id),
+      this.apiService.getCourseById(this.id, courseQueryParams),
       this.apiService.getCourseRating(this.id),
       this.apiService.getCheckPayment(queryParams)
       // CheckPayment

@@ -30,7 +30,7 @@
         <div class="empty"></div>
       </div>
       <div class="detail-relate" *ngFor="let courseRelate of detailCourse.courseRelevants" (click)="directCourse(courseRelate.id)">
-        <img [src]="courseRelate.courseAvatar" height="100%" width="100%"/>
+        <img [src]="courseRelate.courseAvatar"/>
         <div style="width: 100%;">
           <div class="relate-name">{{courseRelate.name}}</div>
           <div class="relate-info">

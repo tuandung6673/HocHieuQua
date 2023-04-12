@@ -1,0 +1,67 @@
+.bai-hoc-wrapper {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 10px;
+}
+
+.test {
+  padding: 20px 5px;
+  margin: 0;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  &:hover {
+    background: #0d89ec0f;
+  }
+  .main-test {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 13px;
+    }
+    i {
+      padding: 5px;
+      font-size: 17px;
+      border: 1px solid gray;
+      border-radius: 100%;
+      &:hover {
+        transition: .3s ease-in-out;
+        color: #fff;
+        background-color: rgb(118, 118, 219);
+      }
+    }
+  }
+}
+
+.bai-hoc-left {
+  .name {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .testUser-time {
+    margin-top: 5px;
+    font-size: 15px;
+    i {
+      margin-right: 3px;
+      font-size: 15px;
+    }
+  }
+}
+
+.clip {
+  margin: 15px 0;
+  height: 400px;
+  width: 100%;
+  .altVideo {
+    img {
+      height: 400px;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+.description {
+  font-size: 15px;
+}
