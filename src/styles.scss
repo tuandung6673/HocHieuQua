@@ -19,6 +19,13 @@ body {
   max-height: 500px;
 }
 
+.kt-chi-tiet {
+  .ck-content {
+    min-height: 200px;
+    max-height: 450px !important;
+  }
+}
+
 .p-element .p-datatable-table {
   font-size: 15px;
 }

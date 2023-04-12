@@ -3,6 +3,7 @@ import { New } from './../../../../models/new.model';
 import { ApiService } from './../../../../services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-bai-viet',
@@ -23,7 +24,7 @@ export class BaiVietComponent implements OnInit {
   totalRecord : number = 0;
   statusOptions : any[] = [];
   categoryIdOptions : any[] = [];
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService) {
+  constructor(private apiService: ApiService, private spinner: NgxSpinnerService, private messageService: MessageService) {
     document.title = "Tin tức"
   }
 
@@ -83,6 +84,24 @@ export class BaiVietComponent implements OnInit {
       filter: this.search
     }
     this.getNews()
+  }
+
+  confirmDeleteNew(id) {
+    this.spinner.show();
+    this.apiService.deleteNews(id)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe(response => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thông báo', detail: 'Xóa tin tức thành công'})
+        this.news = this.news.filter(n => n.id !=id)
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: 'Xóa tin tức thất bại'})
+      }
+    })
   }
 
 }

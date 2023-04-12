@@ -1,4 +1,4 @@
-<div class="detail grid">
+<div class="detail grid kt-chi-tiet">
   <div class="col-3">
     <small>Loại bài kiểm tra</small>
     <p-dropdown [options]="testCategoryOptions" [(ngModel)]="test.testCategoryCode" name="testCategoryCode"></p-dropdown>
@@ -30,7 +30,7 @@
       </span>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-3" *ngIf="test.testCategoryCode == 'kiem-tra'">
     <small>Số điểm qua bài kiểm tra</small>
     <div>
       <span class="p-input-icon-right">
@@ -39,7 +39,7 @@
       </span>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-3" *ngIf="test.testCategoryCode == 'kiem-tra'">
     <small>Số lần được kiểm tra</small>
     <div>
       <span class="p-input-icon-right">
@@ -48,7 +48,7 @@
       </span>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-3" *ngIf="test.testCategoryCode == 'kiem-tra'">
     <small>Hạn nộp bài</small>
     <div>
       <span class="p-input-icon-right">
@@ -58,11 +58,11 @@
       </span>
     </div>
   </div>
-  <div class="col-3 inputSwitch">
+  <div class="col-3 inputSwitch" *ngIf="test.testCategoryCode == 'kiem-tra'">
     <small>Hiển thị ở kiểm tra năng lực</small>
     <p-inputSwitch [(ngModel)]="test.isShowInAbilityTest" name="isShowInAbilityTest"></p-inputSwitch>
   </div>
-  <div class="col-3 inputSwitch">
+  <div class="col-3 inputSwitch" *ngIf="test.testCategoryCode == 'kiem-tra'">
     <small>Gửi mail khi nộp bài</small>
     <p-inputSwitch [(ngModel)]="test.isAutoSendMail" name="isAutoSendMail"></p-inputSwitch>
   </div>
@@ -73,5 +73,8 @@
   <div class="col-3 inputSwitch">
     <small>Miễn phí</small>
     <p-inputSwitch [(ngModel)]="test.isFree" name="isFree"></p-inputSwitch>
+  </div>
+  <div class="col-12 ckeditor" *ngIf="test.testCategoryCode == 'bai-giang'">
+    <ckeditor [editor]="Editor" [(ngModel)]="test.description"></ckeditor>
   </div>
 </div>

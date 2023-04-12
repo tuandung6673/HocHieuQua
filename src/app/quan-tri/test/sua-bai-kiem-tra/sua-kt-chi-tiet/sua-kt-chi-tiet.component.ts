@@ -3,7 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as queryString from 'querystring-es3';
-import { TestCategory } from 'src/models/testCategory.model';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Test } from 'src/models/test.model';
 
 
@@ -16,6 +16,7 @@ export class SuaKtChiTietComponent implements OnInit {
 
   @Input() test : Test;
   @Output() sendData = new EventEmitter<Test>();
+  Editor = ClassicEditor;
   testCategoryOptions = [];
   testCategoryParam = {
     filter : '', 

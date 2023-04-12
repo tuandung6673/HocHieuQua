@@ -319,6 +319,10 @@ export class ApiService {
     return this.http.post<Message>(`${this.url}/News`, data)
   }
 
+  deleteNews(id : string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/News/${id}`)
+  }
+
   // New Category
   getNewCategory(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<NewCatagory>> {
     return this.http.get<BaseReponse<NewCatagory>>(`${this.url}/NewsCategory?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=-1`)
