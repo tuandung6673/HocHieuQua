@@ -361,6 +361,10 @@ export class ApiService {
   postRecruit(data: Recruit) {
     return this.http.post<Message>(`${this.url}/Recruit`, data)
   }
+  
+  deleteRecruit(id : string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Recruit/${id}`)
+  }
 
   // Payment / CheckPayment
   getCheckPayment(queryParams) : Observable<BaseRetail<CheckPayment>> {
@@ -486,5 +490,9 @@ export class ApiService {
   // Step
   getStep(queryParams) : Observable<BaseReponse<Step>> {
     return this.http.get<BaseReponse<Step>>(`${this.url}/step?` + queryParams)
+  }
+
+  getStepById(id:string) : Observable<BaseRetail<Step>> {
+    return this.http.get<BaseRetail<Step>>(`${this.url}/step/${id}`)
   }
 }

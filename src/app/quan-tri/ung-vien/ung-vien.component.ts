@@ -4,7 +4,7 @@ import { RecruitCandidate } from './../../../models/recruitCandidate.model';
 import { ApiService } from 'src/services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
-
+import * as moment from 'moment'
 @Component({
   selector: 'app-ung-vien',
   templateUrl: './ung-vien.component.html',
@@ -51,6 +51,10 @@ export class UngVienComponent implements OnInit {
     this.apiService.getRecruitCandidate(queryParams).subscribe((response) => {
       if(response.status == 'success') {
         this.candidates = response.data.data;
+        this.candidates.map(n => {
+          n.applyDate = moment(n.applyDate).format('DD-MM-YYYY k:mm');
+          n.interviewDate = n.interviewDate ? moment(n.interviewDate).format('DD-MM-YYYY k:mm:ss') : '';
+        })
       }
       this.spinner.hide();
     })
@@ -58,10 +62,6 @@ export class UngVienComponent implements OnInit {
 
   onSearch() {
     this.getCandidates();
-  }
-
-  editCandidate(id:string) {
-    console.log(id);
   }
 
   deleteCandidate(id:string) {

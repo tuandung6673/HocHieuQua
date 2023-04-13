@@ -52,7 +52,7 @@ export class SuaTinTuyenDungComponent implements OnInit {
   }
 
   cancel() {
-    
+    this.router.navigate(['quan-tri/tuyen-dung'])
   }
 
 }

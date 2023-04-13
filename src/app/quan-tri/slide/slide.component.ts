@@ -118,7 +118,7 @@ export class SlideComponent implements OnInit {
 
   confirmDeleteSlide(id: string) {
     this.confirmationService.confirm({
-        message: 'Bạn có muốn xóa môn học này ?',
+        message: 'Bạn có muốn xóa Slide này ?',
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {

@@ -15,9 +15,8 @@ export class TinTuyenDungComponent implements OnInit {
   recruits: Recruit[] = []
   params = {
     offSet: 0,
-    pageSize: 2,
+    pageSize: 5,
     filter: '',
-    totalRecord: 0
   }
   totalRecord : number = 0;
   constructor(
@@ -48,8 +47,29 @@ export class TinTuyenDungComponent implements OnInit {
   }
 
   deleteRecruit(id) {
-    
-  }
+    this.confirmationService.confirm({
+      message: 'Bạn có muốn xóa Tin tuyển dụng này không?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.spinner.show();
+        this.apiService.deleteRecruit(id)
+        .pipe(
+          finalize(() => {
+            this.spinner.hide();
+          })
+        )
+        .subscribe(response => {
+          if(response.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
+            this.recruits = this.recruits.filter(r => r.id != id)
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
+          }
+        })
+      }
+    })
+  } 
 
   onSearch() {
     this.getRecruit();

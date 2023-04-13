@@ -27,14 +27,14 @@
     <ng-template pTemplate="header">
         <tr>
           <th pFrozenColumn style="width: 30px"></th>
-          <!-- <th pFrozenColumn style="width: 40px;"></th> -->
+          <th pFrozenColumn style="width: 40px;"></th>
 
-          <th>Tên nhóm</th>
-          <th>Sắp xếp</th>
+          <th style="width: 350px;">Tên nhóm</th>
+          <th style="width: 100px;">Sắp xếp</th>
           <th>Thời gian</th>
           <th>Màn hình</th>
           <th>Nút chuyển</th>
-          <th>Hiển thị</th>
+          <th style="width: 100px;">Hiển thị</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-expanded="expanded" let-step>
@@ -42,24 +42,34 @@
             <td pFrozenColumn>
               <button *ngIf="step.steps.length" type="button" pButton pRipple [pRowToggler]="step" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
             </td>
-            <!-- <td pFrozenColumn style="width: 40px" >
+            <td pFrozenColumn style="width: 40px" >
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-            </td> -->
-            <td>
+            </td>
+            <td style="width: 350px;">
                 {{step.name}}
             </td>
-            <td>{{step.order}}</td>
+            <td style="width: 100px;">{{step.order}}</td>
             <td>{{step.delay}}</td>
             <td>{{step.screen}}</td>
             <td>
               <span  class="colorful" [ngClass]="step.showNavigation == 0 ? 'fail' : 'passed' " *ngIf="step.showNavigation == 0">Ẩn</span>
               <span  class="colorful" [ngClass]="step.showNavigation == 0 ? 'fail' : 'passed' " *ngIf="step.showNavigation == 1">Hiển thị</span>
             </td>
-            <td>
+            <td style="width: 100px;">
               <span  class="colorful" [ngClass]="step.status == 0 ? 'fail' : 'passed' " *ngIf="step.status == 0">Ẩn</span>
               <span  class="colorful" [ngClass]="step.status == 0 ? 'fail' : 'passed' " *ngIf="step.status == 1">Hiển thị</span>
             </td>
         </tr>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+          <ng-template pTemplate>
+              <div class="option" [routerLink]="[step.id]">
+                  <i class="pi pi-pencil"></i> Sửa
+              </div>
+              <div class="option" >
+                  <i class="pi pi-trash"></i> Xóa
+              </div>
+          </ng-template>
+        </p-overlayPanel>
     </ng-template>
 
     <ng-template pTemplate="rowexpansion" let-step>
@@ -74,7 +84,7 @@
                             <th style="min-width: 250px">Tiêu đề con</th>
                             <th style="width: 600px;">Mô tả</th>
                             <th style="width: 100px;">Sắp xếp</th>
-                            <th style="width: 100px;">Hiển thị</th>
+                            <th style="width: 150px;">Hiển thị</th>
                           </tr>
                       </ng-template>
                       <ng-template pTemplate="body" let-order>
@@ -85,7 +95,7 @@
                             <td style="min-width: 250px">{{order.subTitle}}</td>
                             <td style="width: 600px" [innerHTML]="order.description"></td>
                             <td style="width: 100px;">{{order.order}}</td>
-                            <td style="width: 100px;">
+                            <td style="width: 150px;">
                               <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 0">Ẩn</span>
                               <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 1">Hiển thị</span>
                             </td>

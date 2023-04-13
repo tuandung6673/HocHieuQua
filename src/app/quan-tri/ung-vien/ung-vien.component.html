@@ -18,7 +18,7 @@
               <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText />
             </span> -->
             <div class="search-btn">
-              <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="query.filter"/>
+              <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="query.filter" (keydown.enter)="onSearch()"/>
               <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
             </div>
             <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button>
@@ -33,7 +33,7 @@
                 <th pFrozenColumn style="width: 2.25em">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pFrozenColumn style="min-width: 50px;"></th>
+                <th pFrozenColumn style="width: 50px;"></th>
                 <th pFrozenColumn style="min-width:200px">Tên ứng viên</th>
                 <th style="min-width:150px">Điện thoại</th>
                 <th style="min-width:200px">Email</th>
@@ -50,7 +50,7 @@
                 <td pFrozenColumn style="width: 2.25em">
                     <p-tableCheckbox [value]="candidate"></p-tableCheckbox>
                 </td>
-                <td pFrozenColumn style="min-width: 50px" >
+                <td pFrozenColumn style="width: 50px" >
                     <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
                 </td>
                 <td pFrozenColumn style="min-width:200px ;color: #0b5ed7; font-weight: 650;">{{candidate.name}}</td>

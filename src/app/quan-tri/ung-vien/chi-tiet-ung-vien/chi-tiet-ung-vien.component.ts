@@ -5,6 +5,8 @@ import { ApiService } from './../../../../services/api.service.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import * as moment from 'moment';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-chi-tiet-ung-vien',
@@ -35,27 +37,42 @@ export class ChiTietUngVienComponent implements OnInit {
 
   getCandidate(id:string) {
     this.spinner.show();
-    this.apiService.getRecruitCandidateById(id).subscribe((response) => {
+    this.apiService.getRecruitCandidateById(id)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide();
+      })
+    )
+    .subscribe((response) => {
       if(response.status == 'success') {
         document.title = "Ứng viên " + response.data.name;
         this.editRecruitCandidate = response.data;
+        this.editRecruitCandidate.applyDate = this.editRecruitCandidate.applyDate ? moment(this.editRecruitCandidate.applyDate).format('DD/MM/YYYY k:mm') : '';
+        this.editRecruitCandidate.interviewDate = this.editRecruitCandidate.interviewDate ? moment(this.editRecruitCandidate.interviewDate).format('DD/MM/YYYY k:mm') : '';
         this.editRecruitCandidate.interviewPass = this.editRecruitCandidate.interviewPass == 1 ? true : false;
         this.editRecruitCandidate.status = this.editRecruitCandidate.status == 1 ? true : false;
       }
-      this.spinner.hide();
     })
   }
 
   onSubmit() {
-    const data = {...this.editRecruitCandidate}
-    data.interviewPass = data.interviewPass == true ? '1' : '0';
-    data.status = data.status == true ? '1' : '0';
+    const data = {
+      ...this.editRecruitCandidate,
+      interviewPass: this.editRecruitCandidate.interviewPass == true ? 1 : 0,
+      status: this.editRecruitCandidate.status == true ? 1 : 0,
+      applyDate: moment(this.editRecruitCandidate.applyDate, 'DD-MM-YYYY k:mm:ss').format('YYYY-MM-DD k:mm:ss') == "Invalid date" ? "" : moment(this.editRecruitCandidate.applyDate, 'DD-MM/-YYYY k:mm:ss').format('YYYY-MM-DD k:mm:ss'),
+      interviewDate: moment(this.editRecruitCandidate.interviewDate, 'DD-MM-YYYY k:mm:ss').format('YYYY-MM-DD k:mm:ss') == "Invalid date" ? "" : moment(this.editRecruitCandidate.interviewDate, 'DD-MM/-YYYY k:mm:ss').format('YYYY-MM-DD k:mm:ss'),
+    }
     this.apiService.postRecruitCandidate(data).subscribe(response => {
       if(response.status == 'success') {
         this.messageService.add({severity: 'success', summary: 'success', detail: response.message})
       }
       this.router.navigate(['/quan-tri/ung-vien'])
     })
+  }
+
+  cancel() {
+    this.router.navigate(['/quan-tri/ung-vien'])
   }
 
 }

@@ -20,38 +20,41 @@
       </div>
   </div>
   <div class="detail grid">
-    <div class="col-6">
+    <div class="col-12">
       <small>Tiêu đề</small>
       <div>
         <span class="p-input-icon-right">
-          <i class="pi pi-user"></i>
+          <i class="pi pi-sort-alpha-down"></i>
           <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.name" name="name" />
         </span>
       </div>
     </div>
     <div class="col-6">
-      <small>Giá</small>
+      <small>Mức lương</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-spin pi-spinner"></i>
+            <i class="pi pi-money-bill"></i>
             <input id="price" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.price" name="price" />
           </span>
         </div>
     </div>
     <div class="col-6">
       <small>Địa chỉ</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-spin pi-spinner"></i>
-            <input id="address" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.address" name="address" />
-          </span>
-        </div>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-map-marker"></i>
+          <input id="address" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.address" name="address" />
+        </span>
+      </div>
     </div>
     <div class="col-6">
-      <small>Tags</small>
-      <div>
-        <p-chips [(ngModel)]="editRecruit.tags" name="tags" ></p-chips>
-      </div>
+      <small>Thứ tự</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-sort-numeric-down"></i>
+            <input id="order" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editRecruit.order" name="order" />
+          </span>
+        </div>
     </div>
     <div class="col-3 inputSwitch">
       <small>Hiển thị</small>
@@ -60,6 +63,12 @@
     <div class="col-3 inputSwitch">
       <small>Nóng hổi</small>
       <p-inputSwitch [(ngModel)]="editRecruit.isHot"  name="isHot"></p-inputSwitch>
+    </div>
+    <div class="col-12">
+      <small>Tags</small>
+      <div>
+        <p-chips [(ngModel)]="editRecruit.tags" name="tags" ></p-chips>
+      </div>
     </div>
     <div class="col-12 ckeditor">
       <small>Yêu cầu</small>

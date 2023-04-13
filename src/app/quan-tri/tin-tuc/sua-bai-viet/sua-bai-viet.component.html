@@ -46,21 +46,21 @@
           </div>
         </div>
         <div class="col-12">
-          <small>Thứ tự</small>
-          <div>
-            <span class="p-input-icon-right">
-              <i class="pi pi-user"></i>
-              <input id="order" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.order" name="order"/>
-            </span>
-          </div>
-        </div>
-        <div class="col-12">
           <small>Tags</small>
           <p-chips [(ngModel)]="editNew.tags" name="tags" ></p-chips>
         </div>
-        <div class="col-3">
+        <div class="col-6">
           <small>Danh mục</small>
           <p-dropdown [options]="newCategoryOption" [(ngModel)]="editNew.categoryId" optionLabel="name" optionValue="code" name="subjectId"></p-dropdown>
+        </div>
+        <div class="col-6">
+          <small>Thứ tự</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-sort-numeric-down"></i>
+              <input id="order" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.order" name="order"/>
+            </span>
+          </div>
         </div>
         <div class="col-3">
           <small>Đánh giá</small>

@@ -23,28 +23,28 @@
     <div class="detail">
       <p class="infor">Thông tin ứng viên</p>
       <div class="grid">
-        <div class="col-6">
+        <div class="col-6 disabled">
           <small>Họ tên</small>
           <span class="input p-input-icon-right">
-            <i class="pi pi-sort-numeric-down"></i>
+            <i class="pi pi-user"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.name" name="name"/>
           </span>  
         </div>
-        <div class="col-6">
+        <div class="col-6 disabled">
           <small>Email</small>
           <span class="input p-input-icon-right">
-            <i class="pi pi-sort-numeric-down"></i>
+            <i class="pi pi-envelope"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.email" name="email"/>
           </span>  
         </div>
-        <div class="col-6">
+        <div class="col-6 disabled">
           <small>Điện thoại</small>
           <span class="input p-input-icon-right">
-            <i class="pi pi-sort-numeric-down"></i>
+            <i class="pi pi-phone"></i>
             <input type="text" pInputText disabled="true" [(ngModel)]="editRecruitCandidate.phone" name="phone"/>
           </span>  
         </div>
-        <div class="col-6">
+        <div class="col-6 disabled">
           <small>Ngày ứng tuyển</small>
           <span class="input p-input-icon-right">
             <i class="pi pi-sort-numeric-down"></i>
@@ -69,13 +69,13 @@
           <div class="header">Ngày phỏng vấn</div>
           <span class="input p-input-icon-right">
             <i class="pi pi-sort-numeric-down"></i>
-            <input type="text" pInputText [(ngModel)]="editRecruitCandidate.interviewDate" name="interviewDate"/>
+            <p-calendar [(ngModel)]="editRecruitCandidate.interviewDate" [showTime]="true" inputId="time" dateFormat="dd/mm/yy"></p-calendar>
           </span> 
         </div>
         <div class="col-6">
           <div class="header">Người phỏng vấn</div>
           <span class="input p-input-icon-right">
-            <i class="pi pi-sort-numeric-down"></i>
+            <i class="pi pi-user"></i>
             <input type="text" pInputText [(ngModel)]="editRecruitCandidate.interviewUser" name="interviewUser"/>
           </span> 
         </div>
@@ -94,14 +94,13 @@
         <div class="col-12">
           <ckeditor [editor]="Editor" name="content" [(ngModel)]="editRecruitCandidate.interviewComment"></ckeditor>
         </div>
-        <div class="col-12 saveBtn">
-          <button 
-            (click)="onSubmit()"
-            type="submit" 
-            pButton pRipple 
-            label="Lưu"
-            >
-          </button> 
+        <div class="detail-action">
+          <div class="cancel-btn">
+            <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+          </div>
+          <div class="save-btn">
+            <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+          </div>
         </div>
       </div>
     </div>

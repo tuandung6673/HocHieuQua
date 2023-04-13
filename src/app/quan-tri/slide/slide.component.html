@@ -65,7 +65,7 @@
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>
-      </p-overlayPanel>
+        </p-overlayPanel>
       </ng-template>
   </p-table>
   <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
@@ -161,16 +161,16 @@
         </span>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-6">
       <small>Thứ tự</small>
       <div>
         <span class="p-input-icon-right">
-          <i class="pi pi-user"></i>
+          <i class="pi pi-sort-numeric-down"></i>
           <input formGroupName="suaSlideForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="slideDetail.order"/>
         </span>
       </div>
     </div>
-    <div class="col-4 inputSwitch">
+    <div class="col-6 inputSwitch">
       <small>Hiển thị</small>
       <p-inputSwitch [(ngModel)]="slideDetail.status" name="status"></p-inputSwitch>
     </div>

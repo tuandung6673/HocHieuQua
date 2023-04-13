@@ -64,6 +64,7 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
 import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
+import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
 
 const routes: Routes = [
   {
@@ -120,6 +121,7 @@ const routes: Routes = [
       {path: 'footer', component: QuanTriFooterComponent},
       {path: 'footer/:id', component: ChiTietFooterComponent},
       {path: 'step/0', component: StepComponent},
+      {path: 'step/0/:id', component: ChiTietStepComponent},
       {path: 'diem-thi', component: DiemThiComponent}
     ]
   },
