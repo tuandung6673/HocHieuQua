@@ -495,4 +495,12 @@ export class ApiService {
   getStepById(id:string) : Observable<BaseRetail<Step>> {
     return this.http.get<BaseRetail<Step>>(`${this.url}/step/${id}`)
   }
+
+  postStep(data : Step) {
+    return this.http.post<Message>(`${this.url}/step`, data)
+  }
+
+  deleteStep(id : string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/step/${id}`)
+  }
 }

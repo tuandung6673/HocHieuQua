@@ -1,3 +1,76 @@
 <div class="user-wrapper">
-  {{id}}
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Step</span>
+      <i>/</i>
+      <span class="active">Quản lý Step</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="id && id != 'them-moi'" >Chi tiết Step</div>
+        <div class="main-title" *ngIf="id == 'them-moi'" >Thêm Step</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail grid">
+    <div class="col-12">
+      <small>Vị trí</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input type="text" pInputText [(ngModel)]="editStep.name" />
+        </span>
+      </div>
+    </div>
+    <div class="col-6">
+      <small>Giao diện</small>
+      <p-dropdown [(ngModel)]="editStep.theme" [options]="interfaceOption" placeholder="Vui lòng chọn" name="theme"></p-dropdown>
+    </div>
+    <div class="col-6">
+      <small>Màn hình</small>
+      <p-dropdown [(ngModel)]="editStep.screen" [options]="screenOptions" placeholder="Vui lòng chọn" name="screen"></p-dropdown>
+    </div>
+    <div class="col-6">
+      <small>Thứ tự</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-sort-numeric-down"></i>
+            <input type="text" pInputText [(ngModel)]="editStep.order" />
+          </span>
+        </div>
+    </div>
+    <div class="col-6">
+      <small>Thời gian chạy (ms)</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-sort-numeric-down"></i>
+            <input type="text" pInputText [(ngModel)]="editStep.delay" />
+          </span>
+        </div>
+    </div>
+    <div class="col-6 inputSwitch">
+      <small>Hiển thị</small>
+      <p-inputSwitch [(ngModel)]="editStep.status"></p-inputSwitch>
+    </div>
+    <div class="col-6 inputSwitch">
+      <small>Nút chuyển</small>
+      <p-inputSwitch [(ngModel)]="editStep.showNavigation"></p-inputSwitch>
+    </div>
+    <div class="detail-action">
+      <div class="cancel-btn">
+        <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+      </div>
+      <div class="save-btn">
+        <p-button label="Lưu" (click)="save()" icon="pi pi-check"></p-button>
+      </div>
+    </div>
+  </div>
 </div>

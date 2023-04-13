@@ -146,6 +146,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-tiet-cau-hoi.component';
 import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
 import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
+import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
 
 
 @NgModule({
@@ -252,7 +253,8 @@ import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-ste
     DiemThiComponent,
     ChiTietCauHoiComponent,
     ChiTietBaiHocComponent,
-    ChiTietStepComponent
+    ChiTietStepComponent,
+    StepConComponent
       ],
   imports: [
     AppRoutingModule,

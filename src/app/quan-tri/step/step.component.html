@@ -18,7 +18,7 @@
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
         <!-- <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button> -->
-        <p-button [routerLink]="['them-ung-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
   </div>
@@ -62,10 +62,13 @@
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
+              <div class="option">
+                <i class="pi pi-plus"></i> Step con
+              </div>
               <div class="option" [routerLink]="[step.id]">
                   <i class="pi pi-pencil"></i> Sửa
               </div>
-              <div class="option" >
+              <div class="option" (click)="deleteStep(step.id)">
                   <i class="pi pi-trash"></i> Xóa
               </div>
           </ng-template>
@@ -79,31 +82,42 @@
                   <p-table [value]="step.steps" dataKey="id"  rowHover="true">
                       <ng-template pTemplate="header">
                           <tr>
-                            <!-- <th style="width: 5rem"></th> -->
+                            <th pFrozenColumn style="width: 40px;"></th>
                             <th style="min-width: 250px">Tiêu đề chính</th>
                             <th style="min-width: 250px">Tiêu đề con</th>
-                            <th style="width: 600px;">Mô tả</th>
                             <th style="width: 100px;">Sắp xếp</th>
                             <th style="width: 150px;">Hiển thị</th>
                           </tr>
                       </ng-template>
                       <ng-template pTemplate="body" let-order>
                           <tr>
+                            <td pFrozenColumn style="width: 40px" >
+                              <span class="choose" (click)="op2.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+                            </td>
                             <td style="min-width: 250px">
                                 {{order.title}}
                             </td>
                             <td style="min-width: 250px">{{order.subTitle}}</td>
-                            <td style="width: 600px" [innerHTML]="order.description"></td>
                             <td style="width: 100px;">{{order.order}}</td>
                             <td style="width: 150px;">
                               <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 0">Ẩn</span>
                               <span  class="colorful" [ngClass]="order.status == 0 ? 'fail' : 'passed' " *ngIf="order.status == 1">Hiển thị</span>
                             </td>
                           </tr>
+                          <p-overlayPanel #op2 [showCloseIcon]="false" [style]="{width: '180px'}">
+                            <ng-template pTemplate>
+                                <div class="option" (click)="routerChildStep(order.id, step.id)">
+                                    <i class="pi pi-pencil"></i> Sửa
+                                </div>
+                                <div class="option" (click)="deleteStep(order.id, true)">
+                                    <i class="pi pi-trash"></i> Xóa
+                                </div>
+                            </ng-template>
+                          </p-overlayPanel>
                       </ng-template>
                       <ng-template pTemplate="emptymessage">
                           <tr>
-                              <td colspan="6">There are no order for this product yet.</td>
+                              <td colspan="6">Không có bản ghi nào</td>
                           </tr>
                       </ng-template>
                   </p-table>
