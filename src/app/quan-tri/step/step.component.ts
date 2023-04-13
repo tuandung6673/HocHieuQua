@@ -40,8 +40,6 @@ export class StepComponent implements OnInit {
   }
 
   getStep() {
-    console.log('123');
-    
     const queryParams = queryString.stringify(this.params);
     this.spinner.show();
     this.apiService.getStep(queryParams).subscribe(response => {
@@ -57,6 +55,10 @@ export class StepComponent implements OnInit {
 
   routerChildStep(id : string, parentId: string) {
     this.router.navigate(['/quan-tri/step/1', id], {queryParams: {parentId: parentId}})
+  }
+
+  newChildStep(parentId) {
+    this.router.navigate(['/quan-tri/step/1', 'them-moi'], {queryParams: {parentId: parentId}})
   }
 
   deleteStep(id : string, isChild : boolean = false) {

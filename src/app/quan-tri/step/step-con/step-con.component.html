@@ -1,3 +1,22 @@
 <div class="user-wrapper">
-  <p>step-con works!</p>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span>Step</span>
+      <i>/</i>
+      <span class="active">Chi tiết Step</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title" *ngIf="childId && childId != 'them-moi'" >Chi tiết Step</div>
+        <div class="main-title" *ngIf="childId == 'them-moi'" >Thêm Step</div>
+      </div>
+      <div class="header-right">
+      </div>
+    </div>
+  </div>
 </div>

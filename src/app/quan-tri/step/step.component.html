@@ -62,7 +62,7 @@
         </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
           <ng-template pTemplate>
-              <div class="option">
+              <div class="option" (click)="routerChildStep('them-moi', step.id)">
                 <i class="pi pi-plus"></i> Step con
               </div>
               <div class="option" [routerLink]="[step.id]">
