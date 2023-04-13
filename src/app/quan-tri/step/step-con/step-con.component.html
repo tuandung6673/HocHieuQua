@@ -1,4 +1,4 @@
-<div class="user-wrapper">
+<div class="wrapper">
   <div class="header">
     <div class="guide">
       <span><i class="pi pi-home"></i></span>
@@ -16,6 +16,67 @@
         <div class="main-title" *ngIf="childId == 'them-moi'" >Thêm Step</div>
       </div>
       <div class="header-right">
+      </div>
+    </div>
+  </div>
+  <div class="grid abc">
+    <div class="image col-3">
+      <img *ngIf="stepChild.image" [src]="stepChild.image" alt=""/>
+      <img *ngIf="!stepChild.image" alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png" alt=""/>
+    </div>
+    <div class="detail col-9">
+      <div class="grid">
+        <div class="col-12">
+          <small>Avatar</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-instagram"></i>
+              <input type="text" pInputText [(ngModel)]="stepChild.image" />
+            </span>
+          </div>
+        </div>
+        <div class="col-12">
+          <small>Tiêu đề chính</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input type="text" pInputText [(ngModel)]="stepChild.title" />
+            </span>
+          </div>
+        </div>
+        <div class="col-12">
+          <small>Tiêu đề phụ</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-sort-numeric-down"></i>
+              <input type="text" pInputText [(ngModel)]="stepChild.subTitle" />
+            </span>
+          </div>
+        </div>
+        <div class="col-6">
+          <small>Thứ tự</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-sort-numeric-down"></i>
+              <input type="text" pInputText [(ngModel)]="stepChild.order" />
+            </span>
+          </div>
+        </div>
+        <div class="col-6 inputSwitch">
+          <small>Hiển thị</small>
+          <p-inputSwitch [(ngModel)]="stepChild.status" name="status"></p-inputSwitch>
+        </div>
+        <div class="col-12" style="margin-top: 10px;">
+          <ckeditor [editor]="Editor" name="shortSummary" [(ngModel)]="stepChild.description"></ckeditor>
+        </div>
+        <div class="detail-action">
+          <div class="cancel-btn">
+            <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+          </div>
+          <div class="save-btn">
+            <p-button label="Lưu" (click)="save()" icon="pi pi-check"></p-button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

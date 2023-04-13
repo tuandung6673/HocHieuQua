@@ -2,8 +2,8 @@ export class Step {
   id : string = "";
   theme : string = "";
   name : string = "";
-  status : any = null;
-  order : any = null;
+  status : any = 0;
+  order : any = 0;
   isParent : string = "";
   title : string = "";
   subTitle : string = "";
@@ -15,7 +15,7 @@ export class Step {
   modifiedBy : string = "";
   steps : any[];
   screen : string = "";
-  delay : any = null;
-  showNavigation : any = null;
+  delay : any = 0;
+  showNavigation : any = 0;
   totalFiltered : any = null;
 }
