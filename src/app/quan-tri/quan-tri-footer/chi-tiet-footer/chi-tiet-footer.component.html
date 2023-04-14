@@ -22,19 +22,23 @@
     
     <div class="detail grid">
       <div class="col-6">
-        <small>Vị trí</small>
+        <small>Tiêu đề</small>
           <div>
             <span class="p-input-icon-right">
-              <i class="pi pi-spin pi-spinner"></i>
-              <input type="text" pInputText [(ngModel)]="footer.position" />
+              <i class="pi pi-user"></i>
+              <input type="text" pInputText [(ngModel)]="footer.title" />
             </span>
           </div>
+      </div>
+      <div class="col-6">
+        <small>Vị trí</small>
+        <p-dropdown [options]="positionOptions" [(ngModel)]="footer.position" placeholder="Vị trí"></p-dropdown>
       </div>
       <div class="col-6">
         <small>Thứ tự hiển thị</small>
           <div>
             <span class="p-input-icon-right">
-              <i class="pi pi-spin pi-spinner"></i>
+              <i class="pi pi-sort-numeric-down"></i>
               <input type="text" pInputText [(ngModel)]="footer.order" />
             </span>
           </div>

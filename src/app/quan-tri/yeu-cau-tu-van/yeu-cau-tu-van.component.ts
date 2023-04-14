@@ -1,6 +1,7 @@
 import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as moment from 'moment'
 import { ApiService } from 'src/services/api.service.service';
 import { Advice } from 'src/models/advice.model';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -43,6 +44,10 @@ export class YeuCauTuVanComponent implements OnInit {
     this.apiService.getAdvice(queryParams).subscribe((response) => {
       if(response.status == 'success') {
         this.adviceRequests = response.data.data;
+        this.adviceRequests.map(a => {
+          a.birthday = a.birthday ? moment(a.birthday).format('DD-MM-YYYY') : '';
+
+        })
       }
       this.spinner.hide();
     })

@@ -179,6 +179,14 @@ export class ApiService {
     return this.http.get<BaseReponse<Menu>>(`${this.url}/Menu?filter=${filter}&offSet=${offSet}&pageSize=${pageSize}&screen=${screen}&status=${status}`)
   }
 
+  postMenu(data) {
+    return this.http.post<Message>(`${this.url}/Menu`, data)
+  }
+
+  deleteMenu(id) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Menu/${id}`)
+  }
+
   // MenusTree
   getMenusTree(queryParams) : Observable<BaseReponse<MenusTree>> {
     return this.http.get<BaseReponse<MenusTree>>(`${this.url}/Menu/GetMenusTree?` + queryParams)
@@ -198,7 +206,7 @@ export class ApiService {
   }
 
   deleteFooter(id : string) {
-    return this.http.delete(`${this.url}/Footer/` + id)
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Footer/` + id)
   }
 
   // Slide

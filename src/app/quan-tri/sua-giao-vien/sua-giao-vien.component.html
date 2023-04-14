@@ -25,7 +25,7 @@
 			<img [src]="editTeacher.avatar ? editTeacher.avatar : defaultAvatar" />
 		</div>
 		<div class="col-9 detail grid">
-			<div class="col-6">
+			<div class="col-12">
         <small>Avatar</small>
         <div>
           <span class="p-input-icon-right">
@@ -34,11 +34,20 @@
 					</span>
         </div>
       </div>
+      <div class="col-6">
+        <small>Tài khoản</small>
+        <div>
+          <span class="p-input-icon-right">
+            <i class="pi pi-user"></i>
+						<input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [value]="editTeacher.name +  ' - '  +editTeacher.userName" disabled="true" />
+					</span>
+        </div>
+      </div>
 			<div class="col-6">
         <small>Tên giáo viên</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-sort-alpha-down"></i>
 						<input formGroupName="usernameInput" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editTeacher.name" />
           </span>
         </div>
@@ -47,7 +56,7 @@
         <small>Email</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-envelope"></i>
 						<input formGroupName="usernameInput" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editTeacher.email" />
           </span>
         </div>
@@ -56,7 +65,7 @@
         <small>Điện thoại</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-phone"></i>
 						<input formGroupName="usernameInput" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editTeacher.phone" />
           </span>
         </div>
@@ -65,7 +74,7 @@
         <small>Địa chỉ</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-map-marker"></i>
 						<input formGroupName="usernameInput" class="p-inputtext-lg" id="address" type="text" aria-describedby="username-help" pInputText name="address" [(ngModel)]="editTeacher.address" />
           </span>
         </div>
@@ -74,7 +83,7 @@
         <small>CCCD/CMDN</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-id-card"></i>
 						<input formGroupName="usernameInput" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editTeacher.identityNo" />
           </span>
         </div>
@@ -83,7 +92,7 @@
         <small>Sắp xếp</small>
         <div>
           <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-sort-numeric-down"></i>
 						<input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editTeacher.order" />
 					</span>
         </div>

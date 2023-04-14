@@ -18,6 +18,14 @@ export class ChiTietFooterComponent implements OnInit {
   Editor = ClassicEditor;
   footerId: string;
   footer : Footer = new Footer();
+  
+  positionOptions = [
+    {label: 'Liên hệ', value: 'lien-he'},
+    {label: 'Thanh toán', value: 'thanh-toan'},
+    {label: 'Footer bên trái', value: 'bottom-left'},
+    {label: 'Footer bên phải', value: 'bottom-right'}
+  ]
+
 
   constructor(
     private route : ActivatedRoute,
@@ -25,7 +33,7 @@ export class ChiTietFooterComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private messageService : MessageService
-  ) { }
+  ) { } 
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

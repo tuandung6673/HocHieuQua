@@ -27,44 +27,46 @@
         <img [src]="editClassroom.avatar ? editClassroom.avatar : defaultAvatar" width="200"/>
       </div>
     </div>
-    <div class="col-9 detail grid">
-      <div class="col-12">
-        <small>Avatar</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editClassroom.avatar" />
-          </span>
+    <div class="col-9">
+      <div class="grid detail">
+        <div class="col-12">
+          <small>Avatar</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editClassroom.avatar" />
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col-12">
-        <small>Tên lớp học</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <input formGroupName="name" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
-          </span>
+        <div class="col-12">
+          <small>Tên lớp học</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input formGroupName="name" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <small>Sắp xếp</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editClassroom.order"/>
-          </span>
+        <div class="col-6">
+          <small>Sắp xếp</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editClassroom.order"/>
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col-6 inputSwitch">
-        <label for="checked" class="block">Hiển thị</label>
-        <p-inputSwitch [(ngModel)]="editClassroom.status" name="status"></p-inputSwitch>
-      </div>
-      <div class="detail-action">
-        <div class="cancel-btn">
-          <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+        <div class="col-6 inputSwitch">
+          <label for="checked" class="block">Hiển thị</label>
+          <p-inputSwitch [(ngModel)]="editClassroom.status" name="status"></p-inputSwitch>
         </div>
-        <div class="save-btn">
-          <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+        <div class="detail-action">
+          <div class="cancel-btn">
+            <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+          </div>
+          <div class="save-btn">
+            <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+          </div>
         </div>
       </div>
     </div>

@@ -602,3 +602,48 @@ body {
     }
   }
 }
+
+.p-confirm-dialog {
+  .p-dialog-content {
+    font-size: 14px;
+  }
+  .p-dialog-footer {
+    .p-confirm-dialog-reject {
+      background: #fff;
+      color: #3B82F6;
+      font-size: 13px;
+      margin: 0 1rem 0 0 !important;
+    }
+    .p-confirm-dialog-accept {
+      font-size: 13px;
+    }
+  }
+}
+
+.p-dialog {
+  .p-multiselect  {
+    .p-multiselect-label-container {
+      display: flex;
+      align-items: center;
+    }
+    .p-multiselect-token {
+      font-size: 14px;
+      background: #007bff !important;
+      color: #fff !important;
+    }
+    .p-multiselect-token-icon {
+      font-size: 13px;
+    }
+    .p-multiselect-item {
+      font-size: 13px;
+    }
+  }
+  .p-input-icon-right {
+    .p-inputtext {
+      font-size: 14px;
+    }
+    i {
+      font-size: 14px !important;
+    }
+  }
+}
