@@ -102,7 +102,7 @@ export class MenuComponent implements OnInit {
         this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.message});
         this.getMenu();
       } else {
-        this.messageService.add({severity: 'errpr', summary: 'Thông báo', detail: response.message});
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.message});
       }
       this.displayBasic = false;
     })
