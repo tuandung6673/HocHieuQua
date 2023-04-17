@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {ImageModule} from 'primeng/image';
 import {CalendarModule} from 'primeng/calendar';
@@ -26,6 +25,7 @@ import {TabViewModule} from 'primeng/tabview';
 import {DialogModule} from 'primeng/dialog';
 import {ChipsModule} from 'primeng/chips';
 import {RatingModule} from 'primeng/rating';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {CarouselModule} from 'primeng/carousel';
 import { SwiperModule } from 'swiper/angular';
@@ -147,6 +147,7 @@ import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-
 import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
 import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
 import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
+import { ThemMonHocComponent } from './quan-tri/sua-lop-hoc/them-mon-hoc/them-mon-hoc.component';
 
 
 @NgModule({
@@ -254,11 +255,13 @@ import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
     ChiTietCauHoiComponent,
     ChiTietBaiHocComponent,
     ChiTietStepComponent,
-    StepConComponent
+    StepConComponent,
+    ThemMonHocComponent
       ],
   imports: [
     AppRoutingModule,
     CKEditorModule,
+    AutoCompleteModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

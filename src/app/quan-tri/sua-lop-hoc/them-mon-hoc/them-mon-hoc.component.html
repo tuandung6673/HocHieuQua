@@ -1,0 +1,75 @@
+<div class="detail">
+  <div class="header-2" style="margin-bottom: 10px;">
+    <div class="">Môn học trong lớp</div>
+    <div class="header-right">
+      <div class="search-btn">
+        <!-- <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/> -->
+        <!-- <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button> -->
+      </div>
+      <p-button label="Thêm mới" icon="pi pi-plus" iconPos="left" (click)="display = true"></p-button>
+    </div>
+  </div>
+
+  <p-table [value]="subjects" responsiveLayout="scroll" rowHover="true">
+    <ng-template pTemplate="header">
+      <tr>
+          <th style="width: 50px">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> 
+          <th pFrozenColumn style="width: 60px;"></th>
+          <th style="width: 150px">Hình ảnh</th>
+          <th>Tên</th>
+          <th>Thứ tự</th>
+          <th>Trạng thái</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-subject >
+      <tr>
+          <td>
+            <p-tableCheckbox [value]="subject"></p-tableCheckbox>
+          </td>
+          <td pFrozenColumn style="min-width: 60px" >
+            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+          </td>
+          <td><img [src]="subject.avatar" [alt]="subject.name" width="100" class="shadow-4" /></td>
+          <td>{{subject.name}}</td>
+          <td>
+            {{subject.order}}
+          </td>
+          <td>
+            <span class="colorful" [ngClass]="subject.status == 0 ? 'fail' : 'passed' " *ngIf="subject.status == 1">Hiển thị</span>
+            <span class="colorful" [ngClass]="subject.status == 0 ? 'fail' : 'passed' " *ngIf="subject.status == 0">Ẩn</span>
+          </td>
+      </tr>
+      <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+        <ng-template pTemplate>
+            <div class="option" (click)="editSubject(subject.id)">
+                <i class="pi pi-pencil"></i> Sửa
+            </div>
+            <div class="option" (click)="deleteSubject(subject.id)" >
+                <i class="pi pi-trash"></i> Xóa
+            </div>
+        </ng-template>
+      </p-overlayPanel>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Thêm môn vào lớp" [(visible)]="display" [style]="{width: '500px', height: '220px'}">
+  <div class="dl-wrapper"> 
+    <p style="font-size: 15px;">Môn học</p>
+    <div>
+      <p-autoComplete [(ngModel)]="selectedSubject" [showEmptyMessage]="true" field="name" [suggestions]="filteredSubject" (completeMethod)="filterCountry($event)" [minLength]="1" placeholder="Tìm kiếm môn học">
+        <ng-template let-country pTemplate="item">
+          <div class="country-item">
+              <img [src]="country.avatar"/>
+              <div>{{country.name}}</div>
+          </div>
+        </ng-template>
+      </p-autoComplete>
+    </div>
+    <div style="margin-top: 20px;">
+      <p-button (click)="addSubject()" label="Submit" icon="pi pi-check"></p-button>
+    </div>
+  </div>
+</p-dialog>

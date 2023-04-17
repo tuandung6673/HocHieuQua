@@ -15,11 +15,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
 
-  actionsParams = {
-    filter: '',
-    offSet: 0,
-    pageSize: 1000
-  }
   params = {
     filter: '',
     offSet: 0,
@@ -27,11 +22,27 @@ export class MenuComponent implements OnInit {
     screen: '',
     status: -1
   }
+  actionsParams = {
+    filter: '',
+    offSet: 0,
+    pageSize: 1000
+  }
+  adminMenuParams = {
+    filter: '',
+    offSet: 0,
+    pageSize: 1000,
+    screen: 'admin',
+    status: 1
+  }
   menus : MenusTree[] = [];
+  adminMenus : any[] = []; 
   selectMenu : MenusTree = new MenusTree();
   screenOptions : any[] = [];
   displayBasic: boolean = false;
   actionsOptions = [];
+  
+  selected : any;
+  parentSelect : any;
   abc : any;
   constructor(
     private apiSerivce: ApiService,
@@ -69,25 +80,70 @@ export class MenuComponent implements OnInit {
     this.actionList = [];
     this.displayBasic = true;
     this.getActions();
+    this.getAdminMenus();
+    console.log(menu);
+    
+    console.log(this.parentSelect);
+    
+    // this.parentSelect = menu?.parentId;
+    this.parentSelect = {
+      label: 'hahahhah',
+      value: menu?.parentId
 
+    }
     this.selectMenu = {...menu};
     this.selectMenu.name = menu?.name;
     this.selectMenu.path = menu?.path;
     this.selectMenu.parentId = menu?.parentId;
+    
     this.selectMenu.order = menu?.order;
     this.selectMenu.icon = menu?.icon;
     this.selectMenu.screen = menu?.screen;
     this.selectMenu.status = menu?.status == 1 ? true : false;
     let actions = JSON.parse(menu?.actions) as [];
-    actions.map(a => {
+    actions && actions.length > 0 && actions.map(a => {
       this.actionList.push(a['action_code'])
     })
+  }
+
+
+  buildTree = (arr : any[]) => {
+    return arr.map(t => {
+      if(t.childs && t.childs.length) {
+        t.childs = this.buildTree(t.childs)
+      }
+      const result = {
+        label: t.name,
+        value: t.id,
+        // expandedIcon: 'pi pi-fw pi-chevron-down',
+        // collapsedIcon: 'pi pi-fw pi-chevron-right',
+        children: t.childs,
+      }
+      if(result.children && result.children.length == 0) {
+        delete result.children;
+      }
+      return result
+    })
+  }
+
+  getAdminMenus() {
+    const adminQueryParams = queryString.stringify(this.adminMenuParams);
+    this.apiSerivce.getMenusTree(adminQueryParams).subscribe(response => {
+      this.adminMenus = this.buildTree(response.data.data);
+      console.log(this.buildTree(response.data.data));
+      
+    })
+  }
+
+  select(e) {
+    // this.parentSelect = e.node.value;
+    console.log(this.parentSelect);
   }
 
   saveMenu() {
     const updateData = {
       ...this.selectMenu,
-      status: this.selectMenu ? 1 : 0,
+      status: this.selectMenu.status ? 1 : 0,
       actions: JSON.stringify(this.actionList)
     }
     this.spinner.show();
@@ -128,6 +184,7 @@ export class MenuComponent implements OnInit {
 
   addNewMenu() {
     this.getActions();
+    this.getAdminMenus();
     this.selectMenu = new MenusTree();
     this.displayBasic = true;
   }

@@ -152,6 +152,10 @@ export class ApiService {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Classroom/${id}`)
   }
 
+  setClassroomSubject(data) {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Classroom/SetClassRoomSubject`, data)
+  }
+
   // Subject
   getSubject(offSet: number = 0, pageSize: number = 0, classId = '', filter = '') : Observable<BaseReponse<Subject>> {
     return this.http.get<BaseReponse<Subject>>(`${this.url}/Subject?offSet=${offSet}&pageSize=${pageSize}&classId=${classId}&filter=${filter}`)
@@ -167,6 +171,10 @@ export class ApiService {
 
   deleteSubject(id: string) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Subject/${id}`)
+  }
+
+  deleteSubjectFromClass(classId, subjectId) { 
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Subject/DeleteSubject/${classId}/${subjectId}`)
   }
 
   // Home

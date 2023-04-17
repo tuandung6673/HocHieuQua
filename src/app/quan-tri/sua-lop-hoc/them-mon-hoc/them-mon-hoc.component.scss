@@ -1,0 +1,28 @@
+.country-item {
+  display: flex;
+  img {
+    margin-right: 20px;
+    width: 120px;
+    height: 80px;
+    object-fit: contain;
+  }
+  div {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.dl-wrapper {
+  ::ng-deep {
+    .p-button {
+      float: right;
+      height: 35px;
+      width: 100px;
+      font-size: 14px;
+    }
+    .p-button-icon {
+      font-size: 14px;
+    }
+  }
+}

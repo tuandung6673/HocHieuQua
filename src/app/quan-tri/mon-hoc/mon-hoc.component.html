@@ -42,33 +42,33 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-subject >
-        <tr>
-            <td>
-              <p-tableCheckbox [value]="subject"></p-tableCheckbox>
-            </td>
-            <td pFrozenColumn style="min-width: 60px" >
-              <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
-            </td>
-            <td><img [src]="subject.avatar" [alt]="subject.name" width="100" class="shadow-4" /></td>
-            <td>{{subject.name}}</td>
-            <td>
-              {{subject.order}}
-            </td>
-            <td>
-              <span class="colorful" [ngClass]="subject.status == 0 ? 'fail' : 'passed' " *ngIf="subject.status == 1">Hiển thị</span>
-              <span class="colorful" [ngClass]="subject.status == 0 ? 'fail' : 'passed' " *ngIf="subject.status == 0">Ẩn</span>
-            </td>
-            <td>{{subject.classRooms}}</td>
-        </tr>
-        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
-          <ng-template pTemplate>
-              <div class="option" [routerLink]="[subject.id]">
-                  <i class="pi pi-pencil"></i> Sửa
-              </div>
-              <div class="option" (click)="confirmDeleteSubject(subject.id)">
-                  <i class="pi pi-trash"></i> Xóa
-              </div>
-          </ng-template>
+      <tr>
+          <td>
+            <p-tableCheckbox [value]="subject"></p-tableCheckbox>
+          </td>
+          <td pFrozenColumn style="min-width: 60px" >
+            <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+          </td>
+          <td><img [src]="subject.avatar" [alt]="subject.name" width="100" class="shadow-4" /></td>
+          <td>{{subject.name}}</td>
+          <td>
+            {{subject.order}}
+          </td>
+          <td>
+            <span class="colorful" [ngClass]="subject.status == 0 ? 'fail' : 'passed' " *ngIf="subject.status == 1">Hiển thị</span>
+            <span class="colorful" [ngClass]="subject.status == 0 ? 'fail' : 'passed' " *ngIf="subject.status == 0">Ẩn</span>
+          </td>
+          <td>{{subject.classRooms}}</td>
+      </tr>
+      <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+        <ng-template pTemplate>
+            <div class="option" [routerLink]="[subject.id]">
+                <i class="pi pi-pencil"></i> Sửa
+            </div>
+            <div class="option" (click)="confirmDeleteSubject(subject.id)">
+                <i class="pi pi-trash"></i> Xóa
+            </div>
+        </ng-template>
       </p-overlayPanel>
     </ng-template>
   </p-table>

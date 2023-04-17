@@ -313,6 +313,12 @@ body {
   }
 }
 
+@media only screen and (max-width: 1100px) {
+  .p-tree-selectable {
+    width: 48vw !important;
+  }
+}
+
 .dialog-wrapper {
   .p-input-icon-right {
     width: 100%;
@@ -334,6 +340,29 @@ body {
   small {
     font-size: 14px;
     padding-left: 5px;
+  }
+  .p-treeselect {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    .p-tree-selectable {
+      z-index: 100;
+      position: fixed;
+      width: 530px;
+      border: 1px solid #dee2e6 !important;
+    }
+    .p-treenode-content {
+      font-size: 14px;
+    }
+    .p-tree-toggler-icon {
+      font-size: 14px;
+    }
+    .p-highlight {
+      background: #007bff;
+      color: #fff;
+    }
   }
 }
 .p-dialog {
@@ -645,5 +674,21 @@ body {
     i {
       font-size: 14px !important;
     }
+  }
+}
+
+.p-autocomplete {
+  width: 100%;
+  .p-autocomplete-input {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+  }
+  .p-autocomplete-items {
+    z-index: 1000;
+    position: fixed;
+    width: 470px;
+    background: #fff;
+    border: 1px solid #dee2e6;
   }
 }
