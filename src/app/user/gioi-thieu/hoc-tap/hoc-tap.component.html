@@ -1,5 +1,7 @@
 <div *ngFor="let danhmuc of newsCategory">
   <div class="danhmuc-item" [routerLink]="['/gioi-thieu/danh-muc', danhmuc.id]">
-    <p class="text"><i style="margin-right: 5px;" class="pi pi-book"></i>{{danhmuc.name}}</p>
+    <p class="text">
+      <img src="https://hochieuqua7.web.app/images/common/icons/blue/ecommerce/3537047.png" />
+      {{danhmuc.name}}</p>
   </div>
 </div>

@@ -37,8 +37,11 @@ img {
   grid-template-columns: 2fr 1fr;
 }
 
-.infor i {
-  font-size: 14px;
+.infor img {
+  /* font-size: 14px; */
+  padding: 0;
+  width: 16px;
+  height: 16px;
 }
 
 .date {

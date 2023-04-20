@@ -11,6 +11,7 @@ export class TongQuanItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.course.rating = 5;
   }
 
 }

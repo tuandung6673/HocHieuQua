@@ -76,6 +76,7 @@ export class TatCaKhoaHocComponent implements OnInit {
     this.spinner.show();
     this.apiService.getCourseUser(queryParams).subscribe(response => {
       this.courses = response.data.data;
+      this.courses.map(c => c.rating = 5)
       this.spinner.hide();
     })
   }

@@ -4,11 +4,14 @@
   margin-bottom: 10px;
   transition: .4s ease-in-out;
   box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
+  .image {
+    border-radius: 10px;
+  }
+  p {
+    margin-top: 10px;
+  }
   &:hover {
     cursor: pointer;
     box-shadow: 0 5px 10px -3px #1b4ead
-  }
-  .image {
-    border-radius: 10px;
   }
 }

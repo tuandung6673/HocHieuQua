@@ -21,3 +21,11 @@
   overflow: hidden;
   text-overflow: ellipsis
 }
+
+.description {
+  padding-top: 8px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

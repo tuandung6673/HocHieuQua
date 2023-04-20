@@ -6,9 +6,12 @@
 
 .test {
   padding: 20px 5px;
+  cursor: pointer;
   margin: 0 10px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #0d89ec29;
+  border-left: 1px solid #0d89ec29;
   &:hover {
     background: #0d89ec0f;
   }
@@ -16,19 +19,27 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    p {
-      font-size: 13px;
+    .test-name {
+      font-size: 15px;
+      margin: 0 !important;
+      display: flex;
+      align-items: center;
     }
-    i {
-      padding: 5px;
-      font-size: 17px;
-      border: 1px solid gray;
-      border-radius: 100%;
-      &:hover {
-        transition: .3s ease-in-out;
-        color: #fff;
-        background-color: rgb(118, 118, 219);
-      }
+    img {
+      width: 31px;
+      height: 31px;
+      cursor: pointer;
     }
+    // i {
+    //   padding: 5px;
+    //   font-size: 17px;
+    //   border: 1px solid gray;
+    //   border-radius: 100%;
+    //   &:hover {
+    //     transition: .3s ease-in-out;
+    //     color: #fff;
+    //     background-color: rgb(118, 118, 219);
+    //   }
+    // }
   }
 }

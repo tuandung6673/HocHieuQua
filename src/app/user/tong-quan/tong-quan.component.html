@@ -14,7 +14,7 @@
 
 <br>
 
-<div class="user-wrapper" *ngFor="let subject of home?.subjects">
+<div class="user-wrapper tong-quan-subject" *ngFor="let subject of home?.subjects">
   <app-tong-quan-subject [subject]="subject"></app-tong-quan-subject>
 </div>
 
@@ -181,23 +181,25 @@
 </div>
 
 <div class="teacher user-wrapper">
-  <div class="header-title">
+  <div class="header-title title">
     <span>Đội ngũ giáo viên</span>
+    <div class="empty-title"></div>
   </div>
   <app-teacher [home]="home"></app-teacher>
   <div class="view-all">
-    <p [routerLink]="['/giao-vien']">Xem tất cả <i class="pi pi-fast-forward"></i></p>
+    <b [routerLink]="['/giao-vien']">Xem tất cả <i class="pi pi-fast-forward"></i></b>
   </div>
 </div>
 
 <div class="quizs" style="width: 100%">
   <div class="user-wrapper">
-    <div class="header-title">
-      <span>Đố vui</span> 
+    <div class="header-title title">
+      <span>Đố vui</span>
+      <div class="empty-title"></div> 
     </div>
     <app-quiz [home]="home"></app-quiz>
     <div class="view-all">
-      <p [routerLink]="['/gioi-thieu']">Xem tất cả <i class="pi pi-fast-forward"></i></p>
+      <b [routerLink]="['/gioi-thieu']">Xem tất cả <i class="pi pi-fast-forward"></i></b>
     </div>
   </div>
 </div>

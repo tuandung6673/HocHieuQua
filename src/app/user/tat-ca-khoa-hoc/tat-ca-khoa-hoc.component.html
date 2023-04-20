@@ -23,8 +23,8 @@
             <p-rating [(ngModel)]="course.rating" [cancel]="false" [readonly]="true"></p-rating>
           </div>
           <div class="price">
-            <div *ngIf="course.priceDiscount != 0" class="priceDiscount">{{course.priceDiscount | number}}</div>
-            <div class="final-price">{{course.price | number}}đ</div>
+            <div *ngIf="course.priceDiscount != 0" class="priceDiscount">{{course.priceDiscount | number}} đ</div>
+            <div class="final-price">{{course.price | number}} đ</div>
           </div>
         </div>
       </div>

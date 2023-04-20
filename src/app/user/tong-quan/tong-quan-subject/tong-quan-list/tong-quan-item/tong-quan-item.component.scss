@@ -17,6 +17,9 @@
 
 .info {
   height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .course-name { 
@@ -26,6 +29,10 @@
   letter-spacing: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #0069da;
+  font-size: 17px;
+  font-weight: 700;
+  padding-top: 8px;
 }
 
 .description {
