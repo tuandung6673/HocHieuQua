@@ -1,29 +1,28 @@
-.abc {
-  margin: 5px 0 5px 0;
-}
-
-.abc i {
-  font-size: 13px;
-}
-
 .options {
   font-size: 18px;
-}
-
-.options div {
-  padding: 8px 0 8px 5px;
-  cursor: pointer;
-} 
-
-.options div:hover {
-  /* background-color: blue; */
-  text-decoration: underline;
+  div {
+    margin: 3px 0;
+    border: 2px solid #fff;
+    padding: 8px 0 8px 5px;
+    cursor: pointer;
+    &:hover {
+      border: 2px solid #008ee2;
+      color: #008ee2;
+      border-radius: 10px;
+    }
+  } 
+  img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .activee {
-  border: 1px solid rgb(175, 175, 226);
+  background: #01a2ff25;
+  border: 2px solid #008ee2 !important;
   border-radius: 10px;
-  color: rgb(65, 65, 182);
+  color: #008ee2;
 }
 
 .passInput {

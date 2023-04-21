@@ -8,8 +8,14 @@
         <div class="main-title">Các đề ôn thi hay</div>
       </div>
       <div class="header-right">
-        <p-dropdown [options]="classList" label="Lớp học" [(ngModel)]="classId" (onChange)="getSubject(classId)"></p-dropdown>
-        <p-dropdown [options]="subjectList" label="Môn học" [(ngModel)]="subjectId" (onChange)="getTest()"></p-dropdown>
+        <div class="filter">
+          <span>Lớp học</span>
+          <p-dropdown [options]="classList" label="Lớp học" [(ngModel)]="classId" (onChange)="getSubject(classId)"></p-dropdown>
+        </div>
+        <div class="filter">
+          <span>Môn học</span>
+          <p-dropdown [options]="subjectList" label="Môn học" [(ngModel)]="subjectId" (onChange)="getTest()"></p-dropdown>
+        </div>
       </div>
     </div>
   </div>

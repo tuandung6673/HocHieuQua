@@ -8,7 +8,7 @@ import * as queryString from 'querystring-es3';
 @Component({
   selector: 'app-kich-hoat-khoa-hoc',
   templateUrl: './kich-hoat-khoa-hoc.component.html',
-  styleUrls: ['./kich-hoat-khoa-hoc.component.css']
+  styleUrls: ['./kich-hoat-khoa-hoc.component.scss']
 })
 export class KichHoatKhoaHocComponent implements OnInit {
 

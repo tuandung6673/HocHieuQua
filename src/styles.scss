@@ -79,6 +79,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: end;
+    .filter {
+      .p-dropdown {
+        width: 100%;
+      }
+    }
     > * {
       margin: 0 5px;
     }
@@ -207,12 +212,14 @@ body {
   color: rgba(43,47,51,.4);
   font-weight: 500;
   span {
+    font-size: 16px;
     i {
+      margin: 0;
       font-size: 16px;
     }
   }
   i {
-    margin: 0 5px;
+    margin: 0 10px;
   }
   i:hover {
     cursor: pointer;
@@ -690,4 +697,16 @@ body {
     background: #fff;
     border: 1px solid #dee2e6;
   }
+}
+
+.info-input {
+    p {
+      // margin: 0 !important;
+      margin: 0 0 3px 10px !important;
+    }
+    .p-inputtext {
+      height: 40px;
+      font-size: 16px;
+      padding-left: 15px;
+    }
 }

@@ -8,7 +8,7 @@ import * as queryString from 'querystring-es3';
 @Component({
   selector: 'app-khoa-hoc-cua-toi',
   templateUrl: './khoa-hoc-cua-toi.component.html',
-  styleUrls: ['./khoa-hoc-cua-toi.component.css']
+  styleUrls: ['./khoa-hoc-cua-toi.component.scss']
 })
 export class KhoaHocCuaToiComponent implements OnInit {
 

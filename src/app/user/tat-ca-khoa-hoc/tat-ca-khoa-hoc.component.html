@@ -8,8 +8,14 @@
         <div class="main-title">Danh sách Khóa học</div>
       </div>
       <div class="header-right">
-        <p-dropdown [options]="classList" label="Lớp học" [(ngModel)]="params.classId" (onChange)="getSubject(params.classId)"></p-dropdown>
-        <p-dropdown [options]="subjectList" label="Môn học" [(ngModel)]="params.subjectId" (onChange)="getCourse()"></p-dropdown>
+        <div class="filter">
+          <span>Lớp học</span>
+          <p-dropdown [options]="classList" label="Lớp học" [(ngModel)]="params.classId" (onChange)="getSubject(params.classId)"></p-dropdown>
+        </div>
+        <div class="filter">
+          <span>Môn học</span>
+          <p-dropdown [options]="subjectList" label="Môn học" [(ngModel)]="params.subjectId" (onChange)="getCourse()"></p-dropdown>
+        </div>
       </div>
     </div>
   </div>

@@ -1,25 +1,28 @@
-.abc {
-  margin: 5px 0 5px 0;
-  i {
-  font-size: 13px;
-  }
-}
-
 .options {
   font-size: 18px;
   div {
+    margin: 3px 0;
+    border: 2px solid #fff;
     padding: 8px 0 8px 5px;
     cursor: pointer;
     &:hover {
-      text-decoration: underline;
+      border: 2px solid #008ee2;
+      color: #008ee2;
+      border-radius: 10px;
     }
+  } 
+  img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
   }
 }
 
 .activee {
-  border: 1px solid rgb(175, 175, 226);
+  background: #01a2ff25;
+  border: 2px solid #008ee2 !important;
   border-radius: 10px;
-  color: rgb(65, 65, 182);
+  color: #008ee2;
 }
 
 @mixin inputText {
@@ -32,7 +35,7 @@
 }
 
 .passInput {
-  margin: 10px;
+  margin: 5px 10px;
   span {
     color: red;
   }
@@ -48,7 +51,12 @@
   margin-top: 30px;
   ::ng-deep {
     .p-button {
-      @include butTon()
+      height: 35px;
+      width: 100%;
+      border-radius: 30px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
     }
   }
 }
@@ -56,4 +64,9 @@
 .warning {
   margin-left: 10px;
   color: red;
+  padding-top: 3px !important;
+  height: 18px;
+  p {
+    line-height: 15px;
+  }
 }
