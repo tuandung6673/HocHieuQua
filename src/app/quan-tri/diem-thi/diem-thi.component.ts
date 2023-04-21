@@ -103,8 +103,28 @@ export class DiemThiComponent implements OnInit {
     })
   }
 
+  courseQuery = {
+    teacherId: '',
+    classId: '',
+    offSet: 0,
+    pageSize: 100,
+    filter: '',
+    status: -1,
+    isPayment: -1,
+    accountId: '',
+    subjectId: '',
+    callFromAdmin: 1
+  }
+
   getCourseOption() {
-    this.apiService.getCourse('', this.query.classId,0, 100, '',-1, -1, '', this.query.subjectId, 1).subscribe(response => {
+    const query = {
+      ...this.courseQuery,
+      classId: this.query.classId,
+      subjectId: this.query.subjectId
+    };
+    const queryParams = queryString.stringify(query)
+
+    this.apiService.getCourse(queryParams).subscribe(response => {
       this.courseOptions = response.data.data.map(c => {
         return {
           label: c.name,

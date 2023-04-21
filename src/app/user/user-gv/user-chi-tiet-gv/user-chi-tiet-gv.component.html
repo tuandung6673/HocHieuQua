@@ -1,6 +1,6 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 
-<div class="wrapper">
+<div class="user-wrapper">
   <div class="banner">
     <img class="backgr" src="https://hochieuqua7.web.app/images/user/chi-tiet-giao-vien/cover.jpg"/>
     <div class="info">
@@ -25,7 +25,8 @@
     </div>
   </div>
   <div class="detail">
-    <div style="padding: 15px;" [innerHTML]="detailTeacher.description"></div>
+    <h3>Thông tin giảng viên</h3>
+    <div style="padding: 15px;" [innerHTML]="detailTeacher.descriptionShort"></div>
   </div>
   <div>
     <div class="header">

@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import * as queryString from 'querystring-es3';
+
 
 @Component({
   selector: 'app-course',
@@ -42,7 +44,8 @@ export class CourseComponent implements OnInit {
   
   getCourses() {
     this.spinner.show();
-    this.apiService.getCourse(this.params.teacherId, this.params.classId, this.params.offSet, this.params.pageSize, this.params.filter, this.params.status, this.params.isPayment, this.params.accountId, this.params.subjectId)
+    const queryParams = queryString.stringify(this.params);
+    this.apiService.getCourse(queryParams)
     .pipe(
       finalize(() => {
         this.spinner.hide();

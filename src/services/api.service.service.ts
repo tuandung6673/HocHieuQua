@@ -46,10 +46,12 @@ import { TestUser } from 'src/models/testUser.model';
 export class ApiService {
 
   private url = environment.baseUrl;
-
+  token : string = '';
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    this.token = localStorage.getItem('userToken')
+  }
 
   // Account
   getAccounts(queryParams): Observable<BaseReponse<Account>> {
@@ -252,8 +254,12 @@ export class ApiService {
   }
 
   // Course
-  getCourse(teacherId = '', classId = '', offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, accountId = '', subjectId = '', callFromAdmin: number = 1) : Observable<BaseReponse<Course>> {
-    return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}&callFromAdmin=${callFromAdmin}`)
+  // getCourse(teacherId = '', classId = '', offSet: number = 0, pageSize: number = 10, filter = '', status: number = -1, isPayment: number = -1, accountId = '', subjectId = '', callFromAdmin: number = 1) : Observable<BaseReponse<Course>> {
+  //   return this.http.get<BaseReponse<Course>>(`${this.url}/Course?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&status=${status}&isPayment=${isPayment}&teacherId=${teacherId}&accountId=${accountId}&subjectId=${subjectId}&classId=${classId}&callFromAdmin=${callFromAdmin}`)
+  // }
+
+  getCourse(queryParams) : Observable<BaseReponse<Course>> {
+    return this.http.get<BaseReponse<Course>>(`${this.url}/Course?` + queryParams)
   }
 
   getCourseById(id: string = '', queryParams) : Observable<BaseRetail<Course>> {
@@ -262,6 +268,10 @@ export class ApiService {
 
   getCourseUser(queryParams) : Observable<BaseReponse<Course>> {
     return this.http.get<BaseReponse<Course>>(`${this.url}/Course/GetCoursesUser?` + queryParams)
+  }
+
+  getMyCourse() {
+    return this.http.get(`${this.url}/Course/GetMyCourse`)
   }
 
   postCourse(data: Course) {
@@ -484,7 +494,13 @@ export class ApiService {
 
   // Notificatiion
   getNotification(queryParams) : Observable<BaseReponse<Notification>> {
-    return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification?` + queryParams)
+    return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification?` + queryParams, 
+      // {
+      //   headers: {
+      //     'authorization' : 'Bearer' + this.token
+      //   }
+      // }
+    )
   }
 
   getNotificationById(id:string) : Observable<BaseRetail<Notification>> {
