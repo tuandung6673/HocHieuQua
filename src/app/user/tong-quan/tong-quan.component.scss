@@ -5,7 +5,7 @@
     position: relative;
   }
   ::ng-deep .p-carousel-prev {
-    z-index: 100;
+    z-index: 1;
     position: absolute;
     color: white;
     padding: 18px;
@@ -16,7 +16,7 @@
   }
   ::ng-deep .p-carousel-next {
     right: 0;
-    z-index: 100;
+    z-index: 1;
     position: absolute;
     color: white;
     padding: 18px;

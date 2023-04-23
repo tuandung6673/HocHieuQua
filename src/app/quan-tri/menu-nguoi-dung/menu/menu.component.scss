@@ -26,3 +26,11 @@
     align-items: center;
   }
 }
+
+.menuAdmin {
+  ::ng-deep {
+    .p-datatable-wrapper {
+      max-height: 60vh !important;
+    }
+  }
+}

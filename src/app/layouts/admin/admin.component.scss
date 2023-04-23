@@ -1,5 +1,6 @@
 
 .wrapper {
+  padding-top: 107px !important;
   width: 70%;
   margin: 0 auto;
   z-index: -1000;
@@ -8,6 +9,14 @@
 @media only screen and (max-width: 1280px) {
   .wrapper {
     width: 95%;
+    padding-top: 107px !important;
     margin: 0 auto;
   }
+}
+
+.app-header {
+  position: fixed;
+  top: 70px;
+  width: 100%;
+  z-index: 10;
 }

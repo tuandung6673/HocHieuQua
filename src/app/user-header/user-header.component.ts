@@ -6,7 +6,7 @@ import { TRISTATECHECKBOX_VALUE_ACCESSOR } from 'primeng/tristatecheckbox';
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
-  styleUrls: ['./user-header.component.css']
+  styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent implements OnInit {
 
