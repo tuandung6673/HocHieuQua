@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="grid">
-    <div class="grid col-3">
+    <div class="grid col-3" style="height: fit-content;">
       <div class="col-12 avatar flex justify-content-center">
         <img src="https://hochieuqua7.web.app/images/menu/account.png" width="100px" height="100px">
       </div>
@@ -32,7 +32,136 @@
     <div class="grid col-9">
       <div class="col-12">
         <h4>Quá trình học tập</h4>
+        <div class="grid">
+          <div class="col-4 qtht-left">
+            <p-dropdown placeholder="Chọn khóa học" [options]="myCourseOption" [(ngModel)]="selectCourse" (onChange)="getProcess()"></p-dropdown>
+          </div>
+          <div class="col-8 text-right">
+            <div>Hoàn thành khóa học</div>
+            <div class="passStatus">Hoàn thành</div>
+          </div>
+        </div>
+        <!-- <div class="wrapper">
+          <p-table  [value]="myStudyProcess" responsiveLayout="scroll" rowHover="true" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 2.25em" pFrozenColumn></th> 
+                <th>Tên</th>
+                <th style="width: 120px">Hoàn thành</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-process let-expanded="expanded">
+              <tr>
+                <td pFrozenColumn style="width: 2.25em">
+                  <button *ngIf="process.tests.length" type="button" pButton pRipple [pRowToggler]="menu" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                </td>
+                <td>{{process.name}}</td>
+                <td style="width: 120px">
+                  <span class="colorful" [ngClass]="process.isPass ? 'passed' : 'fail' " *ngIf="process.isPass">Qua</span>
+                  <span class="colorful" [ngClass]="!process.isPass ? 'fail' : 'passed' " *ngIf="!process.isPass">Trượt</span>
+                </td>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="rowexpansion" let-process let-expanded="expanded">
+              <tr>
+                <td colspan="7">
+                  <div class="p-p-3">
+                    <p-table [value]="process.tests" dataKey="id" rowHover="true">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th>Tên</th>
+                          <th>Loại bài</th>
+                          <th>Qua môn</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-test>
+                        <tr>
+                          <td>{{test.name}}</td>
+                          <td>{{test.testCategoryName}}</td>
+                          <td>
+                            <span class="colorful" [ngClass]="test.isTestPass  ? 'passed' : 'fail' " *ngIf="test.isTestPass">Qua</span>
+                            <span class="colorful" [ngClass]="!test.isTestPass  ? 'fail' : 'passed' " *ngIf="!test.isTestPass">Trượt</span>
+                          </td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" >
+              <tr *ngIf="selectCourse">
+                <td colspan="6">Không có bản ghi nào</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div> -->
+        <div class="wrapper" style="margin-top: 10px;">
+          <p-table [value]="myStudyProcess" responsiveLayout="scroll" rowHover="true" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 2.25em" pFrozenColumn>
+                </th> 
+                <th>Tên</th>
+                <th style="width: 120px">Hoàn thành</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-process let-expanded="expanded">
+              <tr>
+                <td pFrozenColumn>
+                  <button *ngIf="process.tests.length" type="button" pButton pRipple [pRowToggler]="process" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                </td>
+                <td>{{process.name}}</td>
+                <td style="width: 120px">
+                  <span class="colorful" [ngClass]="process.isPass ? 'passed' : 'fail' " *ngIf="process.isPass ">Qua</span>
+                  <span class="colorful" [ngClass]="process.isPass ? 'passed' : 'fail' " *ngIf="!process.isPass ">Trượt</span>
+                </td>
+              </tr>
+            </ng-template>
         
+            <ng-template pTemplate="rowexpansion" let-process let-expanded="expanded">
+              <tr>
+                  <td colspan="7">
+                      <div class="p-p-3">
+                          <p-table [value]="process.tests" dataKey="id" rowHover="true">
+                              <ng-template pTemplate="header">
+                                  <tr>
+                                    <th>Tên</th>
+                                    <th style="width: 120px;">Loại bài</th>
+                                    <th style="width: 120px;">Qua môn</th>
+                                  </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-test>
+                                  <tr>
+                                    <td >
+                                        {{test.name}}
+                                    </td>
+                                    <td style="width: 120px;">{{test.testCategoryName}}</td>
+                                    <td  style="width: 120px;">
+                                      <span class="colorful" [ngClass]="test.isTestPass == 0 ? 'fail' : 'passed' " *ngIf="test.isTestPass">Qua</span>
+                                      <span class="colorful" [ngClass]="test.isTestPass == 0 ? 'fail' : 'passed' " *ngIf="!test.isTestPass ">Trượt</span>
+                                    </td>
+                                  </tr>
+                                  
+                              </ng-template>
+                              <ng-template pTemplate="emptymessage">
+                                  <tr>
+                                      <td colspan="6">Không có bản ghi nào</td>
+                                  </tr>
+                              </ng-template>
+                          </p-table>
+                      </div>
+                  </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr *ngIf="selectCourse">
+                  <td colspan="6">Không có bản ghi nào</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
       </div>
     </div>
   </div>

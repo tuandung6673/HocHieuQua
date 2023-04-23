@@ -52,3 +52,26 @@
   margin-left: 10px;
   color: red;
 }
+
+.qtht-left {
+  ::ng-deep .p-dropdown {
+    border: 1px solid #f1f1fc;
+    height: 40px;
+    width: 100%;
+    .p-dropdown-label {
+      font-size: 15px;
+      border-radius: 0;
+      background: #f7f7fc;
+    }
+    .p-dropdown-trigger {
+      background: #f7f7fc;
+      font-size: 15px;
+      // border: 1px solid #f1f1fc;
+      // border-left: none;
+    }
+  }
+}
+
+.passStatus {
+  color: #015fbd;
+}

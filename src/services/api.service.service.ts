@@ -271,7 +271,7 @@ export class ApiService {
   }
 
   getMyCourse() {
-    return this.http.get(`${this.url}/Course/GetMyCourse`)
+    return this.http.get<any>(`${this.url}/Course/GetMyCourse`)
   }
 
   postCourse(data: Course) {
@@ -285,6 +285,10 @@ export class ApiService {
   // CourseSchedule
   getCourseSchedule(offSet: number = 0, pageSize: number = 1000, courseId: string, filter = '') : Observable<BaseReponse<CourseSchedule>> {
     return this.http.get<BaseReponse<CourseSchedule>>(`${this.url}/CourseSchedule?offSet=${offSet}&pageSize=${pageSize}&courseId=${courseId}&filter=${filter}`)
+  }
+
+  getStudyProcess(queryParams) : Observable<BaseReponse<CourseSchedule>> {
+    return this.http.get<BaseReponse<CourseSchedule>>(`${this.url}/CourseSchedule/GetStudyProcess?` + queryParams)
   }
 
   postCourseSchedule(data : CourseSchedule) {
