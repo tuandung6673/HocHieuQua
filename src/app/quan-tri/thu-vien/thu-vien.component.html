@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
+      <i>/</i>
+      <span>Quản trị</span>
+      <i>/</i>
+      <span class="active">Thư viện</span>
+    </div>
+    <div class="header-2">
+      <div class="header-left">
+        <div class="empty"></div>
+        <div class="main-title">Quản lý Thư viện</div>
+      </div>
+      <div class="header-right">
+        <!-- <div class="search-btn">
+          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+        </div>
+        <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left" (click)="op2.toggle($event)"></p-button>
+        <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-3">
+      <div class="rootFolder">
+        <p-button (click)="showBasicDialog(true)" label="Thư mục gốc" icon="pi pi-folder"></p-button>
+      </div>
+      <p-tree [value]="dataOption" selectionMode="single" [(selection)]="selectItem" (onNodeSelect)="nodeSelect($event)"></p-tree>
+    </div>
+    <div class="col-9">
+      <div class="rootFolder right" *ngIf="!!selectItem">
+        <p-button style="margin-right: 10px !important;" label="Thêm file" icon="pi pi-file"></p-button>
+        <p-button (click)="showBasicDialog(false)" label="Thêm thư mục" icon="pi pi-folder"></p-button>
+      </div>
+      <div class="fileWrapper">
+        <div class="fileItem" *ngFor="let file of listFiles">
+          <div class="image">
+            <img [src]="file.url" />
+          </div>
+          <div class="options">
+            <i style="margin-left: 5px; display: flex; align-items: center;" *ngIf="file.type == 'image'" class="pi pi-images"></i>
+            <i style="margin-left: 5px; display: flex; align-items: center;" *ngIf="file.type != 'image'" class="pi pi-video"></i>
+            <div class="action">
+              <i style="color: #007bff;" class="pi pi-check"></i>
+              <i style="color: #dc3545;" class="pi pi-times"></i>
+            </div>
+          </div>
+          <div class="name">
+            <small>{{file.name}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Thêm thư mục" [(visible)]="displayBasic" [style]="{width: '45vw'}">
+  <div class="dialog-field">
+    <div>Tên thư mục</div>
+    <input type="text" pInputText [(ngModel)]="nameFolder"> 
+  </div>
+  <div class="dialog-btn">
+    <p-button (click)="addFolder()" label="Lưu lại" icon="pi pi-check"></p-button>
+  </div>
+</p-dialog>

@@ -18,6 +18,7 @@ export class LogInOutComponent implements OnInit, OnDestroy{
   username : string;
   password : string;
   delay: any;
+  show : boolean = false;
   constructor(private authService: AuthService, private router: Router, private message: MessageService) { }
 
   ngOnInit(): void {
@@ -48,6 +49,10 @@ export class LogInOutComponent implements OnInit, OnDestroy{
       }
       
     })
+  }
+
+  toggleEye() {
+    this.show = !this.show;
   }
 
   ngOnDestroy(): void {

@@ -710,3 +710,18 @@ body {
       padding-left: 15px;
     }
 }
+
+.p-tree-wrapper {
+  .p-treenode-content {
+    padding: 10px 0 !important;
+    .p-tree-toggler {
+      margin-left: 10px;
+    }
+  }
+  .p-treenode-icon {
+    font-size: 16px;
+  }
+  .p-treenode-label {
+    font-size: 15px;
+  }
+}

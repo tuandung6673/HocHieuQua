@@ -148,6 +148,7 @@ import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc
 import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
 import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
 import { ThemMonHocComponent } from './quan-tri/sua-lop-hoc/them-mon-hoc/them-mon-hoc.component';
+import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
 
 
 @NgModule({
@@ -256,7 +257,8 @@ import { ThemMonHocComponent } from './quan-tri/sua-lop-hoc/them-mon-hoc/them-mo
     ChiTietBaiHocComponent,
     ChiTietStepComponent,
     StepConComponent,
-    ThemMonHocComponent
+    ThemMonHocComponent,
+    ThuVienComponent
       ],
   imports: [
     AppRoutingModule,

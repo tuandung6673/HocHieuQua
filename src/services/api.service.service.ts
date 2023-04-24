@@ -39,6 +39,7 @@ import { Notification } from 'src/models/notification.model';
 import { TestCategory } from 'src/models/testCategory.model';
 import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
 import { TestUser } from 'src/models/testUser.model';
+import { LibraryFolder } from 'src/models/libraryFolder.model';
 
 @Injectable({
   providedIn: 'root'
@@ -538,5 +539,18 @@ export class ApiService {
 
   deleteStep(id : string) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/step/${id}`)
+  }
+
+  // Library
+  getLibraryFolder(queryParams) : Observable<BaseReponse<LibraryFolder>> {
+    return this.http.post<BaseReponse<LibraryFolder>>(`${this.url}/Library/GetLibrariesFolder`, queryParams)
+  }
+
+  getLibraryFile(queryParams) : Observable<BaseReponse<LibraryFolder>> {
+    return this.http.post<BaseReponse<LibraryFolder>>(`${this.url}/Library/GetLibrariesFile`, queryParams)
+  }
+
+  setLibrary(data) {
+    return this.http.post<Message>(`${this.url}/Library/SetLibrary`, data)
   }
 }

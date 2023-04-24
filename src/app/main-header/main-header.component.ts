@@ -103,6 +103,10 @@ export class MainHeaderComponent implements OnInit {
     }
     if(noti.isRead == 0) {
       this.apiService.setNotiRead(noti.id).subscribe();
+      const reload = setTimeout(() => {
+        this.getNotification()
+      }, 1000);
+      clearTimeout(reload);
     }
   }
 

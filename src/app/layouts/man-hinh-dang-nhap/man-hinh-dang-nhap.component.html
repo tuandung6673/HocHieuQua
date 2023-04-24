@@ -13,7 +13,7 @@
         <div class="passField">
           <input *ngIf="show" type="text" placeholder="Nhập mật khẩu" [(ngModel)]="query.password"/>
           <input *ngIf="!show" type="password" placeholder="Nhập mật khẩu" [(ngModel)]="query.password"/>
-          <div (click)="toggleEye()" >
+          <div class="eye" (click)="toggleEye()" >
             <i *ngIf="show" class="pi pi-eye"></i>
             <i *ngIf="!show" class="pi pi-eye-slash"></i>
           </div>

@@ -93,15 +93,11 @@
 ::ng-deep .p-input-icon-left {
   width: 100%;
   height: 40px;
-  i {
-    font-size: 14px;
-  }
 }
 
 ::ng-deep .input-username .p-inputtext {
   width: 100%;
   height: 40px;
-  font-size: 14px;
 }
 
 ::ng-deep .input-password .p-inputtext {
@@ -119,3 +115,27 @@
   margin-top: 10px;
 }
 
+::-ms-reveal {
+  display: none;
+}
+
+.field {
+  input {
+    padding-left: 30px;
+    font-size: 15px;
+  }
+  i {
+    font-size: 15px;
+  }
+}
+
+.passwordField {
+  position: relative;
+  .eye {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    transform:translate(-50%,-50%);
+  }
+}
