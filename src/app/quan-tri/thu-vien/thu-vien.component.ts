@@ -86,13 +86,17 @@ export class ThuVienComponent implements OnInit {
     }
     this.apiService.setLibrary(data)
     .pipe(
-      finalize(() => this.nameFolder = null)
+      finalize(() => {
+        this.nameFolder = null;
+        this.displayBasic = false;
+      })
     )
     .subscribe(response => {
       if(response.status == 'success') {
-        this.messageService.add({})
+        this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.message});
+        this.getLibraryFolder();
       } else {
-        this.messageService.add({})
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.message})
       }
     })    
   }
