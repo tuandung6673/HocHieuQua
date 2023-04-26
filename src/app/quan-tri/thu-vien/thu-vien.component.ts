@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
@@ -10,7 +10,8 @@ import { ApiService } from 'src/services/api.service.service';
   templateUrl: './thu-vien.component.html',
   styleUrls: ['./thu-vien.component.scss']
 })
-export class ThuVienComponent implements OnInit {
+export class ThuVienComponent implements OnInit, AfterViewInit {
+  @ViewChild('rootFolder') treeElement: ElementRef;
   queryParams = {
     callFromAdmin : 1,
     folderId: '',
@@ -21,14 +22,19 @@ export class ThuVienComponent implements OnInit {
   selectItem : any;
   listFiles : LibraryFolder[] = [];
   displayBasic : boolean = false;
+  isParentRoot : boolean;
   nameFolder : string;
+
   newFolder : LibraryFolder = new LibraryFolder();
 
-  constructor(private messageService: MessageService, private apiService: ApiService, private spinner: NgxSpinnerService) { }
+  constructor(private messageService: MessageService, private apiService: ApiService, private spinner: NgxSpinnerService) {
+    
+  }
 
   ngOnInit(): void {
-    this.getLibraryFolder()
+    this.getLibraryFolder();
   }
+
 
   getLibraryFolder() {
     this.spinner.show();
@@ -39,6 +45,7 @@ export class ThuVienComponent implements OnInit {
     .subscribe(response => {
       this.libraryFolder = response.data.data.filter(l => l.type == 'folder');
       this.convertJsonToStructTree(this.libraryFolder);
+
     })
 
   }
@@ -65,12 +72,9 @@ export class ThuVienComponent implements OnInit {
       this.listFiles.map((l) => {
         l.url = "https://tank8.bsite.net/images/" + l.url;
       })
-      console.log(this.listFiles);
-      
     })
   }
 
-  isParentRoot : boolean;
   showBasicDialog(isParentRoot) {
     this.displayBasic = true;
     this.isParentRoot = isParentRoot;
@@ -197,5 +201,24 @@ export class ThuVienComponent implements OnInit {
     this.dataOption = roots
   }
 
+  ngAfterViewInit(): void {
+    const listTree = document.querySelectorAll('.p-tree .p-tree-wrapper .p-tree-container');
+    
+    const children = listTree[0].children;
+
+    const childrenArr = Array.from(children) 
+
+
+    console.log(children);
+    
+    childrenArr.forEach((element : HTMLElement) => {
+      element.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+      })
+    });
+    
+    console.log(typeof(children));
+    
+  }
     
 }
