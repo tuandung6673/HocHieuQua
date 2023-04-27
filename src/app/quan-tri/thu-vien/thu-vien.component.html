@@ -39,14 +39,14 @@
       <div class="fileWrapper">
         <div class="fileItem" *ngFor="let file of listFiles">
           <div class="image">
-            <img [src]="file.url" />
+            <img [src]="'https://tank8.bsite.net/images/' + file.url" />
           </div>
           <div class="options">
             <i style="margin-left: 5px; display: flex; align-items: center;" *ngIf="file.type == 'image'" class="pi pi-images"></i>
             <i style="margin-left: 5px; display: flex; align-items: center;" *ngIf="file.type != 'image'" class="pi pi-video"></i>
             <div class="action">
               <i style="color: #007bff;" class="pi pi-check"></i>
-              <i style="color: #dc3545;" class="pi pi-times"></i>
+              <i (click)="deleteImage(file)" style="color: #dc3545;" class="pi pi-times"></i>
             </div>
           </div>
           <div class="name">

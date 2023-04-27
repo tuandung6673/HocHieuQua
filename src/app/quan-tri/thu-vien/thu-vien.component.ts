@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
 import { LibraryFolder } from 'src/models/libraryFolder.model';
 import { ApiService } from 'src/services/api.service.service';
+import * as queryString from 'querystring-es3';
 
 @Component({
   selector: 'app-thu-vien',
@@ -76,9 +77,9 @@ export class ThuVienComponent implements OnInit, AfterViewInit {
     )
     .subscribe(response => {
       this.listFiles = response.data.data;
-      this.listFiles.map((l) => {
-        l.url = "https://tank8.bsite.net/images/" + l.url;
-      })
+      // this.listFiles.map((l) => {
+      //   l.url = "https://tank8.bsite.net/images/" + l.url;
+      // })
     })
   }
 
@@ -122,6 +123,27 @@ export class ThuVienComponent implements OnInit, AfterViewInit {
           if(response.status == 'success') {
             this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
             this.getLibraryFolder();
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
+          }
+        })
+      }
+    })
+  }
+
+  deleteImage(file) {
+    this.confirmationService.confirm({
+      message: 'Bạn có muốn khóa học này ?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        const queeyParams = queryString.stringify({id: file.id, imagePath: file.url})
+        this.apiService.deleteLibraryFile(queeyParams).subscribe(response => {
+          if(response.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
+            this.listFiles = this.listFiles.filter(l => l.id != file.id)
+            
+            // this.getLibraryFolder();
           } else {
             this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
           }

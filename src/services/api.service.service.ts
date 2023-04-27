@@ -557,4 +557,8 @@ export class ApiService {
   deleteLibrary(id) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Library?id=` + id)
   }
+
+  deleteLibraryFile(queryParams) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Library/DeleteLibraryFile?` + queryParams)
+  }
 }
