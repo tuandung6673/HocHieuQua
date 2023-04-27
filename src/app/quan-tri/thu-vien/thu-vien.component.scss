@@ -31,6 +31,15 @@
         object-fit: cover;
       }
     }
+    .name {
+      width: 140px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      .small {
+        width: 100%;
+      }
+    }
   }
 }
 
@@ -48,6 +57,12 @@
     .p-button-icon {
       font-size: 15px;
     }
+  }
+}
+
+.list-action {
+  > *:first-child {
+    margin-right: 10px !important;
   }
 }
 

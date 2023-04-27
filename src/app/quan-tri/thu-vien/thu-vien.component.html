@@ -28,11 +28,12 @@
       <div class="rootFolder">
         <p-button (click)="showBasicDialog(true)" label="Thư mục gốc" icon="pi pi-folder"></p-button>
       </div>
-      <p-tree [value]="dataOption" selectionMode="single" [(selection)]="selectItem" (onNodeSelect)="nodeSelect($event)"></p-tree>
+      <p-tree [value]="dataOption" selectionMode="single" [(selection)]="selectItem" (onNodeSelect)="nodeSelect($event)" [contextMenu]="cm"></p-tree>
+      <p-contextMenu #cm [model]="contextItems"></p-contextMenu>
     </div>
     <div class="col-9">
-      <div class="rootFolder right" *ngIf="!!selectItem">
-        <p-button style="margin-right: 10px !important;" label="Thêm file" icon="pi pi-file"></p-button>
+      <div class="rootFolder right list-action" *ngIf="isChoose">
+        <p-button (click)="showDisplayUpload()" label="Thêm file" icon="pi pi-file"></p-button>
         <p-button (click)="showBasicDialog(false)" label="Thêm thư mục" icon="pi pi-folder"></p-button>
       </div>
       <div class="fileWrapper">
@@ -57,12 +58,24 @@
   </div>
 </div>
 
-<p-dialog header="Thêm thư mục" [(visible)]="displayBasic" [style]="{width: '600px'}">
+<p-dialog header="Thêm thư mục" [(visible)]="displayBasic" [style]="{width: '600px'}" closable="true">
   <div class="dialog-field">
     <div>Tên thư mục</div>
     <input type="text" pInputText [(ngModel)]="nameFolder"> 
   </div>
   <div class="dialog-btn">
     <p-button (click)="addFolder()" label="Lưu lại" icon="pi pi-check"></p-button>
+  </div>
+</p-dialog>
+
+<p-dialog header="Upload" [(visible)]="displayUpload" [style]="{width: '600px', height: '370px'}">
+  <div class="grid">
+    <div class="col-4 col-left">
+      <img *ngIf="!isChooseImg" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
+      <p-fileUpload mode="basic" name="demo[]" accept="image/*" maxFileSize="10000000" (onUpload)="onBasicUpload($event)" (onSelect)="selectImage($event)"></p-fileUpload>
+    </div>
+    <div class="col-8 col-right">
+      <p-button label="Lưu lại"></p-button>
+    </div>
   </div>
 </p-dialog>

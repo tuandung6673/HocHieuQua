@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
 import { LibraryFolder } from 'src/models/libraryFolder.model';
 import { ApiService } from 'src/services/api.service.service';
@@ -24,10 +24,18 @@ export class ThuVienComponent implements OnInit, AfterViewInit {
   displayBasic : boolean = false;
   isParentRoot : boolean;
   nameFolder : string;
+  isChoose : boolean = false;
+  isChooseImg : boolean = false;
+  displayUpload : boolean = false;
+  contextItems = [
+    {label: 'Thêm thư mục', icon: 'pi pi-folder', command: (event) => this.showBasicDialog(false)},
+    {label: 'Xóa folder', icon: 'pi pi-trash', command: (event) => this.deleteNode(this.selectItem)},
+    {label: 'Thêm file', icon: 'pi pi-file'},
+  ]
 
   newFolder : LibraryFolder = new LibraryFolder();
 
-  constructor(private messageService: MessageService, private apiService: ApiService, private spinner: NgxSpinnerService) {
+  constructor(private messageService: MessageService, private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService) {
     
   }
 
@@ -45,12 +53,11 @@ export class ThuVienComponent implements OnInit, AfterViewInit {
     .subscribe(response => {
       this.libraryFolder = response.data.data.filter(l => l.type == 'folder');
       this.convertJsonToStructTree(this.libraryFolder);
-
     })
-
   }
 
   nodeSelect(selectNode) {
+    this.isChoose = true;
     this.getLibrariesFile(this.selectItem.key);
   }
 
@@ -105,6 +112,41 @@ export class ThuVienComponent implements OnInit, AfterViewInit {
     })    
   }
 
+  deleteNode(selectedNode) {
+    this.confirmationService.confirm({
+      message: 'Bạn có muốn khóa học này ?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteLibrary(selectedNode.key).subscribe(response => {
+          if(response.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
+            this.getLibraryFolder();
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
+          }
+        })
+      }
+    })
+  }
+
+  showDisplayUpload() {
+    this.displayUpload = true;
+  }
+
+  onBasicUpload(event) {
+    console.log(event);
+    
+  }
+
+  selectImage(event) {
+    // console.log(event);
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      console.log(e.target.result);
+    };
+    reader.readAsDataURL(event.files[0]);
+  }
   
 
   // buildTree = (arr : any[]) => {
@@ -202,22 +244,24 @@ export class ThuVienComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const listTree = document.querySelectorAll('.p-tree .p-tree-wrapper .p-tree-container');
+    // const listTree = document.querySelectorAll('.p-tree .p-tree-wrapper .p-tree-container');
     
-    const children = listTree[0].children;
+    // const children = listTree[0].children;
 
-    const childrenArr = Array.from(children) 
+    // const childrenArr = Array.from(children) 
 
 
-    console.log(children);
+    // console.log(children);
+    // console.log(childrenArr);
+
     
-    childrenArr.forEach((element : HTMLElement) => {
-      element.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-      })
-    });
+    // childrenArr.forEach((element : HTMLElement) => {
+    //   element.addEventListener('contextmenu', (e) => {
+    //     e.preventDefault();
+    //   })
+    // });
     
-    console.log(typeof(children));
+    // console.log(typeof(children));
     
   }
     

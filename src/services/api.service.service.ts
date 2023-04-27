@@ -553,4 +553,8 @@ export class ApiService {
   setLibrary(data) {
     return this.http.post<Message>(`${this.url}/Library/SetLibrary`, data)
   }
+
+  deleteLibrary(id) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Library?id=` + id)
+  }
 }

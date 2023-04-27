@@ -19,6 +19,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {MenubarModule} from 'primeng/menubar';
+import {ContextMenuModule} from 'primeng/contextmenu';
+
 import {DropdownModule} from 'primeng/dropdown';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TabViewModule} from 'primeng/tabview';
@@ -149,6 +151,7 @@ import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-ste
 import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
 import { ThemMonHocComponent } from './quan-tri/sua-lop-hoc/them-mon-hoc/them-mon-hoc.component';
 import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
@@ -264,6 +267,7 @@ import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
     AppRoutingModule,
     CKEditorModule,
     AutoCompleteModule,
+    ContextMenuModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -271,6 +275,7 @@ import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
     ButtonModule,
     PaginatorModule,
     InputTextModule,
+    FileUploadModule,
     ToggleButtonModule,
     MenubarModule,
     CalendarModule,
