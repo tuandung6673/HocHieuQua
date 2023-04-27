@@ -9,6 +9,7 @@
           </span>
         </div>
         <img [src]="editCourse.courseAvatar ? editCourse.courseAvatar : defaultAvatar" />
+        <button (click)="uploadImage('courseAvatar')">Chọn ảnh</button>
       </div>
       <div class="col-12">
         <small>Banner</small>

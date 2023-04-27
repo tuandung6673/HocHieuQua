@@ -1,10 +1,12 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Course } from 'src/models/course.model';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { MessageService } from 'primeng/api';
 import * as queryString from 'querystring-es3';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ChonAnhComponent } from 'src/app/quan-tri/thu-vien/chon-anh/chon-anh.component';
 
 @Component({
   selector: 'app-sua-course',
@@ -15,6 +17,7 @@ export class SuaCourseComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<string>();
   Editor = ClassicEditor;
+  ref: DynamicDialogRef;
   id: string;
   editCourse: Course = new Course()
   cloneCourse: Course = new Course()
@@ -29,7 +32,7 @@ export class SuaCourseComponent implements OnInit {
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -112,4 +115,21 @@ export class SuaCourseComponent implements OnInit {
       }
     })
   }
+
+  uploadImage(field) {
+    this.ref = this.dialogService.open(ChonAnhComponent, {
+      header: 'Thư viện ảnh',
+      width: '90%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+    });
+
+    this.ref.onClose.subscribe((imgUrl) => {
+      this.editCourse = {
+        ...this.editCourse,
+        [field]: "https://tank8.bsite.net/images/" + imgUrl 
+      }
+    })
+  }
+
 }

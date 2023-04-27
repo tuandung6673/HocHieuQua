@@ -1,0 +1,97 @@
+.fileWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    .fileItem {
+      padding: 5px 2px 2px 2px;
+      border-radius: 5px;
+      box-shadow: 0 0 3px #b4b4b4;
+      .options {
+        display: flex;
+        justify-content: space-between;
+        i {
+          font-size: 14px;
+        }
+        .action i {
+          padding: 6px;
+          border-radius: 50%;
+          &:hover {
+            background: rgba(0,123,255,.04);
+            border-color: transparent;
+            color: #007bff;
+          }
+        }
+      }
+      .image {
+        text-align: center;
+        img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
+      .name {
+        width: 140px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        .small {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  
+  .rootFolder {
+    margin-bottom: 8px;
+    ::ng-deep .p-button {
+      background-color: transparent;
+      border: 1px solid;
+      color: #6c757d;
+      .p-button-label {
+        padding-left: 7px;
+      font-size: 13px;
+      }
+      .p-button-icon {
+        font-size: 15px;
+      }
+    }
+  }
+  
+  .list-action {
+    > *:first-child {
+      margin-right: 10px !important;
+    }
+  }
+  
+  .right {
+    text-align: end;
+  }
+  
+  ::ng-deep .dialog-field {
+    font-size: 15px;
+    margin: 20px 0;
+    .p-inputtext {
+      width: 100%;
+      font-size: 15px;
+      height: 35px;
+      padding-left: 10px;
+   }
+  
+  }
+  .dialog-btn {
+    ::ng-deep .p-button {
+      height: 35px;
+      width: 100%;
+      background: #007bff;
+      border: 1px solid #007bff;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 15px;
+      i {
+        font-size: 16px;
+      }
+    }
+  }

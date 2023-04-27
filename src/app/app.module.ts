@@ -40,6 +40,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
 import {TreeTableModule} from 'primeng/treetable';
+import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
 import {TreeSelectModule} from 'primeng/treeselect';
 
 import { AppComponent } from './app.component';
@@ -152,6 +153,7 @@ import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
 import { ThemMonHocComponent } from './quan-tri/sua-lop-hoc/them-mon-hoc/them-mon-hoc.component';
 import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
 import {FileUploadModule} from 'primeng/fileupload';
+import { ChonAnhComponent } from './quan-tri/thu-vien/chon-anh/chon-anh.component';
 
 
 @NgModule({
@@ -261,13 +263,15 @@ import {FileUploadModule} from 'primeng/fileupload';
     ChiTietStepComponent,
     StepConComponent,
     ThemMonHocComponent,
-    ThuVienComponent
+    ThuVienComponent,
+    ChonAnhComponent
       ],
   imports: [
     AppRoutingModule,
     CKEditorModule,
     AutoCompleteModule,
     ContextMenuModule,
+    DynamicDialogModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -308,7 +312,7 @@ import {FileUploadModule} from 'primeng/fileupload';
     OverlayPanelModule
     
   ],
-  providers: [ConfirmationService, MessageService, AuthGuardService, AdminGuard, {
+  providers: [DialogService, ConfirmationService, MessageService, AuthGuardService, AdminGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
