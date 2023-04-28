@@ -25,21 +25,13 @@
       <p-tabPanel header="Thông tin">
         <div class="grid">
           <div class="col-3">
-            <div>
-              <img [src]="editClassroom.avatar ? editClassroom.avatar : defaultAvatar" width="200"/>
+            <div class="uploadWrapper">
+              <img [src]="editClassroom.avatar ? editClassroom.avatar : defaultAvatar"/>
+              <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
             </div>
           </div>
           <div class="col-9">
             <div class="grid">
-              <div class="col-12">
-                <small>Avatar</small>
-                <div>
-                  <span class="p-input-icon-right">
-                    <i class="pi pi-instagram"></i>
-                    <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [(ngModel)]="editClassroom.avatar" />
-                  </span>
-                </div>
-              </div>
               <div class="col-12">
                 <small>Tên lớp học</small>
                 <div>
@@ -53,7 +45,7 @@
                 <small>Sắp xếp</small>
                 <div>
                   <span class="p-input-icon-right">
-                    <i class="pi pi-user"></i>
+                    <i class="pi pi-sort-numeric-down"></i>
                     <input class="p-inputtext-lg" id="sapxep" type="number" aria-describedby="username1-help" pInputText name="order" [(ngModel)]="editClassroom.order"/>
                   </span>
                 </div>

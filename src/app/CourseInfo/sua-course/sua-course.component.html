@@ -2,23 +2,16 @@
   <div class="col-3" style="padding-right: 10px;">
     <div class="grid">
       <div class="col-12">
-        <small>Avatar</small>
-        <div>
-          <span class="p-input-icon-right">
-            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseAvatar" name="courseAvatar"/>
-          </span>
+        <div class="uploadWrapper">
+          <img [src]="editCourse.courseAvatar ? editCourse.courseAvatar : defaultAvatar" />
+          <p-button icon="pi pi-upload" (click)="uploadImage('courseAvatar')" label="Avatar"></p-button>
         </div>
-        <img [src]="editCourse.courseAvatar ? editCourse.courseAvatar : defaultAvatar" />
-        <button (click)="uploadImage('courseAvatar')">Chọn ảnh</button>
       </div>
       <div class="col-12">
-        <small>Banner</small>
-        <div>
-          <span  class="p-input-icon-right">
-            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editCourse.courseBanner" name="courseBanner"/>
-          </span>
+        <div class="uploadWrapper">
+          <img [src]="editCourse.courseBanner ? editCourse.courseBanner : defaultAvatar" />
+          <p-button icon="pi pi-upload" (click)="uploadImage('courseBanner')" label="Banner"></p-button>
         </div>
-        <img [src]="editCourse.courseBanner ? editCourse.courseBanner : defaultAvatar" />
       </div>
     </div>
   </div>

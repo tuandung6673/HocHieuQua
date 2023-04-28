@@ -17,7 +17,6 @@ export class SuaCourseComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<string>();
   Editor = ClassicEditor;
-  ref: DynamicDialogRef;
   id: string;
   editCourse: Course = new Course()
   cloneCourse: Course = new Course()
@@ -32,7 +31,8 @@ export class SuaCourseComponent implements OnInit {
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, private dialogService: DialogService) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, 
+    private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -116,6 +116,7 @@ export class SuaCourseComponent implements OnInit {
     })
   }
 
+  ref: DynamicDialogRef;
   uploadImage(field) {
     this.ref = this.dialogService.open(ChonAnhComponent, {
       header: 'Thư viện ảnh',
@@ -125,9 +126,13 @@ export class SuaCourseComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe((imgUrl) => {
-      this.editCourse = {
-        ...this.editCourse,
-        [field]: "https://tank8.bsite.net/images/" + imgUrl 
+      if(imgUrl) {
+        this.editCourse = {
+          ...this.editCourse,
+          [field]: "https://tank8.bsite.net/images/" + imgUrl 
+        }
+      } else {
+        return;
       }
     })
   }

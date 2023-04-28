@@ -40,7 +40,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
 import {TreeTableModule} from 'primeng/treetable';
-import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogService, DynamicDialogModule, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {TreeSelectModule} from 'primeng/treeselect';
 
 import { AppComponent } from './app.component';
@@ -312,7 +312,7 @@ import { ChonAnhComponent } from './quan-tri/thu-vien/chon-anh/chon-anh.componen
     OverlayPanelModule
     
   ],
-  providers: [DialogService, ConfirmationService, MessageService, AuthGuardService, AdminGuard, {
+  providers: [DialogService, DynamicDialogRef, ConfirmationService, MessageService, AuthGuardService, AdminGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

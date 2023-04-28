@@ -6,6 +6,8 @@ import { ApiService } from 'src/services/api.service.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class SuaGiaoVienComponent implements OnInit {
   id: string = ''
   editTeacher: Teacher = new Teacher()
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, private spinner: NgxSpinnerService) {
+  constructor(private dialogService: DialogService, private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, private spinner: NgxSpinnerService) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
     })
@@ -65,6 +67,27 @@ export class SuaGiaoVienComponent implements OnInit {
 
   cancel() {
 
+  }
+
+  ref: DynamicDialogRef;
+  uploadImage(field) {
+    this.ref = this.dialogService.open(ChonAnhComponent, {
+      header: 'Thư viện ảnh',
+      width: '90%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+    });
+
+    this.ref.onClose.subscribe((imgUrl) => {
+      if(imgUrl) {
+        this.editTeacher = {
+          ...this.editTeacher,
+          [field]: "https://tank8.bsite.net/images/" + imgUrl 
+        }
+      } else {
+        return;
+      }
+    })
   }
 
 }

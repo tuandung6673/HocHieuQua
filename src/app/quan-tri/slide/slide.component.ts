@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize, pipe } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
 
 @Component({
   selector: 'app-slide',
@@ -30,7 +32,7 @@ export class SlideComponent implements OnInit {
   totalRecord : number;
   statusOptions : any[] = [];
 
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router, private spinner:NgxSpinnerService) {
+  constructor(private dialogService: DialogService, private apiService: ApiService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router, private spinner:NgxSpinnerService) {
     document.title = "Slide"
   }
 
@@ -131,10 +133,31 @@ export class SlideComponent implements OnInit {
     this.apiService.getMenu('', 0, 100, 'user', 1).subscribe(response => {
       this.menuOptions = response.data.data.map(m => {
         return {
-          label: m.name,
+          label: m.name + ' (' + m.screen + ')',
           value: m.code
         }
       })
+    })
+  }
+
+  ref: DynamicDialogRef;
+  uploadImage(field) {
+    this.ref = this.dialogService.open(ChonAnhComponent, {
+      header: 'Thư viện ảnh',
+      width: '90%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+    });
+
+    this.ref.onClose.subscribe((imgUrl) => {
+      if(imgUrl) {
+        this.slideDetail = {
+          ...this.slideDetail,
+          [field]: "https://tank8.bsite.net/images/" + imgUrl 
+        }
+      } else {
+        return;
+      }
     })
   }
 

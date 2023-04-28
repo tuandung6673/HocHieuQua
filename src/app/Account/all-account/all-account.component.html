@@ -28,8 +28,8 @@
             <th style="width: 2.25em">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th> 
-            <th pFrozenColumn></th>
-            <th>Hình ảnh</th>
+            <th style="width: 50px;" pFrozenColumn></th>
+            <th style="min-width: 130px;">Hình ảnh</th>
             <th>Tài khoản</th>
             <th>Email</th>
             <th>Điện thoại</th>
@@ -42,11 +42,11 @@
             <td>
               <p-tableCheckbox [value]="account"></p-tableCheckbox>
             </td>
-            <td pFrozenColumn style="min-width: 50px" >
+            <td pFrozenColumn style="width: 50px" >
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
             </td>
             <td>
-              <img [src]="defaultAvatar" [alt]="account.name" width="80" class="shadow-4" />
+              <img [src]="account.avatar" [alt]="account.name" height="60" width="100" style="object-fit: cover;" class="shadow-4" />
             </td>
             <td style="color: #0b5ed7; font-weight: 650;">{{account.userName}}</td>
             <td>

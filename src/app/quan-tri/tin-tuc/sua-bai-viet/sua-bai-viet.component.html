@@ -23,19 +23,13 @@
 
   <div class="grid">
     <div class="col-3">
-      <img [src]="editNew.avatar ? editNew.avatar : defaultAvatar" width="220" height="200" />
+      <div class="uploadWrapper">
+        <img [src]="editNew.avatar ? editNew.avatar : defaultAvatar" width="220" height="200" />
+        <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
+      </div>
     </div>
     <div class="col-9">
       <div class="detail grid">
-        <div class="col-12">
-          <small>Avatar</small>
-          <div>
-            <span class="p-input-icon-right">
-              <i class="pi pi-user"></i>
-              <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editNew.avatar" name="avatar"/>
-            </span>
-          </div>
-        </div>
         <div class="col-12">
           <small>Tiêu đề</small>
           <div>

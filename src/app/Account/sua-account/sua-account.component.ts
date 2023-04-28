@@ -6,6 +6,8 @@ import * as queryString from 'querystring-es3';
 import { MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import { ChonAnhComponent } from 'src/app/quan-tri/thu-vien/chon-anh/chon-anh.component';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 
 @Component({
@@ -29,7 +31,8 @@ export class SuaAccountComponent implements OnInit {
     private apiService: ApiService, 
     private router: Router,
     private messageService: MessageService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
@@ -87,5 +90,27 @@ export class SuaAccountComponent implements OnInit {
   
   cancel() {
     
+  }
+
+  ref: DynamicDialogRef;
+
+  uploadImage(field) {
+    this.ref = this.dialogService.open(ChonAnhComponent, {
+      header: 'Thư viện ảnh',
+      width: '90%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+    });
+    
+    this.ref.onClose.subscribe((imgUrl) => {
+      if(imgUrl) {
+        this.editAccount = {
+          ...this.editAccount,
+          [field]: "https://tank8.bsite.net/images/" + imgUrl 
+        }
+      } else {
+        return;
+      }
+    })
   }
 }

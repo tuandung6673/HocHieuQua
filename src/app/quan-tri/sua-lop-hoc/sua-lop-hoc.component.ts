@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Classroom } from 'src/models/classroom.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
 
 @Component({
   selector: 'app-sua-lop-hoc',
@@ -16,7 +18,7 @@ export class SuaLopHocComponent implements OnInit {
   editClassroom: Classroom = new Classroom();
   defaultAvatar = "https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"
 
-  constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  constructor(private dialogService: DialogService, private apiService: ApiService, private router: Router, private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.route.params.subscribe((param: Params) => {
@@ -55,7 +57,28 @@ export class SuaLopHocComponent implements OnInit {
   }
 
   cancel() {
+    this.router.navigate(['quan-tri/lop-hoc'])
+  }
 
+  ref: DynamicDialogRef;
+  uploadImage(field) {
+    this.ref = this.dialogService.open(ChonAnhComponent, {
+      header: 'Thư viện ảnh',
+      width: '90%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+    });
+
+    this.ref.onClose.subscribe((imgUrl) => {
+      if(imgUrl) {
+        this.editClassroom = {
+          ...this.editClassroom,
+          [field]: "https://tank8.bsite.net/images/" + imgUrl 
+        }
+      } else {
+        return;
+      }
+    })
   }
 
 }

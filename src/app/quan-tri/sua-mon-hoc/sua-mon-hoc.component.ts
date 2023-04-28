@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'src/models/subject.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
 
 @Component({
   selector: 'app-sua-mon-hoc',
@@ -17,7 +19,7 @@ export class SuaMonHocComponent implements OnInit {
   optionsLopHoc: any = []
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
 
-  constructor(private router: Router, private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService) {}
+  constructor(private dialogService: DialogService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -62,6 +64,27 @@ export class SuaMonHocComponent implements OnInit {
     updateSubject.status = updateSubject.status ? 1 : 0
     this.apiService.postSubject(updateSubject).subscribe((responseData) => {
       this.router.navigate(['quan-tri/mon-hoc'])
+    })
+  }
+
+  ref: DynamicDialogRef;
+  uploadImage(field) {
+    this.ref = this.dialogService.open(ChonAnhComponent, {
+      header: 'Thư viện ảnh',
+      width: '90%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+    });
+
+    this.ref.onClose.subscribe((imgUrl) => {
+      if(imgUrl) {
+        this.editSubject = {
+          ...this.editSubject,
+          [field]: "https://tank8.bsite.net/images/" + imgUrl 
+        }
+      } else {
+        return;
+      }
     })
   }
 }

@@ -22,55 +22,51 @@
 
   <div class="grid">
     <div class="col-3">
-      <img [src]="editSubject.avatar ? editSubject.avatar : defaultAvatar" width="220" height="220" />
+      <div class="uploadWrapper">
+        <img [src]="editSubject.avatar ? editSubject.avatar : defaultAvatar" width="220" height="220" />
+        <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
+      </div>
     </div>
-    <div class="col-9 detail grid">
-      <div class="col-12">
-        <small>Avatar</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <input id="avatar" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="editSubject.avatar" name="avatar"/>
-          </span>
+    <div class="col-9">
+      <div class="detail grid">
+        <div class="col-12">
+          <small>Tên môn học</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editSubject.name" name="name" />
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col-12">
-        <small>Tên môn học</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <input id="name" type="username" aria-describedby="name-help" pInputText [(ngModel)]="editSubject.name" name="name" />
-          </span>
+        <div class="col-12">
+          <small>Lớp học</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-user"></i>
+              <p-multiSelect [filter]="false" [options]="optionsLopHoc" [(ngModel)]="editSubject.classRoomIds" defaultLabel="Chọn lớp học" optionLabel="name" optionValue="code" option display="chip" name="classRoomIds"></p-multiSelect>
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col-12">
-        <small>Lớp học</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <p-multiSelect [filter]="false" [options]="optionsLopHoc" [(ngModel)]="editSubject.classRoomIds" defaultLabel="Chọn lớp học" optionLabel="name" optionValue="code" option display="chip" name="classRoomIds"></p-multiSelect>
-          </span>
+        <div class="col-6">
+          <small>Sắp xếp</small>
+          <div>
+            <span class="p-input-icon-right">
+              <i class="pi pi-sort-numeric-down"></i>
+              <input id="order" type="username" aria-describedby="order-help" pInputText [(ngModel)]="editSubject.order" name="order" />
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <small>Sắp xếp</small>
-        <div>
-          <span class="p-input-icon-right">
-            <i class="pi pi-user"></i>
-            <input id="order" type="username" aria-describedby="order-help" pInputText [(ngModel)]="editSubject.order" name="order" />
-          </span>
+        <div class="col-6 inputSwitch">
+          <small>Hiển thị</small>
+          <p-inputSwitch name="status" [(ngModel)]="editSubject.status"></p-inputSwitch>
         </div>
-      </div>
-      <div class="col-6 inputSwitch">
-        <small>Hiển thị</small>
-        <p-inputSwitch name="status" [(ngModel)]="editSubject.status"></p-inputSwitch>
-      </div>
-      <div class="detail-action">
-        <div class="cancel-btn">
-          <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
-        </div>
-        <div class="save-btn">
-          <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+        <div class="detail-action">
+          <div class="cancel-btn">
+            <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+          </div>
+          <div class="save-btn">
+            <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+          </div>
         </div>
       </div>
     </div>

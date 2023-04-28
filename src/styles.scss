@@ -72,6 +72,32 @@ body {
   font-size: 14px;
 }
 
+
+.uploadWrapper {
+  padding: 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px #b4b4b4;
+  img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover;
+  }
+  .p-button {
+    margin-top: 5px;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    .p-button-icon {
+      font-size: 15px;
+    }
+    .p-button-label {
+      font-size: 15px;
+      max-width: 100px;
+    }
+  }
+}
+
 .header-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
