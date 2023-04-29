@@ -45,7 +45,7 @@ export class ThemMonHocComponent implements OnInit {
   }
 
   editSubject(id:string) {
-    this.router.navigate(['/quan-tri/mon-hoc/', id])
+    this.router.navigate(['/quan-tri/mon-hoc/', id], {queryParams: {classId : this.classId}})
   }
 
   searchSubject() {

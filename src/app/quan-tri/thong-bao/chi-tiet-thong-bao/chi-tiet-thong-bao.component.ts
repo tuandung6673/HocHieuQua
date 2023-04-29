@@ -54,7 +54,7 @@ export class ChiTietThongBaoComponent implements OnInit {
         this.messageService.add({severity: 'success', summary: 'Thành công', detail: 'Cập nhật thông báo thành công'});
         this.router.navigate(['/quan-tri/thong-bao'])
       } else {
-        this.messageService.add({severity: 'warn', summary: 'Thất bại', detail: 'Cập nhật thông báo thất bại'});
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: 'Cập nhật thông báo thất bại'});
       }
     })
   }

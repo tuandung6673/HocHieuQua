@@ -66,8 +66,10 @@ export class ChiTietUngVienComponent implements OnInit {
     this.apiService.postRecruitCandidate(data).subscribe(response => {
       if(response.status == 'success') {
         this.messageService.add({severity: 'success', summary: 'success', detail: response.message})
+        this.router.navigate(['/quan-tri/ung-vien'])
+      } else {
+        this.messageService.add({severity: 'error', summary: 'success', detail: response.message})
       }
-      this.router.navigate(['/quan-tri/ung-vien'])
     })
   }
 

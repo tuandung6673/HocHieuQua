@@ -57,16 +57,16 @@ export class SuaGiaoVienComponent implements OnInit {
     this.apiService.postTeacher(dataSave)
     .subscribe(reponse => {
       if(reponse.status == 'success') {
-        this.messageService.add({severity: 'success', summary:'Thành công', detail: 'Cập nhật Giáo viên thành công'})
+        this.messageService.add({severity: 'success', summary:'Thành công', detail: reponse.message})
         this.router.navigate(['quan-tri/giao-vien'])
       } else {
-        this.messageService.add({severity: 'warn', summary:'Thất bại', detail: 'Cập nhật Giáo viên thất bại'})
+        this.messageService.add({severity: 'warn', summary:'Thất bại', detail: reponse.message})
       }
     })
   }
 
   cancel() {
-
+    this.router.navigate(['quan-tri/giao-vien'])
   }
 
   ref: DynamicDialogRef;

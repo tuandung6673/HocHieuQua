@@ -81,6 +81,8 @@ body {
     width: 100% !important;
     height: 180px !important;
     object-fit: cover;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
   }
   .p-button {
     margin-top: 5px;
@@ -126,7 +128,7 @@ body {
       display: flex;
       .btn {
         &:hover {
-          background-color: red;
+          background-color: #f7f7fc;
         }
       }
       .p-inputtext {

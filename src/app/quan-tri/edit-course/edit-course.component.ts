@@ -30,16 +30,7 @@ export class EditCourseComponent implements OnInit {
       document.title = "Khóa học " + name;
     } else {
       document.title = "Thêm khóa học"
-
     }
   }
-
-  cancel() {
-
-  }
-
-  save() {
-    
-  }
-
+  
 }

@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sua-mon-hoc',
@@ -16,10 +17,11 @@ export class SuaMonHocComponent implements OnInit {
 
   id: string
   editSubject: Subject = new Subject()
-  optionsLopHoc: any = []
+  optionsLopHoc: any = [];
+  classId : string;
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
 
-  constructor(private dialogService: DialogService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService) {}
+  constructor(private messageService: MessageService, private dialogService: DialogService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -30,12 +32,12 @@ export class SuaMonHocComponent implements OnInit {
     } else {
       document.title = "Thêm môn học";
     }
+    this.route.queryParams.subscribe(params => {
+      this.classId = params?.classId;
+    })
     this.getClassroomForOption();
   }
 
-  cancel() {
-
-  }
 
   getEditSubject (id: string) {
     this.spinner.show();
@@ -47,7 +49,8 @@ export class SuaMonHocComponent implements OnInit {
     )
     .subscribe((responseData) => {
       document.title = "Môn học " + responseData.data.name; 
-      this.editSubject = responseData.data
+      this.editSubject = responseData.data;
+      this.editSubject.status = this.editSubject.status == 1 ? true : false;
     })
   }
 
@@ -61,10 +64,27 @@ export class SuaMonHocComponent implements OnInit {
 
   onSubmit() {
     const updateSubject = {...this.editSubject}
-    updateSubject.status = updateSubject.status ? 1 : 0
+    updateSubject.status = updateSubject.status ? 1 : 0;
     this.apiService.postSubject(updateSubject).subscribe((responseData) => {
-      this.router.navigate(['quan-tri/mon-hoc'])
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary:'Thành công', detail: responseData.message})
+        if(this.classId) {
+          this.router.navigate(['quan-tri/lop-hoc', this.classId], {queryParams: {isBack : 1}})
+        } else {
+          this.router.navigate(['quan-tri/mon-hoc'])
+        }
+      } else {
+        this.messageService.add({severity: 'error', summary:'Thất bại', detail: responseData.message})
+      }
     })
+  }
+
+  cancel() {
+    if(this.classId) {
+      this.router.navigate(['quan-tri/lop-hoc', this.classId], {queryParams: {isBack : 1}})
+    } else {
+      this.router.navigate(['quan-tri/mon-hoc'])
+    }
   }
 
   ref: DynamicDialogRef;

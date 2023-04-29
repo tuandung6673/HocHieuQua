@@ -80,20 +80,18 @@ export class SuaAccountComponent implements OnInit {
     this.apiService.postAccount(updateAccount).subscribe((responseData) => {
       if(responseData.status == 'success') {
         this.messageService.add({severity: 'success', summary: 'Success', detail: 'Cập nhật tài khoản thành công'})
+        this.router.navigate(['quan-tri/tai-khoan'])
       } else {
         this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.message})
-        
       }
-      this.router.navigate(['quan-tri/tai-khoan'])
     })
   }
   
   cancel() {
-    
+    this.router.navigate(['quan-tri/tai-khoan']);
   }
 
   ref: DynamicDialogRef;
-
   uploadImage(field) {
     this.ref = this.dialogService.open(ChonAnhComponent, {
       header: 'Thư viện ảnh',

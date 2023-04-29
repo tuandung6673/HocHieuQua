@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChonAnhComponent } from '../../thu-vien/chon-anh/chon-anh.component';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class SuaBaiVietComponent implements OnInit {
   id: string
   editNew : New = new New()
   newCategoryOption : any
-  constructor(private dialogService: DialogService, private apiService: ApiService ,private route: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(private messageService: MessageService, private dialogService: DialogService, private apiService: ApiService ,private route: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -66,11 +67,16 @@ export class SuaBaiVietComponent implements OnInit {
 
   onSubmit() {
     const updateNews = {...this.editNew};
-    updateNews.status = updateNews.status ? 1 : 0
-    updateNews.tags = updateNews.tags.toString()
+    updateNews.status = updateNews.status ? 1 : 0;
+    updateNews.tags = updateNews.tags.toString();
 
     this.apiService.postNews(updateNews).subscribe((responseData) => {
-      this.router.navigate(['quan-tri/tin-tuc'])
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary:'Thành công', detail: responseData.message})
+        this.router.navigate(['quan-tri/tin-tuc']);
+      } else {
+        this.messageService.add({severity: 'error', summary:'Thất bại', detail: responseData.message})
+      }
     })
   }
 

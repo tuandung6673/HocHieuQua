@@ -26,7 +26,8 @@
         <div class="grid">
           <div class="col-3">
             <div class="uploadWrapper">
-              <img [src]="editClassroom.avatar ? editClassroom.avatar : defaultAvatar"/>
+              <img *ngIf="!editClassroom.avatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
+              <img *ngIf="editClassroom.avatar" [src]="editClassroom.avatar"/>
               <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
             </div>
           </div>
@@ -66,7 +67,7 @@
           </div>
         </div>
       </p-tabPanel>
-      <p-tabPanel header="Môn học">
+      <p-tabPanel header="Môn học" [selected]="isBack">
         <app-them-mon-hoc></app-them-mon-hoc>
       </p-tabPanel>
     </p-tabView>

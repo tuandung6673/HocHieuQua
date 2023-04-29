@@ -21,6 +21,9 @@
             </div>            
           </div>
         </div>
+        <div *ngIf="course.tests.length == 0">
+          <span style="font-size: 15px; margin-left: 10px;">Không có bài học nào !</span>
+        </div>
       </p-accordionTab>
     </p-accordion>
   </div>

@@ -2,6 +2,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { NewCatagory } from 'src/models/newCategory.model';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sua-danh-muc',
@@ -12,7 +13,7 @@ export class SuaDanhMucComponent implements OnInit {
 
   id: string
   editNewCategory: NewCatagory = new NewCatagory()
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -38,13 +39,17 @@ export class SuaDanhMucComponent implements OnInit {
     updateNewCategory.status = updateNewCategory.status ? 1 : 0
     console.log(updateNewCategory);
     this.apiService.postNewCategory(updateNewCategory).subscribe((responseData) => {
-      console.log(responseData.message);
-      this.router.navigate(['quan-tri/danh-muc-tin-tuc'])
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary:'Thành công', detail: responseData.message})
+        this.router.navigate(['quan-tri/danh-muc-tin-tuc'])
+      } else {
+        this.messageService.add({severity: 'error', summary:'Thất bại', detail: responseData.message})
+      }
     })
   }
 
   cancel() {
-    
+    this.router.navigate(['quan-tri/danh-muc-tin-tuc'])
   }
 
 }
