@@ -1,15 +1,16 @@
 import { FAQ } from './../../../models/faq.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from './../../../services/api.service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-huong-dan',
   templateUrl: './huong-dan.component.html',
-  styleUrls: ['./huong-dan.component.css']
+  styleUrls: ['./huong-dan.component.scss']
 })
 export class HuongDanComponent implements OnInit {
 
+  @Input() fromAdmin : boolean;
   title: string;
   content: string;
   faqSelected : string;

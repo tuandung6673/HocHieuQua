@@ -1,5 +1,5 @@
-<div class="user-wrapper">
-  <div class="header-left">
+<div class="user-wrapper" [ngClass]="fromAdmin ? 'fromAdmin' : '' ">
+  <div class="header-left" *ngIf="!fromAdmin">
     <div class="empty"></div>
     <div class="main-title">Những câu hỏi thường gặp</div>
   </div>
