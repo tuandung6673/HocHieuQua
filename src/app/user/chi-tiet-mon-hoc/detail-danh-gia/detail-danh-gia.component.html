@@ -40,10 +40,26 @@
   </div>
   <div>
     <div>
-      <p style="font-weight: bold; font-size: 15px; margin: 15px">Nhận xét của học viên</p>
+      <p style="font-weight: bold; font-size: 18px; margin: 15px; color: #0c0c0c;">Nhận xét của học viên</p>
     </div>
-    <!-- <div class="comment">
-      <app-comment></app-comment>
-    </div> -->
+    <div class="">
+      <p style="font-weight: bold; font-size: 16px; margin: 15px; color: #0c0c0c;" *ngIf="detailCourse.courseRatings.length == 0">Không có đánh giá nào</p>
+      <div *ngIf="detailCourse.courseRatings.length != 0" class="review-wrapper">
+        <div *ngFor="let rating of detailCourse.courseRatings" class="review-item">
+          <div class="avatar">
+            <img [src]="rating.avatar" />
+          </div>
+          <div class="detail">
+            <div class="rating">
+              <span>
+                <p-rating [ngModel]="rating.rate" readonly="true" stars="5" [cancel]="false" [disabled]="true"></p-rating>
+              </span>
+              <span class="name">{{rating.userName}}</span>
+            </div>
+            <p class="comment">{{rating.comment}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

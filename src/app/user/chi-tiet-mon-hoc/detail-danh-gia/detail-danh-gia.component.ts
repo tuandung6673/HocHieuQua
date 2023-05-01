@@ -3,7 +3,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 @Component({
   selector: 'app-detail-danh-gia',
   templateUrl: './detail-danh-gia.component.html',
-  styleUrls: ['./detail-danh-gia.component.css']
+  styleUrls: ['./detail-danh-gia.component.scss']
 })
 export class DetailDanhGiaComponent implements OnInit, OnChanges {
 

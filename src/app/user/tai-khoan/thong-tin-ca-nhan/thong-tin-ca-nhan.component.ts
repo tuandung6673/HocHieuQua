@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import * as queryString from 'querystring-es3';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, finalize } from 'rxjs';
 
 
 @Component({
@@ -74,15 +74,18 @@ export class ThongTinCaNhanComponent implements OnInit {
 
   changeInfo() {
     this.spinner.show()
-    this.apiService.updateAccountInfo(this.info).subscribe((response) => {
+    this.apiService.updateAccountInfo(this.info)
+    .pipe(
+      finalize(() => this.spinner.hide())
+    )
+    .subscribe((response) => {
       if(response.status == 'success') {
-        this.messageService.add({severity: 'success', detail: response.data.messages, summary: 'Thông báo'})
-        this.updateLocal()
-        this.getAccount()
+        this.messageService.add({severity: 'success', detail: response.data.messages, summary: 'Thông báo'});
+        this.updateLocal();
+        this.getAccount();
       } else {
-        this.messageService.add({severity: 'error', detail: response.data.messages, summary: 'Thông báo'})
+        this.messageService.add({severity: 'error', detail: response.data.messages, summary: 'Thông báo'});
       }
-      this.spinner.hide()
     })
   }
 

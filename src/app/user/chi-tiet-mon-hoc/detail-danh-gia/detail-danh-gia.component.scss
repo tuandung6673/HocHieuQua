@@ -1,0 +1,80 @@
+.header { 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.content {
+  border-radius: 8px;
+  border: 1px solid hsla(0,0%,50%,.486);
+  padding: 10px;
+}
+
+.content .wrapper {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.total {
+  
+  text-align: center;
+}
+
+.rating {
+  text-align: center;
+}
+
+.star {
+  text-align: center;
+}
+
+.star-rate {
+  display: flex ;
+  align-items: center;
+}
+
+
+::ng-deep .rating .p-progressbar {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.review-wrapper {
+  .review-item {
+    width: 80%;
+    border-bottom: 1px solid #e9e6e6;
+    // margin: 10px 0;
+    padding: 10px 20px;
+    display: flex;
+    width: 100%;
+    .avatar {
+      width: 60px;
+      height: 60px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+    .detail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      margin-left: 20px;
+      .rating {
+        display: flex;
+        .name {
+          margin-left: 20px;
+          font-weight: 600;
+        }
+      }
+      .comment {
+        margin: 0 !important;
+      }
+    }
+  }
+}

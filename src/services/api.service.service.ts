@@ -40,6 +40,7 @@ import { TestCategory } from 'src/models/testCategory.model';
 import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
 import { TestUser } from 'src/models/testUser.model';
 import { LibraryFolder } from 'src/models/libraryFolder.model';
+import { TestQuestionType } from 'src/models/testQuestionType.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,24 +68,24 @@ export class ApiService {
     return this.http.get<BaseRetail<Account>>(`${this.url}/Account/GetAccountByUserName?` + queryParams)
   }
 
-  setAccountChangePassword(queryParams) : Observable<any> {
-    return this.http.post<any>(`${this.url}/Account/SetAccountChangePassword`, queryParams)
+  setAccountChangePassword(queryParams){
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Account/SetAccountChangePassword`, queryParams)
   }
 
   postAccount(data: Account) {
     return this.http.post<Message>(`${this.url}/Account`, data)
   }
 
-  setAccountUser(data) : Observable<any> {
-    return this.http.post<any>(`${this.url}/Account/SetAccountUser`, data)
+  setAccountUser(data) {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Account/SetAccountUser`, data)
   }
 
   deleteAccount(id: string) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Account/${id}`)
   }
 
-  updateAccountInfo(data) : Observable<any> {
-    return this.http.put(`${this.url}/Account/UpdateAccountInfo`, data)
+  updateAccountInfo(data) {
+    return this.http.put<BaseRetail<CheckPayment>>(`${this.url}/Account/UpdateAccountInfo`, data)
   }
 
   // AccountRegister
@@ -493,8 +494,8 @@ export class ApiService {
   }
 
   // TestQuestionTyep 
-  getTestQuestionType(queryParams) : Observable<BaseReponse<any>> {
-    return this.http.get<BaseReponse<any>>(`${this.url}/TestQuestionType?` + queryParams)
+  getTestQuestionType(queryParams) : Observable<BaseReponse<TestQuestionType>> {
+    return this.http.get<BaseReponse<TestQuestionType>>(`${this.url}/TestQuestionType?` + queryParams)
   }
 
   // Notificatiion
