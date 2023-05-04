@@ -1,9 +1,8 @@
 .detail {
-  margin-top: 3px;
+  margin: 3px 0 10px 3px;
   max-width: 220px;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 10px;
   transition: .4s ease-in-out;
   box-shadow: 0 2px 7px -2px rgb(70 131 243 / 70%);
   &:hover {
