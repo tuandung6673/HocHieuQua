@@ -90,7 +90,7 @@ export class ApiService {
 
   // AccountRegister
   postAccountRegister(data: Account) {
-    return this.http.post<Message>(`${this.url}/Account/SetAccountRegister`, data)
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Account/SetAccountRegister`, data)
   }
 
   // Advice

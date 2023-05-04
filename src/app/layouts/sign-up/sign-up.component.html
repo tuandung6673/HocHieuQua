@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="main-right">
-      <form (ngSubmit)="onSubmit()">
+      <!-- <form (ngSubmit)="onSubmit()"> -->
         <div class="right-desc">
           <p class="text">Đăng ký</p>
           <div>
@@ -85,9 +85,13 @@
               <span>*</span>
             </div>
             <div class="input">
-              <span class="p-input-icon-left">
+              <span class="p-input-icon-left passwordField">
                 <i class="pi pi-unlock"></i>
-                <input type="password" required minlength="3" pInputText [(ngModel)]="password" name="password" #passwordInput="ngModel" />
+                <input [type]="type" required minlength="3" pInputText [(ngModel)]="password" name="password" #passwordInput="ngModel" />
+                <div class="eye" (click)="toggleEye()" >
+                  <i *ngIf="!show" class="pi pi-eye-slash"></i>
+                  <i *ngIf="show" class="pi pi-eye"></i>
+                </div>
               </span>
             </div>
             <div [ngClass]="(passwordInput.touched && passwordInput.invalid) ? 'warning' : 'pre-warning' ">
@@ -100,13 +104,17 @@
               <span>*</span>
             </div>
             <div class="input">
-              <span class="p-input-icon-left">
+              <span class="p-input-icon-left passwordField">
                 <i class="pi pi-unlock"></i>
-                <input type="password" pInputText [(ngModel)]="password2" name="password2" #password2Input="ngModel" />
+                <input [type]="type2" pInputText [(ngModel)]="password2" name="password2" #password2Input="ngModel" />
+                <div class="eye" (click)="toggleEye2()" >
+                  <i *ngIf="!show2" class="pi pi-eye-slash"></i>
+                  <i *ngIf="show2" class="pi pi-eye"></i>
+                </div>
               </span>
             </div>
-            <div [ngClass]="(password2Input.touched && password2Input != passwordInput) ? 'warning' : 'pre-warning' ">
-              <p *ngIf="password2Input.touched && password2Input != passwordInput">Mật khẩu không khớp</p>
+            <div [ngClass]="(password2Input.touched && password2Input.value != passwordInput.value) ? 'warning' : 'pre-warning' ">
+              <p *ngIf="password2Input.touched && password2Input.value != passwordInput.value">Mật khẩu không khớp</p>
             </div>
           </div>
           <div>
@@ -116,15 +124,15 @@
                 Tôi đã đọc và đồng ý với Điều khoản sử dụng
               </span>
             </div>
-            <div>
+            <div style="margin-top: 4px;">
               (*) Bằng việc đăng ký bạn đồng ý để Học hiệu quả liên hệ tư vấn
             </div>
           </div>
         </div>
         <div class="action">
-          <p-button [disabled]=" !rules || nameInput.invalid || phoneInput.invalid || emailInput.invalid || taikhoanInput.invalid || passwordInput.invalid" type="submit" label="Đăng ký"></p-button>
+          <p-button (click)="onSubmit()" [disabled]=" !rules || nameInput.invalid || phoneInput.invalid || emailInput.invalid || taikhoanInput.invalid || passwordInput.invalid || password2Input.value != passwordInput.value" type="submit" label="Đăng ký"></p-button>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
   </div>
 </div>

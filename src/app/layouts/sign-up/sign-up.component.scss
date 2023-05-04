@@ -48,6 +48,7 @@
   /* margin-top: 35px; */
   width: 100%;
   height: 70%;
+  object-fit: contain;
 }
 
 .main-right {
@@ -104,8 +105,16 @@
   width: 100%;
 }
 
+::ng-deep .action {
+  margin-top: 8px;
+  .p-button {
+    font-size: 13px;
+  }
+}
+
 .form-group {
   position: relative;
+  margin-bottom: 18px !important;
 }
 
 .form-group .label {
@@ -113,21 +122,40 @@
   color: black;
   font-weight: lighter;
   top: -7px;
-  left: 15px;
-  width: 10px;
+  left: 18px;
+  // width: 10px;
   position: absolute;
   background: #fff;
+  font-size: 12px;
 }
 
 .form-group .input {
   z-index: 0;
+  i {
+    font-size: 14px;
+  }
 }
 
 .warning {
+  padding-left: 8px;
   color: red;
+  height: 14px;
+
 }
 
 .pre-warning {
+  padding-left: 8px;
   height: 14px;
   background-color: #fff;
+}
+
+.passwordField {
+  position: relative;
+  .eye {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    transform:translate(-50%,-50%);
+  }
 }
