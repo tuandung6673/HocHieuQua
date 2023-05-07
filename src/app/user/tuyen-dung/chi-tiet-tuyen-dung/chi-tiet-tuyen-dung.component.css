@@ -63,3 +63,7 @@
 .active {
   opacity: 0.5;
 }
+
+.des i {
+  font-size: 14px;
+}

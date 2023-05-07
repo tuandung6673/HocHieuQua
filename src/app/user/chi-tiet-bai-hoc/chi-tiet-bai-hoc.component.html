@@ -29,12 +29,12 @@
       <p-accordion multiple="true" *ngFor="let course of courseSchedules">
         <p-accordionTab [selected]="true" [header]="course.name">
           <div *ngFor="let test of course.tests" class="test" (click)="routerFunc(test.id)">
-            <div style="width: 35px; height: 35px; margin-right: 10px;">
-              <img *ngIf="test.isFree" src="https://hochieuqua7.web.app/images/common/icons/blue/shopping/2981255.png" width="35px" height="35px"/>
+            <div class="isFreeLogo">
+              <img *ngIf="test.isFree" src="https://hochieuqua7.web.app/images/common/icons/blue/shopping/2981255.png" width="30px" height="30px"/>
             </div>
             <div class="main-test">
               <p style="width: 85%;">{{test.name}}</p>
-              <div>
+              <div class="actions">
                 <span *ngIf="test.testCategoryCode == 'kiem-tra' ">
                   <i class="pi pi-copy"></i>
                 </span>

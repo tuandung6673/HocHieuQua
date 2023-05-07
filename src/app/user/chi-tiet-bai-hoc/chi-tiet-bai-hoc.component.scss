@@ -6,19 +6,35 @@
 }
 
 .test {
-  padding: 20px 5px;
+  padding: 0;
   margin: 0;
+  margin-left: 7px;
   display: flex;
+  position: relative;
   cursor: pointer;
   align-items: center;
   &:hover {
     background: #0d89ec0f;
   }
+  .isFreeLogo {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    left: -12px;
+  }
   .main-test {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    // margin-left: 10px;
+    border-bottom: 1px dashed #d8d8d8;
+    border-left: 1px dashed #d8d8d8;
+    padding-left: 30px;
+    padding-right: 5px;
     p {
+      margin: 0 !important;
+      padding: 17px 0;
       font-size: 13px;
     }
     i {
@@ -31,6 +47,10 @@
         color: #fff;
         background-color: rgb(118, 118, 219);
       }
+    }
+    .actions {
+      display: flex;
+      align-items: center;
     }
   }
 }
@@ -62,6 +82,7 @@
     }
   }
 }
+
 .description {
   font-size: 15px;
 }

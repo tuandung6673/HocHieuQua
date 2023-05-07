@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recruit } from 'src/models/recruit.model';
 import { EmailValidator } from '@angular/forms';
 import { RecruitCandidate } from 'src/models/recruitCandidate.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-chi-tiet-tuyen-dung',
@@ -37,7 +38,8 @@ export class ChiTietTuyenDungComponent implements OnInit {
   getDetailRecruit() {
     this.spinner.show()
     this.apiService.getRecruitById(this.id).subscribe((responseData) => {
-      this.detailRecruit = responseData.data
+      this.detailRecruit = responseData.data;
+      this.detailRecruit.modifiedDate = moment(this.detailRecruit.modifiedDate).format('DD-MM-YYYY mm:hh')
       this.spinner.hide()
     })
   }
