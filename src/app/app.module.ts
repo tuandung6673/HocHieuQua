@@ -154,6 +154,7 @@ import { ThemMonHocComponent } from './quan-tri/sua-lop-hoc/them-mon-hoc/them-mo
 import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ChonAnhComponent } from './quan-tri/thu-vien/chon-anh/chon-anh.component';
+import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.component';
 
 
 @NgModule({
@@ -264,7 +265,8 @@ import { ChonAnhComponent } from './quan-tri/thu-vien/chon-anh/chon-anh.componen
     StepConComponent,
     ThemMonHocComponent,
     ThuVienComponent,
-    ChonAnhComponent
+    ChonAnhComponent,
+    BaiKtnlComponent
       ],
   imports: [
     AppRoutingModule,

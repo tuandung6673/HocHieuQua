@@ -67,6 +67,7 @@ import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc
 import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
 import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
 import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
+import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.component';
 
 const routes: Routes = [
   {
@@ -138,6 +139,7 @@ const routes: Routes = [
       {path: 'gioi-thieu/:id', component: GioiThieuChiTietComponent},
       {path: 'gioi-thieu/danh-muc/:id', component: GioiThieuComponent},
       {path: 'kiem-tra-nang-luc', component: KiemTraNangLucComponent},
+      {path: 'kiem-tra-nang-luc/:id', component: BaiKtnlComponent},
       {path: 'tuyen-dung', component: TuyenDungComponent},
       {path: 'tuyen-dung/:id', component: ChiTietTuyenDungComponent},
       {path: 'huong-dan', component: HuongDanComponent},
