@@ -22,6 +22,7 @@
     "@ckeditor/ckeditor5-build-classic": "^35.0.1",
     "bootstrap": "^3.4.1",
     "file-saver": "^2.0.5",
+    "mathjax-angular": "^2.1.1",
     "moment": "^2.29.4",
     "ngx-spinner": "^14.0.0",
     "primeflex": "^3.2.1",

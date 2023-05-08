@@ -1,1 +1,16 @@
-{{id}}
+<div class="user-wrapper">
+  <div class="header">
+    <h1 class="name">{{test.name}}</h1>
+    <div class="header-2">
+      <div class="start_time">Thời gian bắt đầu: {{startTime}}</div>
+      <!-- <div class="remain_time">Thời gian còn lại: {{remainMM}} : {{remainSS}}</div> -->
+      <div class="remain_time">Thời gian còn lại: ...</div>
+      <div class="exit_times">Số lần thoát ra ngoài: ...</div>
+    </div>
+    <div class="description" [innerHTML]="test.description">
+    </div>
+  </div>
+  <div class="questions">
+    <app-detail-question [quizzs]="test.quizzs"></app-detail-question>
+  </div>
+</div>
