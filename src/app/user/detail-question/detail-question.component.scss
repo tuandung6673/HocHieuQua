@@ -1,0 +1,16 @@
+.question {
+  border: 1px dashed #b4b4b4;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+  .header {
+    background: rgba(2,129,255,.548);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+  .content {
+    padding: 10px 15px;
+  }
+}

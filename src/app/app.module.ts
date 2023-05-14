@@ -155,8 +155,9 @@ import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ChonAnhComponent } from './quan-tri/thu-vien/chon-anh/chon-anh.component';
 import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.component';
-import { DetailQuestionComponent } from './common/detail-question/detail-question.component';
 import { MathjaxModule } from 'mathjax-angular';
+import { DetailQuestionComponent } from './user/detail-question/detail-question.component';
+import { DetailAnswerModule } from './common/detail-answer/detail-answer.module';
 
 @NgModule({
   declarations: [
@@ -285,6 +286,7 @@ import { MathjaxModule } from 'mathjax-angular';
     PaginatorModule,
     InputTextModule,
     FileUploadModule,
+    DetailAnswerModule,
     ToggleButtonModule,
     MenubarModule,
     CalendarModule,
