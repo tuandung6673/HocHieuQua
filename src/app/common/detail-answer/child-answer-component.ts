@@ -65,3 +65,23 @@ export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
     
   }
 }
+
+@Component({
+  selector: 'app-dung-sai',
+  template: `
+    <div style="display: flex">
+      <input style="margin: 0" type="radio" id="answer.int_ord" name="same"/>
+      <span style="margin-left: 10px" [innerHTML]="answer.answer"></span>
+    </div>
+  `
+})
+export class AppDungSaiComponent implements OnInit {
+  @Input() answer;
+  constructor() {
+
+  }
+
+  ngOnInit(): void {
+      
+  }
+}

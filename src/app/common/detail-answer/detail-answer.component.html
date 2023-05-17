@@ -1,7 +1,8 @@
-<div>
+<div style="margin-top: 10px;">
   <div *ngFor="let answer of quizzConfigSets">
     <app-nhieu-lua-chon *ngIf="quizz.testQuestionTypeCode == 'nhieu_lua_chon' " [answer]="answer"></app-nhieu-lua-chon>
     <app-mot-lua-chon *ngIf="quizz.testQuestionTypeCode == 'mot_lua_chon'" [answer]="answer"></app-mot-lua-chon>
     <app-nhieu-trinh-tha-don-xuong *ngIf="quizz.testQuestionTypeCode == 'nhieu_trinh_tha_don_xuong'" [answer]="answer"></app-nhieu-trinh-tha-don-xuong>
+    <app-dung-sai *ngIf="quizz.testQuestionTypeCode == 'dung_sai'" [answer]="answer"></app-dung-sai>
   </div>
 </div>
