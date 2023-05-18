@@ -1,0 +1,15 @@
+::ng-deep .child-answer {
+  margin: 3px 0;
+  // font-size: 16px !important;
+  // input[type="radio"] {
+  //   width: 16px
+  // }
+  .p-dropdown {
+    height: 38px;
+    width: 300px;
+    align-items: center;
+    .p-dropdown-label {
+      font-size: 14px;
+    }
+  }
+}

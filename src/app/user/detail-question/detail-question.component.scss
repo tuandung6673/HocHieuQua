@@ -14,3 +14,21 @@
     padding: 10px 15px;
   }
 }
+
+.topic {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+::ng-deep .question-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .p-button {
+    margin: 0 2px;
+  }
+  .p-button-label {
+    font-size: 14px;
+    padding: 0 15px;
+  }
+}
