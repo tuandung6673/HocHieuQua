@@ -1,12 +1,10 @@
 <div style="margin-top: 10px;">
-  <div *ngFor="let answer of quizzConfigSets">
-    <app-nhieu-lua-chon *ngIf="quizz.testQuestionTypeCode == 'nhieu_lua_chon'" [quizz]="quizz" [answer]="answer"></app-nhieu-lua-chon>
-    <app-mot-lua-chon *ngIf="quizz.testQuestionTypeCode == 'mot_lua_chon'" [quizz]="quizz" [answer]="answer"></app-mot-lua-chon>
-    <app-nhieu-trinh-tha-don-xuong *ngIf="quizz.testQuestionTypeCode == 'nhieu_trinh_tha_don_xuong'" [quizz]="quizz" [answer]="answer"></app-nhieu-trinh-tha-don-xuong>
-    <app-dung-sai *ngIf="quizz.testQuestionTypeCode == 'dung_sai'" [quizz]="quizz" [answer]="answer"></app-dung-sai>
-    <app-dien-vao-cho-trong *ngIf="quizz.testQuestionTypeCode == 'dien_vao_cho_trong'" [quizz]="quizz" [answer]="answer"></app-dien-vao-cho-trong>
-    <app-dien-vao-nhieu-khoang-trong *ngIf="quizz.testQuestionTypeCode == 'dien_vao_nhieu_khoang_trong'" [quizz]="quizz" [answer]="answer"></app-dien-vao-nhieu-khoang-trong>
-    <app-phu-hop *ngIf="quizz.testQuestionTypeCode == 'phu_hop'" [answer]="answer" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-phu-hop>
-    <app-tieu-luan *ngIf="quizz.testQuestionTypeCode == 'tieu_luan'" [quizz]="quizz" [answer]="answer"></app-tieu-luan>
-  </div>
+  <app-nhieu-lua-chon *ngIf="quizz.testQuestionTypeCode == 'nhieu_lua_chon'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-nhieu-lua-chon>
+  <app-mot-lua-chon *ngIf="quizz.testQuestionTypeCode == 'mot_lua_chon'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-mot-lua-chon>
+  <app-nhieu-trinh-tha-don-xuong *ngIf="quizz.testQuestionTypeCode == 'nhieu_trinh_tha_don_xuong'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-nhieu-trinh-tha-don-xuong>
+  <app-dung-sai *ngIf="quizz.testQuestionTypeCode == 'dung_sai'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-dung-sai>
+  <app-dien-vao-cho-trong *ngIf="quizz.testQuestionTypeCode == 'dien_vao_cho_trong'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-dien-vao-cho-trong>
+  <app-dien-vao-nhieu-khoang-trong *ngIf="quizz.testQuestionTypeCode == 'dien_vao_nhieu_khoang_trong'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-dien-vao-nhieu-khoang-trong>
+  <app-phu-hop *ngIf="quizz.testQuestionTypeCode == 'phu_hop'" [quizzConfigSets]="quizzConfigSets" [quizz]="quizz"></app-phu-hop>
+  <app-tieu-luan *ngIf="quizz.testQuestionTypeCode == 'tieu_luan'" [quizz]="quizz" [quizzConfigSets]="quizzConfigSets"></app-tieu-luan>
 </div>
