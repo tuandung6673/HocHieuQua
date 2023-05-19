@@ -35,7 +35,6 @@ export class MainHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isToken = localStorage.getItem('userToken') ? true : false
     this.userData = JSON.parse(localStorage.getItem('userData'))
-    // console.log(this.userData);
     this.items = [
       {label: 'Quản trị', icon: 'pi pi-cog', command: () => {
         this.router.navigate(['/quan-tri'])

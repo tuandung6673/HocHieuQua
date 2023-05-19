@@ -139,10 +139,6 @@ export class SuaBaiKiemTraComponent implements OnInit {
       status: this.test.status ? 1 : 0,
       isFree: this.test.isFree ? 1 : 0,
     }
-
-    // console.log(dataUpdate);
-    // console.log(this.checkValidate(this.commentConfiguration));
-
     if(this.checkValidate(this.commentConfiguration)) {
       this.spinner.show();
       this.apiService.postTest(dataUpdate)

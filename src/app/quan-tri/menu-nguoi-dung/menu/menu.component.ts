@@ -77,18 +77,10 @@ export class MenuComponent implements OnInit {
   
   actionList = [];
   showDialog(menu) {
-
-    console.log(this.adminMenus);
-    
-
     this.actionList = [];
     this.displayBasic = true;
     this.getActions();
     this.getAdminMenus();
-    console.log(menu);
-    
-    console.log(this.parentSelect);
-    
     // this.parentSelect = menu?.parentId;
     // this.parentSelect = {
     //   label: 'hahahhah',

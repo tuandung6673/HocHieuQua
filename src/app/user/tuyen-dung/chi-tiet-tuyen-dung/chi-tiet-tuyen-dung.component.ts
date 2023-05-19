@@ -61,10 +61,7 @@ export class ChiTietTuyenDungComponent implements OnInit {
     data.name = this.name,
     data.phone = this.convertPhoneToString(this.phone)
     
-    console.log('Save', data);
-    
     this.apiService.postRecruitCandidate(data).subscribe((response) => {
-      console.log(response.message);
       this.isDisplayDialog = false
     })
   }

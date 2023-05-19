@@ -28,7 +28,6 @@ export class CommentComponent implements OnInit, OnChanges {
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe((params: Params) => {
-      // console.log(params);
       this.id = params['id'];
       this.testId = params['testId'];
     })    

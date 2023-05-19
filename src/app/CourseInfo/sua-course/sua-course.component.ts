@@ -104,9 +104,7 @@ export class SuaCourseComponent implements OnInit {
     updateData.priceDiscount = +updateData.priceDiscount;
     updateData.studentNum = +updateData.studentNum
 
-    // console.log(updateData);
     this.apiService.postCourse(updateData).subscribe((responseData) => {
-      // console.log('Update/New Course', responseData);
       if(responseData.status == 'success') {
         this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.message})
         this.router.navigate(['quan-tri/khoa-hoc']);

@@ -63,23 +63,11 @@ export class LopHocComponent implements OnInit {
   }
 
   paginate(event) {
-    //event.first = Index of the first record
-    console.log('first', event.first);
-    //event.rows = Number of rows to display in new page
-    console.log('rows', event.rows);
-
-    //event.page = Index of the new page
-    console.log('page', event.page);
-
-    //event.pageCount = Total number of pages
-    console.log('pageCount', event.pageCount);
     this.params = {
       ...this.params,
       offSet: event.page * event.rows,
       pageSize: event.rows
     }
-    console.log(this.params);
-    
     this.getClassRooms();
   }
 

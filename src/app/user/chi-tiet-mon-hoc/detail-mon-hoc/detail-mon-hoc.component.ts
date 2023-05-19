@@ -122,7 +122,6 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
     data.otherName = this.userData.name;
     data.otherPhone = this.userData.phone;
     data.paymentTypeId = this.paymentMethod
-    console.log('data', data);
     
     this.apiService.payment(data).subscribe(response => {
       this.spinner.show();

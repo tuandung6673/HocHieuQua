@@ -51,8 +51,6 @@ export class ChiTietFooterComponent implements OnInit {
     this.apiService.getFooterById(this.footerId).subscribe((response) => {
       document.title = "Footer " + response.data.title;
       this.footer = response.data as Footer; 
-      // console.log(response.data);
-      
       this.footer.status = this.footer.status == 1;
       this.spinner.hide()
     })

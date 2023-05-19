@@ -29,8 +29,6 @@ export class SuaLopHocComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.isBack = params?.isBack == 1 ? true: false;
     })
-    console.log(this.id);
-    
     if(this.id && this.id != 'sua-lop-hoc') {
       this.getEditClassroom(this.id)
     } else {

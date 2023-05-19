@@ -13,7 +13,6 @@ export class DetailAnswerComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizzConfigSets = JSON.parse(this.quizz.quizzConfigSets);
-    // console.log(this.quizzConfigSets);
   }
 
 }

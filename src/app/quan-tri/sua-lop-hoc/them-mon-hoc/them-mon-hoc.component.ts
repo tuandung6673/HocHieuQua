@@ -59,7 +59,6 @@ export class ThemMonHocComponent implements OnInit {
   }
 
   addSubject() {
-    console.log(this.selectedSubject);
     const data = {classRoomId: this.classId, subjectId: this.selectedSubject.id};
     this.apiService.setClassroomSubject(data).subscribe(response => {
       if(response.status == 'success') {

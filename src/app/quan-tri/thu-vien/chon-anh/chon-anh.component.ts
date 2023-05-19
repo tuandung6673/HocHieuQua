@@ -160,8 +160,6 @@ export class ChonAnhComponent implements OnInit {
   }
 
   onBasicUpload(event) {
-    console.log(event);
-    
   }
 
   selectImage(imgUrl) {

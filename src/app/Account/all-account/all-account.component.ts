@@ -47,7 +47,6 @@ export class AllAccountComponent implements OnInit {
       })
     )
     .subscribe((responseData) => {
-      // console.log('All account', this.accounts);
       this.accounts = responseData.data.data
       this.totalRecord = responseData.data.recordsTotal
       this.spinner.hide();

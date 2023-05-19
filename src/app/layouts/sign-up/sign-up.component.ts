@@ -54,7 +54,6 @@ export class SignUpComponent implements OnInit {
     newRegister.password = this.password;
     newRegister.status = 1;
 
-    // console.log(newRegister);
     this.apiService.postAccountRegister(newRegister).subscribe((responseData) => {
       if(responseData.status == 'success') {
         this.messageService.add({severity: 'success', summary: 'Thông báo', detail: responseData.data.messages});
