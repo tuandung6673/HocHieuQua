@@ -278,7 +278,7 @@ export class AppPhuHopComponent implements OnInit {
 export class AppTieuLuanComponent implements OnInit {
   @Input() quizzConfigSets;
   Editor = ClassicEditor;
-  content : string;
+  content : string = '';
   ngOnInit(): void {
       
   }
