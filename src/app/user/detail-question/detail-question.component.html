@@ -7,12 +7,12 @@
     <div class="content">
       <div class="topic" [mathjax]="quizz.content"></div>
       <div class="answers">
-        <app-detail-answer [quizz]="quizz"></app-detail-answer>
+        <app-detail-answer (countRight)="countRight($event)" [quizz]="quizz"></app-detail-answer>
       </div>
     </div>
   </div>
   <div class="question-actions">
     <p-button label="Lưu bài"></p-button>
-    <p-button label="Nộp bài"></p-button>
+    <p-button label="Nộp bài" (click)="sendTestUser()"></p-button>
   </div>
 </div>

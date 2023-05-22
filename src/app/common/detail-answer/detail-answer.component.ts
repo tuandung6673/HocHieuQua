@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Quizz } from 'src/models/quizz.model';
 
 @Component({
@@ -8,11 +8,16 @@ import { Quizz } from 'src/models/quizz.model';
 })
 export class DetailAnswerComponent implements OnInit {
   @Input() quizz : Quizz;
+  @Output() countRight = new EventEmitter<any>();
   quizzConfigSets : any;
   constructor() { }
 
   ngOnInit(): void {
     this.quizzConfigSets = JSON.parse(this.quizz.quizzConfigSets);
+  }
+
+  send123(value) {
+    this.countRight.emit(value);
   }
 
 }

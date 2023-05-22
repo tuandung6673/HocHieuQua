@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 @Component({
   selector: 'app-nhieu-lua-chon',
@@ -15,6 +15,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 export class AppNhieuLuaChonComponent implements OnInit {
   @Input() quizzConfigSets : any;
   @Input() quizz;
+  @Output() countRight = new EventEmitter<any>()
   selectedAnswer : any[] = [];
   countOfRightAnswer : number = 0;
   constructor() {
@@ -41,9 +42,10 @@ export class AppNhieuLuaChonComponent implements OnInit {
 
   checkResult() {
     if(this.selectedAnswer.every(item => item.result) && this.selectedAnswer.length == this.countOfRightAnswer) {
-      console.log(`Câu ${this.quizz.order + 1} chọn đúng`);
+      this.countRight.emit(true);
     } else {
-      console.log(`Câu ${this.quizz.order + 1} chọn sai`);
+      // console.log(`Câu ${this.quizz.order + 1} chọn sai`);
+      this.countRight.emit(false);
     }
   }
 }
@@ -137,9 +139,7 @@ export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
 export class AppDungSaiComponent implements OnInit {
   @Input() quizzConfigSets;
   @Input() quizz;
-  constructor() {
-
-  }
+  @Output() countRight = new EventEmitter<any>()
 
   ngOnInit(): void {
     
@@ -148,8 +148,10 @@ export class AppDungSaiComponent implements OnInit {
   chooseHandler(item) {
     if(item.result) {
       console.log(`Câu ${this.quizz.order + 1} chọn đúng`);
+      this.countRight.emit(true);
     } else {
       console.log(`Câu ${this.quizz.order + 1} chọn sai`);
+      this.countRight.emit(false);
     }
   }
 }
