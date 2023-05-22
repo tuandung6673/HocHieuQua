@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { DetailAnswerComponent } from 'src/app/common/detail-answer/detail-answer.component';
 import { Quizz } from 'src/models/quizz.model';
 
 @Component({
@@ -7,6 +8,7 @@ import { Quizz } from 'src/models/quizz.model';
   styleUrls: ['./detail-question.component.scss']
 })
 export class DetailQuestionComponent implements OnInit {
+  @ViewChild(DetailAnswerComponent) childComponent : DetailAnswerComponent
   rightNumber : number = 0;
   @Input() quizzs : Quizz[] = [];
   constructor() { }
@@ -21,8 +23,8 @@ export class DetailQuestionComponent implements OnInit {
   }
 
   sendTestUser() {
-    console.log('Số câu đúng: ',this.rightNumber);
-    
+    // console.log('Số câu đúng: ',this.rightNumber);
+    console.log(this.childComponent.getData());
   }
 
 }

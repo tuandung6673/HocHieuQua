@@ -20,4 +20,8 @@ export class DetailAnswerComponent implements OnInit {
     this.countRight.emit(value);
   }
 
+  getData() {
+    return this.quizz;
+  }
+
 }
