@@ -7,7 +7,7 @@
     <div class="content">
       <div class="topic" [mathjax]="quizz.content"></div>
       <div class="answers">
-        <app-detail-answer (countRight)="countRight($event)" [quizz]="quizz"></app-detail-answer>
+        <app-detail-answer (sendData)="sendData($event)" (countRight)="countRight($event)" [quizz]="quizz"></app-detail-answer>
       </div>
     </div>
   </div>

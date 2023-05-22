@@ -9,6 +9,7 @@ import { Quizz } from 'src/models/quizz.model';
 export class DetailAnswerComponent implements OnInit {
   @Input() quizz : Quizz;
   @Output() countRight = new EventEmitter<any>();
+  @Output() sendData = new EventEmitter<any>();
   quizzConfigSets : any;
   constructor() { }
 
@@ -22,6 +23,10 @@ export class DetailAnswerComponent implements OnInit {
 
   getData() {
     return this.quizz;
+  }
+
+  onChildDataChange(data) {
+    this.sendData.emit(data);
   }
 
 }

@@ -86,24 +86,25 @@ export class AppMotLuaChonComponent implements OnInit {
   selector: 'app-nhieu-trinh-tha-don-xuong',
   styleUrls: ['./child-answer.scss'],
   template: `
-  <div *ngFor="let answer of cloneConfig">
+  <div *ngFor="let answer of quizzConfigSets">
     <div class="child-answer">
-      <p-dropdown [options]="answer.options" [(ngModel)]="answer.userChoose" optionValue="result" placeholder="Chọn đáp án" (onChange)="changeHanlder()"></p-dropdown>
+      <p-dropdown [options]="answer.options" [(ngModel)]="answer.userChoose" optionValue="result" placeholder="Chọn đáp án" (onChange)="abc()"></p-dropdown>
     </div>
   </div>
   `
 })
 export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
   @Input() quizzConfigSets;
-  cloneConfig : any[];
+  @Output() childDataChange = new EventEmitter<any>()
+  // quizzConfigSets : any[];
   answerOptions : any[] = [];
 
   ngOnInit(): void {
     this.quizzConfigSets.map(item => {
       item.answer = JSON.parse(item.answer);
     })
-    this.cloneConfig = [...this.quizzConfigSets]
-    this.cloneConfig.map(item => {
+    this.quizzConfigSets = [...this.quizzConfigSets]
+    this.quizzConfigSets.map(item => {
       item.userChoose = ""
       item.options = item.answer.data.map(item2 => {
         return {
@@ -116,11 +117,14 @@ export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
   }
 
   changeHanlder() {
-    if(this.cloneConfig.every(item => item.userChoose)) {
-      console.log('Đúng');
+    if(this.quizzConfigSets.every(item => item.userChoose)) {
+      this.childDataChange.emit(this.quizzConfigSets)
     } else {
       console.log('Sai');
     }
+  }
+  abc() {
+    this.childDataChange.emit(this.quizzConfigSets)
   }
 }
 
@@ -237,8 +241,9 @@ export class AppDienVaoNhieuKhoangTrong implements OnInit {
   `
 })
 export class AppPhuHopComponent implements OnInit {
+  @Output() childDataChange = new EventEmitter<any>();
   @Input() quizzConfigSets : any;
-  cloneConfig : any[];
+  // cloneConfig : any[];
   questionOptions : any[] = []
 
   ngOnInit(): void { 
@@ -253,18 +258,19 @@ export class AppPhuHopComponent implements OnInit {
       })
     })
 
-    this.cloneConfig = [...this.quizzConfigSets];
-    this.cloneConfig.map(item => {
+    this.quizzConfigSets = [...this.quizzConfigSets];
+    this.quizzConfigSets.map(item => {
       item.chooseValue = '';
     })
   }
 
   changeHandler() {
-    if(this.cloneConfig.every(item => item.chooseValue == item.answer.right)) {
-      console.log('Đúng');
-    } else {
-      console.log('Sai');
-    }
+    // if(this.cloneConfig.every(item => item.chooseValue == item.answer.right)) {
+    //   console.log('Đúng');
+    // } else {
+    //   console.log('Sai');
+    // }
+    this.childDataChange.emit(this.quizzConfigSets)
   }
 }
 

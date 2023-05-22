@@ -24,7 +24,15 @@ export class DetailQuestionComponent implements OnInit {
 
   sendTestUser() {
     // console.log('Số câu đúng: ',this.rightNumber);
-    console.log(this.childComponent.getData());
+    // console.log(this.childComponent.getData());
+    // console.log(this.quizzs.map);
+    // this.quizzs.map(item => {
+    //   console.log(JSON.parse(item.quizzConfigSets));
+    // })
+  }
+
+  sendData(data) {
+    console.log(data);
   }
 
 }
