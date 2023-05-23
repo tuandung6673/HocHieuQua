@@ -19,5 +19,6 @@ export class Quizz {
   testQuestionGroupName: any = "";
   level: any = 0;
   teacherIds: any = "";
-  isAutoSort: any = 0
+  isAutoSort: any = 0;
+  isUserSelect : any = "";
 }

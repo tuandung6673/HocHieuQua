@@ -29,6 +29,10 @@ export class DetailQuestionComponent implements OnInit {
     // this.quizzs.map(item => {
     //   console.log(JSON.parse(item.quizzConfigSets));
     // })
+    this.quizzs.map(item => {
+      console.log(item);
+    });
+    
   }
 
   sendData(data) {

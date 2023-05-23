@@ -18,15 +18,8 @@ export class DetailAnswerComponent implements OnInit {
   }
 
   send123(value) {
-    this.countRight.emit(value);
+    this.quizz = {...this.quizz};
+    this.quizz.isUserSelect = value;
+    console.log('quizz', this.quizz);
   }
-
-  getData() {
-    return this.quizz;
-  }
-
-  onChildDataChange(data) {
-    this.sendData.emit(data);
-  }
-
 }
