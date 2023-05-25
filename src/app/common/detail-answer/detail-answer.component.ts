@@ -8,7 +8,6 @@ import { Quizz } from 'src/models/quizz.model';
 })
 export class DetailAnswerComponent implements OnInit {
   @Input() quizz : Quizz;
-  @Output() countRight = new EventEmitter<any>();
   @Output() sendData = new EventEmitter<any>();
   quizzConfigSets : any;
   constructor() { }
@@ -20,6 +19,6 @@ export class DetailAnswerComponent implements OnInit {
   send123(value) {
     this.quizz = {...this.quizz};
     this.quizz.isUserSelect = value;
-    console.log('quizz', this.quizz);
+    this.sendData.emit(this.quizz);
   }
 }

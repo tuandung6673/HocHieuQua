@@ -19,6 +19,7 @@ export class AppNhieuLuaChonComponent implements OnInit {
   selectedAnswer : any[] = [];
   countOfRightAnswer : number = 0;
   constructor() {
+
   }
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class AppNhieuLuaChonComponent implements OnInit {
     if(this.selectedAnswer.every(item => item.result) && this.selectedAnswer.length == this.countOfRightAnswer) {
       this.countRight.emit(true);
     } else {
+      // console.log(`Câu ${this.quizz.order + 1} chọn sai`);
       this.countRight.emit(false);
     }
   }
@@ -63,7 +65,7 @@ export class AppNhieuLuaChonComponent implements OnInit {
 export class AppMotLuaChonComponent implements OnInit {
   @Input() quizzConfigSets : any;
   @Input() quizz;
-  @Output() countRight = new EventEmitter<any>()
+  @Output() countRight = new EventEmitter<any>();
   constructor() {
 
   }
@@ -74,8 +76,10 @@ export class AppMotLuaChonComponent implements OnInit {
 
   chooseHandler(item) {
     if(item.result) {
+      // console.log(`Câu ${this.quizz.order + 1} chọn đúng`);
       this.countRight.emit(true);
     } else {
+      // console.log(`Câu ${this.quizz.order + 1} chọn sai`);
       this.countRight.emit(false);
     }
   }
@@ -94,7 +98,9 @@ export class AppMotLuaChonComponent implements OnInit {
 })
 export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
   @Input() quizzConfigSets;
-  @Output() countRight = new EventEmitter<any>()
+  @Output() childDataChange = new EventEmitter<any>()
+  @Output() countRight = new EventEmitter<any>();
+  // quizzConfigSets : any[];
   answerOptions : any[] = [];
 
   ngOnInit(): void {
@@ -116,12 +122,13 @@ export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
 
   changeHanlder() {
     if(this.quizzConfigSets.every(item => item.userChoose)) {
+      this.childDataChange.emit(this.quizzConfigSets);
       this.countRight.emit(true);
     } else {
       this.countRight.emit(false);
     }
   }
- 
+
 }
 
 @Component({
@@ -142,6 +149,7 @@ export class AppDungSaiComponent implements OnInit {
   @Output() countRight = new EventEmitter<any>()
 
   ngOnInit(): void {
+    
   }
 
   chooseHandler(item) {
@@ -167,16 +175,18 @@ export class AppDungSaiComponent implements OnInit {
 export class AppDienVaoChoTrongComponent implements OnInit {
   value1 : string; 
   @Input() quizzConfigSets : any;
-  @Output() countRight = new EventEmitter<any>()
   @Input() quizz;
+  @Output() countRight = new EventEmitter<any>();
   ngOnInit(): void {
-      
   }
 
   handlerAnswer(item) {
-    if(this.value1 == item.quizzConfigSets.answer) {
+    const right = item.quizzConfigSets.filter(item => item.result == true)[0]
+    if(this.value1 == right.answer) {
+      // console.log(`Câu ${this.quizz.order + 1} điền đúng`);
       this.countRight.emit(true);
     } else {
+      // console.log(`Câu ${this.quizz.order + 1} điền sai`);
       this.countRight.emit(false);
     }
   }
@@ -195,9 +205,9 @@ export class AppDienVaoChoTrongComponent implements OnInit {
 })
 export class AppDienVaoNhieuKhoangTrong implements OnInit {
   @Input() quizzConfigSets;
-  @Output() countRight = new EventEmitter<any>()
   @Input() quizz;
   cloneConfig;
+  @Output() countRight = new EventEmitter<any>()
   ngOnInit(): void {
     this.quizzConfigSets.map(item => {
       item.answer = JSON.parse(item.answer);
@@ -218,8 +228,10 @@ export class AppDienVaoNhieuKhoangTrong implements OnInit {
 
   checkResult() {
     if(this.cloneConfig.every(item => item.isInputRight)) {
+      // console.log(`Câu ${this.quizz.order + 1} điền đúng`);
       this.countRight.emit(true);
     } else {
+      // console.log(`Câu ${this.quizz.order + 1} điền sai`);
       this.countRight.emit(false);
     }
   }
@@ -238,8 +250,8 @@ export class AppDienVaoNhieuKhoangTrong implements OnInit {
   `
 })
 export class AppPhuHopComponent implements OnInit {
-  @Output() countRight = new EventEmitter<any>();
   @Input() quizzConfigSets : any;
+  @Output() countRight = new EventEmitter<any>();
   // cloneConfig : any[];
   questionOptions : any[] = []
 
