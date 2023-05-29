@@ -324,6 +324,10 @@ export class ApiService {
     return this.http.get<BaseReponse<TestUser>>(`${this.url}/TestUser?` + queryParams)
   }
 
+  postTestUser(data) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/TestUser`, data)
+  }
+
   // TestCourseSchedule 
   postTestCourseSchedule(data : TestCourseSchedule) {
     return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/TestCourseSchedule`, data)

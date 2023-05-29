@@ -46,7 +46,7 @@
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
             </td>
             <td>
-              <img [src]="account.avatar" [alt]="account.name" height="60" width="100" style="object-fit: cover;" class="shadow-4" />
+              <img [src]="account.avatar" (error)="errorHandler($event)" [alt]="account.name" height="60" width="100" style="object-fit: cover;" class="shadow-4" />
             </td>
             <td style="color: #0b5ed7; font-weight: 650;">{{account.userName}}</td>
             <td>

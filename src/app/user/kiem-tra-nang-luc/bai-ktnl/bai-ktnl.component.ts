@@ -5,6 +5,8 @@ import { ApiService } from 'src/services/api.service.service';
 import * as moment from 'moment'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import { TestUser } from 'src/models/testUser.model';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-bai-ktnl',
@@ -19,10 +21,13 @@ export class BaiKtnlComponent implements OnInit {
   remainSS: any = 59;
   test : Test = new Test();
   id :string;
+  testUser : TestUser = new TestUser();
+  userId = JSON.parse(localStorage.getItem('userData'))?.id;
   constructor(
     private activateRoute: ActivatedRoute,
     private apiService: ApiService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private messageSerivce: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -63,5 +68,31 @@ export class BaiKtnlComponent implements OnInit {
       }
     }, 1000)
   }
+
+  savePost(evt) {
+    const data = {
+      ...this.testUser,
+      comment: evt.comment,
+      finishedDate: evt.finishedDate,
+      testId: this.test.id,
+      userId: this.userId,
+      userAnswers: JSON.stringify(this.test),
+      totalPoint: evt.totalPoint,
+      totalTruth: evt.totalTruth,
+      totalTruthPoint: evt.totalTruthPoint,
+      totalWrong: evt.totalWrong,
+      isHaveEssay: evt.isHaveEssay ? 1 : 0,
+      isLastest: 0,
+      isSendMail: false,
+      isTestPass: evt.totalTruth > this.test.totalPointPass ? 1 : 0
+    }
+    this.apiService.postTestUser(data).subscribe(response => {
+      if(response.status == 'success') {
+        this.messageSerivce.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
+      } else {
+        this.messageSerivce.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
+      }
+    });
+  } 
 
 }

@@ -1,7 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { ConfirmationService } from 'primeng/api';
 import { DetailAnswerComponent } from 'src/app/common/detail-answer/detail-answer.component';
 import { Quizz } from 'src/models/quizz.model';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-detail-question',
@@ -15,15 +18,19 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
   listQuestion : any[] = [];
   @Input() quizzs : Quizz[] = [];
   @Input() comment; 
+  @Output() postRq = new EventEmitter<any>();
   constructor(
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.listQuestion = [...this.quizzs];   
+    this.listQuestion = [...this.quizzs];
+    console.log(this.quizzs);
+       
   }
   displayBasic : boolean = false;
   sendTestUser() {
@@ -35,6 +42,15 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
         this.pointHandler();
         const pointPercent = (this.pointQuizz / this.totalPoint * 100).toFixed(0);
         this.comment2 = this.getComment(pointPercent);
+        this.postRq.emit({
+          comment: this.comment2,
+          finishedDate: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+          totalPoint: this.totalPoint,
+          totalTruth : this.rightQuizz,
+          totalTruthPoint: this.pointQuizz,
+          totalWrong: this.quizzs.length - this.rightQuizz,
+          isHaveEssay : this.quizzs.some(item => item.testQuestionTypeCode == 'tieu_luan'),
+        })
         this.displayBasic = true;
       }
     })
@@ -71,4 +87,21 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
     })
   }
 
+  exitResult() {
+    this.displayBasic = false;
+    this.router.navigate(['/kiem-tra-nang-luc'])
+  }
+
+  downloadResult() {
+    // const templateElement = document.getElementById('your-template-id');
+    // // console.log(templateElement);
+    
+    // html2canvas(templateElement).then((canvas) => {
+    //   const image = canvas.toDataURL('image/png');
+    //   const link = document.createElement('a');
+    //   link.href = image;
+    //   link.download = 'template.png';
+    //   link.click();
+    // });
+  }
 }

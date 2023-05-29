@@ -1,0 +1,134 @@
+thong-bao {
+  margin: 0 auto;
+  width: 80%;
+  .actions {
+    width: 100%;
+    text-align: right;
+  }
+  .pointer {
+    .banner {
+      position: relative;
+      img {
+        width: 100%;
+        height: 120px;
+      }
+      h3 {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        text-align: center;
+      }
+    }
+    .point {
+      position: relative;
+      .bg-up {
+        height: 100px;
+        width: 100%;
+        background: rgba(248,197,82,.38);
+      }
+      .bg-down {
+        height: 50px;
+        width: 100%;
+        background: #f6ca35;
+      }
+      .result-info {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        .info-wrapper {
+          display: flex;
+          .result-avatar {
+            display: flex;
+            align-items: center;
+            img {
+              height: 100px;
+              width: 100px;
+              object-fit: cover;
+            }
+          }
+          .result-user {
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            span {
+              font-weight: bold;
+            }
+          }
+        }
+        .result-score {
+          position: relative;
+          height: 150px;
+          img {
+            position: absolute;
+            right: 10px;
+            top: -33px;
+            width: 200px;
+            height: 210px;
+          }
+          span {
+            position: absolute;
+            top: 35%;
+            right: 90px;
+            font-size: 40px;
+            color: red;
+          }
+        }
+      }
+    }
+  }
+  .comment {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    .score {
+      padding: 15px;
+      background: hsla(0,0%,100%,.7);
+      border: 2.5px dashed #f7c92f;
+      border-radius: 10px;
+      font-size: 16px;
+      z-index: 1;
+      position: relative;
+      img {
+        position: absolute;
+        bottom: -10px;
+        right: -60px;
+      }
+      span {
+        font-weight: bold;
+      }
+      div {
+        margin: 10px 0;
+      }
+    }
+    .nhan-xet {
+      z-index: 3;
+      padding: 15px;
+      background: hsla(0,0%,100%,.7);
+      border: 2.5px dashed #f7c92f;
+      border-radius: 10px;
+      font-size: 16px;
+      position: relative;
+      img {
+        position: absolute;
+        bottom: -20px;
+        right: 0;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .bt-banner {
+    position: relative;
+    bottom: 50px;
+    img {
+      transform: rotate(180deg);
+      width: 100%;
+      height: 120px;
+    }
+  }
+}

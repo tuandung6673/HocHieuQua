@@ -1,28 +1,17 @@
-<div class="question-wrapper">
-  <div *ngFor="let quizz of quizzs; let i=index" class="question">
-    <div class="header">
-      <span>Câu: {{i + 1}}</span>
-      <span>{{quizz.point}} điểm</span>
-    </div>
-    <div class="content">
-      <div class="topic" [mathjax]="quizz.content"></div>
-      <div class="answers">
-        <app-detail-answer (sendData)="sendData($event)" [quizz]="quizz"></app-detail-answer>
-      </div>
-    </div>
-  </div>
-  <div class="question-actions">
-    <p-button label="Lưu bài"></p-button>
-    <p-button label="Nộp bài" (click)="sendTestUser()"></p-button>
-  </div>
-</div>
-
-<p-dialog header="Thông báo kết quả" [(visible)]="displayBasic" [style]="{width: '80vw'}">
-  <div class="thong-bao">
-    <div class="actions mb-1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./download.scss">
+</head>
+<body>
+  <div class="thong-bao" id="your-template-id">
+    <!-- <div class="actions mb-1">
       <p-button (click)="exitResult()" label="Thoát" icon="pi pi-times" iconPos="left" class="mr-1"></p-button>
-      <p-button (click)="downloadResult()" download="Ket-qua.png" label="Download" icon="pi pi-cloud-download" iconPos="left"></p-button>
-    </div>
+      <p-button (click)="downloadResult()" label="Download" icon="pi pi-cloud-download" iconPos="left"></p-button>
+    </div> -->
     <div class="pointer">
       <div class="banner">
         <img src="https://hochieuqua7.web.app/images/common/bg-sharp.png" />
@@ -50,7 +39,7 @@
           </div>
           <div class="result-score">
             <img src="https://hochieuqua7.web.app/images/common/score.png" />
-            <span>{{pointQuizz}}đ</span>
+            <span>10đ</span>
           </div>
         </div>
       </div>
@@ -60,26 +49,27 @@
         <img height="100px" width="100px" src="https://hochieuqua7.web.app/images/common/ong3.png" />
         <span style="font-size: 18px">Thông báo kết quả</span>
         <div>
-          Số câu đúng: <span>{{rightQuizz}}</span>
+          Số câu đúng: <span>5</span>
         </div>
         <div>
-          Số câu sai: <span>{{quizzs.length - rightQuizz}}</span>
+          Số câu sai: <span>5</span>
         </div>
         <div>
-          Tổng số câu: <span>{{quizzs.length}}</span>
+          Tổng số câu: <span>5</span>
         </div>
         <div>
-          Tổng điểm: <span>{{pointQuizz}}</span>
+          Tổng điểm: <span>5</span>
         </div>
       </div>
       <div class="nhan-xet">
         <img height="100px" width="100px" src="https://hochieuqua7.web.app/images/common/ong2.png" />
         <span style="font-size: 18px">Nhận xét của giáo viên</span>
-        <div>{{comment2}}</div>
+        <div>Xuất mẹ mày sắc</div>
       </div>
     </div>
     <div class="bt-banner">
       <img src="https://hochieuqua7.web.app/images/common/bg-sharp.png" />
     </div>
   </div>
-</p-dialog>
+</body>
+</html>
