@@ -123,6 +123,11 @@ export class SuaBaiKiemTraComponent implements OnInit {
     }
   }
 
+  courseType : string = '';
+  typeCourse(evt) {
+    this.courseType = evt;
+  }
+
   checkValidate(comment) : boolean {
     return comment.every(c => c.comment != '')
   }

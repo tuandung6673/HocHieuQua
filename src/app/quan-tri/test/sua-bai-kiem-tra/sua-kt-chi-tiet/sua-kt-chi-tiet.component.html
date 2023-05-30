@@ -1,7 +1,7 @@
 <div class="detail grid kt-chi-tiet">
   <div class="col-3">
     <small>Loại bài kiểm tra</small>
-    <p-dropdown [options]="testCategoryOptions" [(ngModel)]="test.testCategoryCode" name="testCategoryCode"></p-dropdown>
+    <p-dropdown [options]="testCategoryOptions" [(ngModel)]="test.testCategoryCode" (onChange)="changeValue()" name="testCategoryCode"></p-dropdown>
   </div>
   <div class="col-9">
     <small>Tiêu đề</small>
@@ -9,6 +9,15 @@
       <span class="p-input-icon-right">
         <i class="pi pi-user"></i>
         <input id="name" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.name" name="name"/>
+      </span>
+    </div>
+  </div>
+  <div class="col-12" *ngIf="test.testCategoryCode == 'bai-giang'">
+    <small>Đường dẫn video</small>
+    <div>
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input id="name" type="username" aria-describedby="avatar-help" pInputText [(ngModel)]="test.videoUrl" name="name"/>
       </span>
     </div>
   </div>
@@ -74,7 +83,7 @@
     <small>Miễn phí</small>
     <p-inputSwitch [(ngModel)]="test.isFree" name="isFree"></p-inputSwitch>
   </div>
-  <div class="col-12 ckeditor" *ngIf="test.testCategoryCode == 'bai-giang'">
+  <div class="col-12 ckeditor">
     <ckeditor [editor]="Editor" [(ngModel)]="test.description"></ckeditor>
   </div>
 </div>
