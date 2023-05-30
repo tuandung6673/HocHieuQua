@@ -13,7 +13,6 @@ import { Test } from 'src/models/test.model';
   styleUrls: ['./sua-kt-chi-tiet.component.scss']
 })
 export class SuaKtChiTietComponent implements OnInit {
-  @Output() typeCourse = new EventEmitter<any>();
   @Output() sendData = new EventEmitter<Test>();
   @Input() test : Test;
   Editor = ClassicEditor;
@@ -52,7 +51,4 @@ export class SuaKtChiTietComponent implements OnInit {
     })
   }
   
-  changeValue() {
-    this.typeCourse.emit(this.test.testCategoryCode)
-  }
 }

@@ -1,0 +1,13 @@
+<div class="quizz" *ngFor="let quizz of test.quizzs; let i=index">
+    <div class="header">
+        <span>Câu hỏi {{i+1}}</span>
+        <span>{{quizz.point}} điểm</span>
+    </div>
+    <div class="content">
+        <div class="title_quizz">{{quizz.content}}</div>
+        <div class="actions">
+            <button style="color: #007bff;">Sửa</button>
+            <button style="color: #dc3545;">Xóa</button>
+        </div>
+    </div>
+</div>
