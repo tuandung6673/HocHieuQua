@@ -162,7 +162,7 @@ export class ChonAnhComponent implements OnInit {
   onBasicUpload(event) {
   }
 
-  selectImage(imgUrl) {
+  selectImage(imgUrl) { 
     this.ref.close(imgUrl);
   }
   
