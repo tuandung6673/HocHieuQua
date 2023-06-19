@@ -22,7 +22,7 @@ export class BaiKtnlComponent implements OnInit {
   test : Test = new Test();
   id :string;
   testUser : TestUser = new TestUser();
-  userId = JSON.parse(localStorage.getItem('userData'))?.id;
+  userId = JSON.parse(localStorage.getItem('userData'))?.userId;
   constructor(
     private activateRoute: ActivatedRoute,
     private apiService: ApiService,

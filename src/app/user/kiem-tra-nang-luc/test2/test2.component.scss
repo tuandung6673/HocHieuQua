@@ -1,7 +1,7 @@
 .test {
   width: 100%;
   // margin: 15px 0 15px 0;
-  padding: 10px 5px 10px 8px;
+  padding: 12px 5px 12px 8px;
   border-radius: 10px;
 }
 
@@ -13,6 +13,7 @@
   display: flex;
   justify-content: end;
   .button {
+    height: 33px;
     padding: 5px;
     background: #007bff;
     border: 1px solid #007bff;

@@ -303,7 +303,7 @@ export class ApiService {
 
   // Tesst
 
-  getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '', IsShowInAbilityTest = -1) : Observable<BaseReponse<Test>> {
+  getTest(offSet: number = 0, pageSize: number = 10, filter = '', classId = '', courseId = '', subjectId = '', testCategoryId = '', IsShowInAbilityTest = 1) : Observable<BaseReponse<Test>> {
     return this.http.get<BaseReponse<Test>>(`${this.url}/test?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}&classId=${classId}&courseId=${courseId}&subjectId=${subjectId}&testCategoryId=${testCategoryId}&IsShowInAbilityTest=${IsShowInAbilityTest}`)
   }
 
