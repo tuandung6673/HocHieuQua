@@ -24,8 +24,6 @@ export class ChiTietBaiHocComponent implements OnInit {
   courseSchedules : CourseSchedule[] = [];
   testDetail: Test = new Test();
   commentList : Comment[] = [];
-  userData = JSON.parse(localStorage.getItem('userData'))
-
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +47,6 @@ export class ChiTietBaiHocComponent implements OnInit {
   getCourseDetail() {
     const courseQueryParams = queryString.stringify({
       ...this.courseQuery,
-      // accountId: this.userData.id
     });
     this.spinner.show();
     this.apiService.getCourseById(this.courseId, courseQueryParams)
