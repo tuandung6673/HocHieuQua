@@ -49,6 +49,7 @@ export class TestUser {
     totalTruth: any = 0;
     isHaveEssay: any = 0;
     isSubmit: any = 0;
+    isTestViewed : any = 0;
     comment: string = "";
     manualPoint: any = 0;
     isLastest: any = 0;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as queryString from 'querystring-es3';
@@ -23,12 +24,15 @@ export class ChiTietBaiHocComponent implements OnInit {
   courseSchedules : CourseSchedule[] = [];
   testDetail: Test = new Test();
   commentList : Comment[] = [];
+  userData = JSON.parse(localStorage.getItem('userData'))
+
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {
     this.route.params.subscribe((params: Params) => {
       this.courseId = params['id'];
@@ -43,7 +47,10 @@ export class ChiTietBaiHocComponent implements OnInit {
   }
 
   getCourseDetail() {
-    const courseQueryParams = queryString.stringify(this.courseQuery);
+    const courseQueryParams = queryString.stringify({
+      ...this.courseQuery,
+      // accountId: this.userData.id
+    });
     this.spinner.show();
     this.apiService.getCourseById(this.courseId, courseQueryParams)
     .pipe(
@@ -66,7 +73,13 @@ export class ChiTietBaiHocComponent implements OnInit {
     )
     .subscribe(response => {
       this.testDetail = response.data;
+      this.testDetail.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.convertToEmbedUrl(this.testDetail.videoUrl));
     })
+  }
+
+  convertToEmbedUrl(url: string): string {
+    const videoId = url.split('v=')[1];
+    return `https://www.youtube.com/embed/${videoId}`;
   }
 
   getComment() {
