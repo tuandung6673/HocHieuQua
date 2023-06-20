@@ -89,6 +89,7 @@ export class BaiKtnlComponent implements OnInit {
     }
     this.apiService.postTestUser(data).subscribe(response => {
       if(response.status == 'success') {
+        localStorage.removeItem('testCode');
         this.messageSerivce.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
       } else {
         this.messageSerivce.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
