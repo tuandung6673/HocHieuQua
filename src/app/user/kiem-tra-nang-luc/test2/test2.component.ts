@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TestUser } from 'src/models/testUser.model';
 import { ApiService } from 'src/services/api.service.service';
 
@@ -13,7 +14,8 @@ export class Test2Component implements OnInit {
   testForm : TestUser = new TestUser();
   testId: string;
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,11 @@ export class Test2Component implements OnInit {
       if(response.status == 'success') {
         const testCode = response.data.code;
         localStorage.setItem('testCode', testCode)
+        if(testCode == '-1') {
+          console.log('hieejn dialod');
+        } else {
+          this.router.navigate(['kiem-tra-nang-luc', this.test.id])
+        }
       }
     })
   }
