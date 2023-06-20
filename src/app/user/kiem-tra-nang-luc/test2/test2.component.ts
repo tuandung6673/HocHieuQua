@@ -13,6 +13,7 @@ export class Test2Component implements OnInit {
   @Input() index : any
   testForm : TestUser = new TestUser();
   testId: string;
+  display : boolean = false;
   constructor(
     private apiService: ApiService,
     private router: Router
@@ -32,7 +33,7 @@ export class Test2Component implements OnInit {
         const testCode = response.data.code;
         localStorage.setItem('testCode', testCode)
         if(testCode == '-1') {
-          console.log('hieejn dialod');
+          this.display = true;
         } else {
           this.router.navigate(['kiem-tra-nang-luc', this.test.id])
         }
