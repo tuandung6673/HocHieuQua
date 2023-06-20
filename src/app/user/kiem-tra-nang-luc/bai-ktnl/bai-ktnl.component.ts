@@ -83,6 +83,7 @@ export class BaiKtnlComponent implements OnInit {
       totalWrong: evt.totalWrong,
       isHaveEssay: evt.isHaveEssay ? 1 : 0,
       isLastest: 0,
+      id: localStorage.getItem('testCode'),
       isSendMail: false,
       isTestPass: evt.totalTruth > this.test.totalPointPass ? 1 : 0
     }

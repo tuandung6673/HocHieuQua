@@ -14,9 +14,9 @@
   </div>
   <div class="col-4 blank"></div>
   <div class="col-4 action">
-    <p class="button" [routerLink]="['/kiem-tra-nang-luc', test.id]">
+    <div class="button" [routerLink]="['/kiem-tra-nang-luc', test.id]" (click)="getTestCode()">
       <i class="pi pi-play"></i>
       Thi ngay
-    </p>
+    </div>
   </div>
 </div>
