@@ -4,9 +4,72 @@
         <span>{{quizz.point}} điểm</span>
     </div>
     <div class="content">
-        <div class="title_quizz">{{quizz.content}}</div>
-        <div class="actions">
-            <button style="color: #007bff;">Sửa</button>
+        <div *ngIf="quizz.id != quizzEdit" class="title_quizz" [innerHTML]="quizz.content"></div>
+        <div *ngIf="isEdit && quizz.id == quizzEdit" class="quizz_editor">
+            <div class="grid detail">
+                <div class="col-12">
+                    <small>Tên câu hỏi</small>
+                    <div>
+                        <span class="input p-input-icon-right">
+                            <i class="pi pi-user"></i>
+                            <input type="text" pInputText [(ngModel)]="quizz.name"/>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <small>Loại câu hỏi</small>
+                    <div class="input">
+                        <p-dropdown [options]="testOptions"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <small>Nhóm câu hỏi</small>
+                    <div class="input">
+                        <p-dropdown [options]="testOptions"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <small>Độ khó</small>
+                    <div class="input">
+                        <p-dropdown [options]="testOptions"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <small>Thứ tự</small>
+                    <div class="input">
+                        <p-dropdown [options]="testOptions"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <small>Đường dẫn bài học</small>
+                    <div>
+                        <span class="input p-input-icon-right">
+                            <i class="pi pi-user"></i>
+                            <input type="text" pInputText [(ngModel)]="quizz.lessonLink"/>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <small>Giáo viên hợp tác</small>
+                    <div>
+                        <span class="input p-input-icon-right">
+                            <i class="pi pi-user"></i>
+                            <input type="text" pInputText [(ngModel)]="quizz.lessonLink"/>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 ckeditor">
+                    <small>Nội dung câu hỏi</small>
+                    <ckeditor [editor]="Editor" [(ngModel)]="quizz.content"></ckeditor>
+                </div>
+            </div>
+            <div class="actions">
+                <button>Thêm trả lời</button>
+                <button>Lưu lại</button>
+            </div>
+        </div>
+        <div class="actions" *ngIf="quizz.id != quizzEdit">
+            <button (click)="editQuizz(quizz.id)" style="color: #007bff;">Sửa</button>
             <button style="color: #dc3545;">Xóa</button>
         </div>
     </div>
