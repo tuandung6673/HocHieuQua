@@ -19,25 +19,28 @@
                 <div class="col-3">
                     <small>Loại câu hỏi</small>
                     <div class="input">
-                        <p-dropdown [options]="testOptions"></p-dropdown>
+                        <p-dropdown [options]="questionTypeOptions" [(ngModel)]="quizz.testQuestionTypeCode"></p-dropdown>
                     </div>
                 </div>
                 <div class="col-3">
                     <small>Nhóm câu hỏi</small>
                     <div class="input">
-                        <p-dropdown [options]="testOptions"></p-dropdown>
+                        <p-dropdown [options]="questionGroupOptions" [(ngModel)]="quizz.testQuestionGroupId"></p-dropdown>
                     </div>
                 </div>
                 <div class="col-3">
                     <small>Độ khó</small>
                     <div class="input">
-                        <p-dropdown [options]="testOptions"></p-dropdown>
+                        <p-dropdown [options]="levelOptions" [(ngModel)]="quizz.level"></p-dropdown>
                     </div>
                 </div>
                 <div class="col-3">
                     <small>Thứ tự</small>
-                    <div class="input">
-                        <p-dropdown [options]="testOptions"></p-dropdown>
+                    <div>
+                        <span class="input p-input-icon-right">
+                            <i class="pi pi-user"></i>
+                            <input type="text" pInputText [(ngModel)]="quizz.order"/>
+                        </span>
                     </div>
                 </div>
                 <div class="col-12">
@@ -52,9 +55,8 @@
                 <div class="col-12">
                     <small>Giáo viên hợp tác</small>
                     <div>
-                        <span class="input p-input-icon-right">
-                            <i class="pi pi-user"></i>
-                            <input type="text" pInputText [(ngModel)]="quizz.lessonLink"/>
+                        <span class="p-input-icon-right">
+                            <p-multiSelect [filter]="false" class="input" [options]="teacherOptions" [(ngModel)]="quizz.teacherIds" defaultLabel="Chọn giáo viên" option display="chip" name="teacherSelected"></p-multiSelect>
                         </span>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
             </div>
         </div>
         <div class="actions" *ngIf="quizz.id != quizzEdit">
-            <button (click)="editQuizz(quizz.id)" style="color: #007bff;">Sửa</button>
+            <button (click)="editQuizz(quizz)" style="color: #007bff;">Sửa</button>
             <button style="color: #dc3545;">Xóa</button>
         </div>
     </div>
