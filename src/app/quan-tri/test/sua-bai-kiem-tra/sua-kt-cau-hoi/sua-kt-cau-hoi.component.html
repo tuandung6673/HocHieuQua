@@ -1,4 +1,4 @@
-<div class="quizz" *ngFor="let quizz of test.quizzs; let i=index">
+<div class="quizz" *ngFor="let quizz of test.quizzs; let i=index" [key]="quizz.id">
     <div class="header">
         <span>Câu hỏi {{i+1}}</span>
         <span>{{quizz.point}} điểm</span>
@@ -56,7 +56,7 @@
                     <small>Giáo viên hợp tác</small>
                     <div>
                         <span class="p-input-icon-right">
-                            <p-multiSelect [filter]="false" class="input" [options]="teacherOptions" [(ngModel)]="quizz.teacherIds" defaultLabel="Chọn giáo viên" option display="chip" name="teacherSelected"></p-multiSelect>
+                            <p-multiSelect [filter]="false" class="input" [options]="teacherOptions" [(ngModel)]="quizz.collabTeacher" optionValue="id" optionLabel="name" defaultLabel="Chọn giáo viên" option display="chip" name="teacherSelected"></p-multiSelect>
                         </span>
                     </div>
                 </div>
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <div class="actions">
-                <button>Thêm trả lời</button>
-                <button>Lưu lại</button>
+                <p-button styleClass="mr-2" label="Thêm trả lời"></p-button>
+                <p-button label="Lưu lại" (click)="saveEditQuizz(quizz, i)"></p-button>
             </div>
         </div>
         <div class="actions" *ngIf="quizz.id != quizzEdit">

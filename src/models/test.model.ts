@@ -33,7 +33,7 @@ export class Test {
   isTestPass: true;
   testUsers: TestUser[] = [];
   totalPoint: any = 0;
-  deadlineDate: any = "";
+  deadlineDate: any = null;
   isNotification: any = 0;
   isSpecial: any = 0;
   accountsSpecial: any = "";

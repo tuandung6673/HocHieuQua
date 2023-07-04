@@ -139,10 +139,11 @@ export class SuaBaiKiemTraComponent implements OnInit {
       commentConfiguration: JSON.stringify(this.commentConfiguration),
       testCategoryId: this.test.testCategoryCode,
       isShowInAbilityTest: this.test.isShowInAbilityTest ? 1 : 0,
-      deadlineData: moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss') == "Invalid date" ? "" : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss'),
+      // deadlineData: moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss') == "Invalid date" ? "" : moment(this.test.deadlineDate, 'DD/MM/YYYY k:mm').format('YYYY-MM-DD k:mm:ss'),
       isAutoSendMail: this.test.isAutoSendMail ? 1 : 0,
       status: this.test.status ? 1 : 0,
       isFree: this.test.isFree ? 1 : 0,
+      totalPoint: this.test.quizzs.reduce((sum, item) => sum + item.point, 0)
     }
     if(this.checkValidate(this.commentConfiguration)) {
       this.spinner.show();

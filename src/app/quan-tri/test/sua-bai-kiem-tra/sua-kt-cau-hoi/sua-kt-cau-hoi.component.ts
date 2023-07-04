@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Test } from 'src/models/test.model';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ApiService } from 'src/services/api.service.service';
@@ -9,7 +9,7 @@ import * as queryString from 'querystring-es3';
   templateUrl: './sua-kt-cau-hoi.component.html',
   styleUrls: ['./sua-kt-cau-hoi.component.scss']
 })
-export class SuaKtCauHoiComponent implements OnInit, OnChanges {
+export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
   @Input() test : Test;
   isEdit : boolean = false;
   Editor = ClassicEditor;
@@ -22,10 +22,12 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges {
   questionTypeOptions : any[] = [];
   questionGroupOptions : any[] = [];
   teacherOptions : any[] = [];
-
+  collabTeacher : any;
   quizzEdit : string;
+
   constructor(
     private apiService: ApiService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -35,15 +37,17 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.test);
-    
+
   }
 
   editQuizz(quizz) {
+    console.log('teacherIds',quizz.teacherIds);
     this.quizzEdit = quizz.id;
     this.isEdit = true;
-    console.log(JSON.parse(quizz.teacherIds));
-    
+    const teacher = JSON.parse(quizz.teacherIds)
+    quizz.collabTeacher = teacher?.map(teacher => {
+      return teacher.id
+    });
   }
 
   getQuestionType() {
@@ -75,17 +79,29 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges {
   }
 
   getTeacher() {
-    const queryParams = queryString.stringify({filter: '', offSet: 0, pageSize: 1000})
     this.apiService.getTeacher().subscribe(response => {
       if(response.status === 'success') {
         this.teacherOptions = response.data.data.map(item => {
           return {
-            label: item.name,
-            value: item.id
+            name: item.name,
+            id: item.id
           }
         })
+        console.log(this.teacherOptions);
       }
     })
+  }
+
+  saveEditQuizz(quizz, index) {
+    let selectTeacher = []
+    if(quizz.collabTeacher) {
+      selectTeacher = quizz.collabTeacher.map(id => this.teacherOptions.find(tc => tc.id == id));
+    }
+    const data = {...quizz, teacherIds: JSON.stringify(selectTeacher), isAdd: 2};
+    delete data.collabTeacher;
+    this.test.quizzs[index] = data;
+    this.isEdit = false;
+    this.quizzEdit = '';
   }
 
 }

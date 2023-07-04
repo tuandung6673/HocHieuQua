@@ -308,11 +308,11 @@ export class ApiService {
   }
 
   getTestById(id: string) : Observable<BaseRetail<Test>> {
-    return this.http.get<BaseRetail<Test>>(`${this.url}/test/${id}`)
+    return this.http.get<BaseRetail<Test>>(`${this.url}/test/GetTestNewById?id=${id}`)
   }
 
   postTest(data: Test) : Observable<Message> {
-    return this.http.post<Message>(`${this.url}/test`, data)
+    return this.http.post<Message>(`${this.url}/test/setTestNew`, data)
   }
 
   deleteTest(id: string) {
