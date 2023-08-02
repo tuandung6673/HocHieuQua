@@ -1,0 +1,50 @@
+.suggest {
+    margin-top: 5px;
+}
+.correct {
+    color: blue;
+}
+.answer {
+    border: 1px dashed #e2e1e1;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+.answer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    i {
+        font-size: 14px;
+    }
+    .action {
+        span {
+            padding: 2px 5px;
+            margin: 0 5px;
+            border-radius: 50%;
+            &:hover {
+                background: hsla(208,7%,46%,.04);
+                border-color: transparent;
+                color: #6c757d;
+            }
+        }
+    }
+}
+::ng-deep .valueAnswer {
+    margin-top: 10px;
+    .p-inputtext {
+        width: 100%;
+        background: #f7f7fc;
+        border: 1px solid #f1f1fc;
+        border-radius: 5px;
+        box-shadow: none;
+        font-size: 14px;
+        height: 35px;
+        &:hover {
+            border: 1px solid #f1f1fc;
+            cursor: pointer;
+        }
+        &:focus {
+            border: 1px solid #f1f1fc;
+        }
+    }
+}

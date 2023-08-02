@@ -20,7 +20,7 @@ import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {MenubarModule} from 'primeng/menubar';
 import {ContextMenuModule} from 'primeng/contextmenu';
-
+import {SidebarModule} from 'primeng/sidebar';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TabViewModule} from 'primeng/tabview';
@@ -158,6 +158,7 @@ import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.com
 import { MathjaxModule } from 'mathjax-angular';
 import { DetailQuestionComponent } from './user/detail-question/detail-question.component';
 import { DetailAnswerModule } from './common/detail-answer/detail-answer.module';
+import { KtCauHoiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-cau-hoi/kt-cau-hoi.component';
 
 @NgModule({
   declarations: [
@@ -270,6 +271,7 @@ import { DetailAnswerModule } from './common/detail-answer/detail-answer.module'
     ChonAnhComponent,
     BaiKtnlComponent,
     DetailQuestionComponent,
+    KtCauHoiComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),
@@ -277,6 +279,7 @@ import { DetailAnswerModule } from './common/detail-answer/detail-answer.module'
     CKEditorModule,
     AutoCompleteModule,
     ContextMenuModule,
+    SidebarModule,
     DynamicDialogModule,
     BrowserModule,
     HttpClientModule,

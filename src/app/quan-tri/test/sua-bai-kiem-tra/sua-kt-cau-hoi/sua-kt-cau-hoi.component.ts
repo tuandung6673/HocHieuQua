@@ -41,7 +41,6 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
   }
 
   editQuizz(quizz) {
-    console.log('teacherIds',quizz.teacherIds);
     this.quizzEdit = quizz.id;
     this.isEdit = true;
     const teacher = JSON.parse(quizz.teacherIds)
@@ -87,7 +86,6 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
             id: item.id
           }
         })
-        console.log(this.teacherOptions);
       }
     })
   }

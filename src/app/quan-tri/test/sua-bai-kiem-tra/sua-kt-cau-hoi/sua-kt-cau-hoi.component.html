@@ -64,6 +64,9 @@
                     <small>Nội dung câu hỏi</small>
                     <ckeditor [editor]="Editor" [(ngModel)]="quizz.content"></ckeditor>
                 </div>
+                <div class="col-12">
+                    <app-kt-cau-hoi *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers"></app-kt-cau-hoi>
+                </div>
             </div>
             <div class="actions">
                 <p-button styleClass="mr-2" label="Thêm trả lời"></p-button>
