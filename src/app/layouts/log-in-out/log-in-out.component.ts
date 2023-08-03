@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { delay } from 'rxjs';
 import { Authentication } from 'src/models/authentication.model';
 import { AuthService } from 'src/services/authService.service';
 

@@ -1,16 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 import { ConfirmationService } from 'primeng/api';
+import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 
 @Component({
-  selector: 'app-kt-cau-hoi',
-  templateUrl: './kt-cau-hoi.component.html',
-  styleUrls: ['./kt-cau-hoi.component.scss']
+  selector: 'app-kt-mot-nhieu-lua-chon',
+  templateUrl: './kt-mot-nhieu-lua-chon.component.html',
+  styleUrls: ['./kt-mot-nhieu-lua-chon.component.scss']
 })
-export class KtCauHoiComponent implements OnInit {
+export class KtMotNhieuLuaChonComponent implements OnInit {
   @Input() questionType;
   @Input() answerList;
+  @Input() quizz;
   commentSidebar : boolean = false;
   answerSidebar : boolean = false;
   Editor = ClassicEditor;
@@ -22,8 +23,6 @@ export class KtCauHoiComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.answerList);
-    
   }
 
   onSelectAnswer(answer) {
@@ -42,8 +41,23 @@ export class KtCauHoiComponent implements OnInit {
     this.answerSidebar = false;
   }
 
+  // toggleAns(answer) {
+  //   answer.isCorrect = answer.isCorrect == 1 ? 0 : 1;
+  // }
+
+  turnOffAllAnswer(answerList) {
+    answerList.forEach(ans => {
+      ans.isCorrect = 0;
+    })
+  }
+
   toggleAns(answer) {
-    answer.isCorrect = answer.isCorrect == 1 ? 0 : 1;
+    if(this.quizz.testQuestionTypeCode === 'mot_lua_chon') {
+      this.turnOffAllAnswer(this.answerList);
+      answer.isCorrect = 1;
+    } else {
+      answer.isCorrect = answer.isCorrect == 1 ? 0 : 1;
+    }
   }
 
   deleteAnswer(answer) {
@@ -57,5 +71,4 @@ export class KtCauHoiComponent implements OnInit {
       }
     })
   }
-
 }

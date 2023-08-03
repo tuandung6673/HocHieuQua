@@ -65,7 +65,7 @@
                     <ckeditor [editor]="Editor" [(ngModel)]="quizz.content"></ckeditor>
                 </div>
                 <div class="col-12">
-                    <app-kt-cau-hoi *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers"></app-kt-cau-hoi>
+                    <app-kt-mot-nhieu-lua-chon *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-mot-nhieu-lua-chon>
                 </div>
             </div>
             <div class="actions">

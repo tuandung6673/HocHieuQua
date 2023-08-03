@@ -158,7 +158,7 @@ import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.com
 import { MathjaxModule } from 'mathjax-angular';
 import { DetailQuestionComponent } from './user/detail-question/detail-question.component';
 import { DetailAnswerModule } from './common/detail-answer/detail-answer.module';
-import { KtCauHoiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-cau-hoi/kt-cau-hoi.component';
+import { KtMotNhieuLuaChonComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-mot-nhieu-lua-chon/kt-mot-nhieu-lua-chon.component';
 
 @NgModule({
   declarations: [
@@ -271,7 +271,7 @@ import { KtCauHoiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-h
     ChonAnhComponent,
     BaiKtnlComponent,
     DetailQuestionComponent,
-    KtCauHoiComponent,
+    KtMotNhieuLuaChonComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),

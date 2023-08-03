@@ -1,12 +1,12 @@
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from 'src/services/api.service.service';
-import { AfterContentInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Course } from 'src/models/course.model';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { MessageService } from 'primeng/api';
-import * as queryString from 'querystring-es3';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import * as queryString from 'querystring-es3';
 import { ChonAnhComponent } from 'src/app/quan-tri/thu-vien/chon-anh/chon-anh.component';
+import { Course } from 'src/models/course.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-sua-course',

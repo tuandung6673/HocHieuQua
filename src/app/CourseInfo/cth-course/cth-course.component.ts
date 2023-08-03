@@ -1,13 +1,12 @@
-import { Router } from '@angular/router';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { CourseSchedule } from './../../../models/courseSchedule.model';
-import { ActivatedRoute, Params } from '@angular/router';
-import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs';
-import * as queryString from 'querystring-es3';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import * as queryString from 'querystring-es3';
+import { finalize } from 'rxjs';
+import { ApiService } from 'src/services/api.service.service';
+import { CourseSchedule } from './../../../models/courseSchedule.model';
 
 @Component({
   selector: 'app-cth-course',
