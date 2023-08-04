@@ -4,7 +4,7 @@
         <span>{{quizz.point}} điểm</span>
     </div>
     <div class="content">
-        <div *ngIf="quizz.id != quizzEdit" class="title_quizz" [innerHTML]="quizz.content"></div>
+        <div *ngIf="quizz.id != quizzEdit" id="content" class="title_quizz" [innerHTML]="quizz.content"></div>
         <div *ngIf="isEdit && quizz.id == quizzEdit" class="quizz_editor">
             <div class="grid detail">
                 <div class="col-12">
@@ -66,10 +66,13 @@
                 </div>
                 <div class="col-12">
                     <app-kt-mot-nhieu-lua-chon *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-mot-nhieu-lua-chon>
+                    <app-kt-dung-sai *ngIf="quizz.testQuestionTypeCode === 'dung_sai'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-dung-sai>
+                    <app-kt-dien-vao-cho-trong *ngIf="quizz.testQuestionTypeCode === 'dien_vao_cho_trong'" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-dien-vao-cho-trong>
+                    <app-kt-phu-hop *ngIf="quizz.testQuestionTypeCode === 'phu_hop'" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-phu-hop>
                 </div>
             </div>
             <div class="actions">
-                <p-button styleClass="mr-2" label="Thêm trả lời"></p-button>
+                <p-button *ngIf="quizz.testQuestionTypeCode !== 'dung_sai'" styleClass="mr-2" label="Thêm trả lời"></p-button>
                 <p-button label="Lưu lại" (click)="saveEditQuizz(quizz, i)"></p-button>
             </div>
         </div>

@@ -159,6 +159,9 @@ import { MathjaxModule } from 'mathjax-angular';
 import { DetailQuestionComponent } from './user/detail-question/detail-question.component';
 import { DetailAnswerModule } from './common/detail-answer/detail-answer.module';
 import { KtMotNhieuLuaChonComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-mot-nhieu-lua-chon/kt-mot-nhieu-lua-chon.component';
+import { KtDungSaiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-dung-sai/kt-dung-sai.component';
+import { KtDienVaoChoTrongComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-dien-vao-cho-trong/kt-dien-vao-cho-trong.component';
+import { KtPhuHopComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-phu-hop/kt-phu-hop.component';
 
 @NgModule({
   declarations: [
@@ -272,6 +275,9 @@ import { KtMotNhieuLuaChonComponent } from './quan-tri/test/sua-bai-kiem-tra/sua
     BaiKtnlComponent,
     DetailQuestionComponent,
     KtMotNhieuLuaChonComponent,
+    KtDungSaiComponent,
+    KtDienVaoChoTrongComponent,
+    KtPhuHopComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),

@@ -34,10 +34,22 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
     this.getQuestionType();
     this.getQuestionGroup();
     this.getTeacher();
+    this.replaceDienVaoChoTrong() ;   
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
+  }
+
+  replaceDienVaoChoTrong() {
+    this.test.quizzs.forEach(qz => {
+      if(qz.testQuestionTypeCode === 'dien_vao_cho_trong') {
+        // const contentElement = document.getElementById('content');
+        qz.content = this.replaceSquareBracketsWithInput(qz.content);
+        // console.log('content', qz.content);
+        // contentElement.innerHTML = qz.content
+      }
+    })
   }
 
   editQuizz(quizz) {
@@ -102,4 +114,13 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
     this.quizzEdit = '';
   }
 
+  replaceSquareBracketsWithInput(text) {
+    const regex = /\[(\d+)\]/g;
+    const replacedText = text.replace(regex, (match, number) => {
+      return `<span>
+        <input type="text" />
+      </span>`
+    })
+    return replacedText
+  }
 }
