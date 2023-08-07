@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-kt-phu-hop',
@@ -57,7 +58,11 @@ export class KtPhuHopComponent implements OnInit {
     this.answerSidebar = false;
   }
 
-  deleteAnswer() {
-    
+  deleteAnswer(index) {
+    this.answerList.splice(index, 1);
+  }
+
+  saveEditQuizz() {
+
   }
 }

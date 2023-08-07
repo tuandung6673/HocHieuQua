@@ -1,21 +1,28 @@
-<div class="answer" *ngFor="let answer of answerList">
-    <div class="answer-wrapper">
-        <div></div>
-        <div class="action">
-            <span (click)="onSelectAnswer(answer); deleteAnswer(answer)" title="Xóa">
-                <i class="pi pi-trash"></i>
-            </span>
+<div class="">
+    <div class="answer" *ngFor="let answer of answerList">
+        <div class="answer-wrapper">
+            <div></div>
+            <div class="action">
+                <span (click)="deleteAnswer(i)" title="Xóa">
+                    <i class="pi pi-trash"></i>
+                </span>
+            </div>
+        </div>
+        <div class="matchAnswer">
+            <div class="childMatch" (click)="answerEdit(answer); editAnswer(answer, 'left')" [innerHTML]="answer.answerLeft"></div>
+            <div class="childMatch" (click)="answerEdit(answer); editAnswer(answer, 'right')" [innerHTML]="answer.answerRight"></div>
+            <div class="suggest" *ngIf="answer.comment != ''">
+                <small>
+                    <div>Gợi ý:
+                        <span [innerHTML]="answer.comment"></span>
+                    </div>
+                </small>
+            </div>
         </div>
     </div>
-    <div class="matchAnswer">
-        <div class="childMatch" (click)="answerEdit(answer); editAnswer(answer, 'left')" [innerHTML]="answer.answerLeft"></div>
-        <div class="childMatch" (click)="answerEdit(answer); editAnswer(answer, 'right')" [innerHTML]="answer.answerRight"></div>
-    <div class="suggest" *ngIf="answer.comment != ''">
-        <small>
-            <div>Gợi ý:
-                <span [innerHTML]="answer.comment"></span>
-            </div>
-        </small>
+    <div class="actions">
+        <p-button styleClass="mr-2" label="Thêm trả lời"></p-button>
+        <p-button label="Lưu lại" (click)="saveEditQuizz()"></p-button>
     </div>
 </div>
 
@@ -33,19 +40,3 @@
         <p-button label="Hủy bỏ"></p-button>
     </div>
 </p-sidebar>
-
-<p-sidebar [(visible)]="answerSidebar" [style]="{width: '40vw'}" position="right" [baseZIndex]="10000">
-    <div>
-        <h3>Câu trả lời</h3>
-    </div>
-    <div class="detail">
-        <div class="col-12 ckeditor">
-            <ckeditor [editor]="Editor" [(ngModel)]="selectAnswer"></ckeditor>
-        </div>
-    </div>
-    <div class="action">
-        <p-button (click)="saveAnswer()" label="Cập nhật"></p-button>
-        <p-button label="Hủy bỏ"></p-button>
-    </div>
-</p-sidebar>
-

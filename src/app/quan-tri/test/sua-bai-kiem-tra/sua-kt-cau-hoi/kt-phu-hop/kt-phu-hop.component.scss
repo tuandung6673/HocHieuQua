@@ -43,3 +43,17 @@
         width: 48%;
     }
 }
+
+.actions {
+    display: flex;
+    justify-content: end;
+    button {
+        border-radius: 6px;
+        padding: 5px 10px;
+        background: transparent;
+        border: none;
+        &:hover {
+            background: rgba(0,123,255,.04);
+        }
+    }
+}
