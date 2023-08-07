@@ -1,7 +1,13 @@
 <div class="quizz" *ngFor="let quizz of test.quizzs; let i=index" [key]="quizz.id">
     <div class="header">
-        <span>Câu hỏi {{i+1}}</span>
-        <span>{{quizz.point}} điểm</span>
+        <span style="display: flex; align-items: center;">Câu hỏi {{i+1}}</span>
+        <div>
+            <span *ngIf="quizz.id != quizzEdit">{{quizz.point}} điểm</span>
+            <div *ngIf="isEdit && quizz.id == quizzEdit" class="point">
+                <input type="number" [(ngModel)]="quizz.point" />
+                <span style="margin-left: 5px;">điểm</span>
+            </div>
+        </div>
     </div>
     <div class="content">
         <div *ngIf="quizz.id != quizzEdit" id="content" class="title_quizz" [innerHTML]="quizz.content"></div>

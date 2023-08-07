@@ -3,6 +3,7 @@
     border-radius: 3px;
     margin-bottom: 20px;
     padding: 15px;
+    padding-top: 5px;
     .header {
         padding-bottom: 10px;
         display: flex;
@@ -27,4 +28,23 @@
             }
         }
     }
+}
+.point {
+    background: #f7f7fc!important;
+    border: 1px solid #d1d1fa;
+    border-radius: 5px;
+    padding: 5px 15px;
+    input {
+        padding-left: 5px;
+        width: 70px;
+        border: none;
+        &:focus-visible {
+            border: none;
+        }
+    }
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

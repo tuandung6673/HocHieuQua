@@ -56,4 +56,8 @@ export class KtPhuHopComponent implements OnInit {
     // this.selectAns.answer = this.selectAns.answerRight
     this.answerSidebar = false;
   }
+
+  deleteAnswer() {
+    
+  }
 }
