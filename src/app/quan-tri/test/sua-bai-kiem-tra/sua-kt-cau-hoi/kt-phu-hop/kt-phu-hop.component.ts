@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
-import { filter } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-kt-phu-hop',
@@ -11,6 +11,9 @@ import { filter } from 'rxjs';
 export class KtPhuHopComponent implements OnInit {
   @Input() answerList;
   @Input() quizz;
+  @Input() index;
+  @Output() saveEditQuizz  = new EventEmitter<any>();
+  newTestQuestionAnswer : TestQuestionAnswer = new TestQuestionAnswer();
   commentSidebar : boolean = false;
   selectAns : any = new TestQuestionAnswer();
   Editor = ClassicEditor;
@@ -62,7 +65,14 @@ export class KtPhuHopComponent implements OnInit {
     this.answerList.splice(index, 1);
   }
 
-  saveEditQuizz() {
-
+  saveEdit() {
+    this.saveEditQuizz.emit({quizz: this.quizz, index: this.index});
   }
+
+  addAnswer() {
+    const newAnswer = this.newTestQuestionAnswer;
+    newAnswer.id = uuidv4(); 
+    this.quizz.testQuestionAnswers = [...this.answerList, newAnswer];
+  }
+
 }

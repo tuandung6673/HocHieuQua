@@ -1,9 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Test } from 'src/models/test.model';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ApiService } from 'src/services/api.service.service';
 import * as queryString from 'querystring-es3';
-
+import { Test } from 'src/models/test.model';
+import { ApiService } from 'src/services/api.service.service';
 @Component({
   selector: 'app-sua-kt-cau-hoi',
   templateUrl: './sua-kt-cau-hoi.component.html',
@@ -34,7 +33,7 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
     this.getQuestionType();
     this.getQuestionGroup();
     this.getTeacher();
-    this.replaceDienVaoChoTrong() ;   
+    this.replaceDienVaoChoTrong();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -102,14 +101,14 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
     })
   }
 
-  saveEditQuizz(quizz, index) {
+  saveEditQuizz(data) {
     let selectTeacher = []
-    if(quizz.collabTeacher) {
-      selectTeacher = quizz.collabTeacher.map(id => this.teacherOptions.find(tc => tc.id == id));
+    if(data.quizz.collabTeacher) {
+      selectTeacher = data.quizz.collabTeacher.map(id => this.teacherOptions.find(tc => tc.id == id));
     }
-    const data = {...quizz, teacherIds: JSON.stringify(selectTeacher), isAdd: 2};
-    delete data.collabTeacher;
-    this.test.quizzs[index] = data;
+    const data2 = {...data.quizz, teacherIds: JSON.stringify(selectTeacher), isAdd: 2};
+    delete data2.collabTeacher;
+    this.test.quizzs[data.index] = data2;
     this.isEdit = false;
     this.quizzEdit = '';
   }

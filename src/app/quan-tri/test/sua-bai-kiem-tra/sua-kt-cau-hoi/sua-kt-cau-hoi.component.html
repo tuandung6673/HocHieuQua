@@ -71,10 +71,10 @@
                     <ckeditor [editor]="Editor" [(ngModel)]="quizz.content"></ckeditor>
                 </div>
                 <div class="col-12">
-                    <app-kt-mot-nhieu-lua-chon (saveEditQuizz)="saveEditQuizz(data)" *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-mot-nhieu-lua-chon>
-                    <app-kt-dung-sai (saveEditQuizz)="saveEditQuizz(data)" *ngIf="quizz.testQuestionTypeCode === 'dung_sai'" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-dung-sai>
-                    <app-kt-dien-vao-cho-trong (saveEditQuizz)="saveEditQuizz(data)" *ngIf="quizz.testQuestionTypeCode === 'dien_vao_cho_trong'" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-dien-vao-cho-trong>
-                    <app-kt-phu-hop (saveEditQuizz)="saveEditQuizz(data)" *ngIf="quizz.testQuestionTypeCode === 'phu_hop'" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-phu-hop>
+                    <app-kt-mot-nhieu-lua-chon (saveEditQuizz)="saveEditQuizz($event)" *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [index]="i" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-mot-nhieu-lua-chon>
+                    <app-kt-dung-sai (saveEditQuizz)="saveEditQuizz($event)" *ngIf="quizz.testQuestionTypeCode === 'dung_sai'" [questionType]="quizz.testQuestionTypeCode" [index]="i" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-dung-sai>
+                    <app-kt-dien-vao-cho-trong (saveEditQuizz)="saveEditQuizz($event)" *ngIf="quizz.testQuestionTypeCode === 'dien_vao_cho_trong'" [answerList]="quizz.testQuestionAnswers" [index]="i" [quizz]="quizz"></app-kt-dien-vao-cho-trong>
+                    <app-kt-phu-hop (saveEditQuizz)="saveEditQuizz($event)" *ngIf="quizz.testQuestionTypeCode === 'phu_hop'" [answerList]="quizz.testQuestionAnswers" [index]="i" [quizz]="quizz"></app-kt-phu-hop>
                 </div>
             </div>
         </div>

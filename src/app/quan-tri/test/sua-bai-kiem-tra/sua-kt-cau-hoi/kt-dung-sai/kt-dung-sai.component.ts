@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 
@@ -11,6 +11,8 @@ export class KtDungSaiComponent implements OnInit {
   @Input() questionType;
   @Input() answerList;
   @Input() quizz;
+  @Input() index;
+  @Output() saveEditQuizz = new EventEmitter<any>();
   commentSidebar : boolean = false;
   selectAns : any = new TestQuestionAnswer();
   Editor = ClassicEditor;
@@ -42,5 +44,9 @@ export class KtDungSaiComponent implements OnInit {
   onSelectAnswer(answer) {
     this.selectAns = answer;
     this.selectComment = answer.comment;
+  }
+
+  saveEdit() {
+    this.saveEditQuizz.emit({quizz: this.quizz, index: this.index})
   }
 }

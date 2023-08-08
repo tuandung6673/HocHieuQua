@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="actions">
-        <p-button styleClass="mr-2" label="Thêm trả lời"></p-button>
-        <p-button label="Lưu lại" (click)="saveEditQuizz()"></p-button>
+        <p-button styleClass="mr-2 p-button-outlined p-button-secondary" icon="pi pi-comment" label="Thêm trả lời" (click)="addAnswer()"></p-button>
+        <p-button styleClass="p-button-outlined" icon="pi pi-save" label="Lưu lại" (click)="saveEdit()"></p-button>
     </div>
 </div>
 
@@ -37,6 +37,21 @@
     </div>
     <div class="action">
         <p-button (click)="saveComment()" label="Cập nhật"></p-button>
+        <p-button label="Hủy bỏ"></p-button>
+    </div>
+</p-sidebar>
+
+<p-sidebar [(visible)]="answerSidebar" [style]="{width: '40vw'}" position="right" [baseZIndex]="10000">
+    <div>
+        <h3>Câu trả lời</h3>
+    </div>
+    <div class="detail">
+        <div class="col-12 ckeditor">
+            <ckeditor [editor]="Editor" [(ngModel)]="selectAnswer"></ckeditor>
+        </div>
+    </div>
+    <div class="action">
+        <p-button (click)="saveAnswer()" label="Cập nhật"></p-button>
         <p-button label="Hủy bỏ"></p-button>
     </div>
 </p-sidebar>

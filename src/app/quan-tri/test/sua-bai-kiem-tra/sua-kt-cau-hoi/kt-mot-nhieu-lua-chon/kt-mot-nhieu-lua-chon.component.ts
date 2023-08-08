@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ConfirmationService } from 'primeng/api';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-kt-mot-nhieu-lua-chon',
@@ -12,12 +13,15 @@ export class KtMotNhieuLuaChonComponent implements OnInit {
   @Input() questionType;
   @Input() answerList;
   @Input() quizz;
+  @Input() index;
+  @Output() saveEditQuizz = new EventEmitter<any>();
   commentSidebar : boolean = false;
   answerSidebar : boolean = false;
   Editor = ClassicEditor;
   selectAns : any = new TestQuestionAnswer();
   selectComment : any;
   selectAnswer : any;
+  newTestQuestionAnswer : TestQuestionAnswer = new TestQuestionAnswer();
   constructor(
     private confirmationService: ConfirmationService
   ) { }
@@ -67,8 +71,18 @@ export class KtMotNhieuLuaChonComponent implements OnInit {
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.answerList = this.answerList.filter(item => item.id != answer.id)
+        this.quizz.testQuestionAnswers = this.quizz.testQuestionAnswers.filter(item => item.id != answer.id)
       }
     })
+  }
+
+  addAnswer() {
+    const newAnswer = this.newTestQuestionAnswer;
+    newAnswer.id = uuidv4(); 
+    this.quizz.testQuestionAnswers = [...this.answerList, newAnswer];
+  }
+
+  saveEdit() {
+    this.saveEditQuizz.emit({quizz: this.quizz, index: this.index})
   }
 }

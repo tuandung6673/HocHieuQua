@@ -1,37 +1,43 @@
-<div class="answer" *ngFor="let answer of answerList">
-    <div class="answer-wrapper">
-        <div>
-            <i style="margin-right: 5px;" [ngClass]="answer.isCorrect === 1 ? 'pi pi-check correct' : 'pi pi-th-large'"></i>
-            <span [ngClass]="answer.isCorrect === 1 ? 'correct' : ''">{{answer.isCorrect === 1 ? 'Câu trả lời đúng' : 'Câu trả lời có thể'}}</span>
-        </div>
-        <div class="action">
-            <span (click)="onSelectAnswer(answer)" title="Nội dung đặc biệt">
-                <i class="pi pi-code"></i>
-            </span>
-            <span (click)="onSelectAnswer(answer); commentSidebar = true" title="Bình luận">
-                <i class="pi pi-comments"></i>
-            </span>
-            <span (click)="onSelectAnswer(answer); toggleAns(answer)" title="Câu trả lời đúng">
-                <i class="pi pi-check"></i>
-            </span>
-            <span (click)="onSelectAnswer(answer); answerSidebar = true" title="Sửa">
-                <i class="pi pi-pencil"></i>
-            </span>
-            <span (click)="onSelectAnswer(answer); deleteAnswer(answer)" title="Xóa">
-                <i class="pi pi-trash"></i>
-            </span>
-        </div>
-    </div>
-    <div class="valueAnswer">
-        <input *ngIf="answer.isSpecial === 0" type="text" [(ngModel)]="answer.answer" pInputText />
-        <div *ngIf="answer.isSpecial === 1" [innerHTML]="answer.answer"></div>
-    </div>
-    <div class="suggest" *ngIf="answer.comment != ''">
-        <small>
-            <div>Gợi ý:
-                <span [innerHTML]="answer.comment"></span>
+<div>
+    <div class="answer" *ngFor="let answer of answerList">
+        <div class="answer-wrapper">
+            <div>
+                <i style="margin-right: 5px;" [ngClass]="answer.isCorrect === 1 ? 'pi pi-check correct' : 'pi pi-th-large'"></i>
+                <span [ngClass]="answer.isCorrect === 1 ? 'correct' : ''">{{answer.isCorrect === 1 ? 'Câu trả lời đúng' : 'Câu trả lời có thể'}}</span>
             </div>
-        </small>
+            <div class="action">
+                <span (click)="onSelectAnswer(answer)" title="Nội dung đặc biệt">
+                    <i class="pi pi-code"></i>
+                </span>
+                <span (click)="onSelectAnswer(answer); commentSidebar = true" title="Bình luận">
+                    <i class="pi pi-comments"></i>
+                </span>
+                <span (click)="onSelectAnswer(answer); toggleAns(answer)" title="Câu trả lời đúng">
+                    <i class="pi pi-check"></i>
+                </span>
+                <span (click)="onSelectAnswer(answer); answerSidebar = true" title="Sửa">
+                    <i class="pi pi-pencil"></i>
+                </span>
+                <span (click)="onSelectAnswer(answer); deleteAnswer(answer)" title="Xóa">
+                    <i class="pi pi-trash"></i>
+                </span>
+            </div>
+        </div>
+        <div class="valueAnswer">
+            <input *ngIf="answer.isSpecial === 0" type="text" [(ngModel)]="answer.answer" pInputText />
+            <div *ngIf="answer.isSpecial === 1" [innerHTML]="answer.answer"></div>
+        </div>
+        <div class="suggest" *ngIf="answer.comment != ''">
+            <small>
+                <div>Gợi ý:
+                    <span [innerHTML]="answer.comment"></span>
+                </div>
+            </small>
+        </div>
+    </div>
+    <div class="actions flex justify-content-end">
+        <p-button styleClass="mr-2 p-button-outlined p-button-secondary" icon="pi pi-comment" label="Thêm trả lời" (click)="addAnswer()"></p-button>
+        <p-button styleClass="p-button-outlined" icon="pi pi-save" label="Lưu lại" (click)="saveEdit()"></p-button>
     </div>
 </div>
 

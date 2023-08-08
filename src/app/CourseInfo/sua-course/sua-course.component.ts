@@ -56,8 +56,6 @@ export class SuaCourseComponent implements OnInit {
       responseData.data.teacherId = responseData.data.teachers.map((teacher) => {
         return teacher.id;
       });
-      console.log(this.editCourse.teacherId);
-      
       this.editCourse.status = this.editCourse.status == 1 ? true : false;
       this.editCourse.isShowHome = this.editCourse.isShowHome == 1 ? true : false
 

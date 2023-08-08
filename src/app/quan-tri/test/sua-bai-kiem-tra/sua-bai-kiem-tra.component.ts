@@ -145,7 +145,6 @@ export class SuaBaiKiemTraComponent implements OnInit {
       isFree: this.test.isFree ? 1 : 0,
       totalPoint: this.test.quizzs.reduce((sum, item) => sum + item.point, 0)
     }
-    console.log('dataUpdate',dataUpdate);
     if(this.checkValidate(this.commentConfiguration)) {
       this.spinner.show();
       this.apiService.postTest(dataUpdate)
