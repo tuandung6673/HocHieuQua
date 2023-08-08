@@ -65,15 +65,15 @@ export class KtMotNhieuLuaChonComponent implements OnInit {
   }
 
   deleteAnswer(answer) {
-    console.log(answer.id);
-    this.confirmationService.confirm({
-      message: 'Bạn có muốn xóa câu trả lời này ?',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.quizz.testQuestionAnswers = this.quizz.testQuestionAnswers.filter(item => item.id != answer.id)
-      }
-    })
+    this.quizz.testQuestionAnswers = this.quizz.testQuestionAnswers.filter(item => item.id != answer.id)
+    // this.confirmationService.confirm({
+    //   message: 'Bạn có muốn xóa câu trả lời này ?',
+    //   header: 'Confirmation',
+    //   icon: 'pi pi-exclamation-triangle',
+    //   accept: () => {
+    //     this.quizz.testQuestionAnswers = this.quizz.testQuestionAnswers.filter(item => item.id != answer.id)
+    //   }
+    // })
   }
 
   addAnswer() {
