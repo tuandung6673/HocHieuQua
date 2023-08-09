@@ -4,16 +4,15 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
   selector: 'app-nhieu-lua-chon',
   styleUrls: ['./child-answer.scss'],
   template: `
-  <div *ngFor="let answer of quizzConfigSets">
+  <div *ngFor="let answer of quizz.testQuestionAnswers">
     <div class="child-answer" style="display: flex">
       <input style="margin: 0" type="checkbox" id="answer.int_ord" (click)="chooseHanlder(answer)"/>
-      <div style="margin-left: 10px">{{answer.answer}}</div>
+      <div style="margin-left: 10px" [innerHTML]="answer.answer"></div>
     </div>
   </div>
   `
 })
 export class AppNhieuLuaChonComponent implements OnInit {
-  @Input() quizzConfigSets : any;
   @Input() quizz;
   @Output() countRight = new EventEmitter<any>()
   selectedAnswer : any[] = [];
@@ -23,8 +22,8 @@ export class AppNhieuLuaChonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.quizzConfigSets.map(item => {
-      if(item.result) {
+    this.quizz.testQuestionAnswers.map(item => {
+      if(item.isCorrect == 1) {
         this.countOfRightAnswer = this.countOfRightAnswer + 1;
       }
     })
@@ -41,10 +40,9 @@ export class AppNhieuLuaChonComponent implements OnInit {
   }
 
   checkResult() {
-    if(this.selectedAnswer.every(item => item.result) && this.selectedAnswer.length == this.countOfRightAnswer) {
+    if(this.selectedAnswer.every(item => item.isCorrect == 1) && this.selectedAnswer.length == this.countOfRightAnswer) {
       this.countRight.emit(true);
     } else {
-      // console.log(`Câu ${this.quizz.order + 1} chọn sai`);
       this.countRight.emit(false);
     }
   }
@@ -54,7 +52,7 @@ export class AppNhieuLuaChonComponent implements OnInit {
   selector: 'app-mot-lua-chon',
   styleUrls: ['./child-answer.scss'],
   template: `
-  <div *ngFor="let answer of quizzConfigSets">
+  <div *ngFor="let answer of quizz.testQuestionAnswers">
     <div class="child-answer" style="display: flex">
       <input style="margin: 0" type="radio" id="answer.int_ord" [name]="quizz.id" (click)="chooseHandler(answer)"/>
       <span style="margin-left: 10px" [innerHTML]="answer.answer"></span>
@@ -75,11 +73,9 @@ export class AppMotLuaChonComponent implements OnInit {
   }
 
   chooseHandler(item) {
-    if(item.result) {
-      // console.log(`Câu ${this.quizz.order + 1} chọn đúng`);
+    if(item.isCorrect == 1) {
       this.countRight.emit(true);
     } else {
-      // console.log(`Câu ${this.quizz.order + 1} chọn sai`);
       this.countRight.emit(false);
     }
   }
@@ -89,7 +85,7 @@ export class AppMotLuaChonComponent implements OnInit {
   selector: 'app-nhieu-trinh-tha-don-xuong',
   styleUrls: ['./child-answer.scss'],
   template: `
-  <div *ngFor="let answer of quizzConfigSets">
+  <div *ngFor="let answer of quizz.testQuestionAnswers">
     <div class="child-answer">
       <p-dropdown [options]="answer.options" [(ngModel)]="answer.userChoose" optionValue="result" placeholder="Chọn đáp án" (onChange)="changeHanlder()"></p-dropdown>
     </div>
@@ -98,30 +94,27 @@ export class AppMotLuaChonComponent implements OnInit {
 })
 export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
   @Input() quizzConfigSets;
+  @Input() quizz;
   @Output() childDataChange = new EventEmitter<any>()
   @Output() countRight = new EventEmitter<any>();
   // quizzConfigSets : any[];
   answerOptions : any[] = [];
 
   ngOnInit(): void {
-    this.quizzConfigSets.map(item => {
-      item.answer = JSON.parse(item.answer);
-    })
-    this.quizzConfigSets = [...this.quizzConfigSets]
-    this.quizzConfigSets.map(item => {
+    this.quizz.testQuestionAnswers.map(item => {
       item.userChoose = ""
-      item.options = item.answer.data.map(item2 => {
+      item.options = item.childQuestionAnswers.map(item2 => {
         return {
           label: item2.answer,
           value: item2.id,
-          result: item2.result
+          result: item2.isCorrect
         }
       })
     })
   }
 
   changeHanlder() {
-    if(this.quizzConfigSets.every(item => item.userChoose)) {
+    if(this.quizz.testQuestionAnswers.every(item => item.userChoose == 1)) {
       this.childDataChange.emit(this.quizzConfigSets);
       this.countRight.emit(true);
     } else {
@@ -135,7 +128,7 @@ export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
   selector: 'app-dung-sai',
   styleUrls: ['./child-answer.scss'],
   template: `
-  <div *ngFor="let answer of quizzConfigSets">
+  <div *ngFor="let answer of quizz.testQuestionAnswers">
     <div class="child-answer" style="display: flex">
       <input style="margin: 0" type="radio" id="answer.int_ord" [name]="quizz.id" (click)="chooseHandler(answer)"/>
       <span style="margin-left: 10px" [innerHTML]="answer.answer"></span>
@@ -144,16 +137,14 @@ export class AppNhieuTrinhThaDonXuongComponent implements OnInit {
   `
 })
 export class AppDungSaiComponent implements OnInit {
-  @Input() quizzConfigSets;
   @Input() quizz;
   @Output() countRight = new EventEmitter<any>()
 
   ngOnInit(): void {
-    
   }
 
   chooseHandler(item) {
-    if(item.result) {
+    if(item.isCorrect == 1) {
       // console.log(`Câu ${this.quizz.order + 1} chọn đúng`);
       this.countRight.emit(true);
     } else {
@@ -167,9 +158,9 @@ export class AppDungSaiComponent implements OnInit {
   selector: 'app-dien-vao-cho-trong',
   styleUrls: ['./child-answer.scss'],
   template: `
-    <div class="child-answer">
-      <input type="text" pInputText [(ngModel)]="value1" (blur)="handlerAnswer(this)"> 
-    </div>
+    <!-- <div class="child-answer">
+      <input type="text" pInputText [(ngModel)]="value1" placeholder="Điền..." (blur)="handlerAnswer(this)"> 
+    </div> -->
   `
 })
 export class AppDienVaoChoTrongComponent implements OnInit {
@@ -209,11 +200,6 @@ export class AppDienVaoNhieuKhoangTrong implements OnInit {
   cloneConfig;
   @Output() countRight = new EventEmitter<any>()
   ngOnInit(): void {
-    this.quizzConfigSets.map(item => {
-      item.answer = JSON.parse(item.answer);
-    })
-    this.cloneConfig = [...this.quizzConfigSets];
-    this.cloneConfig.map(item => item.userValue = '');
   }
 
   inputHandler(answer) {
@@ -241,43 +227,45 @@ export class AppDienVaoNhieuKhoangTrong implements OnInit {
   selector: 'app-phu-hop',
   styleUrls: ['./child-answer.scss'],
   template: `
-    <div *ngFor="let answer of quizzConfigSets" class="child-answer" style="display: flex; justify-content: space-between; align-items: center">
-      <span>{{answer.answer.left}}</span>
+    <div *ngFor="let answer of quizz.testQuestionAnswers" class="child-answer" style="display: flex; justify-content: space-between; align-items: center">
+      <span [innerHTML]="answer.answerLeft"></span>
       <span>
-        <p-dropdown [options]="questionOptions" [(ngModel)]="answer.chooseValue" placeholder="Chọn đáp án" (onChange)="changeHandler()"></p-dropdown>
+        <p-dropdown [options]="questionOptions" [(ngModel)]="answer.chooseValue" placeholder="Chọn đáp án" (onChange)="changeHandler()">
+          <ng-template let-car pTemplate="item">
+            <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+              <div style="font-size:14px;margin-top:4px" [innerHTML]="car.label"></div>
+            </div>
+          </ng-template>
+        </p-dropdown>
       </span>
     </div>
   `
 })
 export class AppPhuHopComponent implements OnInit {
-  @Input() quizzConfigSets : any;
+  @Input() quizz
   @Output() countRight = new EventEmitter<any>();
-  // cloneConfig : any[];
   questionOptions : any[] = []
 
   ngOnInit(): void { 
-    this.quizzConfigSets.map(item => {
-      item.answer = JSON.parse(item.answer)
-    })
-
-    this.quizzConfigSets.map(item => {
+    this.quizz.testQuestionAnswers.map(item => {
       this.questionOptions.push({
-        label: item.answer.right,
-        value: item.answer.right
+        label: item.answerRight,
+        value: item.answerRight
       })
     })
 
-    this.quizzConfigSets = [...this.quizzConfigSets];
-    this.quizzConfigSets.map(item => {
+    this.quizz.testQuestionAnswers.map(item => {
       item.chooseValue = '';
     })
   }
 
   changeHandler() {
-    if(this.quizzConfigSets.every(item => item.chooseValue == item.answer.right)) {
+    if(this.quizz.testQuestionAnswers.every(item => item.chooseValue == item.answerRight)) {
       this.countRight.emit(true);
+      console.log('đúng');
     } else {
       this.countRight.emit(false);
+      console.log('sai');
     }
   }
 }
@@ -292,7 +280,6 @@ export class AppPhuHopComponent implements OnInit {
   `
 })
 export class AppTieuLuanComponent implements OnInit {
-  @Input() quizzConfigSets;
   Editor = ClassicEditor;
   content : string = '';
   ngOnInit(): void {

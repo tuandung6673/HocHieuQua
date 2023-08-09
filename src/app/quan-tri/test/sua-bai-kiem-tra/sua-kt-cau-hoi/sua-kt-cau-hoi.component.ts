@@ -33,7 +33,7 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
     this.getQuestionType();
     this.getQuestionGroup();
     this.getTeacher();
-    this.replaceDienVaoChoTrong();
+    // this.replaceDienVaoChoTrong();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -117,7 +117,7 @@ export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
     const regex = /\[(\d+)\]/g;
     const replacedText = text.replace(regex, (match, number) => {
       return `<span>
-        <input type="text" />
+        <input type="text"/>
       </span>`
     })
     return replacedText

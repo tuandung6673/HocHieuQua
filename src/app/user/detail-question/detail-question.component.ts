@@ -16,7 +16,7 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
   rightNumber : number = 0;
   comment2 : any;
   listQuestion : any[] = [];
-  @Input() quizzs : Quizz[] = [];
+  @Input() quizzs = [];
   @Input() comment; 
   @Output() postRq = new EventEmitter<any>();
   constructor(
@@ -28,9 +28,9 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.listQuestion = [...this.quizzs];
-    console.log(this.quizzs);
-       
+    if(changes.quizzs) {
+      this.replaceDienVaoChoTrong();
+    }
   }
   displayBasic : boolean = false;
   sendTestUser() {
@@ -103,5 +103,24 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
     //   link.download = 'template.png';
     //   link.click();
     // });
+  }
+
+  replaceDienVaoChoTrong() {
+    this.quizzs.map(qz => {
+      if(qz.testQuestionTypeCode === 'dien_vao_cho_trong' || qz.testQuestionTypeCode == 'dien_vao_nhieu_khoang_trong') {
+        qz.inputValue = ''
+        qz.content = this.replaceSquareBracketsWithInput(qz.content, qz);
+      }
+    })
+  }
+
+  replaceSquareBracketsWithInput(text, quizz) {
+    const regex = /\[(\d+)\]/g;
+    const replacedText = text.replace(regex, (match, number) => {
+      return `<span>
+        <input style="width: 100px" value="abc" type="text"/>
+      </span>`
+    })
+    return replacedText
   }
 }
