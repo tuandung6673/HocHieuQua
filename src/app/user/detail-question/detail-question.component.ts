@@ -33,13 +33,13 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
     }
   }
   displayBasic : boolean = false;
-  sendTestUser() {
+  async sendTestUser() {
+    await this.pointHandler();
     this.confirmationService.confirm({
       message: 'Bạn chắc chắn muốn nộp bài không ?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.pointHandler();
         const pointPercent = (this.pointQuizz / this.totalPoint * 100).toFixed(0);
         this.comment2 = this.getComment(pointPercent);
         this.postRq.emit({
@@ -67,11 +67,11 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
 
   sendData(data) {
     let index = this.listQuestion.findIndex(item => item.id == data.id);
-    this.listQuestion[index] = data;
-    // if(index == -1) {
-    //   this.listQuestion.push(data);
-    // } else {
-    // }
+    if(index == -1) {
+      this.listQuestion.push(data)
+    } else {
+      this.listQuestion[index] = data;
+    }
   }
 
   rightQuizz : number = 0;

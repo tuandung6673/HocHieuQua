@@ -145,10 +145,8 @@ export class AppDungSaiComponent implements OnInit {
 
   chooseHandler(item) {
     if(item.isCorrect == 1) {
-      // console.log(`Câu ${this.quizz.order + 1} chọn đúng`);
       this.countRight.emit(true);
     } else {
-      // console.log(`Câu ${this.quizz.order + 1} chọn sai`);
       this.countRight.emit(false);
     }
   }
@@ -174,10 +172,8 @@ export class AppDienVaoChoTrongComponent implements OnInit {
   handlerAnswer(item) {
     const right = item.quizzConfigSets.filter(item => item.result == true)[0]
     if(this.value1 == right.answer) {
-      // console.log(`Câu ${this.quizz.order + 1} điền đúng`);
       this.countRight.emit(true);
     } else {
-      // console.log(`Câu ${this.quizz.order + 1} điền sai`);
       this.countRight.emit(false);
     }
   }
@@ -214,10 +210,8 @@ export class AppDienVaoNhieuKhoangTrong implements OnInit {
 
   checkResult() {
     if(this.cloneConfig.every(item => item.isInputRight)) {
-      // console.log(`Câu ${this.quizz.order + 1} điền đúng`);
       this.countRight.emit(true);
     } else {
-      // console.log(`Câu ${this.quizz.order + 1} điền sai`);
       this.countRight.emit(false);
     }
   }
@@ -262,10 +256,8 @@ export class AppPhuHopComponent implements OnInit {
   changeHandler() {
     if(this.quizz.testQuestionAnswers.every(item => item.chooseValue == item.answerRight)) {
       this.countRight.emit(true);
-      console.log('đúng');
     } else {
       this.countRight.emit(false);
-      console.log('sai');
     }
   }
 }

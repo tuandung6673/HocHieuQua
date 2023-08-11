@@ -1,40 +1,40 @@
-// ::ng-deep .p-menubar {
-//   background: #007AFF;
-//   padding: 10px 0;
-//   width: 100%;
-//   position: relative;
-//   height: 65px;
-//   .p-menuitem-icon {
-//     font-size: 18px;
-//     color: white !important;
-//   }
-//   .p-submenu-icon {
-//     font-size: 18px;
-//     color: white !important;
-//   }
-//   .p-menuitem .p-menuitem-text {
-//     color: white !important;
-//     font-size: 18px;
-//   }
-//   // .p-menuitem-active .p-menuitem-text {
-//   //   color: #000 !important;
-//   // }
-//   .p-menuitem-link {
-//     padding: 15px 10px !important;
-//     &:hover {
-//       background: rgba(100, 175, 255, 0.35) !important;
-//     }
-//     &:active {
-//       background: rgba(100, 175, 255, 0.35) !important;
-//     }
-//   }
-//   .p-menuitem-active {
-//     background: rgba(100, 175, 255, 0.35) !important;
-//   }
-//   .p-menubar-root-list {
-//     position: absolute;
-//     left: 15%;
-//     top: 50%;
-//     transform: translateY(-50%);
-//   }
-// }
+::ng-deep .p-menubar {
+  background: #007AFF;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+  height: 65px;
+  .p-menuitem-icon {
+    font-size: 18px;
+    color: white !important;
+  }
+  .p-submenu-icon {
+    font-size: 18px;
+    color: white !important;
+  }
+  .p-menuitem .p-menuitem-text {
+    color: white !important;
+    font-size: 18px;
+  }
+  // .p-menuitem-active .p-menuitem-text {
+  //   color: #000 !important;
+  // }
+  .p-menuitem-link {
+    padding: 15px 10px !important;
+    &:hover {
+      background: rgba(100, 175, 255, 0.35) !important;
+    }
+    &:active {
+      background: rgba(100, 175, 255, 0.35) !important;
+    }
+  }
+  .p-menuitem-active {
+    background: rgba(100, 175, 255, 0.35) !important;
+  }
+  .p-menubar-root-list {
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
