@@ -11,7 +11,7 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./giao-vien.component.scss']
 })
 export class GiaoVienComponent implements OnInit {
-
+  defaultAvatar = 'https://imgt.taimienphi.vn/cf/Images/tt/2020/7/15/anh-dai-dien-facebook-y-nghia-cho-con-trai-26.jpg'
   teachers: any
   search: string
 
@@ -41,7 +41,7 @@ export class GiaoVienComponent implements OnInit {
     )
     .subscribe((responseData) => {
       this.teachers = responseData.data.data;
-      this.totalRecord = responseData.data;
+      this.totalRecord = responseData.data.recordsTotal;
       this.spinner.hide();
     })
   }
@@ -79,6 +79,11 @@ export class GiaoVienComponent implements OnInit {
             this.onDeleteTeacher(id)
         }
     });
+  }
+
+  errorHandler(event) {
+    event.target.src = this.defaultAvatar;
+    event.target.style.objectFit = 'contain';
   }
 }
 

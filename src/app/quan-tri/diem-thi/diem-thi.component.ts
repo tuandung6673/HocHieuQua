@@ -60,7 +60,7 @@ export class DiemThiComponent implements OnInit {
         t.finishedDate = t.finishedDate ? moment(t.finishedDate).format('DD/MM/YYYY k:mm') : '';
         t.modifiedDate = t.modifiedDate ? moment(t.modifiedDate).format('DD/MM/YYYY k:mm') : '';
       })
-      this.totalRecords = response.data.data.length;
+      this.totalRecords = response.data.recordsTotal;
     })
   }
 

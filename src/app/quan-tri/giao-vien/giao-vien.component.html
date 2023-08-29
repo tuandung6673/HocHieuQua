@@ -52,7 +52,7 @@
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
           </td>
           <td style="min-width:150px">
-            <img [src]="teacher.avatar" width="100px" height="60" style="object-fit: cover;" class="shadow-4" />
+            <img [src]="teacher.avatar" (error)="errorHandler($event)" width="100px" height="60" style="object-fit: cover;" class="shadow-4" />
           </td>
           <td style="min-width:150px; color: #0b5ed7; font-weight: 650;">{{teacher.name}}</td>
           <td style="min-width:200px">{{teacher.userName}}</td>
@@ -78,5 +78,5 @@
         </p-overlayPanel>
     </ng-template>
   </p-table>
-  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
+  <p-paginator [rows]="params.pageSize" [totalRecords]="totalRecord" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,50]"></p-paginator>
 </div>
