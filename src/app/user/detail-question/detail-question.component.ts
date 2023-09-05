@@ -5,6 +5,8 @@ import { ConfirmationService } from 'primeng/api';
 import { DetailAnswerComponent } from 'src/app/common/detail-answer/detail-answer.component';
 import { Quizz } from 'src/models/quizz.model';
 import html2canvas from 'html2canvas';
+import { TestUser } from 'src/models/testUser.model';
+import { Test } from 'src/models/test.model';
 
 @Component({
   selector: 'app-detail-question',
@@ -16,6 +18,7 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
   rightNumber : number = 0;
   comment2 : any;
   listQuestion : any[] = [];
+  @Input() test : Test
   @Input() quizzs = [];
   @Input() comment; 
   @Output() postRq = new EventEmitter<any>();

@@ -1,13 +1,18 @@
 <div class="question-wrapper">
-  <div *ngFor="let quizz of quizzs; let i=index" class="question">
-    <div class="header">
-      <span>Câu: {{i + 1}}</span>
-      <span>{{quizz.point}} điểm</span>
-    </div>
-    <div class="content">
-      <div class="topic" [mathjax]="quizz.content"></div>
-      <div class="answers">
-        <app-detail-answer (sendData)="sendData($event)" [quizz]="quizz"></app-detail-answer>
+  <div *ngIf="test.isSpecial == 1">
+    <div [innerHTML]="test.description"></div>
+  </div>
+  <div *ngIf="test.isSpecial == 0">
+    <div *ngFor="let quizz of quizzs; let i=index" class="question">
+      <div class="header">
+        <span>Câu: {{i + 1}}</span>
+        <span>{{quizz.point}} điểm</span>
+      </div>
+      <div class="content">
+        <div class="topic" [mathjax]="quizz.content"></div>
+        <div class="answers">
+          <app-detail-answer (sendData)="sendData($event)" [quizz]="quizz"></app-detail-answer>
+        </div>
       </div>
     </div>
   </div>
