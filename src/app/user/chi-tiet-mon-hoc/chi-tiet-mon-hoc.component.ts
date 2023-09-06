@@ -1,4 +1,4 @@
-import { forkJoin } from 'rxjs';
+import { finalize, forkJoin } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -22,10 +22,10 @@ export class ChiTietMonHocComponent implements OnInit {
     courseId: ''
   }
   courseQuery = {
-    accountId: '',
-    fromAdmin: 0
+    fromAdmin: 0,
+    accountId: null
   }
-  accoundId = JSON.parse(localStorage.getItem('userData'))?.id;
+  accoundId = JSON.parse(localStorage.getItem('userData'))?.id || null;
   isPayment : boolean = true;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private apiService: ApiService) { }
 
@@ -52,7 +52,11 @@ export class ChiTietMonHocComponent implements OnInit {
       this.apiService.getCourseRating(this.id),
       this.apiService.getCheckPayment(queryParams)
       // CheckPayment
-    ]).subscribe((responseData) => {
+    ])
+    .pipe(
+      finalize(() => this.spinner.hide())
+    )
+    .subscribe((responseData) => {
       this.detailCourse = responseData[0].data
       this.teacherName = responseData[0].data.teachers.map((teacher) => {
         return teacher.name
