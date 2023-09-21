@@ -10,7 +10,7 @@
       <p-button label="Chương trình học" styleClass="p-button" ></p-button>
     </div>
   </div>
-  <div class="info">
+  <div class="info" *ngIf="detailCourse.shortSummary">
     <p class="header">Thông tin khóa học</p>
     <div class="text">
       <div [innerHTML]="detailCourse.shortSummary"></div>

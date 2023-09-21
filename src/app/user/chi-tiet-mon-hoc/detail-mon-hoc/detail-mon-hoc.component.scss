@@ -164,9 +164,10 @@
   }
   img {
     height: 100%;
-    width: 140px;
-    object-fit: contain;
+    width: 100% !important;
+    object-fit: fill;
     margin-right: 10px;
+    max-width: 140px;
   }
   .relate-info  {
     display: flex;

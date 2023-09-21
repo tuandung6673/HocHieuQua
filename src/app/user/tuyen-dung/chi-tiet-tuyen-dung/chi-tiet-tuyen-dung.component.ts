@@ -6,6 +6,7 @@ import { Recruit } from 'src/models/recruit.model';
 import { EmailValidator } from '@angular/forms';
 import { RecruitCandidate } from 'src/models/recruitCandidate.model';
 import * as moment from 'moment';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-chi-tiet-tuyen-dung',
@@ -19,14 +20,11 @@ export class ChiTietTuyenDungComponent implements OnInit {
   email: string
   phone: string
   note: string
-
   id: string
   isDisplayDialog: boolean = false
   detailRecruit : Recruit = new Recruit()
 
-
-
-  constructor(private spinner: NgxSpinnerService, private apiService: ApiService, private route: ActivatedRoute) { }
+  constructor(private spinner: NgxSpinnerService, private apiService: ApiService, private route: ActivatedRoute, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -54,7 +52,6 @@ export class ChiTietTuyenDungComponent implements OnInit {
 
   onSubmit() {
     const data = {...this.recruitCandidate}
-    
     data.recruitId = this.id,
     data.content = this.note,
     data.email = this.email,
@@ -62,6 +59,11 @@ export class ChiTietTuyenDungComponent implements OnInit {
     data.phone = this.convertPhoneToString(this.phone)
     
     this.apiService.postRecruitCandidate(data).subscribe((response) => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thông báo', detail: 'Ứng tuyển thành công'})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.message})
+      }
       this.isDisplayDialog = false
     })
   }

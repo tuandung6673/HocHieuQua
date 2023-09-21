@@ -34,8 +34,11 @@
         <div style="width: 100%;">
           <div class="relate-name">{{courseRelate.name}}</div>
           <div class="relate-info">
-            <div>5 <i class="pi pi-star-fill"></i></div>
-            <div>{{courseRelate.price |  number}}đ</div>
+            <div style="display: flex; align-items: center;">5 <i class="pi pi-star-fill" style="margin-left: 3px;"></i></div>
+            <div>
+              <div style="text-decoration: line-through; font-size: 15px; font-weight: 500;">{{courseRelate.price | number}}</div>
+              <div>{{courseRelate.priceDiscount | number}}đ</div>
+            </div>
           </div>
         </div>
       </div>
