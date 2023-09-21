@@ -162,6 +162,7 @@ import { KtMotNhieuLuaChonComponent } from './quan-tri/test/sua-bai-kiem-tra/sua
 import { KtDungSaiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-dung-sai/kt-dung-sai.component';
 import { KtDienVaoChoTrongComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-dien-vao-cho-trong/kt-dien-vao-cho-trong.component';
 import { KtPhuHopComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-phu-hop/kt-phu-hop.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -284,6 +285,7 @@ import { KtPhuHopComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-h
     AppRoutingModule,
     CKEditorModule,
     AutoCompleteModule,
+    CommonModule,
     ContextMenuModule,
     SidebarModule,
     DynamicDialogModule,

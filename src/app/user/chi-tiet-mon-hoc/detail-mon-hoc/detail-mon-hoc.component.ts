@@ -64,7 +64,6 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
   onRegister() {
     this.display1 = true;
     this.getPaymentTypes();
-    this.paymentMethod = this.paymentTypeList[0].value
   }
 
   sendAdvice() {
@@ -94,6 +93,7 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
             value: d.id
           }
         })
+        this.paymentMethod = this.paymentTypeList[0].value
       }
     }) 
   }

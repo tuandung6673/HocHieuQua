@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<p-dialog header="Yêu cầu tư vấn" [(visible)]="display" [style]="{width: '45vh', height: '50vh'}" [draggable]="false" position="center">
+<p-dialog header="Yêu cầu tư vấn" [(visible)]="display" [style]="{width: '45vh', height: '50vh'}" [draggable]="false" position="center" [appendTo]="'body'">
   <div class="grid inputArea">
     <div class="col-12">
       <span class="p-input-icon-left">
@@ -90,10 +90,10 @@
   </div>
 </p-dialog>
 
-<p-dialog header="Đăng kí khóa học" [(visible)]="display1" [style]="{width: '600px', height: '500px'}" [draggable]="false" class="registerDialog">
+<p-dialog header="Đăng kí khóa học" [(visible)]="display1" [style]="{width: '600px', height: '500px'}" [draggable]="false" [appendTo]="'body'">
   <p-tabView [(activeIndex)]="activeIndex2">
     <p-tabPanel header="Thông tin">
-      <div class="grid register">
+      <div class="grid register detail">
         <div class="col-12">
           <p>Tên phụ huynh</p>
           <span class="p-input-icon-right">
