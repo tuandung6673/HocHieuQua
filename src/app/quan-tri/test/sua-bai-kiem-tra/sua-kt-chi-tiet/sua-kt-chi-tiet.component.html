@@ -84,6 +84,8 @@
     <p-inputSwitch [(ngModel)]="test.isFree" name="isFree"></p-inputSwitch>
   </div>
   <div class="col-12 ckeditor">
-    <ckeditor [editor]="Editor" [(ngModel)]="test.description"></ckeditor>
+    <editor
+      [init]="editorConfig" [(ngModel)]="test.description"
+    ></editor>
   </div>
 </div>

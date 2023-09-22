@@ -13,6 +13,11 @@ import { Test } from 'src/models/test.model';
   styleUrls: ['./sua-kt-chi-tiet.component.scss']
 })
 export class SuaKtChiTietComponent implements OnInit {
+  editorConfig = {
+    base_url: '/tinymce',
+    suffix: '.min',
+    plugins: 'lists link image table wordcount advcode',
+  }
   @Output() sendData = new EventEmitter<Test>();
   @Input() test : Test;
   Editor = ClassicEditor;

@@ -56,8 +56,8 @@ export class SuaGiaoVienComponent implements OnInit {
   }
 
   onSubmit() {
-    const dataSave = {...this.editTeacher};
-    dataSave.status = dataSave.status ? 1 : 0;
+    const dataSave = {...this.editTeacher, status: this.editTeacher.status ? 1 : 0};
+    // dataSave.status = dataSave.status ? 1 : 0;
     this.apiService.postTeacher(dataSave)
     .subscribe(reponse => {
       if(reponse.status == 'success') {

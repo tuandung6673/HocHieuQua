@@ -104,9 +104,10 @@
           ></editor>
         </div>
         <div class="col-12 ckeditor">
-          <ckeditor [editor]="Editor" [(ngModel)]="editTeacher.description"></ckeditor>
+          <editor
+            [init]="editorConfig" [(ngModel)]="editTeacher.description"
+          ></editor>
         </div>
-  
         <div class="detail-action">
           <div class="cancel-btn">
             <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
