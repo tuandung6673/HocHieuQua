@@ -163,6 +163,7 @@ import { KtDungSaiComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-
 import { KtDienVaoChoTrongComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-dien-vao-cho-trong/kt-dien-vao-cho-trong.component';
 import { KtPhuHopComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-phu-hop/kt-phu-hop.component';
 import { CommonModule } from '@angular/common';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -284,6 +285,7 @@ import { CommonModule } from '@angular/common';
     MathjaxModule.forRoot(),
     AppRoutingModule,
     CKEditorModule,
+    EditorModule,
     AutoCompleteModule,
     CommonModule,
     ContextMenuModule,
@@ -334,6 +336,8 @@ import { CommonModule } from '@angular/common';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
+  }, {
+    provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'
   }],
   bootstrap: [AppComponent]
 })

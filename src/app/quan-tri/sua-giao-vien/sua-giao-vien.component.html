@@ -98,7 +98,10 @@
           <p-inputSwitch [(ngModel)]="editTeacher.status"></p-inputSwitch>
         </div>
         <div class="col-12 ckeditor">
-          <ckeditor [editor]="Editor" [(ngModel)]="editTeacher.descriptionShort"></ckeditor>
+          <!-- <ckeditor [editor]="Editor" [(ngModel)]="editTeacher.descriptionShort"></ckeditor> -->
+          <editor
+            [init]="editorConfig" [(ngModel)]="editTeacher.descriptionShort"
+          ></editor>
         </div>
         <div class="col-12 ckeditor">
           <ckeditor [editor]="Editor" [(ngModel)]="editTeacher.description"></ckeditor>

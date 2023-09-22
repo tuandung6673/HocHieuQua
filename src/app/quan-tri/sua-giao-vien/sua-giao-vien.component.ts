@@ -16,7 +16,11 @@ import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
   styleUrls: ['./sua-giao-vien.component.css']
 })
 export class SuaGiaoVienComponent implements OnInit {
-
+  editorConfig = {
+    base_url: '/tinymce',
+    suffix: '.min',
+    plugins: 'lists link image table wordcount'
+  }
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   Editor = ClassicEditor;
   id: string = ''
