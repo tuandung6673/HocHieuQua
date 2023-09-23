@@ -164,7 +164,6 @@ import { KtDienVaoChoTrongComponent } from './quan-tri/test/sua-bai-kiem-tra/sua
 import { KtPhuHopComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-kt-cau-hoi/kt-phu-hop/kt-phu-hop.component';
 import { CommonModule } from '@angular/common';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
-import { CustomTinyComponent } from './shared/custom-tiny/custom-tiny.component';
 
 @NgModule({
   declarations: [
@@ -281,7 +280,6 @@ import { CustomTinyComponent } from './shared/custom-tiny/custom-tiny.component'
     KtDungSaiComponent,
     KtDienVaoChoTrongComponent,
     KtPhuHopComponent,
-    CustomTinyComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),

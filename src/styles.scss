@@ -774,3 +774,15 @@ body {
     }
   }
 }
+
+// tinyMCE
+.tox-statusbar__path {
+  display: none !important;
+}
+.tox-statusbar__text-container {
+  display: flex;
+  justify-content: end !important;
+}
+.tox-promotion {
+  display: none;
+}
