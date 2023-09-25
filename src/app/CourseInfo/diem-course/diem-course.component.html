@@ -1,1 +1,53 @@
-<p>diem-course works!</p>
+<div class="wrapper cth">
+    <div class="card">
+        <p-table [value]="courseOver" dataKey="testId" rowHover="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pFrozenColumn style="width: 30px"></th>
+                    <th pSortableColumn="code" style="width:600px;">Tên</th>
+                    <th pSortableColumn="name">Số học sinh</th>
+                    <th pSortableColumn="category">Thông báo</th>
+                    <th pFrozenColumn style="width: 200px">Hạn nộp</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-courseSchedule let-expanded="expanded">
+                <tr>
+                    <td pFrozenColumn style="width: 30px">
+                        <button *ngIf="courseSchedule.accounts.length > 0" type="button" pButton pRipple [pRowToggler]="courseSchedule" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                    </td>
+                    <td style="width:600px;">{{courseSchedule.testName}}</td>
+                    <td>{{courseSchedule.accounts.length}}</td>
+                    <td>
+                        <span class="colorful" [ngClass]="courseSchedule.isNotification == 0 ? 'fail' : 'passed' " *ngIf="courseSchedule.isNotification == 1">Đã thông báo</span>
+                        <span class="colorful" [ngClass]="courseSchedule.isNotification == 0 ? 'fail' : 'passed' " *ngIf="courseSchedule.isNotification == 0">Chưa thông báo</span>
+                    </td>
+                    <td style="width: 200px">{{courseSchedule.deadlineDate}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-courseSchedule >
+                <tr>
+                  <td colspan="7">
+                    <div class="p-p-3">
+                      <p-table [value]="courseSchedule.accounts" dataKey="id" rowHover="true">
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th style="width:640px;">Tên</th>
+                            <th>Email</th>
+                            <th>Điện thoại</th>
+                          </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-order>
+                          <tr>
+                            <td style="width:640px;">{{order.name}}</td>
+                            <td>{{order.email}}</td>
+                            <td>{{order.phone}}</td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+        </p-table>
+    </div>
+</div>

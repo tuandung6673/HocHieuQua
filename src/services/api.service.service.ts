@@ -41,6 +41,8 @@ import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
 import { TestUser } from 'src/models/testUser.model';
 import { LibraryFolder } from 'src/models/libraryFolder.model';
 import { TestQuestionType } from 'src/models/testQuestionType.model';
+import { CourseOverDeadline } from 'src/models/courseOverDeadline.model';
+import { CourseYear } from 'src/models/courseYear.model';
 
 @Injectable({
   providedIn: 'root'
@@ -299,6 +301,28 @@ export class ApiService {
 
   deleteCourseSchedule(id: string) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/CourseSchedule/` + id)
+  }
+
+  getCourseOverDeadline(queryParams) : Observable<BaseReponse<CourseOverDeadline>> {
+    return this.http.get<BaseReponse<CourseOverDeadline>>(`${this.url}/Course/GetCourseOverDeadline?` + queryParams)
+  }
+
+  // CourseYear
+
+  getCourseYear(queryParams) : Observable<BaseReponse<CourseYear>> {
+    return this.http.get<BaseReponse<CourseYear>>(`${this.url}/CourseYear?` + queryParams)
+  }
+
+  getCourseYearById(id: string) : Observable<BaseRetail<CourseYear>> {
+    return this.http.get<BaseRetail<CourseYear>>(`${this.url}/CourseYear?id=${id}`)
+  }
+
+  postCourseYear(data : CourseYear) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/CourseYear`, data)
+  }
+
+  deleteCourseYear(id: string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/CourseYear/${id}`)
   }
 
   // Tesst

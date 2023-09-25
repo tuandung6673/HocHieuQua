@@ -19,7 +19,7 @@ export class CourseComponent implements OnInit {
   search: string
   params = {
     offSet: 0,
-    pageSize: 5,
+    pageSize: 20,
     filter : '',
     status: -1,
     isPayment: -1,

@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="guide">
+          <span><i class="pi pi-home"></i></span>
+          <i>/</i>
+          <span>Quản trị</span>
+          <i>/</i>
+          <span class="active">Năm học</span>
+        </div>
+        <div class="header-2">
+          <div class="header-left">
+            <div class="empty"></div>
+            <div class="main-title">Năm học</div>
+          </div>
+          <div class="header-right">
+            <div class="search-btn">
+              <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+              <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+            </div>
+            <!-- <p-button (click)="op2.toggle($event)" label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button> -->
+            <p-button [routerLink]="['them-moi']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+          </div>
+        </div>
+    </div>
+    
+    <p-table [value]="yearList" responsiveLayout="scroll" [scrollable]="true" rowHover="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pFrozenColumn>
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th></th>
+                <th pFrozenColumn>Tên</th>
+                <th>Hiển thị</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-test>
+            <tr>
+                <td pFrozenColumn>
+                  <p-tableCheckbox [value]="test"></p-tableCheckbox>
+                </td>
+                <td>
+                  <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
+                </td>
+                <td pFrozenColumn style="color: #0b5ed7; font-weight: 650;">{{test.name}}</td>
+                <td>
+                    <span class="colorful" [ngClass]="test.status == 0 ? 'fail' : 'passed' " *ngIf="test.status == 1">Hiển thị</span>
+                    <span class="colorful" [ngClass]="test.status == 0 ? 'fail' : 'passed' " *ngIf="test.status == 0">Ẩn</span>
+                </td>
+            </tr>
+            <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">
+              <ng-template pTemplate>
+                  <div class="option" [routerLink]="[test.id]">
+                      <i class="pi pi-pencil"></i> Sửa
+                  </div>
+                  <div class="option" (click)="deleteTest(test.id)" >
+                      <i class="pi pi-trash"></i> Xóa
+                  </div>
+              </ng-template>
+          </p-overlayPanel>
+          </ng-template>
+      </p-table>
+</div>
