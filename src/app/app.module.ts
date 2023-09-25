@@ -282,6 +282,8 @@ import { ChiTietNamHocComponent } from './quan-tri/nam-hoc/chi-tiet-nam-hoc/chi-
     KtDungSaiComponent,
     KtDienVaoChoTrongComponent,
     KtPhuHopComponent,
+    NamHocComponent,
+    ChiTietNamHocComponent
       ],
   imports: [
     MathjaxModule.forRoot(),
