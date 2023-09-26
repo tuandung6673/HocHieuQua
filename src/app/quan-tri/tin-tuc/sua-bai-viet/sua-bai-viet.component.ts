@@ -1,14 +1,13 @@
-// import { New } from './../../../models/new.model';
-import { New } from 'src/models/new.model';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/services/api.service.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize } from 'rxjs';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ChonAnhComponent } from '../../thu-vien/chon-anh/chon-anh.component';
 import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { finalize } from 'rxjs';
+import TinyMCE from 'src/common/constants/tiny.constant';
+import { New } from 'src/models/new.model';
+import { ApiService } from 'src/services/api.service.service';
+import { ChonAnhComponent } from '../../thu-vien/chon-anh/chon-anh.component';
 
 
 @Component({
@@ -17,8 +16,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./sua-bai-viet.component.css']
 })
 export class SuaBaiVietComponent implements OnInit {
-
-  Editor = ClassicEditor
+  editorConfig = TinyMCE;
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   id: string
   editNew : New = new New()

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as queryString from 'querystring-es3';
+import TinyMCE from 'src/common/constants/tiny.constant';
 import { Test } from 'src/models/test.model';
 import { ApiService } from 'src/services/api.service.service';
 @Component({
@@ -9,6 +10,7 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./sua-kt-cau-hoi.component.scss']
 })
 export class SuaKtCauHoiComponent implements OnInit, OnChanges  {
+  editorConfig = TinyMCE
   @Input() test : Test;
   isEdit : boolean = false;
   Editor = ClassicEditor;

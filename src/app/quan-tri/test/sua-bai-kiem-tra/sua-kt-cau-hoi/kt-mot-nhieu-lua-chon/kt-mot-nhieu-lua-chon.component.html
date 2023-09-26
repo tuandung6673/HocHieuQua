@@ -47,7 +47,9 @@
     </div>
     <div class="detail">
         <div class="col-12 ckeditor">
-            <ckeditor [editor]="Editor" [(ngModel)]="selectComment"></ckeditor>
+            <editor
+                [init]="editorConfig" [(ngModel)]="selectComment"
+            ></editor>
         </div>
     </div>
     <div class="action">
@@ -62,7 +64,9 @@
     </div>
     <div class="detail">
         <div class="col-12 ckeditor">
-            <ckeditor [editor]="Editor" [(ngModel)]="selectAnswer"></ckeditor>
+            <editor
+                [init]="editorConfig" [(ngModel)]="selectAnswer"
+            ></editor>
         </div>
     </div>
     <div class="action">

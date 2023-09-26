@@ -1,9 +1,9 @@
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import TinyMCE from 'src/common/constants/tiny.constant';
 import { ApiService } from 'src/services/api.service.service';
 import { Recruit } from './../../../../models/recruit.model';
-import { Component, OnInit } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sua-tin-tuyen-dung',
@@ -11,8 +11,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./sua-tin-tuyen-dung.component.css']
 })
 export class SuaTinTuyenDungComponent implements OnInit {
-
-  Editor = ClassicEditor
+  editorConfig = TinyMCE;
   id: string;
   editRecruit: Recruit = new Recruit()
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService) { }

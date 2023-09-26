@@ -67,11 +67,15 @@
         </div>
         <div class="col-12">
           <label for="order" class="block">Mô tả ngắn</label>
-          <ckeditor [editor]="Editor" name="shortContent" [(ngModel)]="editNew.shortContent"></ckeditor>
+          <editor
+            [init]="editorConfig" [(ngModel)]="editNew.shortContent"
+          ></editor>
         </div>
         <div class="col-12">
           <label for="order" class="block">Mô tả chi tiết</label>
-          <ckeditor [editor]="Editor" name="content" [(ngModel)]="editNew.content"></ckeditor>
+          <editor
+            [init]="editorConfig" [(ngModel)]="editNew.content"
+          ></editor>
         </div>
         <div class="detail-action">
           <div class="cancel-btn">

@@ -121,7 +121,7 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
     const regex = /\[(\d+)\]/g;
     const replacedText = text.replace(regex, (match, number) => {
       return `<span>
-        <input style="width: 100px" value="abc" type="text"/>
+        <input style="width: 100px" type="text"/>
       </span>`
     })
     return replacedText

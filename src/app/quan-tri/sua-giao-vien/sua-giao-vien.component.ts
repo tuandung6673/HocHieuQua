@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
+import TinyMCE from 'src/common/constants/tiny.constant';
 
 
 @Component({
@@ -16,12 +17,7 @@ import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
   styleUrls: ['./sua-giao-vien.component.css']
 })
 export class SuaGiaoVienComponent implements OnInit {
-  editorConfig = {
-    base_url: '/tinymce',
-    suffix: '.min',
-    toolbar: "undo redo print spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | alignleft aligncenter alignright alignjustify | code",
-    plugins: 'powerpaste casechange searchreplace autolink directionality visualblocks visualchars image link media mediaembed codesample table charmap pagebreak nonbreaking anchor tableofcontents insertdatetime advlist lists checklist wordcount tinymcespellchecker editimage formatpainter permanentpen charmap linkchecker emoticons advtable export autosave advcode fullscreen',
-  }
+  editorConfig = TinyMCE;
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   Editor = ClassicEditor;
   id: string = ''

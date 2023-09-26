@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import TinyMCE from 'src/common/constants/tiny.constant';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 
 @Component({
@@ -13,11 +13,10 @@ export class KtDungSaiComponent implements OnInit {
   @Input() quizz;
   @Input() index;
   @Output() saveEditQuizz = new EventEmitter<any>();
+  editorConfig = TinyMCE;
   commentSidebar : boolean = false;
   selectAns : any = new TestQuestionAnswer();
-  Editor = ClassicEditor;
   selectComment : any;
-  selectAnswer : any;
 
   constructor() { }
 

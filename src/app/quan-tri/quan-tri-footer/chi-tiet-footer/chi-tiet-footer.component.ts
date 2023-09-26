@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Subject } from './../../../../models/subject.model';
 import { MessageService } from 'primeng/api';
+import TinyMCE from 'src/common/constants/tiny.constant';
 
 @Component({
   selector: 'app-chi-tiet-footer',
@@ -14,7 +15,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./chi-tiet-footer.component.scss']
 })
 export class ChiTietFooterComponent implements OnInit {
-
+  editorConfig = TinyMCE
   Editor = ClassicEditor;
   footerId: string;
   footer : Footer = new Footer();

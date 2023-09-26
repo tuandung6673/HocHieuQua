@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import TinyMCE from 'src/common/constants/tiny.constant';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 
 @Component({
@@ -10,8 +10,8 @@ import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 export class KtDienVaoChoTrongComponent implements OnInit {
   @Input() answerList;
   @Input() quizz;
+  editorConfig = TinyMCE;
   commentSidebar : boolean = false;
-  Editor = ClassicEditor;
   selectComment : any;
   selectAns : any = new TestQuestionAnswer();
   answerSidebar : boolean = false;

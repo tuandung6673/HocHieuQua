@@ -72,11 +72,15 @@
     </div>
     <div class="col-12 ckeditor">
       <small>Yêu cầu</small>
-      <ckeditor [editor]="Editor" name="shortContent" [(ngModel)]="editRecruit.requirement"></ckeditor>
+      <editor
+            [init]="editorConfig" [(ngModel)]="editRecruit.requirement"
+          ></editor>
     </div>
     <div class="col-12 ckeditor">
       <small>Nội dung bài viết</small>
-      <ckeditor [editor]="Editor" name="content" [(ngModel)]="editRecruit.content"></ckeditor>
+      <editor
+            [init]="editorConfig" [(ngModel)]="editRecruit.content"
+          ></editor>
     </div>
     <div class="detail-action">
       <div class="cancel-btn">

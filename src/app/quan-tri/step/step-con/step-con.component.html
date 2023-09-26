@@ -67,7 +67,9 @@
           <p-inputSwitch [(ngModel)]="stepChild.status" name="status"></p-inputSwitch>
         </div>
         <div class="col-12" style="margin-top: 10px;">
-          <ckeditor [editor]="Editor" name="shortSummary" [(ngModel)]="stepChild.description"></ckeditor>
+          <editor
+            [init]="editorConfig" [(ngModel)]="stepChild.description"
+          ></editor>
         </div>
         <div class="detail-action">
           <div class="cancel-btn">

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from './../../../../services/api.service.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
 import { Step } from 'src/models/step.model';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { MessageService } from 'primeng/api';
+import { ApiService } from './../../../../services/api.service.service';
+import TinyMCE from 'src/common/constants/tiny.constant';
 
 @Component({
   selector: 'app-step-con',
@@ -13,7 +14,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./step-con.component.scss']
 })
 export class StepConComponent implements OnInit {
-  
+  editorConfig = TinyMCE
   Editor = ClassicEditor;
   stepChild : Step = new Step();
   childId : string = '';

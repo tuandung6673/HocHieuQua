@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ConfirmationService } from 'primeng/api';
+import TinyMCE from 'src/common/constants/tiny.constant';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -15,15 +14,14 @@ export class KtMotNhieuLuaChonComponent implements OnInit {
   @Input() quizz;
   @Input() index;
   @Output() saveEditQuizz = new EventEmitter<any>();
+  editorConfig = TinyMCE;
   commentSidebar : boolean = false;
   answerSidebar : boolean = false;
-  Editor = ClassicEditor;
   selectAns : any = new TestQuestionAnswer();
   selectComment : any;
   selectAnswer : any;
   newTestQuestionAnswer : TestQuestionAnswer = new TestQuestionAnswer();
   constructor(
-    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {

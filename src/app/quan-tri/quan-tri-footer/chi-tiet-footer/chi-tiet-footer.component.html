@@ -48,7 +48,9 @@
         <p-inputSwitch [(ngModel)]="footer.status"></p-inputSwitch>
       </div>
       <div class="col-12 ckeditor">
-        <ckeditor [editor]="Editor" [(ngModel)]="footer.content"></ckeditor>
+        <editor
+          [init]="editorConfig" [(ngModel)]="footer.content"
+        ></editor>
       </div>
       <div class="detail-action">
         <div class="cancel-btn">

@@ -44,7 +44,9 @@
     </div>
     <div class="col-12">
       <small>Nội dung bài viết</small>
-      <ckeditor [editor]="Editor" name="content" [(ngModel)]="editFAQ.content"></ckeditor>
+      <editor
+        [init]="editorConfig" [(ngModel)]="editFAQ.content"
+      ></editor>
     </div>
     <div class="detail-action">
       <div class="cancel-btn">

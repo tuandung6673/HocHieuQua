@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Notification } from 'src/models/notification.model';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import TinyMCE from 'src/common/constants/tiny.constant';
 
 
 
@@ -14,9 +15,9 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
   styleUrls: ['./chi-tiet-thong-bao.component.scss']
 })
 export class ChiTietThongBaoComponent implements OnInit {
-  Editor = ClassicEditor;
   id : string;
   editNoti : Notification = new Notification()
+  editorConfig = TinyMCE;
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,

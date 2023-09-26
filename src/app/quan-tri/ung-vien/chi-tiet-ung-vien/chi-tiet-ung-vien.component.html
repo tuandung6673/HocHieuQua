@@ -92,7 +92,9 @@
           </span> 
         </div>
         <div class="col-12">
-          <ckeditor [editor]="Editor" name="content" [(ngModel)]="editRecruitCandidate.interviewComment"></ckeditor>
+          <editor
+            [init]="editorConfig" [(ngModel)]="editRecruitCandidate.interviewComment"
+          ></editor>
         </div>
         <div class="detail-action">
           <div class="cancel-btn">

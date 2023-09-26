@@ -68,7 +68,9 @@
                 </div>
                 <div class="col-12 ckeditor">
                     <small>Nội dung câu hỏi</small>
-                    <ckeditor [editor]="Editor" [(ngModel)]="quizz.content"></ckeditor>
+                    <editor
+                        [init]="editorConfig" [(ngModel)]="quizz.content"
+                    ></editor>
                 </div>
                 <div class="col-12">
                     <app-kt-mot-nhieu-lua-chon (saveEditQuizz)="saveEditQuizz($event)" *ngIf="quizz.testQuestionTypeCode === 'nhieu_lua_chon' || quizz.testQuestionTypeCode === 'mot_lua_chon'" [index]="i" [questionType]="quizz.testQuestionTypeCode" [answerList]="quizz.testQuestionAnswers" [quizz]="quizz"></app-kt-mot-nhieu-lua-chon>

@@ -53,8 +53,10 @@
             <p-inputSwitch [(ngModel)]="editNoti.status"></p-inputSwitch>
         </div>
         <div class="col-12 ckeditor">
-            <ckeditor [editor]="Editor" [(ngModel)]="editNoti.content"></ckeditor>
-        </div>
+            <editor
+              [init]="editorConfig" [(ngModel)]="editNoti.content"
+            ></editor>
+          </div>
         <div class="detail-action">
             <div class="cancel-btn">
               <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>

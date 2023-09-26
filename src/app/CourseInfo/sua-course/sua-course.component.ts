@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as queryString from 'querystring-es3';
 import { ChonAnhComponent } from 'src/app/quan-tri/thu-vien/chon-anh/chon-anh.component';
+import TinyMCE from 'src/common/constants/tiny.constant';
 import { Course } from 'src/models/course.model';
 import { ApiService } from 'src/services/api.service.service';
 
@@ -14,7 +15,7 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./sua-course.component.scss']
 })
 export class SuaCourseComponent implements OnInit {
-
+  editorConfig = TinyMCE
   @Output() newItemEvent = new EventEmitter<string>();
   Editor = ClassicEditor;
   id: string;

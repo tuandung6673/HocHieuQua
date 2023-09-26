@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import * as moment from 'moment';
 import { finalize } from 'rxjs';
+import TinyMCE from 'src/common/constants/tiny.constant';
 
 @Component({
   selector: 'app-chi-tiet-ung-vien',
@@ -14,8 +15,7 @@ import { finalize } from 'rxjs';
   styleUrls: ['./chi-tiet-ung-vien.component.scss']
 })
 export class ChiTietUngVienComponent implements OnInit {
-
-  Editor = ClassicEditor;
+  editorConfig = TinyMCE;
   editRecruitCandidate : RecruitCandidate = new RecruitCandidate();
   id : string;
   constructor(

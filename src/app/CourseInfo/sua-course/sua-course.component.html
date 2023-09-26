@@ -79,13 +79,19 @@
       <div class="card col-12">
         <p-tabView>
             <p-tabPanel header="Mô tả ngắn">  
-              <ckeditor [editor]="Editor" name="shortSummary" [(ngModel)]="editCourse.shortSummary"></ckeditor>
+              <editor
+                [init]="editorConfig" [(ngModel)]="editCourse.shortSummary"
+              ></editor>
             </p-tabPanel>
             <p-tabPanel header="Thông tin khóa học">
-              <ckeditor [editor]="Editor" name="courseInfo1" [(ngModel)]="editCourse.courseInfo1"></ckeditor>
+              <editor
+                [init]="editorConfig" [(ngModel)]="editCourse.courseInfo1"
+              ></editor>
             </p-tabPanel>
             <p-tabPanel header="Thông tin giáo viên">
-              <ckeditor [editor]="Editor" name="courseInfo2" [(ngModel)]="editCourse.courseInfo2"></ckeditor>
+              <editor
+                [init]="editorConfig" [(ngModel)]="editCourse.courseInfo2"
+              ></editor>
             </p-tabPanel>
         </p-tabView>
       </div>

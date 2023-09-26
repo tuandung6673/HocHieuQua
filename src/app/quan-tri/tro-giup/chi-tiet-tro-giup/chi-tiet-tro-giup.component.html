@@ -52,7 +52,9 @@
       <span class="text">Hiển thị</span>
     </div>
     <div class="col-12">
-      <ckeditor [editor]="Editor" name="content" [(ngModel)]="editGuide.content"></ckeditor>
+      <editor
+        [init]="editorConfig" [(ngModel)]="editGuide.content"
+      ></editor>
     </div>
     <div class="detail-action">
       <div class="cancel-btn">

@@ -5,6 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as queryString from 'querystring-es3';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Test } from 'src/models/test.model';
+import TinyMCE from 'src/common/constants/tiny.constant';
 
 
 @Component({
@@ -13,11 +14,7 @@ import { Test } from 'src/models/test.model';
   styleUrls: ['./sua-kt-chi-tiet.component.scss']
 })
 export class SuaKtChiTietComponent implements OnInit {
-  editorConfig = {
-    base_url: '/tinymce',
-    suffix: '.min',
-    plugins: 'lists link image table wordcount advcode',
-  }
+  editorConfig = TinyMCE
   @Output() sendData = new EventEmitter<Test>();
   @Input() test : Test;
   Editor = ClassicEditor;

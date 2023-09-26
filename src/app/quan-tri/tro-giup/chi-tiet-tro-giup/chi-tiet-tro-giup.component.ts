@@ -1,9 +1,9 @@
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { Guide } from './../../../../models/guide.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from 'src/services/api.service.service';
 import { MessageService } from 'primeng/api';
+import TinyMCE from 'src/common/constants/tiny.constant';
+import { ApiService } from 'src/services/api.service.service';
+import { Guide } from './../../../../models/guide.model';
 
 @Component({
   selector: 'app-chi-tiet-tro-giup',
@@ -11,8 +11,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./chi-tiet-tro-giup.component.scss']
 })
 export class ChiTietTroGiupComponent implements OnInit {
-
-  Editor = ClassicEditor;
+  editorConfig = TinyMCE;
   screenOptions: any = [];
   editGuide : Guide = new Guide();
   id: string;

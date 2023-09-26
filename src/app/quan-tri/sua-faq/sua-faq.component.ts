@@ -1,10 +1,11 @@
-import { ActivatedRoute, Route, Params, Router } from '@angular/router';
-import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
-import { FAQ } from 'src/models/faq.model';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
+import TinyMCE from 'src/common/constants/tiny.constant';
+import { FAQ } from 'src/models/faq.model';
+import { ApiService } from 'src/services/api.service.service';
 
 
 
@@ -14,7 +15,7 @@ import { finalize } from 'rxjs';
   styleUrls: ['./sua-faq.component.css']
 })
 export class SuaFaqComponent implements OnInit {
-
+  editorConfig = TinyMCE
   Editor = ClassicEditor
   id: string = ''
   editFAQ : FAQ = new FAQ()
