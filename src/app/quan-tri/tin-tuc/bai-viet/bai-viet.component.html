@@ -50,7 +50,7 @@
             <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
           </td>
           <td>
-            <img [src]="new.avatar" [alt]="new.name" width="100" height="60" style="object-fit: cover;" class="shadow-4" /></td>
+            <img [src]="new.avatar" (error)="errorHandler($event)" [alt]="new.name" width="100" height="60" style="object-fit: cover;" class="shadow-4" /></td>
           <td>{{new.title}}</td>
           <td>{{new.categoryName}}</td>
           <td>

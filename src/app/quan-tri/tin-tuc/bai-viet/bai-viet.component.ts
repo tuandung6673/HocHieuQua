@@ -104,4 +104,9 @@ export class BaiVietComponent implements OnInit {
     })
   }
 
+  defaultAvatar = 'https://cdn.w600.comps.canstockphoto.com/error-stamp-vector-clipart_csp15272607.jpg' 
+  errorHandler(event) {
+    event.target.src = this.defaultAvatar;
+    event.target.style.objectFit = 'contain';
+  }
 }
