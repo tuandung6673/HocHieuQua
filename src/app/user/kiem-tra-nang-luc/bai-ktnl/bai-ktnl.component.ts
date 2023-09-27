@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 import { TestUser } from 'src/models/testUser.model';
 import { MessageService } from 'primeng/api';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-bai-ktnl',
@@ -23,11 +24,13 @@ export class BaiKtnlComponent implements OnInit {
   id :string;
   testUser : TestUser = new TestUser();
   userId = JSON.parse(localStorage.getItem('userData'))?.userId;
+  safeIframe: SafeHtml;
   constructor(
     private activateRoute: ActivatedRoute,
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
-    private messageSerivce: MessageService
+    private messageSerivce: MessageService,
+    private domSanitizer : DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +51,8 @@ export class BaiKtnlComponent implements OnInit {
     )
     .subscribe(response => {
       this.test = response.data;
-      // this.countdownMM();
-      // this.countdownSS();
+      const desReplaced = this.test.description.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+      this.safeIframe = this.domSanitizer.bypassSecurityTrustHtml(desReplaced);
     })
   }
 

@@ -72,22 +72,11 @@
   }
 }
 
-// ::ng-deep .register {
-//   @extend .inputArea;
-//   .p-inputtext {
-//     padding-left: 10px !important;
-//   }
-//   .p-dropdown {
-//     display: flex;
-//     align-items: center;
-//     .p-dropdown-items {
-//       font-size: 12px;
-//     }
-//   }
-//   .p-button {
-//     font-size: 12px;
-//   }
-// }
+::ng-deep .register {
+  .p-button {
+    font-size: 12px;
+  }
+}
 
 ::ng-deep .pay {
   font-size: 13px;

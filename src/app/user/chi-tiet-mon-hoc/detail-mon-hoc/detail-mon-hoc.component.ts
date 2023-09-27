@@ -58,10 +58,12 @@ export class DetailMonHocComponent implements OnInit, OnChanges {
   }
 
   onAdvise() {
+    this.display1 = false;
     this.display = true;
   }
 
   onRegister() {
+    this.display = false;
     this.display1 = true;
     this.getPaymentTypes();
   }

@@ -1,40 +1,62 @@
-// ::ng-deep .p-menubar {
-//   background: #007AFF;
-//   padding: 10px 0;
-//   width: 100%;
-//   position: relative;
-//   height: 65px;
-//   .p-menuitem-icon {
-//     font-size: 18px;
-//     color: white !important;
-//   }
-//   .p-submenu-icon {
-//     font-size: 18px;
-//     color: white !important;
-//   }
-//   .p-menuitem .p-menuitem-text {
-//     color: white !important;
-//     font-size: 18px;
-//   }
-//   // .p-menuitem-active .p-menuitem-text {
-//   //   color: #000 !important;
-//   // }
-//   .p-menuitem-link {
-//     padding: 15px 10px !important;
-//     &:hover {
-//       background: rgba(100, 175, 255, 0.35) !important;
-//     }
-//     &:active {
-//       background: rgba(100, 175, 255, 0.35) !important;
-//     }
-//   }
-//   .p-menuitem-active {
-//     background: rgba(100, 175, 255, 0.35) !important;
-//   }
-//   .p-menubar-root-list {
-//     position: absolute;
-//     left: 15%;
-//     top: 50%;
-//     transform: translateY(-50%);
-//   }
-// }
+::ng-deep .p-menubar {
+  background: #007AFF;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+  height: 50px;
+  border: none;
+  border-radius: 0px;
+  .p-menuitem-icon {
+    font-size: 18px;
+    color: white !important;
+  }
+  .p-submenu-icon {
+    font-size: 18px;
+    color: white !important;
+  }
+  .p-menuitem .p-menuitem-text {
+    color: white !important;
+    font-size: 18px;
+  }
+  .p-menuitem-link {
+    padding: 15px 10px !important;
+    &:hover {
+      background: rgba(100, 175, 255, 0.35) !important;
+    }
+    &:active {
+      background: rgba(100, 175, 255, 0.35) !important;
+    }
+  }
+  .p-menuitem-active {
+    background: rgba(100, 175, 255, 0.35) !important;
+    &:focus {
+        background: rgba(100, 175, 255, 0.35) !important;
+    }
+  }
+  .p-menubar-root-list {
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .p-submenu-list {
+    min-width: 170px;
+    .p-menuitem-icon {
+        font-size: 16px;
+        margin-right: 10px;
+        color: #1D4ED8 !important;
+    }
+    .p-menuitem-text {
+        color: #000 !important;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .p-submenu-icon {
+        color: #000 !important;
+        font-size: 16px;
+        i{
+            font-weight: 500;
+        }
+    }
+  }
+}
