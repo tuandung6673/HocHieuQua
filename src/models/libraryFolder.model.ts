@@ -1,7 +1,7 @@
 export class LibraryFolder {
-  createdDate: string = "";
+  createDate: string = "";
   modifiedDate: string = "";
-  createdBy: string = "";
+  createBy: string = "";
   modifiedBy: string = "";
   totalFiltered: number = 0;
   id: string = "";
@@ -15,5 +15,6 @@ export class LibraryFolder {
   type: string = "";
   parentId: string = "";
   path: string = "";
-  fromAdmin: 0
+  fromAdmin: 0;
+  children : any[] = [];
 }

@@ -4,7 +4,7 @@ import { CourseSchedule } from './../models/courseSchedule.model';
 import { Slide } from './../models/slide.model';
 import { Subject } from './../models/subject.model';
 import { BaseRetail } from './../models/base-response.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -48,7 +48,11 @@ import { CourseYear } from 'src/models/courseYear.model';
   providedIn: 'root'
 })
 export class ApiService {
-
+  optionsUpload = {
+    headers: new HttpHeaders({
+        // Authorization: this._authService.getAuthorizationHeaderValue(),
+      }),
+  };
   private url = environment.baseUrl;
   token : string = '';
   constructor(
@@ -589,5 +593,10 @@ export class ApiService {
 
   deleteLibraryFile(queryParams) {
     return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Library/DeleteLibraryFile?` + queryParams)
+  }
+
+  //File
+  postFile(data) : Observable<Message>{
+    return this.http.post<Message>(`${this.url}/File`, data, this.optionsUpload)
   }
 }

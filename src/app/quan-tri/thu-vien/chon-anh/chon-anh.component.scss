@@ -95,3 +95,19 @@
       }
     }
   }
+
+  .avatar-survey {
+    cursor: pointer;
+    font-size: 16px;
+    color: #0b5ed7;
+  }
+
+::ng-deep .image-detail {
+  span {
+    font-size: 16px;
+  }
+  
+  .p-button-label {
+    font-size: 14px;
+  }
+}

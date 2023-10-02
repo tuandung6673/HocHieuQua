@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import * as queryString from 'querystring-es3';
 import { finalize } from 'rxjs';
 import { LibraryFolder } from 'src/models/libraryFolder.model';
 import { ApiService } from 'src/services/api.service.service';
-import * as queryString from 'querystring-es3';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-
 
 @Component({
   selector: 'app-chon-anh',
@@ -14,7 +13,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./chon-anh.component.scss']
 })
 export class ChonAnhComponent implements OnInit {
-
+  defaultAvatar = 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'
   queryParams = {
     callFromAdmin : 1,
     folderId: '',
@@ -30,23 +29,30 @@ export class ChonAnhComponent implements OnInit {
   isChoose : boolean = false;
   isChooseImg : boolean = false;
   displayUpload : boolean = false;
+  fileSelected;
   contextItems = [
     {label: 'Thêm thư mục', icon: 'pi pi-folder', command: (event) => this.showBasicDialog(false)},
     {label: 'Xóa folder', icon: 'pi pi-trash', command: (event) => this.deleteNode(this.selectItem)},
     {label: 'Thêm file', icon: 'pi pi-file'},
   ]
-
+  imageWidth : any = 0;
+  imageHeight : any = 0;
+  fileSize : any = 0;
+  fileType : any = "image";
+  fileName : any = ''
   newFolder : LibraryFolder = new LibraryFolder();
 
-  constructor(public ref: DynamicDialogRef, private dialogService: DialogService ,private messageService: MessageService, private apiService: ApiService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService) {
-    
+  constructor(
+    public ref: DynamicDialogRef,
+    private messageService: MessageService, 
+    private apiService: ApiService, 
+    private spinner: NgxSpinnerService, 
+    private confirmationService: ConfirmationService) {
   }
 
   ngOnInit(): void {
     this.getLibraryFolder();
-
   }
-
 
   getLibraryFolder() {
     this.spinner.show();
@@ -159,9 +165,6 @@ export class ChonAnhComponent implements OnInit {
     this.displayUpload = true;
   }
 
-  onBasicUpload(event) {
-  }
-
   selectImage(imgUrl) { 
     this.ref.close(imgUrl);
   }
@@ -211,4 +214,52 @@ export class ChonAnhComponent implements OnInit {
     this.dataOption = roots
   }
 
+  onUploadOutput(event) {
+    this.fileSelected = event.target.files[0];
+    this.fileSize = this.fileSelected.size; // Size in bytes
+    this.fileType = this.fileSelected.type; // MIME type
+    this.fileName = this.fileSelected.name; // File name
+    if (this.fileType.startsWith('image/')) {
+      let img = new Image();
+      img.src = URL.createObjectURL(this.fileSelected);
+      img.onload = () => {
+        this.imageWidth = img.width; // Image width in pixels
+        this.imageHeight = img.height; // Image height in pixels
+      };
+    }
+  }
+
+  uploadImage() {
+    let formData = new FormData();
+    formData.append('file', this.fileSelected);
+    formData.append('folder', '');
+    this.apiService.postFile(formData).subscribe(response => {
+      if(response.status === 'success') {
+        this.addImage(response.data);
+      }
+    })
+  }
+
+  addImage(url) {
+    const query = {
+      ...this.newFolder,
+      fromAdmin: 1,
+      height: this.imageHeight,
+      width: this.imageWidth,
+      name: this.fileName,
+      parentId: this.selectItem.key,
+      size: this.fileSize,
+      type: this.fileType === 'image/png' ? 'image' : '',
+      url : url
+    }
+    this.apiService.setLibrary(query).subscribe(response => {
+      if(response.status === 'success') {
+        this.getLibrariesFile(this.selectItem.key);
+        this.displayUpload = false;
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.message});
+        this.displayUpload = false;
+      }
+    })
+  }
 }

@@ -42,14 +42,40 @@
     </div>
 </p-dialog>
 
-<!-- <p-dialog header="Upload" [(visible)]="displayUpload" [style]="{width: '600px', height: '370px'}">
+<p-dialog header="Upload" [(visible)]="displayUpload" [style]="{width: '600px'}">
     <div class="grid">
-        <div class="col-4 col-left">
-        <img *ngIf="!isChooseImg" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
-        <p-fileUpload mode="basic" name="demo[]" accept="image/*" maxFileSize="10000000" (onUpload)="onBasicUpload($event)" (onSelect)="selectImage($event)"></p-fileUpload>
+        <div class="col-5 col-left">
+          <img *ngIf="!isChooseImg" [src]="defaultAvatar" height="200px" width="100%" style="object-fit: cover;"/>
+          <div class="w-full flex justify-content-center">
+            <label class="avatar-survey" for='avatar-survey'>
+              <i class="pi pi-upload"></i> Tải file lên
+            </label>
+            <input (change)="onUploadOutput($event)"
+                    accept="image/jpeg,image/png,image/jpg,image/gif" type="file" style="display: none;" id='avatar-survey' class="myfile1">  
+          </div>
         </div>
-        <div class="col-8 col-right">
-        <p-button label="Lưu lại"></p-button>
+        <div class="col-7 col-right image-detail">
+          <div>
+            <div style="margin-bottom: 15px;">
+              <span style="font-size: 16px; font-weight: 600;">Thông tin ảnh</span>
+            </div>
+            <div class="mb-2">
+              <span>Tên ảnh: </span> <span class="value">{{fileName}}</span>
+            </div>
+            <div class="mb-2">
+              <span>Chiều cao: </span> <span class="value">{{imageHeight}} px</span>
+            </div>
+            <div class="mb-2">
+              <span>Chiều rộng: </span> <span class="value">{{imageWidth}} px</span>
+            </div>
+            <div class="mb-2">
+              <span>Loại file: </span> <span class="value">{{fileType}}</span>
+            </div>
+            <div class="mb-2">
+              <span>Kích thước: </span> <span class="value">{{fileSize}} Kb</span>
+            </div>
+          </div>
+          <p-button styleClass="w-full mt-4" (click)="uploadImage()" label="Lưu lại"></p-button>
         </div>
     </div>
-</p-dialog> -->
+</p-dialog>
