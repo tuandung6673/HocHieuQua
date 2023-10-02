@@ -26,6 +26,9 @@
     &:active {
       background: rgba(100, 175, 255, 0.35) !important;
     }
+    &:focus {
+      box-shadow: none !important;
+    }
   }
   .p-menuitem-active {
     background: rgba(100, 175, 255, 0.35) !important;
