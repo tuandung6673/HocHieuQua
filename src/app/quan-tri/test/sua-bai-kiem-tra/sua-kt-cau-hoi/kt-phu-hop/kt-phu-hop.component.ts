@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import TinyMCE from 'src/common/constants/tiny.constant';
 import { TestQuestionAnswer } from 'src/models/testQuestionAnswer.model';
 import { v4 as uuidv4 } from 'uuid';

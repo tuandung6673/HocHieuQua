@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<p-dialog header="Thêm thư mục" [(visible)]="displayBasic" [style]="{width: '600px'}" closable="true">
+<p-dialog header="Thêm thư mục" [(visible)]="displayBasic" [style]="{width: '600px'}" closable="true" [modal]="true">
     <div class="dialog-field">
       <div>Tên thư mục</div>
       <input type="text" pInputText [(ngModel)]="nameFolder"> 
@@ -42,7 +42,7 @@
     </div>
 </p-dialog>
 
-<p-dialog header="Upload" [(visible)]="displayUpload" [style]="{width: '600px'}">
+<p-dialog header="Upload" [(visible)]="displayUpload" [modal]="true" [style]="{width: '600px'}">
     <div class="grid">
         <div class="col-5 col-left">
           <img *ngIf="!isChooseImg" [src]="defaultAvatar" height="200px" width="100%" style="object-fit: cover;"/>

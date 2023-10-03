@@ -1,10 +1,10 @@
-import * as queryString from 'querystring-es3';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
-import { Payment } from 'src/models/payment.model';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import * as queryString from 'querystring-es3';
+import { Payment } from 'src/models/payment.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-thanh-toan',

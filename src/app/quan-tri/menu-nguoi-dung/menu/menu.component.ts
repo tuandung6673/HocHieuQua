@@ -1,12 +1,10 @@
-import { Action } from './../../../../models/action.model';
-import { Menu } from './../../../../models/menu.model';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { MenusTree } from 'src/models/menusTree.model';
-import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/services/api.service.service';
-import { finalize } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import * as queryString from 'querystring-es3';
+import { finalize } from 'rxjs';
+import { MenusTree } from 'src/models/menusTree.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-menu',
@@ -40,7 +38,7 @@ export class MenuComponent implements OnInit {
   screenOptions : any[] = [];
   displayBasic: boolean = false;
   actionsOptions = [];
-  
+  parentId : any;
   selected : any;
   parentSelect : any;
   abc : any;
@@ -81,16 +79,11 @@ export class MenuComponent implements OnInit {
     this.displayBasic = true;
     this.getActions();
     this.getAdminMenus();
-    // this.parentSelect = menu?.parentId;
-    // this.parentSelect = {
-    //   label: 'hahahhah',
-    //   value: menu?.parentId
-
-    // }
     this.selectMenu = {...menu};
     this.selectMenu.name = menu?.name;
     this.selectMenu.path = menu?.path;
     this.selectMenu.parentId = menu?.parentId;
+    this.parentId = menu?.parentId;
     
     this.selectMenu.order = menu?.order;
     this.selectMenu.icon = menu?.icon;
@@ -126,21 +119,21 @@ export class MenuComponent implements OnInit {
     const adminQueryParams = queryString.stringify(this.adminMenuParams);
     this.apiSerivce.getMenusTree(adminQueryParams).subscribe(response => {
       this.adminMenus = this.buildTree(response.data.data);
-      console.log(this.buildTree(response.data.data));
-      
     })
   }
-
   select(e) {
-    // this.parentSelect = e.node.value;
-    console.log(this.parentSelect);
+    this.parentId = this.parentSelect?.parent?.value;
   }
 
   saveMenu() {
     const updateData = {
       ...this.selectMenu,
       status: this.selectMenu.status ? 1 : 0,
-      actions: JSON.stringify(this.actionList)
+      actions: JSON.stringify(this.actionList),
+      parentId: this.parentId
+    };
+    if (updateData.childs.length === 0) {
+      delete updateData.childs
     }
     this.spinner.show();
     this.apiSerivce.postMenu(updateData)

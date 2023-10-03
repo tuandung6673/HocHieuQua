@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './../../../../services/api.service.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Notification } from 'src/models/notification.model';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import TinyMCE from 'src/common/constants/tiny.constant';
-
-
+import { Notification } from 'src/models/notification.model';
+import { ApiService } from './../../../../services/api.service.service';
 
 @Component({
   selector: 'app-chi-tiet-thong-bao',

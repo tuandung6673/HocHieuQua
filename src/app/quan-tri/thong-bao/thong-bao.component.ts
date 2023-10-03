@@ -1,8 +1,8 @@
-import * as queryString from 'querystring-es3';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as queryString from 'querystring-es3';
 import { Notification } from 'src/models/notification.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-thong-bao',

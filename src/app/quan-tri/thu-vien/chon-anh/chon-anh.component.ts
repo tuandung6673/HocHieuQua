@@ -13,7 +13,7 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./chon-anh.component.scss']
 })
 export class ChonAnhComponent implements OnInit {
-  defaultAvatar = 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'
+  defaultAvatar : any = 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'
   queryParams = {
     callFromAdmin : 1,
     folderId: '',
@@ -216,9 +216,15 @@ export class ChonAnhComponent implements OnInit {
 
   onUploadOutput(event) {
     this.fileSelected = event.target.files[0];
+    this.loadImageInfo();
+    this.loadImage(event);
+  }
+
+  loadImageInfo() {
     this.fileSize = this.fileSelected.size; // Size in bytes
     this.fileType = this.fileSelected.type; // MIME type
     this.fileName = this.fileSelected.name; // File name
+
     if (this.fileType.startsWith('image/')) {
       let img = new Image();
       img.src = URL.createObjectURL(this.fileSelected);
@@ -226,6 +232,16 @@ export class ChonAnhComponent implements OnInit {
         this.imageWidth = img.width; // Image width in pixels
         this.imageHeight = img.height; // Image height in pixels
       };
+    }
+  }
+
+  loadImage(event) {
+    if(this.fileSelected) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.defaultAvatar = e.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
   }
 

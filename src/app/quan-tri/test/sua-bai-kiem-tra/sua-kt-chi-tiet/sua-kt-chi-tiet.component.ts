@@ -1,11 +1,11 @@
-import { finalize } from 'rxjs';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiService } from 'src/services/api.service.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { NgxSpinnerService } from 'ngx-spinner';
 import * as queryString from 'querystring-es3';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { Test } from 'src/models/test.model';
+import { finalize } from 'rxjs';
 import TinyMCE from 'src/common/constants/tiny.constant';
+import { Test } from 'src/models/test.model';
+import { ApiService } from 'src/services/api.service.service';
 
 
 @Component({

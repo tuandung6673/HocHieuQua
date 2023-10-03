@@ -1,12 +1,12 @@
-import { MessageService } from 'primeng/api';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize } from 'rxjs';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
-import { Test } from 'src/models/test.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
+import { finalize } from 'rxjs';
+import { Test } from 'src/models/test.model';
 import { TestCourseSchedule } from 'src/models/testCourseSchedule.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-sua-bai-kiem-tra',
