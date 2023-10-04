@@ -1,13 +1,13 @@
-import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Account } from 'src/models/account.model';
-import * as queryString from 'querystring-es3';
-import { MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import * as queryString from 'querystring-es3';
 import { finalize } from 'rxjs';
 import { ChonAnhComponent } from 'src/app/quan-tri/thu-vien/chon-anh/chon-anh.component';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Account } from 'src/models/account.model';
+import { ApiService } from 'src/services/api.service.service';
 
 
 @Component({

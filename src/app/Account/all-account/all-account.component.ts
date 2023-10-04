@@ -1,10 +1,10 @@
-import * as queryString from 'querystring-es3';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import * as queryString from 'querystring-es3';
+import { finalize } from 'rxjs';
 import { Account } from 'src/models/account.model';
 import { ApiService } from 'src/services/api.service.service';
-import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-all-account',
