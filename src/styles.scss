@@ -430,6 +430,9 @@ body {
     .p-dropdown-label {
       font-size: 14px;
     }
+    &.p-disabled {
+      background: #b4b4b4;
+    }
   }
   .p-multiselect {
     width: 100%;
@@ -447,6 +450,9 @@ body {
     .p-inputtext {
       background: #d8d8d8 !important;
     }
+  }
+  .p-inputtext:disabled {
+    cursor: not-allowed;
   }
   .p-input-icon-right {
     width: 100%;

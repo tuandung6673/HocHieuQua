@@ -9,23 +9,32 @@ import { finalize } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChonAnhComponent } from '../thu-vien/chon-anh/chon-anh.component';
 import TinyMCE from 'src/common/constants/tiny.constant';
-
+import * as queryString from 'querystring-es3';
+import { Account } from 'src/models/account.model';
 
 @Component({
   selector: 'app-sua-giao-vien',
   templateUrl: './sua-giao-vien.component.html',
-  styleUrls: ['./sua-giao-vien.component.css']
+  styleUrls: ['./sua-giao-vien.component.scss']
 })
 export class SuaGiaoVienComponent implements OnInit {
   editorConfig = TinyMCE;
   defaultAvatar = 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
   Editor = ClassicEditor;
   id: string = ''
-  editTeacher: Teacher = new Teacher()
+  editTeacher: any = new Teacher()
+  teacherSelected: Teacher = new Teacher()
+  query = {
+    offSet: 0,
+    pageSize: 100,
+    filter: ''
+  }
+  newTeacher : Account = new Account;
+  newTeacherOptions = [];
 
   constructor(private dialogService: DialogService, private apiService: ApiService, private route: ActivatedRoute, private router: Router, private messageService: MessageService, private spinner: NgxSpinnerService) {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id']
+      this.id = params['id'];
     })
   }
 
@@ -33,6 +42,7 @@ export class SuaGiaoVienComponent implements OnInit {
     if(this.id && this.id != 'them-giao-vien') {
       this.getEditTeacher(this.id);
     } else {
+      this.getAccountNotTeacher();
       document.title = "Thêm giáo viên";
     }
   }
@@ -52,9 +62,34 @@ export class SuaGiaoVienComponent implements OnInit {
     })
   }
 
+  getAccountNotTeacher() {
+    const queryParams = queryString.stringify(this.query);
+    this.apiService.getAccountNotTeacher(queryParams).subscribe((response) => {
+      this.newTeacherOptions = response.data.data.map((account) => {
+        return {...account, label: `${account.name} - ${account.userName}`, value: account.id}
+      })
+    })
+  }
+
+  changeTeacher() {
+    const teacherSelected = this.newTeacherOptions.filter(teacher => teacher.id === this.teacherSelected)
+    this.editTeacher = teacherSelected[0];
+    console.log(this.editTeacher);
+    
+  }
+
   onSubmit() {
-    const dataSave = {...this.editTeacher, status: this.editTeacher.status ? 1 : 0};
-    // dataSave.status = dataSave.status ? 1 : 0;
+    // const dataSave = {...this.editTeacher, status: this.editTeacher.status ? 1 : 0};
+    let dataSave = new Teacher();
+    dataSave = {
+      ...dataSave,
+      accountId: this.editTeacher.id,
+      avatar: this.editTeacher.avatar,
+      email: this.editTeacher.email,
+      identityNo: this.editTeacher.identityNo,
+      name: this.editTeacher.name,
+      phone: this.editTeacher.phone
+    }
     this.apiService.postTeacher(dataSave)
     .subscribe(reponse => {
       if(reponse.status == 'success') {

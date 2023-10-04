@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './../../../services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Footer } from './../../../models/footer.model';
-import { ExportService } from 'src/services/export.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
+import { ExportService } from 'src/services/export.service';
+import { ApiService } from './../../../services/api.service.service';
+import * as queryString from 'querystring-es3';
+
 @Component({
   selector: 'app-quan-tri-footer',
   templateUrl: './quan-tri-footer.component.html',
   styleUrls: ['./quan-tri-footer.component.scss']
 })
 export class QuanTriFooterComponent implements OnInit {
-  query = {
-    filter: '',
-    pageSize: 5,
-    offSet: 0
-  }
-
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
@@ -26,6 +21,11 @@ export class QuanTriFooterComponent implements OnInit {
   ) {
     document.title = "Footer"
   }
+  query = {
+    filter: '',
+    pageSize: 5,
+    offSet: 0
+  }
   footers : any[] = [];
   totalRecoed : number;
 
@@ -34,8 +34,9 @@ export class QuanTriFooterComponent implements OnInit {
   }
 
   getFooter() {
+    const queryParams = queryString.stringify(this.query)
     this.spinner.show();
-    this.apiService.getFooter(0, 10, this.query.filter).subscribe(response => {
+    this.apiService.getFooter(queryParams).subscribe(response => {
       this.footers = response.data.data;
       this.totalRecoed = response.data.recordsTotal;
       this.spinner.hide();
@@ -80,8 +81,16 @@ export class QuanTriFooterComponent implements OnInit {
     })  
   }
 
-  // export() {
-  //   this.exportService.exportExcel(JSON.stringify(this.footers), 'Quản lý Footer')
-  // }
+  export() {
+    // this.exportService.expoetExcel({ jsonData: JSON.stringify(this.footers) as any, fileName: 'Quản lý Footer' })
+  }
+
+  exportToExcel() {
+    const exportData = this.footers.map((item) => {
+      const {id, ...dataWithoutId} = item;
+      return dataWithoutId
+    })
+    this.exportService.expoetExcel(exportData, 'footer');
+  }
 
 }

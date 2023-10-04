@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ApiService } from 'src/services/api.service.service';
+import { ExportService } from 'src/services/export.service';
 
 
 @Component({
@@ -22,8 +23,9 @@ export class GiaoVienComponent implements OnInit {
   }
   totalRecord: any
 
-  constructor(private apiService: ApiService, private spinner: NgxSpinnerService,
-    private confirmationService: ConfirmationService, private messageService: MessageService) {
+  constructor(
+    private apiService: ApiService, private spinner: NgxSpinnerService,
+    private confirmationService: ConfirmationService, private messageService: MessageService, private exportService: ExportService) {
       document.title = "Giáo viên";
     }
 
@@ -51,13 +53,20 @@ export class GiaoVienComponent implements OnInit {
   }
 
   onDeleteTeacher(id: string) {
-    this.apiService.deleteTeacher(id).subscribe((responseData) => {
-      if(responseData.status == 'success') {
-        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.data.messages})
-      } else {
-        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.data.messages})
+    this.confirmationService.confirm({
+      message: 'Bạn có muốn xóa giáo viên này ?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteTeacher(id).subscribe((responseData) => {
+          if(responseData.status == 'success') {
+            this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.data.messages})
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.data.messages})
+          }
+          this.teachers = this.teachers.filter(teacher =>  teacher.id != id)
+        })
       }
-      this.teachers = this.teachers.filter(teacher =>  teacher.id != id)
     })
   }
 
@@ -84,6 +93,10 @@ export class GiaoVienComponent implements OnInit {
   errorHandler(event) {
     event.target.src = this.defaultAvatar;
     event.target.style.objectFit = 'contain';
+  }
+
+  exportToExcel() {
+    this.exportService.expoetExcel(this.teachers, 'DS_Giao_Vien')
   }
 }
 

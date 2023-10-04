@@ -19,6 +19,7 @@
           <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
         <p-button [routerLink]="['them-lop-hoc']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        <p-button (click)="exportToExcel()" icon="pi pi-file-excel" styleClass="p-button-success"></p-button>
       </div>
     </div>
   </div>

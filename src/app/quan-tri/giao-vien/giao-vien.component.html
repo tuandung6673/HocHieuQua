@@ -23,6 +23,7 @@
         </div>
         <!-- <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left"></p-button> -->
         <p-button [routerLink]="['them-giao-vien']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        <p-button (click)="exportToExcel()" icon="pi pi-file-excel" styleClass="p-button-success"></p-button>
       </div>
     </div>
   </div>
@@ -35,7 +36,7 @@
           </th> 
           <th pFrozenColumn style="min-width: 50px;"></th>
           <th style="min-width:150px">Ảnh</th>
-          <th style="min-width:150px">Họ tên</th>
+          <th style="min-width:250px">Họ tên</th>
           <th style="min-width:200px">Tài khoản</th>
           <th style="min-width:200px">Email</th>
           <th style="min-width:150px">Điện thoại</th>
@@ -54,7 +55,7 @@
           <td style="min-width:150px">
             <img [src]="teacher.avatar" (error)="errorHandler($event)" width="100px" height="60" style="object-fit: cover;" class="shadow-4" />
           </td>
-          <td style="min-width:150px; color: #0b5ed7; font-weight: 650;">{{teacher.name}}</td>
+          <td style="min-width:250px; color: #0b5ed7; font-weight: 650;">{{teacher.name}}</td>
           <td style="min-width:200px">{{teacher.userName}}</td>
           <td style="min-width:200px">{{teacher.email}}</td>
           <td style="min-width:150px">{{teacher.phone}}</td>
@@ -62,8 +63,8 @@
             <span [innerHTML]="teacher.descriptionShort"></span>
             </td>
           <td style="min-width:150px">
-            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 0">Khóa</span>
-            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 1">Hoạt động</span>
+            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 0">Ẩn</span>
+            <span  class="colorful" [ngClass]="teacher.status == 0 ? 'fail' : 'passed' " *ngIf="teacher.status == 1">Hiển thị</span>
           </td>
       </tr>
         <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '180px'}">

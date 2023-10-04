@@ -1,5 +1,6 @@
 import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import * as queryString from 'querystring-es3';
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  query = {
+    filter: '',
+    pageSize: 100,
+    offSet: 0
+  }
   footer: any;
   footerLeft : any;
   footerRight: any;
@@ -18,7 +24,8 @@ export class FooterComponent implements OnInit {
   }
 
   getFooter() {
-    this.apiService.getFooter().subscribe((responseData) => {
+    const queryParams = queryString.stringify(this.query)
+    this.apiService.getFooter(queryParams).subscribe((responseData) => {
       this.footer = responseData.data.data;
       this.footerLeft = responseData.data.data.filter(r => {
         return r.position == 'bottom-left';

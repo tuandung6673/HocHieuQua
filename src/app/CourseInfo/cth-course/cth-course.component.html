@@ -64,36 +64,6 @@
                   </div>
               </ng-template>
             </p-overlayPanel>
-            
-            <p-dialog header="Thêm/Sửa chương trình học" [(visible)]="displayBasic" [style]="{width: '40vw'}">
-              <div class="detail">
-                <div class="col-12">
-                  <small>Tên chương trình</small>
-                  <div>
-                    <span class="p-input-icon-right">
-                      <i class="pi pi-user"></i>
-                      <input id="name" type="text" aria-describedby="avatar-help" pInputText [(ngModel)]="editSchedule.name" name="name" />
-                    </span>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <small>Thứ tự</small>
-                  <div>
-                    <span class="p-input-icon-right">
-                      <i class="pi pi-sort-numeric-down"></i>
-                      <input id="order" type="text" aria-describedby="avatar-help" pInputText [(ngModel)]="editSchedule.order" name="order" />
-                    </span>
-                  </div>
-                </div>
-                <div class="col-12 inputSwitch">
-                  <small>Hiển thị</small>
-                  <p-inputSwitch [(ngModel)]="editSchedule.status" name="status"></p-inputSwitch>
-                </div>
-              </div>
-              <ng-template pTemplate="footer">
-                  <p-button icon="pi pi-check" (click)="displayBasic=false; postCourseSchedule(editSchedule)" label="Ok" styleClass="p-button-text"></p-button>
-              </ng-template>
-            </p-dialog>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-courseSchedule >
           <tr>
@@ -161,3 +131,33 @@
     </p-table>
   </div>
 </div>
+
+<p-dialog header="Thêm/Sửa chương trình học" [(visible)]="displayBasic" [style]="{width: '40vw'}">
+  <div class="detail">
+    <div class="col-12">
+      <small>Tên chương trình</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-user"></i>
+          <input id="name" type="text" aria-describedby="avatar-help" pInputText [(ngModel)]="editSchedule.name" name="name" />
+        </span>
+      </div>
+    </div>
+    <div class="col-12">
+      <small>Thứ tự</small>
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-sort-numeric-down"></i>
+          <input id="order" type="text" aria-describedby="avatar-help" pInputText [(ngModel)]="editSchedule.order" name="order" />
+        </span>
+      </div>
+    </div>
+    <div class="col-12 inputSwitch">
+      <small>Hiển thị</small>
+      <p-inputSwitch [(ngModel)]="editSchedule.status" name="status"></p-inputSwitch>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayBasic=false; postCourseSchedule(editSchedule)" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

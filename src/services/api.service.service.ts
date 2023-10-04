@@ -94,6 +94,10 @@ export class ApiService {
     return this.http.put<BaseRetail<CheckPayment>>(`${this.url}/Account/UpdateAccountInfo`, data)
   }
 
+  getAccountNotTeacher(queryParams) : Observable<BaseReponse<Account>> {
+    return this.http.get<BaseReponse<Account>>(`${this.url}/Account/GetAccountsNotTeacher?` + queryParams)
+  }
+
   // AccountRegister
   postAccountRegister(data: Account) {
     return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Account/SetAccountRegister`, data)
@@ -211,8 +215,8 @@ export class ApiService {
   }
   
   // Footer
-  getFooter(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Footer>> {
-    return this.http.get<BaseReponse<Footer>>(`${this.url}/footer?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
+  getFooter(queryParams) : Observable<BaseReponse<Footer>> {
+    return this.http.get<BaseReponse<Footer>>(`${this.url}/footer?` + queryParams)
   }
 
   getFooterById(id: string) : Observable<BaseRetail<Footer>> {

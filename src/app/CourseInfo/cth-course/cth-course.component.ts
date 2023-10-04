@@ -55,11 +55,6 @@ export class CthCourseComponent implements OnInit {
   }
 
   showDialog(item: CourseSchedule) {
-    // item.status = item.status == 1 ? true : false;
-    // if(create) {
-    //   this.editSchedule = {...this.editSchedule};
-    // } else {
-      // }
     this.editSchedule = {...item};
     this.editSchedule.courseId = this.id;
     this.editSchedule.status = this.editSchedule.status == 1 ? true : false;

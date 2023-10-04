@@ -1,8 +1,9 @@
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/services/api.service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
+import { ApiService } from 'src/services/api.service.service';
+import { ExportService } from 'src/services/export.service';
 
 @Component({
   selector: 'app-lop-hoc',
@@ -11,7 +12,7 @@ import { finalize } from 'rxjs';
 })
 export class LopHocComponent implements OnInit {
   
-  constructor(private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService, private spinner: NgxSpinnerService) {
+  constructor(private exportService : ExportService, private apiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService, private spinner: NgxSpinnerService) {
     document.title = "Lớp học"
   }
 
@@ -79,5 +80,7 @@ export class LopHocComponent implements OnInit {
       }
     })
   }
-
+  exportToExcel() {
+    this.exportService.expoetExcel(this.classrooms, 'DS_Lop_Hoc')
+  }
 }

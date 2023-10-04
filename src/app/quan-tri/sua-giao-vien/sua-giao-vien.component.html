@@ -1,7 +1,7 @@
 <div class="wrapper">
-	<div class="header">
-		<div class="guide">
-			<span><i class="pi pi-home"></i></span>
+  <div class="header">
+    <div class="guide">
+      <span><i class="pi pi-home"></i></span>
 			<i>/</i>
 			<span>Quản trị</span>
 			<i>/</i>
@@ -32,19 +32,20 @@
 			<div class="detail grid">
         <div class="col-6">
           <small>Tài khoản</small>
-          <div>
+          <div *ngIf="id">
             <span class="p-input-icon-right">
               <i class="pi pi-user"></i>
               <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [value]="editTeacher.name +  ' - '  +editTeacher.userName" disabled="true" />
             </span>
           </div>
+          <p-dropdown *ngIf="!id" [options]="newTeacherOptions" [(ngModel)]="teacherSelected" placeholder="Tài khoản" (onChange)="changeTeacher()" ></p-dropdown>
         </div>
         <div class="col-6">
           <small>Tên giáo viên</small>
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-sort-alpha-down"></i>
-              <input formGroupName="usernameInput" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editTeacher.name" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editTeacher.name" />
             </span>
           </div>
         </div>
@@ -53,7 +54,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-envelope"></i>
-              <input formGroupName="usernameInput" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editTeacher.email" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editTeacher.email" />
             </span>
           </div>
         </div>
@@ -62,7 +63,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-phone"></i>
-              <input formGroupName="usernameInput" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editTeacher.phone" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editTeacher.phone" />
             </span>
           </div>
         </div>
@@ -71,7 +72,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-map-marker"></i>
-              <input formGroupName="usernameInput" class="p-inputtext-lg" id="address" type="text" aria-describedby="username-help" pInputText name="address" [(ngModel)]="editTeacher.address" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="address" type="text" aria-describedby="username-help" pInputText name="address" [(ngModel)]="editTeacher.address" />
             </span>
           </div>
         </div>
@@ -80,7 +81,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-id-card"></i>
-              <input formGroupName="usernameInput" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editTeacher.identityNo" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editTeacher.identityNo" />
             </span>
           </div>
         </div>
