@@ -79,7 +79,7 @@ body {
   box-shadow: 0 0 3px #b4b4b4;
   img {
     width: 100% !important;
-    height: 180px !important;
+    max-height: 400px !important;
     object-fit: cover;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
