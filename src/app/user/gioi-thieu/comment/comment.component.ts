@@ -1,10 +1,10 @@
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiService } from 'src/services/api.service.service';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import * as moment from 'moment'
-import { Comment } from 'src/models/comment.model';
 import { finalize } from 'rxjs';
+import { Comment } from 'src/models/comment.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-comment',

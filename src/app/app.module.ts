@@ -166,6 +166,7 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
+import { CommentRealtimeComponent } from './user/gioi-thieu/comment-realtime/comment-realtime.component';
 
 @NgModule({
   declarations: [
@@ -283,7 +284,8 @@ import { UserGvComponent } from './user/user-gv/user-gv.component';
     KtDienVaoChoTrongComponent,
     KtPhuHopComponent,
     NamHocComponent,
-    ChiTietNamHocComponent
+    ChiTietNamHocComponent,
+    CommentRealtimeComponent
       ],
   imports: [
     MathjaxModule.forRoot(),

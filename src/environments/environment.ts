@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://tank8.bsite.net/api'
+  baseUrl: 'https://tank8.bsite.net/api',
+  baseUrlRealtime: 'https://tank8.bsite.net'
 };
 
 /*

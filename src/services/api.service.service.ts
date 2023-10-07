@@ -43,6 +43,7 @@ import { LibraryFolder } from 'src/models/libraryFolder.model';
 import { TestQuestionType } from 'src/models/testQuestionType.model';
 import { CourseOverDeadline } from 'src/models/courseOverDeadline.model';
 import { CourseYear } from 'src/models/courseYear.model';
+import { CommentRealtime } from 'src/models/commentRealtime.model';
 
 @Injectable({
   providedIn: 'root'
@@ -415,6 +416,11 @@ export class ApiService {
 
   postComment(data : Comment) {
     return this.http.post<Message>(`${this.url}/Comment`, data)
+  }
+
+  // CommentRealtime
+  getCommentRealtime(params) : Observable<BaseReponse<CommentRealtime>> {
+    return this.http.get<BaseReponse<CommentRealtime>>(`${this.url}/CommentRealtime?` + params)
   }
 
   // Recruit
