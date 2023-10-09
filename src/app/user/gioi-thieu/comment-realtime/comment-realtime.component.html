@@ -1,66 +1,68 @@
-<div *ngFor="let comment of realtimeComments">
-    <hr>
-    <div class="comment">
-      <div style="display: flex; align-items: center;">
-        <img class="avatar" [src]="comment.accountAvatar"/>
-      </div>
-      <div class="main">
-        <div>
-          <!-- <div class="info"> -->
-            <p class="username">{{comment.userName}}</p>
-            <p class="content">{{comment.content || comment.comment}}</p>
-          <!-- </div> -->
+<div class="cmt-wrapper" #scrollContainer>
+    <div *ngFor="let comment of realtimeComments">
+        <hr>
+        <div class="comment">
+        <div style="display: flex; align-items: center;">
+            <img class="avatar" [src]="comment.accountAvatar"/>
         </div>
-        <p>
-          <i class="pi pi-clock"></i>
-          {{comment.createdDate}}
-        </p>
-      </div>
-    </div>
-    <div class="response">
-      <span (click)="displayAnswer(comment)">Phản hồi</span>
-    </div>
-    <!-- <div style="border-left: 1px dashed #d8d8d8"> -->
-      <div class="child" *ngFor="let child of comment.comments">
-        <div class="comment2">
-          <div style="display: flex; align-items: center;"> 
-            <img class="avatar" [src]="child.avatar ? child.avatar : defaultAvatar"/>
-          </div>
-          <div class="main">
+        <div class="main">
             <div>
-              <!-- <div class="info"> -->
-                <p class="username">{{child.userName}}</p>
-                <p class="content">{{child.content || child.comment}}</p>
-              <!-- </div> -->
+            <!-- <div class="info"> -->
+                <p class="username">{{comment.accountName}}</p>
+                <p class="content">{{comment.content || comment.comment}}</p>
+            <!-- </div> -->
             </div>
             <p>
-              <i class="pi pi-clock"></i>
-              {{child.createdDate}}
+            <i class="pi pi-clock"></i>
+            {{comment.createdDate}}
             </p>
-          </div>
         </div>
-      </div>
-    <!-- </div> -->
-    <div class="comment-answer" *ngIf="commentAnswer == comment.id">
-      <div style="width: 45px; display: flex; align-items: center;">
-        <img class="avatar" [src]="userData.avatar" />
-      </div>
-      <div class="answer-input">
-        <input type="text" pInputText [(ngModel)]="answerInput" placeholder="Nhập phản hồi" (keydown.enter)="sendAnswer()"> 
-        <span (click)="sendAnswer()">
-          <i class="pi pi-send"></i>
-        </span>
-      </div>
+        </div>
+        <div class="response">
+        <span (click)="displayAnswer(comment)">Phản hồi</span>
+        </div>
+        <!-- <div style="border-left: 1px dashed #d8d8d8"> -->
+        <div class="child" *ngFor="let child of comment.comments">
+            <div class="comment2">
+            <div style="display: flex; align-items: center;"> 
+                <img class="avatar" [src]="child.accountAvatar ? child.accountAvatar : defaultAvatar"/>
+            </div>
+            <div class="main">
+                <div>
+                <!-- <div class="info"> -->
+                    <p class="username">{{child.accountName}}</p>
+                    <p class="content">{{child.content || child.comment}}</p>
+                <!-- </div> -->
+                </div>
+                <p>
+                <i class="pi pi-clock"></i>
+                {{child.createdDate}}
+                </p>
+            </div>
+            </div>
+        </div>
+        <!-- </div> -->
+        <div class="comment-answer" *ngIf="commentAnswer == comment.id">
+        <div style="width: 45px; display: flex; align-items: center;">
+            <img class="avatar" [src]="userData.avatar" />
+        </div>
+        <div class="answer-input">
+            <input type="text" pInputText [(ngModel)]="answerInput" placeholder="Nhập phản hồi" (keydown.enter)="sendAnswer(comment.id)"> 
+            <span (click)="sendAnswer()">
+            <i class="pi pi-send"></i>
+            </span>
+        </div>
+        </div>
     </div>
-  </div>
-  <hr>
+</div>
+<hr>
 <div class="new-comment">
     <div style="display: flex; align-items: center; width: 45px;">
       <img class="avatar" [src]="userData.avatar" />
     </div>
     <div class="answer-input">
-      <input type="text" pInputText [(ngModel)]="newCommentContent" placeholder="Bình luận..." (keydown.enter)="sendAnswer(false)"> 
-      <span (click)="sendAnswer(false)">
+      <input type="text" pInputText [(ngModel)]="newCommentContent" placeholder="Bình luận..." (keydown.enter)="sendAnswer()"> 
+      <span (click)="sendAnswer()">
         <i class="pi pi-send"></i>
       </span>
     </div>

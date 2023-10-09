@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
@@ -15,7 +15,8 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
   templateUrl: './comment-realtime.component.html',
   styleUrls: ['./comment-realtime.component.scss']
 })
-export class CommentRealtimeComponent implements OnInit {
+export class CommentRealtimeComponent implements OnInit, AfterViewInit  {
+  @ViewChild('scrollContainer', { static: false }) scrollContainer: ElementRef;
   userData = JSON.parse(localStorage.getItem('userData'))
   newCommentContent : any = '';
   realtimeComments : CommentRealtime[] = [];
@@ -27,6 +28,8 @@ export class CommentRealtimeComponent implements OnInit {
     pageSize: 100,
     filter: ''
   };
+  answerInput : string;
+  commentAnswer : any = '';
   hubConnection: HubConnection;
 
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,  private apiSerivce: ApiService, ) {
@@ -38,36 +41,6 @@ export class CommentRealtimeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getComment();
-
-    // const signalRInstant = new signalR.HubConnectionBuilder().withUrl(`${environment.baseUrl}/commenthub`).build();
-  
-    // signalRInstant.start()
-    // .then(() => {
-    //   signalRInstant.invoke('AddUserToGroup', this.testId ? this.testId : this.id, this.userData.userId)
-    //   .then(() => {
-    //     console.log('AddUserToGroup');
-    //   })
-    // })
-
-    // signalRInstant.on("LeaveScreen", (data) => {
-    //   console.log('LeaveScreen', data);
-    // });
-
-    // signalRInstant.on("JoinScreen", (data) => {
-    //   console.log('JoinScreen', data);
-    // });
-
-    // signalRInstant.on("Comment", (screen, comment, accountId, accountName, commentId, avatar, name) => {
-    //   const newCommnet = new CommentRealtime();
-    //   newCommnet.id = commentId;
-    //   newCommnet.accountId = accountId;
-    //   newCommnet.accountName = name;
-    //   newCommnet.accountAvatar = avatar;
-    //   newCommnet.comment = comment;
-    //   newCommnet.screen = screen;
-    //   console.log(newCommnet, accountName);
-    //   this.realtimeComments.push(newCommnet);     
-    // })
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(`${environment.baseUrlRealtime}/commenthub`, )
       .build();
@@ -88,25 +61,42 @@ export class CommentRealtimeComponent implements OnInit {
       // console.log('JoinScreen', data);
     });
 
-    this.hubConnection.on("Comment", (screen, comment, accountId, accountName, commentId, avatar, name) => {
+    this.hubConnection.on("Comment", (screenId, comment, accountId, commentId, avatar, name, createdDate, parentId) => {
       const newCommnet = new CommentRealtime();
       newCommnet.id = commentId;
       newCommnet.accountId = accountId;
       newCommnet.accountName = name;
       newCommnet.accountAvatar = avatar;
       newCommnet.comment = comment;
-      newCommnet.screen = screen;
-      // console.log('newCommnet', newCommnet, accountName);                
+      newCommnet.screen = screenId;
+      newCommnet.parentComment = parentId;
+      newCommnet.createdDate = createdDate;
+
       this.realtimeComments = [...this.realtimeComments, newCommnet]
-  });
+    });
   }
 
-  sendAnswer(hasParent : boolean = false, parentComment = '') {
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    if (this.scrollContainer) {
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    }
+  }
+
+  sendAnswer(parentComment = '') {
     if(this.hubConnection) {
       this.hubConnection.invoke("SendComment", this.testId ? this.testId : this.id as any, this.newCommentContent, this.userData.userId, 'tano', parentComment)
         .then(() => {console.log('SendComment')})
         .catch(err => console.log('err', err))
     }
+  }
+
+  displayAnswer(comment) {
+    this.commentAnswer = comment.id;
+    this.answerInput = "";
   }
 
   getComment() {

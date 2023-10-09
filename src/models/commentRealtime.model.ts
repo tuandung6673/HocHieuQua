@@ -13,5 +13,5 @@ export class CommentRealtime {
     accountName: string = "";
     accountAvatar: string = "";
     screen: string = "";
-    comments: any[] = null;
+    comments: CommentRealtime[] = [];
 }
