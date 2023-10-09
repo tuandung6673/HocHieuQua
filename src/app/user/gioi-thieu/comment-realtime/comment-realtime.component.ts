@@ -25,7 +25,7 @@ export class CommentRealtimeComponent implements OnInit, AfterViewInit  {
   query = {
     screen: '',
     offSet: 0,
-    pageSize: 100,
+    pageSize: 1000,
     filter: ''
   };
   answerInput : string;
@@ -69,10 +69,14 @@ export class CommentRealtimeComponent implements OnInit, AfterViewInit  {
       newCommnet.accountAvatar = avatar;
       newCommnet.comment = comment;
       newCommnet.screen = screenId;
-      newCommnet.parentComment = parentId;
-      newCommnet.createdDate = createdDate;
-
-      this.realtimeComments = [...this.realtimeComments, newCommnet]
+      newCommnet.createdDate = moment(createdDate).format('DD-MM-YYYY k:mm:ss');
+      if(parentId) {
+        newCommnet.parentComment = parentId;
+        const parentCmt = this.realtimeComments.filter(cmt => cmt.id === parentId);
+        parentCmt[0].comments = [...parentCmt[0].comments, newCommnet]
+      } else {
+        this.realtimeComments = [...this.realtimeComments, newCommnet]
+      }
     });
   }
 
@@ -86,10 +90,20 @@ export class CommentRealtimeComponent implements OnInit, AfterViewInit  {
     }
   }
 
-  sendAnswer(parentComment = '') {
+  sendAnswer(childComment : boolean = false, parentCommentId = '') {
     if(this.hubConnection) {
-      this.hubConnection.invoke("SendComment", this.testId ? this.testId : this.id as any, this.newCommentContent, this.userData.userId, 'tano', parentComment)
-        .then(() => {console.log('SendComment')})
+      this.hubConnection.invoke("SendComment", 
+        this.testId ? this.testId : this.id as any, 
+        childComment ? this.answerInput : this.newCommentContent, 
+        this.userData.id, 
+        parentCommentId)
+        .then(() => {
+          if(childComment) {
+            this.answerInput = ''
+          } else {
+            this.newCommentContent = ''
+          }
+        })
         .catch(err => console.log('err', err))
     }
   }
@@ -118,9 +132,9 @@ export class CommentRealtimeComponent implements OnInit, AfterViewInit  {
   fetchTime() {
     this.realtimeComments.map(c => {
       c.createdDate = moment(c.createdDate).format('DD-MM-YYYY k:mm:ss');
-      // c.comments.map(c2 => {
-      //   c2.createdDate = moment(c2.createdDate).format('DD-MM-YYYY k:mm:ss');
-      // })
+      c.comments.map(c2 => {
+        c2.createdDate = moment(c2.createdDate).format('DD-MM-YYYY k:mm:ss');
+      })
     })
   }
 
