@@ -70,6 +70,7 @@ import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
 import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.component';
 import { NamHocComponent } from './quan-tri/nam-hoc/nam-hoc.component';
 import { ChiTietNamHocComponent } from './quan-tri/nam-hoc/chi-tiet-nam-hoc/chi-tiet-nam-hoc.component';
+import { ChatComponent } from './user/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -131,7 +132,8 @@ const routes: Routes = [
       {path: 'diem-thi', component: DiemThiComponent},
       {path: 'thu-vien', component: ThuVienComponent},
       {path: 'nam-hoc', component: NamHocComponent},
-      {path: 'nam-hoc/:id', component: ChiTietNamHocComponent}
+      {path: 'nam-hoc/:id', component: ChiTietNamHocComponent},
+      {path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]}
     ]
   },
   {
@@ -158,6 +160,7 @@ const routes: Routes = [
       {path: 'tai-khoan/khoa-hoc-cua-toi', component: KhoaHocCuaToiComponent, canActivate: [AuthGuardService]},
       {path: 'tai-khoan/kich-hoat-khoa-hoc', component: KichHoatKhoaHocComponent, canActivate: [AuthGuardService]},
       {path: 'tai-khoan/qua-trinh-hoc-tap', component: QuaTrinhHocTapComponent, canActivate: [AuthGuardService]},
+      {path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
       {path: 'thong-bao/:type', component: ThongBaoAllComponent}
     ]
   },

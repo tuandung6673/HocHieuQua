@@ -44,6 +44,8 @@ import { TestQuestionType } from 'src/models/testQuestionType.model';
 import { CourseOverDeadline } from 'src/models/courseOverDeadline.model';
 import { CourseYear } from 'src/models/courseYear.model';
 import { CommentRealtime } from 'src/models/commentRealtime.model';
+import { Conversation } from 'src/models/conversation.model';
+import { ConversationMessage } from 'src/models/convMessage.model';
 
 @Injectable({
   providedIn: 'root'
@@ -421,6 +423,15 @@ export class ApiService {
   // CommentRealtime
   getCommentRealtime(params) : Observable<BaseReponse<CommentRealtime>> {
     return this.http.get<BaseReponse<CommentRealtime>>(`${this.url}/CommentRealtime?` + params)
+  }
+
+  // Conversation
+  getConversationUser(params) : Observable<BaseReponse<Conversation>> {
+    return this.http.get<BaseReponse<Conversation>>(`${this.url}/Conversation/GetConversationUsers?` + params)
+  }
+
+  getConversationMessages(params) : Observable<BaseReponse<ConversationMessage>> {
+    return this.http.get<BaseReponse<ConversationMessage>>(`${this.url}/message/GetConversationMessages?` + params)
   }
 
   // Recruit

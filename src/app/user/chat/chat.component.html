@@ -1,0 +1,55 @@
+<div class="user-wrapper">
+    <div class="grid mt-1">
+        <div class="col-3">
+            <div class="flex justify-content-between align-items-center chat_header">
+                <h4>Chat</h4>
+                <span><i class="pi pi-user-plus"></i></span>
+            </div>
+            <div>
+                <input class="w-full" type="text" pInputText > 
+            </div>
+            <div class="chat_user-list flex flex-column">
+                <div *ngFor="let conv of conversationList" class="chat_user-item" (click)="selectChat(conv)" (mouseenter)="showChild(conv.conversationId)" (mouseleave)="hideChild()">
+                    <div class="chat_user-avatar">
+                        <img [src]="conv.avatar" (error)="errorHandler($event)" [alt]="conv.name" height="50" width="50"/>
+                    </div>
+                    <div class="chat_user-content">
+                        <div class="chat_user-username">
+                            {{conv.name}}
+                            <i style="color: #0866FF; font-size: 8px" class="pi pi-circle-fill"></i>
+                        </div>
+                        <div class="flex justify-content-between">
+                            <div class="chat_user-last">
+                                <div>{{conv.lastMessage}}</div>
+                                <div>{{conv.lastMessageDate}}</div>
+                            </div>
+                            <span class="chat_user-option" *ngIf="isChildVisible && conv.conversationId == hoverConversation"><i class="pi pi-ellipsis-h"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 chat_content" *ngIf="isSelect">
+            <div class="chat_content-main">
+                <div class="chat_content-header">
+                    <div class="chat-avatar">
+                        <img [src]="chatSelected.avatar" [alt]="chatSelected.name" width="50" height="50"/>
+                        <span>{{chatSelected.name}}</span>
+                    </div>
+                    <div>
+                        <span><i class="pi pi-info-circle"></i></span>
+                    </div>
+                </div>
+                <div class="chat_content-body">
+                    <div class="chat_content-list">
+                        <div class="chat_content-item" *ngFor="let msg of messageList" [ngClass]="msg.senderAccountId == accoundId ? 'right' : 'left' ">
+                            <span>{{msg.content}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat_content-action"></div>
+            </div>
+        </div>
+        <!-- <div class="col-3" *ngIf="isSelect">C</div> -->
+    </div>
+</div>
