@@ -95,7 +95,8 @@
 .chat_content-body {
     box-shadow: 0 0 3px gray;
     flex: 1 1;
-    overflow-y: scroll;
+    overflow-y: auto;
+    max-height: 660px;
     .chat_content-list {
         display: flex;
         flex-direction: column;
@@ -107,11 +108,25 @@
             justify-content: flex-end;
             margin-bottom: 5px;
             position: relative;
-            
+            span {
+                border-radius: 18px;
+            }
         }
         .left {
             justify-content: flex-start !important;
             padding-left: 40px;
+            span {
+                background: #E4E6EB;;
+                padding: 5px 20px 5px 10px;
+                color: #050505;
+            }
+        }
+        .right {
+            span {
+                color: #FFFFFF;
+                background: rgb(0, 132, 255);
+                padding: 5px 10px 5px 20px;
+            }
         }
     }
 }
