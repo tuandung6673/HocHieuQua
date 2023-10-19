@@ -74,8 +74,6 @@ export class SuaGiaoVienComponent implements OnInit {
   changeTeacher() {
     const teacherSelected = this.newTeacherOptions.filter(teacher => teacher.id === this.teacherSelected)
     this.editTeacher = teacherSelected[0];
-    console.log(this.editTeacher);
-    
   }
 
   onSubmit() {
