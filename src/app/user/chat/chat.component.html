@@ -33,7 +33,7 @@
             <div class="chat_content-main">
                 <div class="chat_content-header">
                     <div class="chat-avatar">
-                        <img [src]="chatSelected.avatar" [alt]="chatSelected.name" width="50" height="50"/>
+                        <img [src]="chatSelected.avatar" [alt]="chatSelected.name" (error)="errorHandler($event)" width="50" height="50"/>
                         <span>{{chatSelected.name}}</span>
                     </div>
                     <div>
@@ -47,7 +47,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="chat_content-action"></div>
+                <div class="chat_content-action">
+                    <div class="chat_content-action_attack">
+                        <i class="pi pi-paperclip"></i>
+                    </div>
+                    <div class="chat_content-action_input">
+                        <textarea></textarea>
+                    </div>
+                    <div class="chat_content-action_send">
+                        <i class="pi pi-send"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- <div class="col-3" *ngIf="isSelect">C</div> -->

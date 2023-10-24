@@ -25,6 +25,11 @@
     }
 }
 
+.chat_user-list {
+    max-height: 620px;
+    overflow-y: auto;
+}
+
 .chat_user-item {
     align-items: center;
     display: flex;
@@ -96,7 +101,7 @@
     box-shadow: 0 0 3px gray;
     flex: 1 1;
     overflow-y: auto;
-    max-height: 660px;
+    height: 570px;
     .chat_content-list {
         display: flex;
         flex-direction: column;
@@ -117,7 +122,7 @@
             padding-left: 40px;
             span {
                 background: #E4E6EB;;
-                padding: 5px 20px 5px 10px;
+                padding: 5px 15px 5px 10px;
                 color: #050505;
             }
         }
@@ -125,8 +130,56 @@
             span {
                 color: #FFFFFF;
                 background: rgb(0, 132, 255);
-                padding: 5px 10px 5px 20px;
+                padding: 5px 10px 5px 15px;
             }
+        }
+    }
+}
+
+.chat_content-action {
+    align-items: center;
+    box-shadow: 0 0 3px gray;
+    display: flex;
+    flex: 0 0 auto;
+    padding: 10px;
+    .chat_content-action_attack {
+        padding-top: 6px;
+        text-align: center;
+        width: 40px;
+        cursor: pointer;
+        i {
+            font-size: 16px !important;
+        }
+    }
+    .chat_content-action_input {
+        background: #e2e2ec94;
+        border: 1px solid #f1f1fc;
+        font-size: 14px;
+        height: 35px;
+        flex: 1 1;
+        border-radius: 6px;
+        textarea {
+            border-radius: 6px;
+            width: 100%;
+            padding: 6px 10px;
+            height: 35px;
+            resize: none;
+            background: #e2e2ec94;
+            border: 1px solid #f1f1fc;
+            &:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+                outline: 0 none;
+                outline-offset: 0;
+            }
+        }
+    }
+    .chat_content-action_send {
+        padding-top: 6px;
+        text-align: center;
+        width: 40px;
+        i {
+            font-size: 16px !important;
         }
     }
 }

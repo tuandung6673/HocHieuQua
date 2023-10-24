@@ -38,8 +38,6 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.getConversation();
-    console.log('chatSelected', this.chatSelected);
-    
   }
 
   getConversation() {
