@@ -787,8 +787,10 @@ body {
 }
 
 // tinyMCE
-.tox-statusbar__path {
-  display: none !important;
+.tox-statusbar {
+  &__path, &__branding, &__resize-handle {
+    display: none !important;
+  }
 }
 .tox-statusbar__text-container {
   display: flex;

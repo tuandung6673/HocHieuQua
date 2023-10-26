@@ -6,6 +6,9 @@ import { finalize } from 'rxjs';
 import { Conversation } from 'src/models/conversation.model';
 import * as moment from 'moment'
 import { ConversationMessage } from 'src/models/convMessage.model';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { environment } from 'src/environments/environment';
+import { MessageRequest } from 'src/models/messageRequest.model';
 
 @Component({
   selector: 'app-chat',
@@ -31,6 +34,9 @@ export class ChatComponent implements OnInit {
   messageList : ConversationMessage[] = [];
   chatSelected : Conversation = new Conversation();
   isSelect : boolean = false;
+  chatAnswer : any = null;
+  hubConnection: HubConnection;
+
   constructor(
     private apiSerive: ApiService,
     private spinner: NgxSpinnerService
@@ -38,6 +44,25 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.getConversation();
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl(`${environment.baseUrlRealtime}/chathub`)
+      .build();
+    const self = this
+    this.hubConnection.start()
+      .then(() => {
+        self.hubConnection.invoke('PublishUserOnConnect', this.accoundId)
+          .catch(err => console.error(err));
+      })
+      .catch(err => console.log('err', err))
+    this.hubConnection.on("LeaveScreen", data => {
+      // console.log('LeaveScreen', data);
+    })
+
+    this.hubConnection.on("JoinScreen", (data) => {
+      // console.log('JoinScreen', data);
+    });
+
+
   }
 
   getConversation() {
@@ -78,10 +103,35 @@ export class ChatComponent implements OnInit {
   selectChat(conv) {
     this.isSelect = true;
     this.chatSelected = conv;
+    console.log('this.chatSelected', this.chatSelected);
     const queryParams = queryString.stringify({...this.messageQuery, ConversationId: conv.conversationId});
     this.apiSerive.getConversationMessages(queryParams).subscribe(response => {
       this.messageList = response.data.data;
     })
+  }
+
+  sendAnswer() {
+    let answer = new MessageRequest();
+    answer.conversationId = this.chatSelected.conversationId;
+    answer.content = this.chatAnswer;
+    answer.receiveAccountId = this.chatSelected.accountId;
+    answer.senderAccountId = this.accoundId;
+    answer.createdBy = this.accoundId;
+    
+    const listUser = this.chatSelected.users.map((user) => {
+      return user.id
+    }).join(',')
+
+    if(this.hubConnection) {
+      this.hubConnection.invoke("SendMessageToUser",
+        JSON.stringify(answer),
+        listUser
+      )
+      .then(() => {
+        this.chatAnswer = '';
+      })
+      .catch(err => console.log('err', err));
+    }
   }
 
 }
