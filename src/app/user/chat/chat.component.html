@@ -40,12 +40,12 @@
                         <span><i class="pi pi-info-circle"></i></span>
                     </div>
                 </div>
-                <div class="chat_content-body">
+                <div #scrollContainer class="chat_content-body">
                     <div class="chat_content-list">
                         <div class="chat_content-item" *ngFor="let msg of messageList" [ngClass]="msg.senderAccountId == accoundId ? 'right' : 'left' ">
-                            <span *ngIf="msg.messageTypeId == 'image'; else message">
-                                <img [src]="'https://tank8.bsite.net/images/' + msg.content" height="100px" width="50px"/>
-                            </span>
+                            <div *ngIf="msg.messageTypeId == 'image'; else message">
+                                <img [src]="'https://tank8.bsite.net/images/' + msg.content" height="300px" width="250px" style="object-fit: contain;"/>
+                            </div>
                             <ng-template #message>
                                 <span>{{msg.content}}</span>
                             </ng-template>

@@ -121,6 +121,7 @@
             justify-content: flex-start !important;
             padding-left: 40px;
             span {
+                max-width: 450px;
                 background: #E4E6EB;;
                 padding: 5px 15px 5px 10px;
                 color: #050505;
@@ -128,6 +129,7 @@
         }
         .right {
             span {
+                max-width: 450px;
                 color: #FFFFFF;
                 background: rgb(0, 132, 255);
                 padding: 5px 10px 5px 15px;

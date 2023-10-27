@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/services/api.service.service';
 import * as queryString from 'querystring-es3'
@@ -16,6 +16,7 @@ import { MessageRequest } from 'src/models/messageRequest.model';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  @ViewChild('scrollContainer', { read: ElementRef }) scrollContainer: ElementRef;
   accoundId = JSON.parse(localStorage.getItem('userData'))?.id;
   defaultAvatar = 'https://hochieuqua7.web.app/images/logo.png'
   query = {
@@ -64,10 +65,10 @@ export class ChatComponent implements OnInit {
 
     this.hubConnection.on("ReceiveDM", (somethingId, receiveChat) => {
       let chatInfo : MessageRequest = {...receiveChat};
-      // chatInfo.content = chatInfo.messageTypeId == 'image' ? `https://tank8.bsite.net/images/${chatInfo.content}` : chatInfo.content;
 
       if(this.chatSelected.conversationId === chatInfo.conversationId) {
         this.messageList.push(chatInfo);
+        this.scrollToBottom();
       }
       this.updateLastMessage(chatInfo.conversationId, chatInfo.content);
     })
@@ -125,11 +126,18 @@ export class ChatComponent implements OnInit {
     this.isSelect = true;
     this.chatSelected = conv;
     const queryParams = queryString.stringify({...this.messageQuery, ConversationId: conv.conversationId});
-    this.apiSerive.getConversationMessages(queryParams).subscribe(response => {
+    this.spinner.show();
+    this.apiSerive.getConversationMessages(queryParams)
+    .pipe(
+      finalize(() => {
+        this.spinner.hide(),
+        setTimeout(() => {
+          this.scrollToBottom()
+        }, 100)
+      })
+    )
+    .subscribe(response => {
       this.messageList = response.data.data;
-      // this.messageList.forEach(msg => {
-      //   msg.content = msg.messageTypeId == 'image' ? 'https://tank8.bsite.net/images/' + msg.content : msg.content;
-      // })
     })
   }
 
@@ -140,6 +148,8 @@ export class ChatComponent implements OnInit {
     answer.receiveAccountId = this.chatSelected.accountId;
     answer.senderAccountId = this.accoundId;
     answer.createdBy = this.accoundId;
+
+    // tam thoi fix cung type la message
     answer.messageTypeId = 'message';
     
     const listUser = this.chatSelected.users.map((user) => {
@@ -155,6 +165,14 @@ export class ChatComponent implements OnInit {
         this.chatAnswer = '';
       })
       .catch(err => console.log('err', err));
+    }
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log(err);
     }
   }
 
