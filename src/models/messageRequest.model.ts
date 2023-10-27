@@ -12,4 +12,5 @@ export class MessageRequest {
     createdDate : string = '';
     modifiedBy : string = '';
     modifiedDate : string = '';
+    totalFiltered : string = null;
 }

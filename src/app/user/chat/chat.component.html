@@ -9,7 +9,7 @@
                 <input class="w-full" type="text" pInputText > 
             </div>
             <div class="chat_user-list flex flex-column">
-                <div *ngFor="let conv of conversationList" class="chat_user-item" (click)="selectChat(conv)" (mouseenter)="showChild(conv.conversationId)" (mouseleave)="hideChild()">
+                <div *ngFor="let conv of conversationList" [ngClass]="chatSelected && (conv.conversationId == chatSelected.conversationId) ? 'chat-active' : '' " class="chat_user-item" (click)="selectChat(conv)" (mouseenter)="showChild(conv.conversationId)" (mouseleave)="hideChild()">
                     <div class="chat_user-avatar">
                         <img [src]="conv.avatar" (error)="errorHandler($event)" [alt]="conv.name" height="50" width="50"/>
                     </div>
@@ -43,7 +43,12 @@
                 <div class="chat_content-body">
                     <div class="chat_content-list">
                         <div class="chat_content-item" *ngFor="let msg of messageList" [ngClass]="msg.senderAccountId == accoundId ? 'right' : 'left' ">
-                            <span>{{msg.content}}</span>
+                            <span *ngIf="msg.messageTypeId == 'image'; else message">
+                                <img [src]="'https://tank8.bsite.net/images/' + msg.content" height="100px" width="50px"/>
+                            </span>
+                            <ng-template #message>
+                                <span>{{msg.content}}</span>
+                            </ng-template>
                         </div>
                     </div>
                 </div>

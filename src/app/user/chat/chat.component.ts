@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit {
   conversationList : Conversation[] = [];
   isChildVisible : boolean = false;
   hoverConversation : string;
-  messageList : ConversationMessage[] = [];
+  messageList : MessageRequest[] = [];
   chatSelected : Conversation = new Conversation();
   isSelect : boolean = false;
   chatAnswer : any = null;
@@ -62,7 +62,28 @@ export class ChatComponent implements OnInit {
       // console.log('JoinScreen', data);
     });
 
+    this.hubConnection.on("ReceiveDM", (somethingId, receiveChat) => {
+      let chatInfo : MessageRequest = {...receiveChat};
+      // chatInfo.content = chatInfo.messageTypeId == 'image' ? `https://tank8.bsite.net/images/${chatInfo.content}` : chatInfo.content;
 
+      if(this.chatSelected.conversationId === chatInfo.conversationId) {
+        this.messageList.push(chatInfo);
+      }
+      this.updateLastMessage(chatInfo.conversationId, chatInfo.content);
+    })
+  }
+
+  updateLastMessage(conversationId, content) {
+    const conv = this.conversationList.filter(conv => conv.conversationId == conversationId)[0];
+    conv.lastMessage = content;
+    // update order
+    this.updateOrderMessage(conv)
+  }
+  
+  updateOrderMessage(conv) {
+    const indexOf = this.conversationList.indexOf(conv);
+    const lastestConv = this.conversationList.splice(indexOf, 1)[0];
+    this.conversationList.unshift(lastestConv);
   }
 
   getConversation() {
@@ -103,10 +124,12 @@ export class ChatComponent implements OnInit {
   selectChat(conv) {
     this.isSelect = true;
     this.chatSelected = conv;
-    console.log('this.chatSelected', this.chatSelected);
     const queryParams = queryString.stringify({...this.messageQuery, ConversationId: conv.conversationId});
     this.apiSerive.getConversationMessages(queryParams).subscribe(response => {
       this.messageList = response.data.data;
+      // this.messageList.forEach(msg => {
+      //   msg.content = msg.messageTypeId == 'image' ? 'https://tank8.bsite.net/images/' + msg.content : msg.content;
+      // })
     })
   }
 
@@ -117,6 +140,7 @@ export class ChatComponent implements OnInit {
     answer.receiveAccountId = this.chatSelected.accountId;
     answer.senderAccountId = this.accoundId;
     answer.createdBy = this.accoundId;
+    answer.messageTypeId = 'message';
     
     const listUser = this.chatSelected.users.map((user) => {
       return user.id
