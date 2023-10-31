@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AccordionModule } from 'primeng/accordion';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -41,14 +44,11 @@ import { SwiperModule } from 'swiper/angular';
 import { AuthInterceptor } from './../auth/auth.interceptor';
 import { AuthGuardService } from './../auth/authGuard.service';
 import { AdminComponent } from './layouts/admin/admin.component';
-import { UserComponent } from './layouts/user/user.component';
 
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { MathjaxModule } from 'mathjax-angular';
 import { FileUploadModule } from 'primeng/fileupload';
+import { MenuModule } from 'primeng/menu';
 import { PaginatorModule } from 'primeng/paginator';
 import { AdminGuard } from 'src/auth/adminGuard.service';
 import { AllAccountComponent } from './Account/all-account/all-account.component';
@@ -63,6 +63,7 @@ import { HeaderComponent } from './header/header.component';
 import { LogInOutComponent } from './layouts/log-in-out/log-in-out.component';
 import { ManHinhDangNhapComponent } from './layouts/man-hinh-dang-nhap/man-hinh-dang-nhap.component';
 import { SignUpComponent } from './layouts/sign-up/sign-up.component';
+import { UserComponent } from './layouts/user/user.component';
 import { MainHeaderComponent } from './main-header/main-header.component';
 import { CauHoiComponent } from './quan-tri/cau-hoi/cau-hoi.component';
 import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-tiet-cau-hoi.component';
@@ -122,6 +123,8 @@ import { UngVienComponent } from './quan-tri/ung-vien/ung-vien.component';
 import { ChiTietTuVanComponent } from './quan-tri/yeu-cau-tu-van/chi-tiet-tu-van/chi-tiet-tu-van.component';
 import { YeuCauTuVanComponent } from './quan-tri/yeu-cau-tu-van/yeu-cau-tu-van.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
+import { ChatInfoComponent } from './user/chat/chat-info/chat-info.component';
+import { ChatComponent } from './user/chat/chat.component';
 import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
 import { BannerMonHocComponent } from './user/chi-tiet-mon-hoc/banner-mon-hoc/banner-mon-hoc.component';
 import { ChiTietMonHocComponent } from './user/chi-tiet-mon-hoc/chi-tiet-mon-hoc.component';
@@ -131,6 +134,7 @@ import { DetailMonHocLeftComponent } from './user/chi-tiet-mon-hoc/detail-mon-ho
 import { DetailMonHocComponent } from './user/chi-tiet-mon-hoc/detail-mon-hoc/detail-mon-hoc.component';
 import { DetailQuestionComponent } from './user/detail-question/detail-question.component';
 import { BaiKhacComponent } from './user/gioi-thieu/bai-khac/bai-khac.component';
+import { CommentRealtimeComponent } from './user/gioi-thieu/comment-realtime/comment-realtime.component';
 import { CommentComponent } from './user/gioi-thieu/comment/comment.component';
 import { GioiThieuChiTietComponent } from './user/gioi-thieu/gioi-thieu-chi-tiet/gioi-thieu-chi-tiet.component';
 import { GioiThieuPhaiComponent } from './user/gioi-thieu/gioi-thieu-phai/gioi-thieu-phai.component';
@@ -166,8 +170,6 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
-import { CommentRealtimeComponent } from './user/gioi-thieu/comment-realtime/comment-realtime.component';
-import { ChatComponent } from './user/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -287,7 +289,8 @@ import { ChatComponent } from './user/chat/chat.component';
     NamHocComponent,
     ChiTietNamHocComponent,
     CommentRealtimeComponent,
-    ChatComponent
+    ChatComponent,
+    ChatInfoComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),
@@ -297,6 +300,7 @@ import { ChatComponent } from './user/chat/chat.component';
     AutoCompleteModule,
     CommonModule,
     ContextMenuModule,
+    MenuModule,
     SidebarModule,
     DynamicDialogModule,
     BrowserModule,

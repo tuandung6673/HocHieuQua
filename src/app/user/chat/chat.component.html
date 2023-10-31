@@ -1,4 +1,4 @@
-<div class="user-wrapper">
+<div class="chat-wrapper">
     <div class="grid mt-1">
         <div class="col-3">
             <div class="flex justify-content-between align-items-center chat_header">
@@ -29,14 +29,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-9 chat_content" *ngIf="isSelect">
+        <div class="chat_content" [ngClass]="showMedia ? 'col-7' : 'col-9'" *ngIf="isSelect">
             <div class="chat_content-main">
                 <div class="chat_content-header">
                     <div class="chat-avatar">
                         <img [src]="chatSelected.avatar" [alt]="chatSelected.name" (error)="errorHandler($event)" width="50" height="50"/>
                         <span>{{chatSelected.name}}</span>
                     </div>
-                    <div>
+                    <div (click)="openMedia()">
                         <span><i class="pi pi-info-circle"></i></span>
                     </div>
                 </div>
@@ -65,6 +65,13 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="showMedia" [ngClass]="showMedia ? 'col-2' : ''">
+            <app-chat-info *ngIf="showMedia" [chatSelected]="chatSelected"></app-chat-info>
+        </div>
         <!-- <div class="col-3" *ngIf="isSelect">C</div> -->
     </div>
 </div>
+
+<audio id="notiSound">
+    <source src="assets/facebook-messenger-sound.mp3" type="audio/mpeg">
+</audio>

@@ -1,0 +1,23 @@
+.user {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    .avatar {
+        img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+    }
+    .name {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .action {
+        cursor: pointer;
+        margin-left: auto;
+        i {
+            font-size: 14px;
+        }
+    }
+}

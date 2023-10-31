@@ -70,6 +70,13 @@ export class ChatComponent implements OnInit {
         this.messageList.push(chatInfo);
         this.scrollToBottom();
       }
+
+      // play audio sound
+      const audioElement = <HTMLAudioElement>document.getElementById('notiSound');
+      if (audioElement) {
+        audioElement.play();
+      }
+
       this.updateLastMessage(chatInfo.conversationId, chatInfo.content);
     })
   }
@@ -124,6 +131,7 @@ export class ChatComponent implements OnInit {
   
   selectChat(conv) {
     this.isSelect = true;
+    this.chatAnswer = '';
     this.chatSelected = conv;
     const queryParams = queryString.stringify({...this.messageQuery, ConversationId: conv.conversationId});
     this.spinner.show();
@@ -176,4 +184,8 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  showMedia : boolean = false;
+  openMedia() {
+    this.showMedia = !this.showMedia;
+  }
 }
