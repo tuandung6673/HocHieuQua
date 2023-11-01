@@ -1,56 +1,59 @@
-<p-accordion [multiple]="true">
-    <p-accordionTab *ngIf="chatSelected.users.length > 2" header="Thành viên trong nhóm chat">
-        <div>
-            <div *ngFor="let user of chatSelected.users" class="user">
-                <span class="avatar">
-                    <img [src]="user.avatar ? user.avatar : 'https://hochieuqua7.web.app/images/logo.png'"/>
-                </span>
-                <span class="name">{{user.name}}</span>
-                <span class="action">
-                    <i class="pi pi-ellipsis-v" (click)="menu.toggle($event)"></i>
-                    <p-menu #menu [popup]="true" [model]="memberItems"></p-menu>
-                </span>
-            </div>
-        </div>
-    </p-accordionTab>
-    <p-accordionTab *ngIf="chatSelected.users.length > 2"  header="Tùy chỉnh nhóm chat">
-        <div>
+
+<div class="wrapper">
+    <p-accordion [multiple]="true">
+        <p-accordionTab *ngIf="chatSelected.users.length > 2" header="Thành viên trong nhóm chat">
             <div>
-                <span><i class="pi pi-pencil"></i></span>
-                <span>Đổi tên đoạn chat</span>
+                <div *ngFor="let user of chatSelected.users" class="user">
+                    <span class="avatar">
+                        <img [src]="user.avatar ? user.avatar : 'https://hochieuqua7.web.app/images/logo.png'"/>
+                    </span>
+                    <span class="name">{{user.name}}</span>
+                    <span class="action">
+                        <i class="pi pi-ellipsis-v" (click)="menu.toggle($event)"></i>
+                        <p-menu #menu [popup]="true" [model]="memberItems"></p-menu>
+                    </span>
+                </div>
             </div>
+        </p-accordionTab>
+        <p-accordionTab *ngIf="chatSelected.users.length > 2"  header="Tùy chỉnh nhóm chat">
             <div>
-                <span><i class="pi pi-image"></i></span>
-                <span>Thay đổi ảnh</span>
+                <div>
+                    <span><i class="pi pi-pencil"></i></span>
+                    <span>Đổi tên đoạn chat</span>
+                </div>
+                <div>
+                    <span><i class="pi pi-image"></i></span>
+                    <span>Thay đổi ảnh</span>
+                </div>
             </div>
-        </div>
-    </p-accordionTab>
-    <p-accordionTab header="File phương tiện, liên kết">
-        <div>
+        </p-accordionTab>
+        <p-accordionTab header="File phương tiện, liên kết">
             <div>
-                <span><i class="pi pi-images"></i></span>
-                <span>File phương tiện</span>
+                <div>
+                    <span><i class="pi pi-images"></i></span>
+                    <span>File phương tiện</span>
+                </div>
+                <div>
+                    <span><i class="pi pi-file"></i></span>
+                    <span>File</span>
+                </div>
+                <div>
+                    <span><i class="pi pi-share"></i></span>
+                    <span>Liên kết</span>
+                </div>
             </div>
+        </p-accordionTab>
+        <p-accordionTab header="Quyền riêng tư, hỗ trợ">
             <div>
-                <span><i class="pi pi-file"></i></span>
-                <span>File</span>
-            </div>
-            <div>
-                <span><i class="pi pi-share"></i></span>
-                <span>Liên kết</span>
-            </div>
-        </div>   
-    </p-accordionTab>
-    <p-accordionTab header="Quyền riêng tư, hỗ trợ">
-        <div>
-            <div>
-                <span><i class="pi pi-bell"></i></span>
-                <span>Tắt thông báo</span>
-            </div>
-            <div>
-                <span><i class="pi pi-sign-out"></i></span>
-                <span>Rời nhóm</span>
-            </div>
-        </div>   
-    </p-accordionTab>
-</p-accordion>
+                <div>
+                    <span><i class="pi pi-bell"></i></span>
+                    <span>Tắt thông báo</span>
+                </div>
+                <div>
+                    <span><i class="pi pi-sign-out"></i></span>
+                    <span>Rời nhóm</span>
+                </div>
+            </div>   
+        </p-accordionTab>
+    </p-accordion>
+</div>
