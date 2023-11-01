@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <div class="detail">
+        <div class="grid">
+            <div class="col-12">
+                <small>Tên đoạn chat</small>
+                <span class="input p-input-icon-right">
+                    <i class="pi pi-user"></i>
+                    <input type="text" [(ngModel)]="chatSelectedClone.name" pInputText name="name"/>
+                </span> 
+            </div>
+            <div class="w-full flex justify-content-end mt-6">
+                <div class="cancel-btn">
+                  <p-button label="Hủy" icon="pi pi-times" (click)="cancel()"></p-button>
+                </div>
+                <div class="save-btn ml-3">
+                  <p-button label="Lưu" (click)="onSubmit()" icon="pi pi-check"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

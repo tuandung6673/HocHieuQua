@@ -4,9 +4,10 @@
     align-items: center;
     .avatar {
         img {
+            border-radius: 50%;
             height: 40px;
             width: 40px;
-            object-fit: contain;
+            object-fit: cover;
         }
     }
     .name {
@@ -21,3 +22,25 @@
         }
     }
 }
+
+.chat {
+    .name {
+        padding-left: 6px;
+    }
+    .each-item {
+        cursor: pointer;
+        padding: 6px 15px;
+        font-size: 16px;
+        i {
+            font-size: 15px !important;
+            margin-right: 10px;
+        }
+        &:hover {
+            background: hsla(0,0%,83%,.527);
+            border-radius: 5px;
+            i {
+                font-weight: 600;
+            }
+        }
+    }
+  }

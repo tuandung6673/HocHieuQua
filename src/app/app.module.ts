@@ -170,6 +170,7 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
+import { ChatChangeNameComponent } from './user/chat/chat-change-name/chat-change-name.component';
 
 @NgModule({
   declarations: [
@@ -291,6 +292,7 @@ import { UserGvComponent } from './user/user-gv/user-gv.component';
     CommentRealtimeComponent,
     ChatComponent,
     ChatInfoComponent,
+    ChatChangeNameComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),

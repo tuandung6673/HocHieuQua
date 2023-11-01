@@ -434,6 +434,10 @@ export class ApiService {
     return this.http.get<BaseReponse<ConversationMessage>>(`${this.url}/message/GetConversationMessages?` + params)
   }
 
+  postConversation(data : Conversation) : Observable<Message> {
+    return this.http.post<Message>(`${this.url}/Conversation`, data)
+  }
+
   // Recruit
   getRecruit(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Recruit>> {
     return this.http.get<BaseReponse<Recruit>>(`${this.url}/Recruit?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)
