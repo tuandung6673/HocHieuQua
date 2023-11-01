@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -13,6 +13,7 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./chon-anh.component.scss']
 })
 export class ChonAnhComponent implements OnInit {
+  @Output() avatarSaved = new EventEmitter<any>;
   defaultAvatar : any = 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'
   queryParams = {
     callFromAdmin : 1,
@@ -165,7 +166,8 @@ export class ChonAnhComponent implements OnInit {
     this.displayUpload = true;
   }
 
-  selectImage(imgUrl) { 
+  selectImage(imgUrl) {
+    this.avatarSaved.emit(imgUrl);
     this.ref.close(imgUrl);
   }
   

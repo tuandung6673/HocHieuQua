@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Conversation } from 'src/models/conversation.model';
 import { ApiService } from 'src/services/api.service.service';
@@ -9,6 +9,8 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./chat-info.component.scss']
 })
 export class ChatInfoComponent implements OnInit {
+  @Output() updateAvatar = new EventEmitter<any>;
+  @Output() updateName = new EventEmitter<any>;
   @Input() chatSelected : Conversation;
   memberItems: MenuItem[] = [
     {
@@ -30,12 +32,14 @@ export class ChatInfoComponent implements OnInit {
   }
 
   saveName(data : Conversation) {
+    data.id = this.chatSelected.conversationId;    
     this.apiService.postConversation(data).subscribe(response => {
       if(response.status == 'success') {
-        this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.data.messages})
+        this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.message})
+        this.updateName.emit({convId: response.data.code, newName: data.name});
         this.isChangeName = false;
       } else {
-        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.data.messages})
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.message})
       }
     })
   }
@@ -43,6 +47,21 @@ export class ChatInfoComponent implements OnInit {
   isChangeAvatar : boolean = false;
   changeAvatar() {
     this.isChangeAvatar = true;
+  }
+
+  saveAvatar(imgUrl) {
+    const chatSelectedClone = {...this.chatSelected};
+    chatSelectedClone.id = this.chatSelected.conversationId;
+    chatSelectedClone.avatar = 'https://tank8.bsite.net/images/' + imgUrl;
+    this.apiService.postConversation(chatSelectedClone).subscribe(response => {
+      if(response.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thông báo', detail: response.message})
+        this.updateAvatar.emit({convId: response.data.code, newAvatar: imgUrl});
+        this.isChangeAvatar = false;
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thông báo', detail: response.message})
+      }
+    })
   }
 
 }

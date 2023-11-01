@@ -188,4 +188,20 @@ export class ChatComponent implements OnInit {
   openMedia() {
     this.showMedia = !this.showMedia;
   }
+
+  updateName({convId, newName}) {
+    this.conversationList.forEach(conv => {
+      if(conv.conversationId == convId) {
+        conv.name = newName;
+      }
+    })
+  }
+
+  updateAvatar({convId, newAvatar}) {
+    this.conversationList.forEach(conv => {
+      if(conv.conversationId == convId) {
+        conv.avatar = 'https://tank8.bsite.net/images/' + newAvatar;
+      }
+    })
+  }
 }

@@ -52,9 +52,9 @@
 </div>
 
 <p-sidebar [(visible)]="isChangeName" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '50vw'}">
-    <app-chat-change-name [chatSelected]="chatSelected" (nameSaved)="saveName($event)" *ngIf="isChangeName"></app-chat-change-name>
+    <app-chat-change-name *ngIf="isChangeName" [chatSelected]="chatSelected" (nameSaved)="saveName($event)"></app-chat-change-name>
 </p-sidebar>
 
-<p-sidebar [(visible)]="isChangeAvatar" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '50vw'}">
-    <ng-template pTemplate="header">Thay đổi ảnh</ng-template>
+<p-sidebar [(visible)]="isChangeAvatar" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '65vw'}">
+    <app-chon-anh *ngIf="isChangeAvatar" (avatarSaved)="saveAvatar($event)"></app-chon-anh>
 </p-sidebar>

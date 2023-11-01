@@ -66,7 +66,7 @@
             </div>
         </div>
         <div *ngIf="showMedia" [ngClass]="showMedia ? 'col-2' : ''">
-            <app-chat-info *ngIf="showMedia" [chatSelected]="chatSelected"></app-chat-info>
+            <app-chat-info *ngIf="showMedia" [chatSelected]="chatSelected" (updateName)="updateName($event)" (updateAvatar)="updateAvatar($event)"></app-chat-info>
         </div>
         <!-- <div class="col-3" *ngIf="isSelect">C</div> -->
     </div>

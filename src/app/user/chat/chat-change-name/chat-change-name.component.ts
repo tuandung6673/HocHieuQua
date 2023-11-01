@@ -26,7 +26,7 @@ export class ChatChangeNameComponent implements OnInit, OnChanges {
   }
 
   cancel() {
-    
+
   }
 
 }

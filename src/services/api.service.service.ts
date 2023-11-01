@@ -434,8 +434,8 @@ export class ApiService {
     return this.http.get<BaseReponse<ConversationMessage>>(`${this.url}/message/GetConversationMessages?` + params)
   }
 
-  postConversation(data : Conversation) : Observable<Message> {
-    return this.http.post<Message>(`${this.url}/Conversation`, data)
+  postConversation(data : Conversation) : Observable<BaseRetail<CheckPayment>> {
+    return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Conversation`, data)
   }
 
   // Recruit
