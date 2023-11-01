@@ -1,4 +1,3 @@
-import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-tiet-cau-hoi.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from 'src/auth/adminGuard.service';
@@ -10,6 +9,7 @@ import { LogInOutComponent } from './layouts/log-in-out/log-in-out.component';
 import { SignUpComponent } from './layouts/sign-up/sign-up.component';
 import { UserComponent } from './layouts/user/user.component';
 import { CauHoiComponent } from './quan-tri/cau-hoi/cau-hoi.component';
+import { ChiTietCauHoiComponent } from './quan-tri/cau-hoi/chi-tiet-cau-hoi/chi-tiet-cau-hoi.component';
 import { CourseComponent } from './quan-tri/course/course.component';
 import { DiemThiComponent } from './quan-tri/diem-thi/diem-thi.component';
 import { EditCourseComponent } from './quan-tri/edit-course/edit-course.component';
@@ -19,10 +19,14 @@ import { GiupDoComponent } from './quan-tri/giup-do/giup-do.component';
 import { LopHocComponent } from './quan-tri/lop-hoc/lop-hoc.component';
 import { MenuNguoiDungComponent } from './quan-tri/menu-nguoi-dung/menu-nguoi-dung.component';
 import { MonHocComponent } from './quan-tri/mon-hoc/mon-hoc.component';
+import { ChiTietNamHocComponent } from './quan-tri/nam-hoc/chi-tiet-nam-hoc/chi-tiet-nam-hoc.component';
+import { NamHocComponent } from './quan-tri/nam-hoc/nam-hoc.component';
 import { NhomCauHoiComponent } from './quan-tri/nhom-cau-hoi/nhom-cau-hoi.component';
 import { ChiTietFooterComponent } from './quan-tri/quan-tri-footer/chi-tiet-footer/chi-tiet-footer.component';
 import { QuanTriFooterComponent } from './quan-tri/quan-tri-footer/quan-tri-footer.component';
 import { SlideComponent } from './quan-tri/slide/slide.component';
+import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
+import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
 import { StepComponent } from './quan-tri/step/step.component';
 import { SuaFaqComponent } from './quan-tri/sua-faq/sua-faq.component';
 import { SuaGiaoVienComponent } from './quan-tri/sua-giao-vien/sua-giao-vien.component';
@@ -33,6 +37,7 @@ import { SuaBaiKiemTraComponent } from './quan-tri/test/sua-bai-kiem-tra/sua-bai
 import { ThanhToanComponent } from './quan-tri/thanh-toan/thanh-toan.component';
 import { ChiTietThongBaoComponent } from './quan-tri/thong-bao/chi-tiet-thong-bao/chi-tiet-thong-bao.component';
 import { ThongBaoComponent } from './quan-tri/thong-bao/thong-bao.component';
+import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
 import { BaiVietComponent } from './quan-tri/tin-tuc/bai-viet/bai-viet.component';
 import { DanhMucComponent } from './quan-tri/tin-tuc/danh-muc/danh-muc.component';
 import { SuaBaiVietComponent } from './quan-tri/tin-tuc/sua-bai-viet/sua-bai-viet.component';
@@ -45,11 +50,14 @@ import { ChiTietUngVienComponent } from './quan-tri/ung-vien/chi-tiet-ung-vien/c
 import { UngVienComponent } from './quan-tri/ung-vien/ung-vien.component';
 import { ChiTietTuVanComponent } from './quan-tri/yeu-cau-tu-van/chi-tiet-tu-van/chi-tiet-tu-van.component';
 import { YeuCauTuVanComponent } from './quan-tri/yeu-cau-tu-van/yeu-cau-tu-van.component';
+import { ChatComponent } from './user/chat/chat.component';
+import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
 import { ChiTietMonHocComponent } from './user/chi-tiet-mon-hoc/chi-tiet-mon-hoc.component';
 import { GioiThieuChiTietComponent } from './user/gioi-thieu/gioi-thieu-chi-tiet/gioi-thieu-chi-tiet.component';
 import { GioiThieuComponent } from './user/gioi-thieu/gioi-thieu.component';
 import { HuongDanComponent } from './user/huong-dan/huong-dan.component';
 import { KhoaHocComponent } from './user/khoa-hoc/khoa-hoc.component';
+import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.component';
 import { KiemTraNangLucComponent } from './user/kiem-tra-nang-luc/kiem-tra-nang-luc.component';
 import { DoiMatKhauComponent } from './user/tai-khoan/doi-mat-khau/doi-mat-khau.component';
 import { KhoaHocCuaToiComponent } from './user/tai-khoan/khoa-hoc-cua-toi/khoa-hoc-cua-toi.component';
@@ -63,14 +71,6 @@ import { ChiTietTuyenDungComponent } from './user/tuyen-dung/chi-tiet-tuyen-dung
 import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
-import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
-import { ChiTietStepComponent } from './quan-tri/step/chi-tiet-step/chi-tiet-step.component';
-import { StepConComponent } from './quan-tri/step/step-con/step-con.component';
-import { ThuVienComponent } from './quan-tri/thu-vien/thu-vien.component';
-import { BaiKtnlComponent } from './user/kiem-tra-nang-luc/bai-ktnl/bai-ktnl.component';
-import { NamHocComponent } from './quan-tri/nam-hoc/nam-hoc.component';
-import { ChiTietNamHocComponent } from './quan-tri/nam-hoc/chi-tiet-nam-hoc/chi-tiet-nam-hoc.component';
-import { ChatComponent } from './user/chat/chat.component';
 
 const routes: Routes = [
   {
