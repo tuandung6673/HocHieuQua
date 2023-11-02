@@ -71,7 +71,7 @@ export class UngVienComponent implements OnInit {
         this.apiService.deleteRecruitCandidate(id).subscribe(reponse => {
           if(reponse.status == 'success') {
             this.messageService.add({severity: 'success', summary: 'success', detail: 'Xóa ứng viên thành công'});
-            this.getCandidates();
+            this.candidates = this.candidates.filter(item => item.id != id)
           } else {
             this.messageService.add({severity: 'success', summary: 'success', detail: reponse.message})
           }

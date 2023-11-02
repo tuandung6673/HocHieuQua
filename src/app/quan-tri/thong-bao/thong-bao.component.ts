@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import * as queryString from 'querystring-es3';
 import { Notification } from 'src/models/notification.model';
 import { ApiService } from 'src/services/api.service.service';
@@ -21,7 +22,9 @@ export class ThongBaoComponent implements OnInit {
   totalRecord : number;
   constructor(
     private apiService: ApiService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -50,5 +53,28 @@ export class ThongBaoComponent implements OnInit {
     }
     this.getAdminNoti();
   }
+
+  onDeleteAccount(id: string) {
+    this.apiService.deleteNotification(id).subscribe((responseData) => {
+      if(responseData.status == 'success') {
+        this.messageService.add({severity: 'success', summary: 'Thành công', detail: responseData.data.messages})
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Thất bại', detail: responseData.data.messages})
+      }
+      this.adminNotifications = this.adminNotifications.filter(account => account.id != id)
+    })
+  }
+
+  confirmDeleteAccount(id: string) {
+    this.confirmationService.confirm({
+        message: 'Bạn có muốn xóa thông báo này ?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.onDeleteAccount(id)
+        }
+    });
+  }
+
 
 }

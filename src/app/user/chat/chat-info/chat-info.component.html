@@ -43,7 +43,7 @@
                 <div class="each-item">
                     <span><i class="pi pi-bell"></i></span>Tắt thông báo
                 </div>
-                <div class="each-item">
+                <div class="each-item" *ngIf="chatSelected.users.length > 2">
                     <span><i class="pi pi-sign-out"></i></span>Rời nhóm
                 </div>
             </div>   

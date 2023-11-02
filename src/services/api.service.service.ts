@@ -557,13 +557,7 @@ export class ApiService {
 
   // Notificatiion
   getNotification(queryParams) : Observable<BaseReponse<Notification>> {
-    return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification?` + queryParams, 
-      // {
-      //   headers: {
-      //     'authorization' : 'Bearer' + this.token
-      //   }
-      // }
-    )
+    return this.http.get<BaseReponse<Notification>>(`${this.url}/Notification?` + queryParams)
   }
 
   getNotificationById(id:string) : Observable<BaseRetail<Notification>> {
@@ -580,6 +574,10 @@ export class ApiService {
 
   setNotiRead(id:string) {
     return this.http.post(`${this.url}/Notification/SetNotificationRead?id=` + id, '')
+  }
+
+  deleteNotification(id : string) {
+    return this.http.delete<BaseRetail<CheckPayment>>(`${this.url}/Notification/`+id)
   }
 
   // Step
