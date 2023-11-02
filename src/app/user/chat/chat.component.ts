@@ -1,14 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiService } from 'src/services/api.service.service';
-import * as queryString from 'querystring-es3'
-import { finalize } from 'rxjs';
-import { Conversation } from 'src/models/conversation.model';
-import * as moment from 'moment'
-import { ConversationMessage } from 'src/models/convMessage.model';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import * as queryString from 'querystring-es3';
+import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Conversation } from 'src/models/conversation.model';
 import { MessageRequest } from 'src/models/messageRequest.model';
+import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-chat',
