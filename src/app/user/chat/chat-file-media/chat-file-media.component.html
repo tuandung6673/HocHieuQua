@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <div class="detail">
+        <p-tabView [(activeIndex)]="tabIndex">
+            <p-tabPanel header="File phương tiện">
+                <app-media *ngIf="tabIndex == 0" [chatSelected]="chatSelected"></app-media>
+            </p-tabPanel>
+            <p-tabPanel header="File">
+                <app-file *ngIf="tabIndex == 1" [chatSelected]="chatSelected"></app-file>
+            </p-tabPanel>
+            <p-tabPanel header="Liên kết">
+                <app-link *ngIf="tabIndex == 2" [chatSelected]="chatSelected"></app-link>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

@@ -72,8 +72,8 @@ export class ChatComponent implements OnInit {
       }
 
       // play audio sound
-      const audioElement = <HTMLAudioElement>document.getElementById('notiSound');
-      if (audioElement) {
+      if (receiveChat.senderAccountId != this.accoundId) {
+        const audioElement = <HTMLAudioElement>document.getElementById('notiSound');
         audioElement.play();
       }
 

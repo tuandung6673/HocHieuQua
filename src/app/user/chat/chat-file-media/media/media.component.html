@@ -1,0 +1,7 @@
+<div class="image-list">
+    <div *ngFor="let image of imageList">
+        <div class="w-full" style="height: 310px;">
+            <img [src]="'https://tank8.bsite.net/images/' + image.content" [alt]="image.messageTypeId" style="max-width: 100%; max-height: 100%; object-fit: cover; cursor: pointer;"/>
+        </div>
+    </div>
+</div>

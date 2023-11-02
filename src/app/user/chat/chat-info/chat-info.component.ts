@@ -64,4 +64,11 @@ export class ChatInfoComponent implements OnInit {
     })
   }
 
+  isShowMedia : boolean = false;
+  tabIndex : any;
+  showMedia(tabIndex) {
+    this.tabIndex = tabIndex;
+    this.isShowMedia = true;
+  }
+
 }

@@ -171,6 +171,10 @@ import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
 import { ChatChangeNameComponent } from './user/chat/chat-change-name/chat-change-name.component';
+import { ChatFileMediaComponent } from './user/chat/chat-file-media/chat-file-media.component';
+import { MediaComponent } from './user/chat/chat-file-media/media/media.component';
+import { FileComponent } from './user/chat/chat-file-media/file/file.component';
+import { LinkComponent } from './user/chat/chat-file-media/link/link.component';
 
 @NgModule({
   declarations: [
@@ -293,6 +297,10 @@ import { ChatChangeNameComponent } from './user/chat/chat-change-name/chat-chang
     ChatComponent,
     ChatInfoComponent,
     ChatChangeNameComponent,
+    ChatFileMediaComponent,
+    MediaComponent,
+    FileComponent,
+    LinkComponent,
       ],
   imports: [
     MathjaxModule.forRoot(),

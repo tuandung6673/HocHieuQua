@@ -27,13 +27,13 @@
         </p-accordionTab>
         <p-accordionTab header="File phương tiện, liên kết">
             <div>
-                <div class="each-item">
+                <div class="each-item" (click)="showMedia(0)">
                     <span><i class="pi pi-images"></i></span>File phương tiện
                 </div>
-                <div class="each-item">
+                <div class="each-item" (click)="showMedia(1)">
                     <span><i class="pi pi-file"></i></span>File
                 </div>
-                <div class="each-item">
+                <div class="each-item" (click)="showMedia(2)">
                     <span><i class="pi pi-share-alt"></i></span>Liên kết
                 </div>
             </div>
@@ -57,4 +57,8 @@
 
 <p-sidebar [(visible)]="isChangeAvatar" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '65vw'}">
     <app-chon-anh *ngIf="isChangeAvatar" (avatarSaved)="saveAvatar($event)"></app-chon-anh>
+</p-sidebar>
+
+<p-sidebar [(visible)]="isShowMedia" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '50vw'}">
+    <app-chat-file-media *ngIf="isShowMedia" [chatSelected]="chatSelected" [tabIndex]="tabIndex"></app-chat-file-media>
 </p-sidebar>

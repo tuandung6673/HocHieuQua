@@ -1,0 +1,6 @@
+<div class="link" *ngFor="let link of linkList">
+    <span class="link-avatar">
+        <img [src]="chatSelected.avatar"/>
+    </span>
+    <div class="link-content" (click)="directUrl(link.content)">{{link.content}}</div>
+</div>

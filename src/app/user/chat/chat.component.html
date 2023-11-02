@@ -19,8 +19,8 @@
                             <i style="color: #0866FF; font-size: 8px" class="pi pi-circle-fill"></i>
                         </div>
                         <div class="flex justify-content-between">
-                            <div class="chat_user-last">
-                                <div>{{conv.lastMessage}}</div>
+                            <div class="chat_user-last" style="max-width: 80%;">
+                                <div style="overflow: hidden;">{{conv.lastMessage}}</div>
                                 <div>{{conv.lastMessageDate}}</div>
                             </div>
                             <span class="chat_user-option" *ngIf="isChildVisible && conv.conversationId == hoverConversation"><i class="pi pi-ellipsis-h"></i></span>
