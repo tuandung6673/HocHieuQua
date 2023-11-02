@@ -3,7 +3,7 @@
         <div class="col-3">
             <div class="flex justify-content-between align-items-center chat_header">
                 <h4>Chat</h4>
-                <span><i class="pi pi-user-plus"></i></span>
+                <span style="cursor: pointer;" (click)="createMessage()"><i class="pi pi-user-plus"></i></span>
             </div>
             <div>
                 <input class="w-full" type="text" pInputText > 
@@ -75,3 +75,7 @@
 <audio id="notiSound">
     <source src="assets/facebook-messenger-sound.mp3" type="audio/mpeg">
 </audio>
+
+<p-sidebar [(visible)]="showCreateMessage" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '65vw'}">
+    <app-all-account *ngIf="showCreateMessage" [showAdd]="showAddAccount" (getAccounts)="getAccounts($event)"></app-all-account>
+</p-sidebar>

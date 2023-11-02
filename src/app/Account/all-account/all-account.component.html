@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="header">
-    <div class="guide">
+    <div class="guide" *ngIf="showAdd">
       <span><i class="pi pi-home"></i></span>
       <i>/</i>
       <span>Quản trị</span>
@@ -8,27 +8,28 @@
       <span class="active">Tài khoản</span>
     </div>
     <div class="header-2">
-      <div class="header-left">
+      <div class="header-left" >
         <div class="empty"></div>
         <div class="main-title">Tài khoản</div>
       </div>
       <div class="header-right">
         <div class="search-btn">
-          <input placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
-          <p-button class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
+          <input *ngIf="showAdd" placeholder="Nhập nội dung tìm kiếm" type="text" pInputText [(ngModel)]="params.filter"/>
+          <p-button *ngIf="showAdd" class="btn p-button-outlined" type="button" icon="pi pi-search" pButton (click)="onSearch()"></p-button>
         </div>
+        <p-button *ngIf="!showAdd && selectedCars.length > 0" label="Chọn" icon="pi pi-check" iconPos="left" (click)="selectAccount()" ></p-button>
         <p-button label="Bộ lọc" icon="pi pi-sliders-h" iconPos="left" (click)="op2.toggle($event)"></p-button>
-        <p-button [routerLink]="['them-tai-khoan']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
+        <p-button *ngIf="showAdd" [routerLink]="['them-tai-khoan']" label="Thêm mới" icon="pi pi-plus" iconPos="left"></p-button>
       </div>
     </div>
   </div>
-  <p-table [value]="accounts" responsiveLayout="scroll" rowHover="true">
+  <p-table [value]="accounts" responsiveLayout="scroll" rowHover="true" [(selection)]="selectedCars">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 2.25em">
-              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
             </th> 
-            <th style="width: 50px;" pFrozenColumn></th>
+            <th *ngIf="showAdd" style="width: 50px;" pFrozenColumn></th>
             <th style="min-width: 130px;">Hình ảnh</th>
             <th>Tài khoản</th>
             <th>Email</th>
@@ -42,7 +43,7 @@
             <td>
               <p-tableCheckbox [value]="account"></p-tableCheckbox>
             </td>
-            <td pFrozenColumn style="width: 50px" >
+            <td *ngIf="showAdd" pFrozenColumn style="width: 50px" >
               <span class="choose" (click)="op.toggle($event)"><i class="pi pi-ellipsis-v"></i></span>
             </td>
             <td>

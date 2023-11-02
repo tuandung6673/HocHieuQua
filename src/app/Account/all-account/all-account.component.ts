@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import * as queryString from 'querystring-es3';
@@ -12,7 +12,9 @@ import { ApiService } from 'src/services/api.service.service';
   styleUrls: ['./all-account.component.scss']
 })
 export class AllAccountComponent implements OnInit {
-
+  @Output() getAccounts = new EventEmitter<any>;
+  @Input() showAdd = true;
+  selectedCars : any[] = [];
   defaultAvatar = 'https://imgt.taimienphi.vn/cf/Images/tt/2020/7/15/anh-dai-dien-facebook-y-nghia-cho-con-trai-26.jpg'
   // defaultAvatar = 'https://png2.cleanpng.com/sh/0c5968ba07c4535e8940d9a634ed3d79/L0KzQYq3V8EyN6Rvj5H0aYP2gLBuTfxwb5Cye95ycD3kgsW0kP9zfJJnhNc2bnX3h7F5i71oepJ1gNtscz3sfbLuhb1pd5hqReV3aYDzdcX6TfdwNaFme91qZ3X2Pbb5kv9ze15sgeZ1YXKwRbW5VBFnOpVpeaM9OUWxQIm6UMU5QWY2Tag7OEi0SISAWMk0O191htk=/kisspng-logo-clip-art-portable-network-graphics-image-hoge-snippets-go-packages-errors-gitlab-5d27af2dda1495.0830589515628818378933.png';
   accounts : Account[] = []
@@ -104,6 +106,11 @@ export class AllAccountComponent implements OnInit {
   errorHandler(event) {
     event.target.src = this.defaultAvatar;
     event.target.style.objectFit = 'contain';
+  }
+
+  selectAccount() {
+    // console.log('this.selectedCars', this.selectedCars);
+    this.getAccounts.emit(this.selectedCars)
   }
 
 }

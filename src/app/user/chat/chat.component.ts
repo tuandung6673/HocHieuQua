@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Conversation } from 'src/models/conversation.model';
 import { MessageRequest } from 'src/models/messageRequest.model';
 import { ApiService } from 'src/services/api.service.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-chat',
@@ -36,7 +37,7 @@ export class ChatComponent implements OnInit {
   isSelect : boolean = false;
   chatAnswer : any = null;
   hubConnection: HubConnection;
-
+  showAddAccount : boolean = false;
   constructor(
     private apiSerive: ApiService,
     private spinner: NgxSpinnerService
@@ -202,5 +203,25 @@ export class ChatComponent implements OnInit {
         conv.avatar = 'https://tank8.bsite.net/images/' + newAvatar;
       }
     })
+  }
+
+  showCreateMessage : boolean = false;
+  createMessage() {
+    this.showCreateMessage = true;
+  }
+
+  getAccounts(listAccount) {
+    const newId = uuidv4().toUpperCase();
+    const newName = null;
+    const newAvatar = null;
+    const newAccountId = listAccount.map(item => item.id).join(',')
+
+    if(this.hubConnection) {
+      this.hubConnection.invoke("CreateGroupChat", newId, newName, newAvatar, newAccountId)
+      .then(() => {
+        this.getConversation();
+        this.showCreateMessage = false;
+      })
+    }
   }
 }
