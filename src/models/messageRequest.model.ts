@@ -13,4 +13,5 @@ export class MessageRequest {
     modifiedBy : string = '';
     modifiedDate : string = '';
     totalFiltered : string = null;
+    senderAvatar : string = null;
 }

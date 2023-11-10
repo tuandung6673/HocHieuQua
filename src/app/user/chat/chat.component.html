@@ -43,6 +43,9 @@
                 <div #scrollContainer class="chat_content-body">
                     <div class="chat_content-list">
                         <div class="chat_content-item" *ngFor="let msg of messageList" [ngClass]="msg.senderAccountId == accoundId ? 'right' : 'left' ">
+                            <div *ngIf="msg.senderAccountId != accoundId">
+                                <img [src]="msg.senderAvatar" (error)="errorHandler($event)" style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover;"/>
+                            </div>
                             <div *ngIf="msg.messageTypeId == 'image'; else message">
                                 <img [src]="'https://tank8.bsite.net/images/' + msg.content" height="300px" width="250px" style="object-fit: contain;"/>
                             </div>

@@ -66,7 +66,8 @@ export class ChatComponent implements OnInit {
       let chatInfo : MessageRequest = {...receiveChat};
 
       if(this.chatSelected.conversationId === chatInfo.conversationId) {
-        this.messageList.push(chatInfo);
+        const chatUser = this.conversationList.filter(item => item.conversationId == chatInfo.conversationId)[0].users;
+        this.messageList.push({...chatInfo, senderAvatar: chatUser.filter(it => it.id == chatInfo.senderAccountId)[0].avatar});
         this.scrollToBottom();
       }
 
@@ -149,6 +150,10 @@ export class ChatComponent implements OnInit {
     )
     .subscribe(response => {
       this.messageList = response.data.data;
+      const chatUser = this.conversationList.filter(item => item.conversationId == conv.conversationId)[0].users;
+      this.messageList.forEach(item => {
+        item.senderAvatar = chatUser.filter(it => it.id == item.senderAccountId)[0].avatar;
+      })
     })
   }
 

@@ -8,6 +8,7 @@ export class ConversationMessage {
     conversationId: string ="";
     receiveAccountId: string ="";
     senderAccountId: string ="";
+    senderAvatar : string = null;
     content: string ="";
     contentEdit: string ="";
     messageTypeId: string ="";
