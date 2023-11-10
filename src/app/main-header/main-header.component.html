@@ -22,7 +22,7 @@
         <i *ngIf="newNoti" class="pi pi-circle-fill circleFill"></i>
       </div>
       <div class="avatar">
-        <img [src]="defaultAvatar"/>
+        <img [src]="userData?.avatar" (error)="errorHandler($event)"/>
       </div>
       <div class="info">
         <p>{{userData?.username}}</p>

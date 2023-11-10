@@ -109,4 +109,9 @@ export class MainHeaderComponent implements OnInit {
     }
   }
 
+  errorHandler(event) {
+    event.target.src = this.defaultAvatar;
+    event.target.style.objectFit = 'contain';
+  }
+
 }
