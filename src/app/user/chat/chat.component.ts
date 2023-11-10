@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { Conversation } from 'src/models/conversation.model';
 import { MessageRequest } from 'src/models/messageRequest.model';
 import { ApiService } from 'src/services/api.service.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-chat',
@@ -107,7 +106,8 @@ export class ChatComponent implements OnInit {
         this.conversationList.map(t => {
           t.lastMessageDate = t.lastMessageDate ? moment(t.lastMessageDate).format('DD-MM-YYYY k:mm:ss') : '';
           if(!t.name) {
-            t.name = `${t.users[0].name} (${t.users[0].userName})`
+            const nameDafault = t.users.filter(item => item.id != this.accoundId)[0];
+            t.name = `${nameDafault.name} (${nameDafault.userName})`
           }
         })
       }
@@ -129,7 +129,10 @@ export class ChatComponent implements OnInit {
     event.target.style.objectFit = 'contain';
   }
   
-  selectChat(conv) {
+  selectChat(conv, isAddNew = false) {
+    if(isAddNew) {
+      this.conversationList.unshift(conv);
+    }
     this.isSelect = true;
     this.chatAnswer = '';
     this.chatSelected = conv;
@@ -210,18 +213,57 @@ export class ChatComponent implements OnInit {
     this.showCreateMessage = true;
   }
 
-  getAccounts(listAccount) {
-    const newId = uuidv4().toUpperCase();
+  getNewIdMultiUser(listAccount) {
+    if(listAccount.length == 1) {
+      const params = {receiveAccountId : listAccount.map(item => item.id).join(',')};
+      const queryParams = queryString.stringify(params);
+      this.spinner.show();
+      this.apiSerive.setConversationSingleUser(queryParams)
+      .pipe(finalize(() => this.spinner.hide()))
+      .subscribe(response => {
+        if(response.status == 'success') {
+          this.createGroupChat(response.data, listAccount)
+        }
+      })
+    } else {
+      const params = {receiveAccountIds : listAccount.map(item => item.id).join(',')};
+      const queryParams = queryString.stringify(params);
+      this.apiSerive.setConversationMultipleUser(queryParams).subscribe(response => {
+        if(response.status == 'success') {
+          this.createGroupChat(response.data, listAccount)
+        }
+      })
+    }
+  }
+
+  createGroupChat(newId, listAccount) {
+    const id = newId;
     const newName = null;
     const newAvatar = null;
     const newAccountId = listAccount.map(item => item.id).join(',')
 
     if(this.hubConnection) {
-      this.hubConnection.invoke("CreateGroupChat", newId, newName, newAvatar, newAccountId)
+      this.hubConnection.invoke("CreateGroupChat", id, newName, newAvatar, newAccountId)
       .then(() => {
-        this.getConversation();
+        // this.getConversation();
+        this.addNewChat(newId, listAccount);
         this.showCreateMessage = false;
       })
     }
   }
+
+  addNewChat(chatId, listAccount) {
+    this.apiSerive.getConversation(chatId).subscribe(response => {
+      if(response.status == 'success') {
+        if(this.conversationList.some(item => item.conversationId == chatId)) {
+          const oldChat = this.conversationList.filter(item => item.conversationId == chatId)[0];
+          this.selectChat(oldChat);
+        } else {
+          const nameDefault = listAccount.filter(item => item.id != this.accoundId)[0]?.name;
+          this.selectChat({...response.data, name: nameDefault, conversationId: response.data.id}, true)
+        }
+      }
+    })
+  }
+  
 }

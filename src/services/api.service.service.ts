@@ -438,6 +438,18 @@ export class ApiService {
     return this.http.post<BaseRetail<CheckPayment>>(`${this.url}/Conversation`, data)
   }
 
+  setConversationSingleUser(params) : Observable<BaseRetail<any>> {
+    return this.http.get<BaseRetail<any>>(`${this.url}/Conversation/SetConversationSingleUser?` + params)
+  }
+
+  setConversationMultipleUser(params) : Observable<BaseRetail<any>> {
+    return this.http.get<BaseRetail<any>>(`${this.url}/Conversation/SetConversationMultipleUser?` + params)
+  }
+
+  getConversation(convId) : Observable<BaseRetail<Conversation>> {
+    return this.http.get<BaseRetail<Conversation>>(`${this.url}/Conversation/${convId}`)
+  }
+
   // Recruit
   getRecruit(offSet: number = 0, pageSize: number = 100, filter = '') : Observable<BaseReponse<Recruit>> {
     return this.http.get<BaseReponse<Recruit>>(`${this.url}/Recruit?offSet=${offSet}&pageSize=${pageSize}&filter=${filter}`)

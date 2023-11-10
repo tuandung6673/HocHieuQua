@@ -77,5 +77,5 @@
 </audio>
 
 <p-sidebar [(visible)]="showCreateMessage" [baseZIndex]="10000"  position="right" styleClass="p-sidebar-lg" [style]="{width: '65vw'}">
-    <app-all-account *ngIf="showCreateMessage" [showAdd]="showAddAccount" (getAccounts)="getAccounts($event)"></app-all-account>
+    <app-all-account *ngIf="showCreateMessage" [showAdd]="showAddAccount" (getAccounts)="getNewIdMultiUser($event)"></app-all-account>
 </p-sidebar>
