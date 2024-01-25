@@ -62,9 +62,10 @@ export class ChatComponent implements OnInit {
       // console.log('JoinScreen', data);
     });
 
-    this.hubConnection.on("ReceiveDM", (somethingId, receiveChat) => {
-      let chatInfo : MessageRequest = {...receiveChat};
-
+    this.hubConnection.on("ReceiveDM", (data : {connectionId: string, message: MessageRequest}) => {
+      const { connectionId, message } = data;
+      let chatInfo : MessageRequest = {...message};
+      
       if(this.chatSelected.conversationId === chatInfo.conversationId) {
         const chatUser = this.conversationList.filter(item => item.conversationId == chatInfo.conversationId)[0].users;
         this.messageList.push({...chatInfo, senderAvatar: chatUser.filter(it => it.id == chatInfo.senderAccountId)[0].avatar});
@@ -72,7 +73,7 @@ export class ChatComponent implements OnInit {
       }
 
       // play audio sound
-      if (receiveChat.senderAccountId != this.accoundId) {
+      if (message.senderAccountId != this.accoundId) {
         const audioElement = <HTMLAudioElement>document.getElementById('notiSound');
         audioElement.play();
       }

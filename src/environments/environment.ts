@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://tank8.bsite.net/api',
-  baseUrlRealtime: 'https://tank8.bsite.net',
+  baseUrl: 'https://bsite.net/tntan796/api',
+  baseUrlRealtime: 'https://bsite.net/tntan796',
   // baseUrl: 'https://api.edu.sapiens.vn/api',
   // baseUrlRealtime: 'https://api.edu.sapiens.vn'
 };
