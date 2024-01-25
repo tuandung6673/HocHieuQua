@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://tank8.bsite.net/api',
-  baseUrlRealtime: 'https://tank8.bsite.net'
+  baseUrl: 'https://bsite.net/tntan796/api',
+  baseUrlRealtime: 'https://bsite.net/tntan796',
 };
