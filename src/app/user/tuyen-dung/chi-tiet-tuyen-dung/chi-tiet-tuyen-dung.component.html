@@ -45,7 +45,7 @@
 
 
 <p-dialog  [(visible)]="isDisplayDialog" [style]="{width: '600px', height: '500px'}">
-  <form (ngSubmit)="onSubmit()">
+  <form [formGroup]="createDetailForm" (ngSubmit)="onSubmit()">
     <div style="text-align: center ;">
       <p>Ứng tuyển</p>
     </div>
@@ -53,10 +53,10 @@
       <label for="username1" class="block">Họ tên *</label>
       <span class="p-input-icon-right">
         <i class="pi pi-user"></i>
-        <input required type="text" pInputText placeholder="Họ tên" [(ngModel)]="name" name="name" #nameInput="ngModel" />
+        <input required type="text" pInputText placeholder="Họ tên" formControlName="name" name="name"/>
       </span>
     </div>
-    <div *ngIf="nameInput.touched && nameInput.invalid">
+    <div *ngIf="isSubmit && createDetailForm.get('name')?.errors && createDetailForm.get('name')?.touched">
       <p style="color: red; font-size: 10px;">Vui lòng nhập họ tên</p>
     </div>
 
@@ -64,20 +64,20 @@
       <label for="username1" class="block">Email *</label>
       <span class="p-input-icon-right">
         <i class="pi pi-envelope"></i>
-        <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" pInputText placeholder="Email" [(ngModel)]="email" name="email" #emailInput="ngModel"/>
+        <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" pInputText formControlName="email" placeholder="Email" name="email"/>
       </span>
     </div>
-    <div *ngIf="emailInput.touched && emailInput.invalid">
+    <div *ngIf="isSubmit && createDetailForm.get('email')?.errors && createDetailForm.get('email')?.touched">
       <p style="color: red; font-size: 10px;">Vui lòng nhập đúng định dạng Email</p>
     </div>
     <div class="field">
       <label for="username1" class="block">Số điện thoại *</label>
       <span class="p-input-icon-right">
         <i class="pi pi-phone"></i>
-        <input required type="number" pInputText placeholder="Số điện thoại" [(ngModel)]="phone" name="phone" #phoneInput="ngModel"/>
+        <input required type="number" pInputText placeholder="Số điện thoại" name="phone" formControlName="phone" />
       </span>
     </div>
-    <div *ngIf="phoneInput.touched && phoneInput.invalid">
+    <div *ngIf="isSubmit && createDetailForm.get('phone')?.errors && createDetailForm.get('phone')?.touched">
       <p style="color: red; font-size: 10px;">Vui lòng nhập số điện thoại</p>
     </div>
 
@@ -85,7 +85,7 @@
       <label for="username1" class="block">Ghi chú</label>
       <span class="p-input-icon-right">
         <i class="pi pi-comments"></i>
-        <input type="text" pInputText placeholder="Ghi chú" [(ngModel)]="note" name="note"/>
+        <input type="text" pInputText placeholder="Ghi chú" name="note" formControlName="content"/>
       </span>
     </div>
   </form>
@@ -93,7 +93,6 @@
   <ng-template pTemplate="footer">
       <!-- <button style="margin: 10px" pButton pRipple (click)="isDisplayDialog=false" label="Cancel" icon="pi pi-times"></button> -->
       <button
-        [disabled]="nameInput.invalid || emailInput.invalid || phoneInput.invalid"
         style="margin: 10px" 
         type="submit" 
         pButton pRipple 

@@ -1,15 +1,15 @@
 export class RecruitCandidate {
-  id = "";
-  recruitId = "";
-  recruitName = "";
-  name = "";
-  email = "";
-  phone = "";
-  content = "";
+  id : string = "";
+  recruitId : string = "";
+  recruitName : string = "";
+  name : string = "";
+  email : string = "";
+  phone : string = "";
+  content : string = "";
   status: any = 0;
-  applyDate = "";
+  applyDate : string = null;
   interviewPass: any = 0;
-  interviewComment = "";
-  interviewDate = "";
-  interviewUser = ""
+  interviewComment : string = "";
+  interviewDate : string = null;
+  interviewUser : string = ""
 }

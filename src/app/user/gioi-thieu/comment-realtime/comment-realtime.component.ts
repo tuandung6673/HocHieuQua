@@ -1,14 +1,13 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as queryString from 'querystring-es3';
 import { finalize } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CommentRealtime } from 'src/models/commentRealtime.model';
 import { ApiService } from 'src/services/api.service.service';
-import * as queryString from 'querystring-es3'
-import * as moment from 'moment';
-import * as signalR from "@microsoft/signalr";
-import { environment } from 'src/environments/environment';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
   selector: 'app-comment-realtime',

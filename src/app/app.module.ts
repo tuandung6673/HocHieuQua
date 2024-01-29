@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
@@ -351,7 +351,8 @@ import { LinkComponent } from './user/chat/chat-file-media/link/link.component';
     MessageModule,
     ImageModule,
     FormsModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ReactiveFormsModule
   ],
   providers: [DialogService, DynamicDialogRef, ConfirmationService, MessageService, AuthGuardService, AdminGuard, {
     provide: HTTP_INTERCEPTORS,
