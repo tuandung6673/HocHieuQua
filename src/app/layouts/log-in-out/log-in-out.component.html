@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="main-right">
-      <form (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm">
         <div class="right-desc">
           <p class="text">Đăng nhập</p>
           <div>
@@ -23,15 +23,15 @@
             <label for="username1" class="block">Tài khoản</label>
             <span class="p-input-icon-left field accountField">
               <i class="pi pi-phone"></i>
-              <input type="text" pInputText [(ngModel)]="username" name="username" />
+              <input type="text" pInputText formControlName="username" name="username" />
             </span>
           </div>
           <label for="username1" class="block">Mật khẩu</label>
           <div class="input-password">
             <span class="p-input-icon-left field passwordField">
               <i class="pi pi-unlock"></i>
-              <input *ngIf="show" type="text" pInputText [(ngModel)]="password" name="password" />
-              <input *ngIf="!show" type="password" pInputText [(ngModel)]="password" name="password" />
+              <input *ngIf="show" type="text" pInputText formControlName="password" name="password" />
+              <input *ngIf="!show" type="password" pInputText formControlName="password" name="password" />
               <div class="eye" (click)="toggleEye()" >
                 <i *ngIf="show" class="pi pi-eye-slash"></i>
                 <i *ngIf="!show" class="pi pi-eye"></i>

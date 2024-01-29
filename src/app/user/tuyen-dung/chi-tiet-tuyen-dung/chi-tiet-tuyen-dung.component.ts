@@ -63,8 +63,6 @@ export class ChiTietTuyenDungComponent implements OnInit {
         this.isDisplayDialog = false
       })
     } else {
-      console.log(this.createDetailForm.get('name'));
-      
       this.messageService.add({severity: 'error', summary: 'Thông báo', detail: 'Vui lòng điền đầy đủ thông tin'})
     }
   }
