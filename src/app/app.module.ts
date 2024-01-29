@@ -175,6 +175,7 @@ import { ChatFileMediaComponent } from './user/chat/chat-file-media/chat-file-me
 import { MediaComponent } from './user/chat/chat-file-media/media/media.component';
 import { FileComponent } from './user/chat/chat-file-media/file/file.component';
 import { LinkComponent } from './user/chat/chat-file-media/link/link.component';
+import { TruncatePipe } from './shared/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -301,6 +302,7 @@ import { LinkComponent } from './user/chat/chat-file-media/link/link.component';
     MediaComponent,
     FileComponent,
     LinkComponent,
+    TruncatePipe,
       ],
   imports: [
     MathjaxModule.forRoot(),
