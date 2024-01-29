@@ -122,7 +122,13 @@ import { ChiTietUngVienComponent } from './quan-tri/ung-vien/chi-tiet-ung-vien/c
 import { UngVienComponent } from './quan-tri/ung-vien/ung-vien.component';
 import { ChiTietTuVanComponent } from './quan-tri/yeu-cau-tu-van/chi-tiet-tu-van/chi-tiet-tu-van.component';
 import { YeuCauTuVanComponent } from './quan-tri/yeu-cau-tu-van/yeu-cau-tu-van.component';
+import { TruncatePipe } from './shared/pipes/truncate.pipe';
 import { UserHeaderComponent } from './user-header/user-header.component';
+import { ChatChangeNameComponent } from './user/chat/chat-change-name/chat-change-name.component';
+import { ChatFileMediaComponent } from './user/chat/chat-file-media/chat-file-media.component';
+import { FileComponent } from './user/chat/chat-file-media/file/file.component';
+import { LinkComponent } from './user/chat/chat-file-media/link/link.component';
+import { MediaComponent } from './user/chat/chat-file-media/media/media.component';
 import { ChatInfoComponent } from './user/chat/chat-info/chat-info.component';
 import { ChatComponent } from './user/chat/chat.component';
 import { ChiTietBaiHocComponent } from './user/chi-tiet-bai-hoc/chi-tiet-bai-hoc.component';
@@ -170,12 +176,6 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
-import { ChatChangeNameComponent } from './user/chat/chat-change-name/chat-change-name.component';
-import { ChatFileMediaComponent } from './user/chat/chat-file-media/chat-file-media.component';
-import { MediaComponent } from './user/chat/chat-file-media/media/media.component';
-import { FileComponent } from './user/chat/chat-file-media/file/file.component';
-import { LinkComponent } from './user/chat/chat-file-media/link/link.component';
-import { TruncatePipe } from './shared/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
