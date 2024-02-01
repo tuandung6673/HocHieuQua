@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="main-right">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="right-desc">
           <p class="text">Đăng nhập</p>
           <div>
