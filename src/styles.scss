@@ -815,3 +815,30 @@ body {
 .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover {
   background: rgba(100, 175, 255, 0.35) !important;
 }
+
+.choose-language{
+  padding: 0px !important;
+  min-width: 180px;
+  border-radius: 3px !important;
+  z-index: 9999 !important;
+  ul li,
+  h3{
+      padding: 8px 15px;
+  }
+  ul{
+      li{
+          font-weight: 500;
+          &:hover{
+              cursor: pointer;
+          }
+          &:hover,
+          &.active{
+              background: #f2f3f7;
+          }
+          .checked{
+              position: absolute;
+              right: 10px;
+          }
+      }
+  }
+}

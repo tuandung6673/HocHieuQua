@@ -21,6 +21,9 @@
         <i class="pi pi-bell"></i>
         <i *ngIf="newNoti" class="pi pi-circle-fill circleFill"></i>
       </div>
+      <div (click)="op2.toggle($event)">
+        <i style="font-size: 18px; margin-right: 18px;" class="pi pi-slack"></i>
+      </div>
       <div class="avatar">
         <img [src]="userData?.avatar" (error)="errorHandler($event)"/>
       </div>
@@ -57,5 +60,33 @@
         Xem thêm
       </div>
     </div>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel #op2 styleClass="choose-language" [style]="{'z-index': 99999}">
+  <ng-template pTemplate="content">
+    <h3>{{"_select_language_" | translate}}</h3>
+    <ul class="list-lang">
+      <li class="active" [ngClass]="{'active': translate.currentLang === 'vi'}"
+        (click)="translate.use('vi');op2.toggle($event);saveLang('vi')">
+        <div class="d-flex middle gap-10">
+          <span class="uni-icon uni-flag-vn"></span>
+          <span>{{"_vietnamese_" | translate}}</span>
+          <span class="checked" *ngIf="translate.currentLang === 'vi'">
+            <i class="uni-icon uni-vector uni-blue-color"></i>
+          </span>
+        </div>
+      </li>
+      <li (click)="translate.use('en');op2.toggle($event);saveLang('en')"
+        [ngClass]="{'active': translate.currentLang === 'en'}">
+        <div class="d-flex middle gap-10">
+          <span class="uni-icon uni-flag-en"></span>
+          <span>{{"_english_" | translate}}</span>
+          <span class="checked" *ngIf="translate.currentLang === 'en'">
+            <i class="uni-icon uni-vector uni-blue-color"></i>
+          </span>
+        </div>
+      </li>
+    </ul>
   </ng-template>
 </p-overlayPanel>

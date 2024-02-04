@@ -5,6 +5,7 @@ import { ApiService } from 'src/services/api.service.service';
 import * as queryString from 'querystring-es3';
 import * as moment from 'moment'
 import { Notification } from 'src/models/notification.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-header',
@@ -28,8 +29,16 @@ export class MainHeaderComponent implements OnInit {
   defaultAvatar = 'https://phongreviews.com/wp-content/uploads/2022/11/avatar-facebook-mac-dinh-12.jpg';
   newNoti : boolean = false;
   firstLoad : boolean = true;
-  constructor(private router: Router, private apiService: ApiService) {
-
+  constructor(private router: Router, private apiService: ApiService, private translate: TranslateService) 
+  {
+    translate.addLangs(['vi', 'en']);
+        if (localStorage.hasOwnProperty('currentLang') && localStorage.getItem('currentLang') != null) {
+            const getLang = localStorage.getItem('currentLang');
+            translate.use(`${getLang}`);
+        } else {
+            translate.setDefaultLang('vi');
+            translate.use('vi');
+        }
   }
 
   ngOnInit(): void {
@@ -67,6 +76,11 @@ export class MainHeaderComponent implements OnInit {
         this.getNotification();
       }, 300000)
     }
+  }
+
+  saveLang(lang: string) {
+    localStorage.setItem('currentLang', lang);
+    window.location.reload();
   }
 
   logout() {
