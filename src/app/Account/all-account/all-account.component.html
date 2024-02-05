@@ -53,7 +53,8 @@
             <td>
               {{account.email}}
             </td>
-            <td>{{account.phone}}</td>
+            <td>{{account.phone
+            }}</td>
             <td>{{account.name}}</td>
             <td>
               <span class="colorful" [ngClass]="account.status == 0 ? 'fail' : 'passed' " *ngIf="account.status == 1">Hoạt động</span>
