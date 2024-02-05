@@ -179,6 +179,10 @@ import { UserGvComponent } from './user/user-gv/user-gv.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -321,10 +325,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-     }),
+    }),
     BrowserAnimationsModule,
     // RouterModule.forRoot(appRoutes),
     ButtonModule,
