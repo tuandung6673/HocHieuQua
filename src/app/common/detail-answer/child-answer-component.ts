@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import TinyMCE from "src/common/constants/tiny.constant";
 @Component({
   selector: 'app-nhieu-lua-chon',
   styleUrls: ['./child-answer.scss'],
@@ -267,12 +267,14 @@ export class AppPhuHopComponent implements OnInit {
   styleUrls: ['./child-answer.scss'],
   template: `
     <div class="child-answer">
-      <ckeditor [editor]="Editor" [(ngModel)]="content"></ckeditor>
+      <editor
+        [init]="editorConfig" [(ngModel)]="content"
+      ></editor>
     </div>
   `
 })
 export class AppTieuLuanComponent implements OnInit {
-  Editor = ClassicEditor;
+  editorConfig = TinyMCE;
   content : string = '';
   ngOnInit(): void {
       

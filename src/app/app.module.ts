@@ -45,7 +45,8 @@ import { AuthInterceptor } from './../auth/auth.interceptor';
 import { AuthGuardService } from './../auth/authGuard.service';
 import { AdminComponent } from './layouts/admin/admin.component';
 
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MathjaxModule } from 'mathjax-angular';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MenuModule } from 'primeng/menu';
@@ -176,8 +177,6 @@ import { TuyenDungComponent } from './user/tuyen-dung/tuyen-dung.component';
 import { KhoaHocGvComponent } from './user/user-gv/user-chi-tiet-gv/khoa-hoc-gv/khoa-hoc-gv.component';
 import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi-tiet-gv.component';
 import { UserGvComponent } from './user/user-gv/user-gv.component';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -313,7 +312,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   imports: [
     MathjaxModule.forRoot(),
     AppRoutingModule,
-    CKEditorModule,
     EditorModule,
     AutoCompleteModule,
     CommonModule,
