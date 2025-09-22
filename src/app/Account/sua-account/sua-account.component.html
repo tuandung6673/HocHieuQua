@@ -24,8 +24,7 @@
   <div class="grid" >
     <div class="col-3">
       <div class="uploadWrapper">
-        <img *ngIf="!editAccount.avatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
-        <img *ngIf="editAccount.avatar" [src]="editAccount.avatar"/>
+        <img [src]="editAccount.avatar ? editAccount.avatar : 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'" />
         <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
       </div>
     </div>
@@ -35,7 +34,7 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-user"></i>
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="userName" type="text" aria-describedby="username-help" pInputText name="userName" [(ngModel)]="editAccount.userName" />
+                <input class="p-inputtext-lg" id="userName" type="text" aria-describedby="username-help" pInputText name="userName" [(ngModel)]="editAccount.userName" />
               </span>
             </div>
         </div>
@@ -44,8 +43,8 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-ellipsis-h"></i>
-                <!-- <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" [(ngModel)]="editAccount.password" /> -->
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" disabled />
+                <!-- <input class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" [(ngModel)]="editAccount.password" /> -->
+                <input class="p-inputtext-lg" id="password" type="text" aria-describedby="username-help" pInputText name="password" disabled />
               </span>
             </div>
         </div>
@@ -54,7 +53,7 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-sort-alpha-down"></i>
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editAccount.name" />
+                <input class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editAccount.name" />
               </span>
             </div>
         </div>
@@ -63,7 +62,7 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-envelope"></i>
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editAccount.email" />
+                <input class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editAccount.email" />
               </span>
             </div>
         </div>
@@ -72,7 +71,7 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-phone"></i>
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editAccount.phone" />
+                <input class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editAccount.phone" />
               </span>
             </div>
         </div>
@@ -81,7 +80,7 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-id-card"></i>
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editAccount.identityNo" />
+                <input class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editAccount.identityNo" />
               </span>
             </div>
         </div>
@@ -90,7 +89,7 @@
             <div>
               <span class="p-input-icon-right">
                 <i class="pi pi-th-large"></i>
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="className" type="text" aria-describedby="username-help" pInputText name="className" [(ngModel)]="editAccount.className" />
+                <input class="p-inputtext-lg" id="className" type="text" aria-describedby="username-help" pInputText name="className" [(ngModel)]="editAccount.className" />
               </span>
             </div>
         </div>
@@ -99,7 +98,7 @@
             <div>
               <span class="p-input-icon-right">
                 <!-- <i class="pi pi-spin pi-spinner"></i> -->
-                <input formGroupName="suaAccountForm" class="p-inputtext-lg" id="birthday" type="date" aria-describedby="username-help" pInputText name="birthday" [(ngModel)]="editAccount.birthday" />
+                <input class="p-inputtext-lg" id="birthday" type="date" aria-describedby="username-help" pInputText name="birthday" [(ngModel)]="editAccount.birthday" />
               </span>
             </div>
         </div>

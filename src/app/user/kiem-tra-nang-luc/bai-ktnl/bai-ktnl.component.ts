@@ -99,5 +99,4 @@ export class BaiKtnlComponent implements OnInit {
       }
     });
   } 
-
 }

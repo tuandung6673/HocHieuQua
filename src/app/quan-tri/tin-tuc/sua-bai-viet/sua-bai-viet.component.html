@@ -24,8 +24,7 @@
   <div class="grid">
     <div class="col-3">
       <div class="uploadWrapper">
-        <img *ngIf="!editNew.avatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
-        <img *ngIf="editNew.avatar" [src]="editNew.avatar" width="220" height="200" />
+        <img [src]="editNew.avatar ? editNew.avatar : 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'" width="220" height="200" />
         <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
       </div>
     </div>

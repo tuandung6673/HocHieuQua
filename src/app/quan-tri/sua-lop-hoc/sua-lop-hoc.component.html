@@ -26,8 +26,9 @@
         <div class="grid">
           <div class="col-3">
             <div class="uploadWrapper">
-              <img *ngIf="!editClassroom.avatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
-              <img *ngIf="editClassroom.avatar" [src]="editClassroom.avatar"/>
+              <img src="{{editClassroom.avatar ? editClassroom.avatar : 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'}}" />
+              <!-- <img *ngIf="!editClassroom.avatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
+              <img *ngIf="editClassroom.avatar" [src]="editClassroom.avatar"/> -->
               <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
             </div>
           </div>
@@ -38,7 +39,7 @@
                 <div>
                   <span class="p-input-icon-right">
                     <i class="pi pi-user"></i>
-                    <input formGroupName="name" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
+                    <input class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editClassroom.name" />
                   </span>
                 </div>
               </div>
