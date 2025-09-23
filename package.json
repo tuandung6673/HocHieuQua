@@ -43,6 +43,11 @@
     "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
+  "overrides": {
+  "@angular/common": "15.2.10",
+  "@angular/core": "15.2.10",
+  "@angular/forms": "15.2.10"
+  },
   "engines": {
     "node": "22.x"
   },
