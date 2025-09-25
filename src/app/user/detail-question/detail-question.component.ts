@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ConfirmationService } from 'primeng/api';
 import { DetailAnswerComponent } from 'src/app/common/detail-answer/detail-answer.component';
+import { Quizz } from 'src/models/quizz.model';
+import html2canvas from 'html2canvas';
+import { TestUser } from 'src/models/testUser.model';
 import { Test } from 'src/models/test.model';
-import { ApiService } from 'src/services/api.service.service';
 
 @Component({
   selector: 'app-detail-question',
@@ -67,7 +69,7 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
   }
 
   sendData(data) {
-    const index = this.listQuestion.findIndex(item => item.id == data.id);
+    let index = this.listQuestion.findIndex(item => item.id == data.id);
     if(index == -1) {
       this.listQuestion.push(data)
     } else {
@@ -75,16 +77,16 @@ export class DetailQuestionComponent implements OnInit, OnChanges {
     }
   }
 
-  rightQuizz : number = 0;  // Number of correct answers
-  pointQuizz : number = 0;  // Total points from correct answers
-  totalPoint : number = 0;  // Total possible points
+  rightQuizz : number = 0;
+  pointQuizz : number = 0;
+  totalPoint : number = 0;
   pointHandler() {
     this.listQuestion.map(item => {
       if(item.isUserSelect) {
-        this.rightQuizz = this.rightQuizz + 1;  // Increment correct answers count
-        this.pointQuizz = this.pointQuizz + item.point  // Add points for correct answer
+        this.rightQuizz = this.rightQuizz + 1;
+        this.pointQuizz = this.pointQuizz + item.point
       }
-      this.totalPoint = this.totalPoint + item.point  // Add to total possible points
+      this.totalPoint = this.totalPoint + item.point
     })
   }
 

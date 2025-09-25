@@ -3,13 +3,15 @@
     <div class="grid">
       <div class="col-12">
         <div class="uploadWrapper">
-          <img [src]="editCourse.courseAvatar ? editCourse.courseAvatar : 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'" />
+          <img *ngIf="!editCourse.courseAvatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
+          <img *ngIf="editCourse.courseAvatar" [src]="editCourse.courseAvatar" />
           <p-button icon="pi pi-upload" (click)="uploadImage('courseAvatar')" label="Avatar"></p-button>
         </div>
       </div>
       <div class="col-12">
         <div class="uploadWrapper">
-          <img [src]="editCourse.courseBanner ? editCourse.courseBanner : 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'" />
+          <img *ngIf="!editCourse.courseBanner" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
+          <img *ngIf="editCourse.courseBanner" [src]="editCourse.courseBanner" />
           <p-button icon="pi pi-upload" (click)="uploadImage('courseBanner')" label="Banner"></p-button>
         </div>
       </div>
@@ -22,7 +24,7 @@
         <small>Tên khóa học</small>
         <div>
           <span class="p-input-icon-right">
-            <input class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editCourse.name" />
+            <input formGroupName="suaCourseForm" class="p-inputtext-lg" id="name" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editCourse.name" />
           </span>
         </div>
       </div>
@@ -38,7 +40,7 @@
         <small>Giá</small>
         <div>
           <span class="p-input-icon-right">
-            <input class="input" class="p-inputtext-lg" id="price" type="text" aria-describedby="username-help" pInputText name="price" [(ngModel)]="editCourse.price" />
+            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="price" type="text" aria-describedby="username-help" pInputText name="price" [(ngModel)]="editCourse.price" />
           </span>
         </div>
       </div>
@@ -46,7 +48,7 @@
         <small>Giá giảm</small>
         <div>
           <span class="p-input-icon-right">
-            <input class="input" class="p-inputtext-lg" id="priceDiscount" type="text" aria-describedby="username-help" pInputText name="priceDiscount" [(ngModel)]="editCourse.priceDiscount" />
+            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="priceDiscount" type="text" aria-describedby="username-help" pInputText name="priceDiscount" [(ngModel)]="editCourse.priceDiscount" />
           </span>
         </div>
       </div>
@@ -54,7 +56,7 @@
         <small>Số học sinh</small>
         <div>
           <span class="p-input-icon-right">
-            <input class="input" class="p-inputtext-lg" id="studentNum" type="text" aria-describedby="username-help" pInputText name="studentNum" [(ngModel)]="editCourse.studentNum" />
+            <input class="input" formGroupName="suaCourseForm" class="p-inputtext-lg" id="studentNum" type="text" aria-describedby="username-help" pInputText name="studentNum" [(ngModel)]="editCourse.studentNum" />
           </span>
         </div>
       </div>

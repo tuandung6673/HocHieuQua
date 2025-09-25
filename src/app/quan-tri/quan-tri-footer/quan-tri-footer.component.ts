@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import * as queryString from 'querystring-es3';
 import { finalize } from 'rxjs';
 import { ExportService } from 'src/services/export.service';
 import { ApiService } from './../../../services/api.service.service';
+import * as queryString from 'querystring-es3';
 
 @Component({
   selector: 'app-quan-tri-footer',

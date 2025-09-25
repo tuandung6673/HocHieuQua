@@ -23,7 +23,8 @@
 	<div class="grid">
 		<div class="col-3">
       <div class="uploadWrapper">
-        <img src="{{editTeacher.avatar ? editTeacher.avatar : 'https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png'}}" />
+        <img *ngIf="!editTeacher.avatar" src="https://hochieuqua7.web.app/images/admin/setting/slide/empty-image.png"/>
+        <img *ngIf="editTeacher.avatar" [src]="editTeacher.avatar" />
         <p-button icon="pi pi-upload" (click)="uploadImage('avatar')" label="Ảnh đại diện"></p-button>
       </div>
 		</div>
@@ -34,7 +35,7 @@
           <div *ngIf="id">
             <span class="p-input-icon-right">
               <i class="pi pi-user"></i>
-              <input class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [value]="editTeacher.name +  ' - '  +editTeacher.userName" disabled="true" />
+              <input formGroupName="usernameInput" class="p-inputtext-lg" id="avatar" type="text" aria-describedby="username-help" pInputText name="avatar" [value]="editTeacher.name +  ' - '  +editTeacher.userName" disabled="true" />
             </span>
           </div>
           <p-dropdown *ngIf="!id" [options]="newTeacherOptions" [(ngModel)]="teacherSelected" placeholder="Tài khoản" (onChange)="changeTeacher()" ></p-dropdown>
@@ -44,7 +45,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-sort-alpha-down"></i>
-              <input [disabled]="true" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editTeacher.name" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="username" type="text" aria-describedby="username-help" pInputText name="name" [(ngModel)]="editTeacher.name" />
             </span>
           </div>
         </div>
@@ -53,7 +54,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-envelope"></i>
-              <input [disabled]="true" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editTeacher.email" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="email" type="text" aria-describedby="username-help" pInputText name="email" [(ngModel)]="editTeacher.email" />
             </span>
           </div>
         </div>
@@ -62,7 +63,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-phone"></i>
-              <input [disabled]="true" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editTeacher.phone" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="phone" type="text" aria-describedby="username-help" pInputText name="phone" [(ngModel)]="editTeacher.phone" />
             </span>
           </div>
         </div>
@@ -71,7 +72,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-map-marker"></i>
-              <input [disabled]="true" class="p-inputtext-lg" id="address" type="text" aria-describedby="username-help" pInputText name="address" [(ngModel)]="editTeacher.address" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="address" type="text" aria-describedby="username-help" pInputText name="address" [(ngModel)]="editTeacher.address" />
             </span>
           </div>
         </div>
@@ -80,7 +81,7 @@
           <div>
             <span class="p-input-icon-right">
               <i class="pi pi-id-card"></i>
-              <input [disabled]="true" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editTeacher.identityNo" />
+              <input [disabled]="true" formGroupName="usernameInput" class="p-inputtext-lg" id="identityNo" type="text" aria-describedby="username-help" pInputText name="identityNo" [(ngModel)]="editTeacher.identityNo" />
             </span>
           </div>
         </div>

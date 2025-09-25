@@ -31,20 +31,20 @@ export class MainHeaderComponent implements OnInit {
   firstLoad : boolean = true;
   constructor(private router: Router, private apiService: ApiService, private translate: TranslateService) 
   {
-    // translate.addLangs(['vi', 'en']);
-    // if (localStorage.hasOwnProperty('currentLang') && localStorage.getItem('currentLang') != null) {
-    //     const getLang = localStorage.getItem('currentLang');
-    //     translate.use(`${getLang}`);
-    // } else {
-    //     translate.setDefaultLang('vi');
-    //     translate.use('vi');
-    // }
+    translate.addLangs(['vi', 'en']);
+    if (localStorage.hasOwnProperty('currentLang') && localStorage.getItem('currentLang') != null) {
+        const getLang = localStorage.getItem('currentLang');
+        translate.use(`${getLang}`);
+    } else {
+        translate.setDefaultLang('vi');
+        translate.use('vi');
+    }
   }
 
   ngOnInit(): void {
-    // this.translate.get(['_select_language_']).subscribe(translations => {
-    //   console.log(translations['_select_language_']);
-    // })
+    this.translate.get(['_select_language_']).subscribe(translations => {
+      console.log(translations['_select_language_']);
+    })
     this.isToken = localStorage.getItem('userToken') ? true : false
     this.userData = JSON.parse(localStorage.getItem('userData'))
     this.items = [

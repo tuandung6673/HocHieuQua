@@ -179,7 +179,7 @@ import { UserChiTietGvComponent } from './user/user-gv/user-chi-tiet-gv/user-chi
 import { UserGvComponent } from './user/user-gv/user-gv.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
