@@ -1,7 +1,6 @@
-import { ApiService } from 'src/services/api.service.service';
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/services/api.service.service';
 
-import SwiperCore, { SwiperOptions } from 'swiper';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 
