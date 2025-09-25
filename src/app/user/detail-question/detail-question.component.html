@@ -9,7 +9,8 @@
         <span>{{quizz.point}} điểm</span>
       </div>
       <div class="content">
-        <div class="topic" [mathjax]="quizz.content"></div>
+        <!-- <div class="topic" [mathjax]="quizz.content"></div> -->
+        <div class="topic" ></div>
         <div class="answers">
           <app-detail-answer (sendData)="sendData($event)" [quizz]="quizz"></app-detail-answer>
         </div>

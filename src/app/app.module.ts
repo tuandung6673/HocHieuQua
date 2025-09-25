@@ -47,7 +47,7 @@ import { AdminComponent } from './layouts/admin/admin.component';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MathjaxModule } from 'mathjax-angular';
+// import { MathjaxModule } from 'mathjax-angular';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MenuModule } from 'primeng/menu';
 import { PaginatorModule } from 'primeng/paginator';
@@ -310,7 +310,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TruncatePipe,
       ],
   imports: [
-    MathjaxModule.forRoot(),
+    // MathjaxModule.forRoot(),
     AppRoutingModule,
     EditorModule,
     AutoCompleteModule,
